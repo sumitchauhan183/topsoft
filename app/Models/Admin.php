@@ -27,12 +27,4 @@ class Admin extends Authenticatable
         'admin_id','name', 'email', 'password','login_token','last_login'
     ];
 
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
-    protected $hidden = [
-        'password'
-    ];
 }

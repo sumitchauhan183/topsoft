@@ -14,5 +14,9 @@ Class Utils{
 
             return $destinationPath.'/'.$filename;
     }
+
+    public static function jsredirect($url){
+        echo "<script>window.location.href='".$url."';</script>";
+    }
     
 }

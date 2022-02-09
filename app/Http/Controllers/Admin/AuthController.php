@@ -13,11 +13,26 @@ class AuthController extends Controller
 
     public function __construct(Request $request)
     {
-        $session = Session()->get('user');
-        dd($session);
+        
     }
 
     public function login(){
-        return view('admin.auth.login');
+        $session = Session()->get('admin');
+        if($session):
+            Utils::jsredirect(route('admin.dashboard'));
+        else:
+            return view('admin.auth.login',[
+                'title'=> 'Administrator Login',
+                'url'=>'login'
+            ]);
+        endif;
+        
+    }
+
+    
+    public function logout()
+    {
+        session()->flush();
+        return Utils::jsredirect(route('admin.login'));
     }
 }

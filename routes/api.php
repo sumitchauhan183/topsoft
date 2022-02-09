@@ -14,5 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// ADMIN API ROUTES
+Route::POST('admin/login',[App\Http\Controllers\Api\admin\LoginController::class,'login']);
+Route::POST('admin/mail/check',[App\Http\Controllers\Api\admin\LoginController::class,'checkEmail']);
 
-Route::get('invoice/create',[App\Http\Controllers\Api\InvoiceController::class,'create']);
