@@ -1,0 +1,1054 @@
+{
+	"info": {
+		"_postman_id": "8e25e791-bc55-4558-b8fe-173a4aaa8ed4",
+		"name": "Top Soft Prod",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\":\"sumit.chauhan183@gmail.com\",\r\n    \"password\":\"123456789\",\r\n    \"unique_token\":\"000000002\",\r\n    \"device_token\":\"lhgjlbljvjhbvjhvjhvjhllh\",\r\n    \"type\":\"android\",\r\n    \"company_id\":\"1\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://topsoft.appscioto.com/api/login",
+					"protocol": "http",
+					"host": [
+						"topsoft",
+						"appscioto",
+						"com"
+					],
+					"path": [
+						"api",
+						"login"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "success",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"sumit.chauhan183@gmail.com\",\r\n    \"password\":\"123456789\",\r\n    \"unique_token\":\"000000002\",\r\n    \"device_token\":\"lhgjlbljvjhbvjhvjhvjhllh\",\r\n    \"type\":\"android\",\r\n    \"company_id\":\"1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://topsoft.appscioto.com/api/login",
+							"protocol": "http",
+							"host": [
+								"topsoft",
+								"appscioto",
+								"com"
+							],
+							"path": [
+								"api",
+								"login"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "html",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Thu, 10 Feb 2022 11:16:10 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Apache"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, private"
+						},
+						{
+							"key": "X-RateLimit-Limit",
+							"value": "60"
+						},
+						{
+							"key": "X-RateLimit-Remaining",
+							"value": "59"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "top_soft_session=q51FiSi6NLcxzKn9rN3ziTLbKwz40EssullOj3c0; expires=Thu, 10-Feb-2022 13:16:11 GMT; Max-Age=7200; path=/; httponly; samesite=lax"
+						},
+						{
+							"key": "Upgrade",
+							"value": "h2,h2c"
+						},
+						{
+							"key": "Connection",
+							"value": "Upgrade, Keep-Alive"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept-Encoding"
+						},
+						{
+							"key": "Content-Encoding",
+							"value": "gzip"
+						},
+						{
+							"key": "Content-Length",
+							"value": "372"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5, max=75"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/html; charset=UTF-8"
+						}
+					],
+					"cookie": [],
+					"body": "{\"error\":false,\"message\":\"Logged in succesfully\",\"token\":\"655430ee55a4b1b0799ae991ada432d2\",\"data\":{\"device_id\":1,\"company_id\":1,\"email\":\"sumit.chauhan183@gmail.com\",\"password\":\"$2y$10$uYJpo.lMPTjPZuhLQWHHIu4b9MxckL6wWtYMsD.\\/kZYM3hYUp0s9e\",\"otp\":\"816567\",\"unique_token\":\"000000001\",\"device_token\":\"lhgjlbljvjhbvjhvjhvjhllh\",\"login_token\":\"94c886d76e28f75ced5843868a36f386\",\"type\":\"android\",\"status\":\"active\",\"created_at\":\"2022-02-10T02:51:57.000000Z\",\"updated_at\":\"2022-02-10T05:21:16.000000Z\"},\"code\":200}"
+				},
+				{
+					"name": "Email not exist",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"sumit.chauhan183@gmail.co\",\r\n    \"password\":\"123456789\",\r\n    \"unique_token\":\"000000002\",\r\n    \"device_token\":\"lhgjlbljvjhbvjhvjhvjhllh\",\r\n    \"type\":\"android\",\r\n    \"company_id\":\"1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://topsoft.appscioto.com/api/login",
+							"protocol": "http",
+							"host": [
+								"topsoft",
+								"appscioto",
+								"com"
+							],
+							"path": [
+								"api",
+								"login"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "html",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Thu, 10 Feb 2022 11:16:43 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Apache"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, private"
+						},
+						{
+							"key": "X-RateLimit-Limit",
+							"value": "60"
+						},
+						{
+							"key": "X-RateLimit-Remaining",
+							"value": "58"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "top_soft_session=q51FiSi6NLcxzKn9rN3ziTLbKwz40EssullOj3c0; expires=Thu, 10-Feb-2022 13:16:43 GMT; Max-Age=7200; path=/; httponly; samesite=lax"
+						},
+						{
+							"key": "Upgrade",
+							"value": "h2,h2c"
+						},
+						{
+							"key": "Connection",
+							"value": "Upgrade, Keep-Alive"
+						},
+						{
+							"key": "Content-Length",
+							"value": "56"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5, max=75"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/html; charset=UTF-8"
+						}
+					],
+					"cookie": [],
+					"body": "{\"error\":true,\"message\":\"Email id not exist\",\"code\":201}"
+				},
+				{
+					"name": "incorrect password",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"sumit.chauhan183@gmail.com\",\r\n    \"password\":\"12345678\",\r\n    \"unique_token\":\"000000002\",\r\n    \"device_token\":\"lhgjlbljvjhbvjhvjhvjhllh\",\r\n    \"type\":\"android\",\r\n    \"company_id\":\"1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://topsoft.appscioto.com/api/login",
+							"protocol": "http",
+							"host": [
+								"topsoft",
+								"appscioto",
+								"com"
+							],
+							"path": [
+								"api",
+								"login"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "html",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Thu, 10 Feb 2022 11:17:16 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Apache"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, private"
+						},
+						{
+							"key": "X-RateLimit-Limit",
+							"value": "60"
+						},
+						{
+							"key": "X-RateLimit-Remaining",
+							"value": "59"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "top_soft_session=q51FiSi6NLcxzKn9rN3ziTLbKwz40EssullOj3c0; expires=Thu, 10-Feb-2022 13:17:16 GMT; Max-Age=7200; path=/; httponly; samesite=lax"
+						},
+						{
+							"key": "Upgrade",
+							"value": "h2,h2c"
+						},
+						{
+							"key": "Connection",
+							"value": "Upgrade, Keep-Alive"
+						},
+						{
+							"key": "Accept-Ranges",
+							"value": "none"
+						},
+						{
+							"key": "Content-Length",
+							"value": "64"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5, max=75"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/html; charset=UTF-8"
+						}
+					],
+					"cookie": [],
+					"body": "{\"error\":true,\"message\":\"Please check your password\",\"code\":201}"
+				},
+				{
+					"name": "Required keys not found",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"\",\r\n    \"password\":\"12345678\",\r\n    \"unique_token\":\"000000002\",\r\n    \"device_token\":\"lhgjlbljvjhbvjhvjhvjhllh\",\r\n    \"type\":\"android\",\r\n    \"company_id\":\"1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://topsoft.appscioto.com/api/login",
+							"protocol": "http",
+							"host": [
+								"topsoft",
+								"appscioto",
+								"com"
+							],
+							"path": [
+								"api",
+								"login"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "html",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Thu, 10 Feb 2022 11:17:44 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Apache"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, private"
+						},
+						{
+							"key": "X-RateLimit-Limit",
+							"value": "60"
+						},
+						{
+							"key": "X-RateLimit-Remaining",
+							"value": "58"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "top_soft_session=q51FiSi6NLcxzKn9rN3ziTLbKwz40EssullOj3c0; expires=Thu, 10-Feb-2022 13:17:45 GMT; Max-Age=7200; path=/; httponly; samesite=lax"
+						},
+						{
+							"key": "Upgrade",
+							"value": "h2,h2c"
+						},
+						{
+							"key": "Connection",
+							"value": "Upgrade, Keep-Alive"
+						},
+						{
+							"key": "Accept-Ranges",
+							"value": "none"
+						},
+						{
+							"key": "Content-Length",
+							"value": "59"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5, max=75"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/html; charset=UTF-8"
+						}
+					],
+					"cookie": [],
+					"body": "{\"error\":true,\"message\":\"email is required key\",\"code\":201}"
+				}
+			]
+		},
+		{
+			"name": "Forget password send otp",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://topsoft.appscioto.com/api/forgotPassword/sendOtp",
+					"protocol": "http",
+					"host": [
+						"topsoft",
+						"appscioto",
+						"com"
+					],
+					"path": [
+						"api",
+						"forgotPassword",
+						"sendOtp"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Success",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"sumit.chauhan183@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://topsoft.appscioto.com/api/forgotPassword/sendOtp",
+							"protocol": "http",
+							"host": [
+								"topsoft",
+								"appscioto",
+								"com"
+							],
+							"path": [
+								"api",
+								"forgotPassword",
+								"sendOtp"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "html",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Thu, 10 Feb 2022 11:22:15 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Apache"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, private"
+						},
+						{
+							"key": "X-RateLimit-Limit",
+							"value": "60"
+						},
+						{
+							"key": "X-RateLimit-Remaining",
+							"value": "58"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "top_soft_session=q51FiSi6NLcxzKn9rN3ziTLbKwz40EssullOj3c0; expires=Thu, 10-Feb-2022 13:22:16 GMT; Max-Age=7200; path=/; httponly; samesite=lax"
+						},
+						{
+							"key": "Upgrade",
+							"value": "h2,h2c"
+						},
+						{
+							"key": "Connection",
+							"value": "Upgrade, Keep-Alive"
+						},
+						{
+							"key": "Accept-Ranges",
+							"value": "none"
+						},
+						{
+							"key": "Content-Length",
+							"value": "61"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5, max=75"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/html; charset=UTF-8"
+						}
+					],
+					"cookie": [],
+					"body": "{\"error\":false,\"message\":\"OTP sent successfully.\",\"code\":200}"
+				},
+				{
+					"name": "Required key not found",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://topsoft.appscioto.com/api/forgotPassword/sendOtp",
+							"protocol": "http",
+							"host": [
+								"topsoft",
+								"appscioto",
+								"com"
+							],
+							"path": [
+								"api",
+								"forgotPassword",
+								"sendOtp"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "html",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Thu, 10 Feb 2022 11:20:06 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Apache"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, private"
+						},
+						{
+							"key": "X-RateLimit-Limit",
+							"value": "60"
+						},
+						{
+							"key": "X-RateLimit-Remaining",
+							"value": "59"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "top_soft_session=q51FiSi6NLcxzKn9rN3ziTLbKwz40EssullOj3c0; expires=Thu, 10-Feb-2022 13:20:06 GMT; Max-Age=7200; path=/; httponly; samesite=lax"
+						},
+						{
+							"key": "Upgrade",
+							"value": "h2,h2c"
+						},
+						{
+							"key": "Connection",
+							"value": "Upgrade, Keep-Alive"
+						},
+						{
+							"key": "Content-Length",
+							"value": "59"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5, max=75"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/html; charset=UTF-8"
+						}
+					],
+					"cookie": [],
+					"body": "{\"error\":true,\"message\":\"email is required key\",\"code\":201}"
+				},
+				{
+					"name": "Email not found in database",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"sumit.chauhan183@gmail.co\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://topsoft.appscioto.com/api/forgotPassword/sendOtp",
+							"protocol": "http",
+							"host": [
+								"topsoft",
+								"appscioto",
+								"com"
+							],
+							"path": [
+								"api",
+								"forgotPassword",
+								"sendOtp"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "html",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Thu, 10 Feb 2022 11:20:39 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Apache"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, private"
+						},
+						{
+							"key": "X-RateLimit-Limit",
+							"value": "60"
+						},
+						{
+							"key": "X-RateLimit-Remaining",
+							"value": "58"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "top_soft_session=q51FiSi6NLcxzKn9rN3ziTLbKwz40EssullOj3c0; expires=Thu, 10-Feb-2022 13:20:39 GMT; Max-Age=7200; path=/; httponly; samesite=lax"
+						},
+						{
+							"key": "Upgrade",
+							"value": "h2,h2c"
+						},
+						{
+							"key": "Connection",
+							"value": "Upgrade, Keep-Alive"
+						},
+						{
+							"key": "Content-Length",
+							"value": "57"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5, max=75"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/html; charset=UTF-8"
+						}
+					],
+					"cookie": [],
+					"body": "{\"error\":true,\"message\":\"Please check email.\",\"code\":201}"
+				}
+			]
+		},
+		{
+			"name": "Reset Password with otp",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://topsoft.appscioto.com/api/forgotPassword/sendOtp",
+					"protocol": "http",
+					"host": [
+						"topsoft",
+						"appscioto",
+						"com"
+					],
+					"path": [
+						"api",
+						"forgotPassword",
+						"sendOtp"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Success",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"sumit.chauhan183@gmail.com\",\r\n    \"password\":\"12345678\",\r\n    \"otp\":\"356536\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://topsoft.appscioto.com/api/forgotPassword/reset",
+							"protocol": "http",
+							"host": [
+								"topsoft",
+								"appscioto",
+								"com"
+							],
+							"path": [
+								"api",
+								"forgotPassword",
+								"reset"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "html",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Thu, 10 Feb 2022 11:27:33 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Apache"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, private"
+						},
+						{
+							"key": "X-RateLimit-Limit",
+							"value": "60"
+						},
+						{
+							"key": "X-RateLimit-Remaining",
+							"value": "59"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "top_soft_session=q51FiSi6NLcxzKn9rN3ziTLbKwz40EssullOj3c0; expires=Thu, 10-Feb-2022 13:27:34 GMT; Max-Age=7200; path=/; httponly; samesite=lax"
+						},
+						{
+							"key": "Upgrade",
+							"value": "h2,h2c"
+						},
+						{
+							"key": "Connection",
+							"value": "Upgrade, Keep-Alive"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept-Encoding"
+						},
+						{
+							"key": "Content-Encoding",
+							"value": "gzip"
+						},
+						{
+							"key": "Content-Length",
+							"value": "87"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5, max=75"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/html; charset=UTF-8"
+						}
+					],
+					"cookie": [],
+					"body": "{\"error\":false,\"message\":\"Password updated successfully.\",\"code\":200}"
+				},
+				{
+					"name": "Invalid Email",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"sumit.chauhan183@gmail.co\",\r\n    \"password\":\"12345678\",\r\n    \"otp\":\"993083\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://topsoft.appscioto.com/api/forgotPassword/reset",
+							"protocol": "http",
+							"host": [
+								"topsoft",
+								"appscioto",
+								"com"
+							],
+							"path": [
+								"api",
+								"forgotPassword",
+								"reset"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "html",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Thu, 10 Feb 2022 11:26:31 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Apache"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, private"
+						},
+						{
+							"key": "X-RateLimit-Limit",
+							"value": "60"
+						},
+						{
+							"key": "X-RateLimit-Remaining",
+							"value": "59"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "top_soft_session=q51FiSi6NLcxzKn9rN3ziTLbKwz40EssullOj3c0; expires=Thu, 10-Feb-2022 13:26:31 GMT; Max-Age=7200; path=/; httponly; samesite=lax"
+						},
+						{
+							"key": "Upgrade",
+							"value": "h2,h2c"
+						},
+						{
+							"key": "Connection",
+							"value": "Upgrade, Keep-Alive"
+						},
+						{
+							"key": "Content-Length",
+							"value": "57"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5, max=75"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/html; charset=UTF-8"
+						}
+					],
+					"cookie": [],
+					"body": "{\"error\":true,\"message\":\"Please check email.\",\"code\":201}"
+				},
+				{
+					"name": "Invalid OTP",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"sumit.chauhan183@gmail.com\",\r\n    \"password\":\"12345678\",\r\n    \"otp\":\"993083\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://topsoft.appscioto.com/api/forgotPassword/reset",
+							"protocol": "http",
+							"host": [
+								"topsoft",
+								"appscioto",
+								"com"
+							],
+							"path": [
+								"api",
+								"forgotPassword",
+								"reset"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "html",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Thu, 10 Feb 2022 11:26:56 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Apache"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, private"
+						},
+						{
+							"key": "X-RateLimit-Limit",
+							"value": "60"
+						},
+						{
+							"key": "X-RateLimit-Remaining",
+							"value": "58"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "top_soft_session=q51FiSi6NLcxzKn9rN3ziTLbKwz40EssullOj3c0; expires=Thu, 10-Feb-2022 13:26:56 GMT; Max-Age=7200; path=/; httponly; samesite=lax"
+						},
+						{
+							"key": "Upgrade",
+							"value": "h2,h2c"
+						},
+						{
+							"key": "Connection",
+							"value": "Upgrade, Keep-Alive"
+						},
+						{
+							"key": "Content-Length",
+							"value": "50"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5, max=75"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/html; charset=UTF-8"
+						}
+					],
+					"cookie": [],
+					"body": "{\"error\":true,\"message\":\"invalid otp.\",\"code\":201}"
+				},
+				{
+					"name": "Required input missing",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"sumit.chauhan183@gmail.com\",\r\n    \"password\":\"12345678\",\r\n    \"otp\":\"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://topsoft.appscioto.com/api/forgotPassword/reset",
+							"protocol": "http",
+							"host": [
+								"topsoft",
+								"appscioto",
+								"com"
+							],
+							"path": [
+								"api",
+								"forgotPassword",
+								"reset"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "html",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Thu, 10 Feb 2022 11:28:01 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Apache"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, private"
+						},
+						{
+							"key": "X-RateLimit-Limit",
+							"value": "60"
+						},
+						{
+							"key": "X-RateLimit-Remaining",
+							"value": "58"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "top_soft_session=q51FiSi6NLcxzKn9rN3ziTLbKwz40EssullOj3c0; expires=Thu, 10-Feb-2022 13:28:02 GMT; Max-Age=7200; path=/; httponly; samesite=lax"
+						},
+						{
+							"key": "Upgrade",
+							"value": "h2,h2c"
+						},
+						{
+							"key": "Connection",
+							"value": "Upgrade, Keep-Alive"
+						},
+						{
+							"key": "Content-Length",
+							"value": "57"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5, max=75"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/html; charset=UTF-8"
+						}
+					],
+					"cookie": [],
+					"body": "{\"error\":true,\"message\":\"otp is required key\",\"code\":201}"
+				}
+			]
+		}
+	]
+}
