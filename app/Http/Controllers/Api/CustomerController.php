@@ -4,15 +4,11 @@ namespace App\Http\Controllers\API;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Company;
 use App\Models\Devices;
-use App\Models\Licences;
-use Illuminate\Support\Facades\Hash;
-use App\Classes\Email;
+use App\Models\Clients;
 use Exception;
-use PharIo\Manifest\License;
 
-class LoginController extends Controller
+class CustomerController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -24,21 +20,25 @@ class LoginController extends Controller
     private $input; 
     public function __construct(Request $request)
     {
+       
         $this->input = $request->all();
         $required = $this->checkRequiredParams($this->input,['device_id','token']);
+        
         if($required):
-            return json_encode([
+            echo json_encode([
                 'error'=>true,
                 'message'=>"$required is required key",
                 'code'=>201
             ]);
+            die();
         endif;
         if(!$this->checkToken()):
-            return json_encode([
+            echo json_encode([
                 'error'=>true,
                 'message'=>"Invalid Token",
                 'code'=>201
             ]);
+            die();
         endif;
     }
 
@@ -52,15 +52,82 @@ class LoginController extends Controller
         return "Wrong page";
     }
 
+    public function detail(Request $request){
+        $input = $this->input;
+        $required = $this->checkRequiredParams($input,[
+            'client_id'
+        ]);
+        if(!$required):
+            $client = Clients::where('client_id',$input['client_id'])->get()->first();
+            if($client):
+                return json_encode([
+                    'error'=>false,
+                    'message'=>"details listed",
+                    'data'=> $client,
+                    'code'=>200
+                ]);
+            else:
+                return json_encode([
+                    'error'=>true,
+                    'message'=>"Invalid customer id",
+                    'code'=>201
+                ]);
+            endif;
+        else:
+            return json_encode([
+                'error'=>true,
+                'message'=>"$required is required key",
+                'code'=>201
+            ]);
+        endif;
+    }
 
     public function add()
     {
         $input = $this->input;
         $required = $this->checkRequiredParams($input,[
-            'email','password','company_id','unique_token','device_token','type'
+            'name','region','address','city','postal_code','telephone','mobile','tax_number','tax_post','occupation',
+            'email','discount','note','note2'
         ]);
         if(!$required):
-            
+            $check = Clients::where('email',$input['email'])->get()->count();
+            if(!$check):
+                $client = Clients::create([
+                        'name' => $input['name'],
+                        'region' => $input['region'],
+                        'address' => $input['address'],
+                        'city' => $input['city'],
+                        'postal_code' => $input['postal_code'],
+                        'telephone' => $input['telephone'],
+                        'mobile' => $input['mobile'],
+                        'tax_number' => $input['tax_number'],
+                        'tax_post' => $input['tax_post'],
+                        'occupation' => $input['occupation'],
+                        'email' => $input['email'],
+                        'discount' => $input['discount'],
+                        'note' => $input['note'],
+                        'note2' => $input['note2']
+                ]);
+                if($client):
+                    return json_encode([
+                        'error'=>false,
+                        'message'=>"Customer created successfully",
+                        'code'=>201
+                    ]);
+                else:
+                    return json_encode([
+                        'error'=>true,
+                        'message'=>"server issue client not created",
+                        'code'=>201
+                    ]);
+                endif;
+            else:
+                return json_encode([
+                    'error'=>true,
+                    'message'=>"email already use for another client",
+                    'code'=>201
+                ]);
+            endif;
         else:
             return json_encode([
                 'error'=>true,
@@ -74,10 +141,53 @@ class LoginController extends Controller
     public function update(Request $request){
         $input = $this->input;
         $required = $this->checkRequiredParams($input,[
-            'email','password','company_id','unique_token','device_token','type'
+            'client_id','name','region','address','city','postal_code','telephone','mobile','tax_number','tax_post','occupation',
+            'email','discount','note','note2'
         ]);
         if(!$required):
-            
+            $check  = Clients::where('email',$input['email'])
+                            ->where('client_id','!=',$input['client_id'])
+                            ->get()->count();
+            if(!$check):
+                
+                $client = Clients::where('client_id',$input['client_id'])->update([
+                    'name' => $input['name'],
+                    'region' => $input['region'],
+                    'address' => $input['address'],
+                    'city' => $input['city'],
+                    'postal_code' => $input['postal_code'],
+                    'telephone' => $input['telephone'],
+                    'mobile' => $input['mobile'],
+                    'tax_number' => $input['tax_number'],
+                    'tax_post' => $input['tax_post'],
+                    'occupation' => $input['occupation'],
+                    'email' => $input['email'],
+                    'discount' => $input['discount'],
+                    'note' => $input['note'],
+                    'note2' => $input['note2']
+                ]);
+                
+                if($client):
+                    return json_encode([
+                        'error'=>false,
+                        'message'=>"Details updated successfully",
+                        'code'=>201
+                    ]);
+                else:
+                    return json_encode([
+                        'error'=>true,
+                        'message'=>"server issue client not created",
+                        'code'=>201
+                    ]);
+                endif;
+            else:
+                return json_encode([
+                    'error'=>true,
+                    'message'=>"email already use for another client",
+                    'code'=>201
+                ]);
+            endif;
+                       
         else:
             return json_encode([
                 'error'=>true,
@@ -90,10 +200,45 @@ class LoginController extends Controller
     public function list(Request $request){
         $input = $this->input;
         $required = $this->checkRequiredParams($input,[
-            'email','password','company_id','unique_token','device_token','type'
+            'page','count'
         ]);
         if(!$required):
-            
+            $clients = Clients::skip($input['page']*$input['count'])->take($input['count'])->get();
+            return json_encode([
+                'error'=>false,
+                'message'=>"listing done",
+                'data'=> $clients,
+                'code'=>200
+            ]);
+        else:
+            return json_encode([
+                'error'=>true,
+                'message'=>"$required is required key",
+                'code'=>201
+            ]);
+        endif;
+    }
+
+    public function delete(Request $request){
+        $input = $this->input;
+        $required = $this->checkRequiredParams($input,[
+            'client_id'
+        ]);
+        if(!$required):
+            $client = Clients::where('client_id',$input['client_id'])->delete();
+            if($client):
+                return json_encode([
+                    'error'=>false,
+                    'message'=>"client removed successfully",
+                    'code'=>200
+                ]);
+            else:
+                return json_encode([
+                    'error'=>true,
+                    'message'=>"sever issue client not removed",
+                    'code'=>201
+                ]);
+            endif;
         else:
             return json_encode([
                 'error'=>true,
@@ -105,11 +250,9 @@ class LoginController extends Controller
 
 
    private function checkToken(){
-                  
-                
            $check = Devices::where('device_id',$this->input['device_id'])
                         ->where('login_token',$this->input['token'])
-                        ->get()->count();    
+                        ->get()->count();   
             return $check;                    
         
    }
