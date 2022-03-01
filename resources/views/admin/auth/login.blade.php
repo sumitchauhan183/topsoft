@@ -16,13 +16,13 @@
                 <form role="form" class="text-start" >
                   <div class="input-group input-group-outline my-3">
                     <label class="form-label">Email</label>
-                    <input id="email" type="email" class="form-control" id="email" autocomplete="email" autofocus>
+                    <input id="email" type="email" class="form-control" id="email" autocomplete="email" autofocus autocomplete="off">
 
                                 
                   </div>
                   <div class="input-group input-group-outline mb-3">
                     <label class="form-label">Password</label>
-                    <input id="password" type="password" class="form-control" id="password" autocomplete="current-password">   
+                    <input id="password" type="password" class="form-control" id="password" autocomplete="off">   
                   </div>
                   
                   <div class="text-center">

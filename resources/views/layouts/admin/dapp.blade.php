@@ -14,12 +14,15 @@
   <!-- Nucleo Icons -->
   <link href="{{asset('css/nucleo-icons.css')}}" rel="stylesheet" />
   <link href="{{asset('css/nucleo-svg.css')}}" rel="stylesheet" />
+  <link href="{{asset('css/icon.css')}}" rel="stylesheet" />
   <!-- Font Awesome Icons -->
   <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
   <!-- Material Icons -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
   <!-- CSS Files -->
   <link id="pagestyle" href="{{asset('css/material-dashboard.css?v=3.0.0')}}" rel="stylesheet" />
+  @include('inc.admin.css.clients')
+  @include('inc.admin.css.company')
   <style>
       #sidenav-collapse-main{
           height: 80% !important;
@@ -59,15 +62,11 @@
   <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
   <script src="{{asset('js/material-dashboard.min.js?v=3.0.0')}}"></script>
 
-  @if($url=='dashboard')
-  <script src="{{asset('js/custom/admin/dashboard.js')}}"></script>
-  <script>
-        //close the alert after 3 seconds.
-        $(document).ready(function(){
-          dashboard.init(); 
-        });
-    </script>
-  @endif
+  
+  @include('inc.admin.js.dashboard')
+  @include('inc.admin.js.clients')
+  @include('inc.admin.js.company')
+
 </body>
 
 </html>

@@ -3,17 +3,17 @@
     <div class="collapse navbar-collapse  w-auto"  id="sidenav-collapse-main">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link text-white active bg-gradient-primary" href="{{route('admin.dashboard')}}">
+          <a class="nav-link text-white @if($main=='dashboard') active bg-gradient-primary @endif " href="{{route('admin.dashboard')}}">
             <span class="nav-link-text ms-1">Dashboard</span>
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white" href="{{route('admin.dashboard')}}">
+          <a class="nav-link text-white  @if($main=='clients') active bg-gradient-primary @endif " href="{{route('admin.clients.list')}}">
             <span class="nav-link-text ms-1">Clients</span>
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white" href="{{route('admin.dashboard')}}">
+          <a class="nav-link text-white @if($main=='company') active bg-gradient-primary @endif"  href="{{route('admin.company.list')}}">
             <span class="nav-link-text ms-1">Company</span>
           </a>
         </li>

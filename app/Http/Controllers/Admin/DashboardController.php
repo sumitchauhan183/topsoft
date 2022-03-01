@@ -28,6 +28,7 @@ class DashboardController extends Controller
         return view('admin.dashboard',[
                 'title'=> 'Admin Dashboard',
                 'url'=> 'dashboard',
+                'main'=> 'dashboard',
                 'admin'=> (object)$this->admin['data']
          ]);
     }

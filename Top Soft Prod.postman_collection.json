@@ -1,7 +1,7 @@
 {
 	"info": {
-		"_postman_id": "8e25e791-bc55-4558-b8fe-173a4aaa8ed4",
-		"name": "Top Soft Prod",
+		"_postman_id": "90f47e7d-6e29-406d-87fd-36f34bbbe365",
+		"name": "TopSoft API Production",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -12,7 +12,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"email\":\"sumit.chauhan183@gmail.com\",\r\n    \"password\":\"123456789\",\r\n    \"unique_token\":\"000000002\",\r\n    \"device_token\":\"lhgjlbljvjhbvjhvjhvjhllh\",\r\n    \"type\":\"android\",\r\n    \"company_id\":\"1\"\r\n}",
+					"raw": "{\r\n    \"email\":\"sumit.chauhan183@gmail.com\",\r\n    \"password\":\"12345678\",\r\n    \"unique_token\":\"000000002\",\r\n    \"device_token\":\"lhgjlbljvjhbvjhvjhvjhllh\",\r\n    \"type\":\"android\",\r\n    \"company_id\":\"1\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -41,7 +41,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\":\"sumit.chauhan183@gmail.com\",\r\n    \"password\":\"123456789\",\r\n    \"unique_token\":\"000000002\",\r\n    \"device_token\":\"lhgjlbljvjhbvjhvjhvjhllh\",\r\n    \"type\":\"android\",\r\n    \"company_id\":\"1\"\r\n}",
+							"raw": "{\r\n    \"email\":\"sumit.chauhan183@gmail.com\",\r\n    \"password\":\"12345678\",\r\n    \"unique_token\":\"000000001\",\r\n    \"device_token\":\"lhgjlbljvjhbvjhvjhvjhllh\",\r\n    \"type\":\"android\",\r\n    \"company_id\":\"1\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -68,11 +68,99 @@
 					"header": [
 						{
 							"key": "Date",
-							"value": "Thu, 10 Feb 2022 11:16:10 GMT"
+							"value": "Thu, 10 Feb 2022 08:28:26 GMT"
 						},
 						{
 							"key": "Server",
-							"value": "Apache"
+							"value": "Apache/2.4.52 (Win64) OpenSSL/1.1.1m PHP/8.0.14"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/8.0.14"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, private"
+						},
+						{
+							"key": "X-RateLimit-Limit",
+							"value": "60"
+						},
+						{
+							"key": "X-RateLimit-Remaining",
+							"value": "55"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "top_soft_session=i0xT10GYfLZFuPi9i4Q0xFxMGFKLNueB9NhxZkyN; expires=Thu, 10-Feb-2022 10:28:27 GMT; Max-Age=7200; path=/; httponly; samesite=lax"
+						},
+						{
+							"key": "Content-Length",
+							"value": "390"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5, max=100"
+						},
+						{
+							"key": "Connection",
+							"value": "Keep-Alive"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/html; charset=UTF-8"
+						}
+					],
+					"cookie": [],
+					"body": "{\"error\":false,\"message\":\"Logged in succesfully\",\"token\":\"191e2a209c9aa819312ec21803ef79a3\",\"company\":{\"company_id\":1,\"name\":\"Appscioto\",\"greek_name\":\"\",\"private_key\":\"$2y$10$J\\/hxJ3ZbhR.RbPEO9casq.a6Ko.BrNg39syMhvdkk7blvlw\\/2vbB6\",\"public_key\":\"sumit.chauhan183@gmail.com\",\"status\":\"active\",\"created_at\":\"2022-02-10T07:24:26.000000Z\",\"updated_at\":\"2022-02-10T07:24:26.000000Z\"},\"code\":200}"
+				},
+				{
+					"name": "Email not exist",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"sumit.chauhan183@gmail.co\",\r\n    \"password\":\"12345678\",\r\n    \"unique_token\":\"000000003\",\r\n    \"device_token\":\"lhgjlbljvjhbvjhvjhvjhllh\",\r\n    \"type\":\"android\",\r\n    \"company_id\":\"1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://topsoft.appscioto.com/api/login",
+							"protocol": "http",
+							"host": [
+								"topsoft",
+								"appscioto",
+								"com"
+							],
+							"path": [
+								"api",
+								"login"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "html",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Thu, 10 Feb 2022 08:30:45 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Apache/2.4.52 (Win64) OpenSSL/1.1.1m PHP/8.0.14"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/8.0.14"
 						},
 						{
 							"key": "Cache-Control",
@@ -92,31 +180,19 @@
 						},
 						{
 							"key": "Set-Cookie",
-							"value": "top_soft_session=q51FiSi6NLcxzKn9rN3ziTLbKwz40EssullOj3c0; expires=Thu, 10-Feb-2022 13:16:11 GMT; Max-Age=7200; path=/; httponly; samesite=lax"
-						},
-						{
-							"key": "Upgrade",
-							"value": "h2,h2c"
-						},
-						{
-							"key": "Connection",
-							"value": "Upgrade, Keep-Alive"
-						},
-						{
-							"key": "Vary",
-							"value": "Accept-Encoding"
-						},
-						{
-							"key": "Content-Encoding",
-							"value": "gzip"
+							"value": "top_soft_session=i0xT10GYfLZFuPi9i4Q0xFxMGFKLNueB9NhxZkyN; expires=Thu, 10-Feb-2022 10:30:45 GMT; Max-Age=7200; path=/; httponly; samesite=lax"
 						},
 						{
 							"key": "Content-Length",
-							"value": "372"
+							"value": "56"
 						},
 						{
 							"key": "Keep-Alive",
-							"value": "timeout=5, max=75"
+							"value": "timeout=5, max=100"
+						},
+						{
+							"key": "Connection",
+							"value": "Keep-Alive"
 						},
 						{
 							"key": "Content-Type",
@@ -124,16 +200,16 @@
 						}
 					],
 					"cookie": [],
-					"body": "{\"error\":false,\"message\":\"Logged in succesfully\",\"token\":\"655430ee55a4b1b0799ae991ada432d2\",\"data\":{\"device_id\":1,\"company_id\":1,\"email\":\"sumit.chauhan183@gmail.com\",\"password\":\"$2y$10$uYJpo.lMPTjPZuhLQWHHIu4b9MxckL6wWtYMsD.\\/kZYM3hYUp0s9e\",\"otp\":\"816567\",\"unique_token\":\"000000001\",\"device_token\":\"lhgjlbljvjhbvjhvjhvjhllh\",\"login_token\":\"94c886d76e28f75ced5843868a36f386\",\"type\":\"android\",\"status\":\"active\",\"created_at\":\"2022-02-10T02:51:57.000000Z\",\"updated_at\":\"2022-02-10T05:21:16.000000Z\"},\"code\":200}"
+					"body": "{\"error\":true,\"message\":\"Email id not exist\",\"code\":201}"
 				},
 				{
-					"name": "Email not exist",
+					"name": "incorrect password",
 					"originalRequest": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\":\"sumit.chauhan183@gmail.co\",\r\n    \"password\":\"123456789\",\r\n    \"unique_token\":\"000000002\",\r\n    \"device_token\":\"lhgjlbljvjhbvjhvjhvjhllh\",\r\n    \"type\":\"android\",\r\n    \"company_id\":\"1\"\r\n}",
+							"raw": "{\r\n    \"email\":\"sumit.chauhan183@gmail.com\",\r\n    \"password\":\"123456789\",\r\n    \"unique_token\":\"000000003\",\r\n    \"device_token\":\"lhgjlbljvjhbvjhvjhvjhllh\",\r\n    \"type\":\"android\",\r\n    \"company_id\":\"1\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -160,11 +236,15 @@
 					"header": [
 						{
 							"key": "Date",
-							"value": "Thu, 10 Feb 2022 11:16:43 GMT"
+							"value": "Thu, 10 Feb 2022 08:31:20 GMT"
 						},
 						{
 							"key": "Server",
-							"value": "Apache"
+							"value": "Apache/2.4.52 (Win64) OpenSSL/1.1.1m PHP/8.0.14"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/8.0.14"
 						},
 						{
 							"key": "Cache-Control",
@@ -184,103 +264,7 @@
 						},
 						{
 							"key": "Set-Cookie",
-							"value": "top_soft_session=q51FiSi6NLcxzKn9rN3ziTLbKwz40EssullOj3c0; expires=Thu, 10-Feb-2022 13:16:43 GMT; Max-Age=7200; path=/; httponly; samesite=lax"
-						},
-						{
-							"key": "Upgrade",
-							"value": "h2,h2c"
-						},
-						{
-							"key": "Connection",
-							"value": "Upgrade, Keep-Alive"
-						},
-						{
-							"key": "Content-Length",
-							"value": "56"
-						},
-						{
-							"key": "Keep-Alive",
-							"value": "timeout=5, max=75"
-						},
-						{
-							"key": "Content-Type",
-							"value": "text/html; charset=UTF-8"
-						}
-					],
-					"cookie": [],
-					"body": "{\"error\":true,\"message\":\"Email id not exist\",\"code\":201}"
-				},
-				{
-					"name": "incorrect password",
-					"originalRequest": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"email\":\"sumit.chauhan183@gmail.com\",\r\n    \"password\":\"12345678\",\r\n    \"unique_token\":\"000000002\",\r\n    \"device_token\":\"lhgjlbljvjhbvjhvjhvjhllh\",\r\n    \"type\":\"android\",\r\n    \"company_id\":\"1\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://topsoft.appscioto.com/api/login",
-							"protocol": "http",
-							"host": [
-								"topsoft",
-								"appscioto",
-								"com"
-							],
-							"path": [
-								"api",
-								"login"
-							]
-						}
-					},
-					"status": "OK",
-					"code": 200,
-					"_postman_previewlanguage": "html",
-					"header": [
-						{
-							"key": "Date",
-							"value": "Thu, 10 Feb 2022 11:17:16 GMT"
-						},
-						{
-							"key": "Server",
-							"value": "Apache"
-						},
-						{
-							"key": "Cache-Control",
-							"value": "no-cache, private"
-						},
-						{
-							"key": "X-RateLimit-Limit",
-							"value": "60"
-						},
-						{
-							"key": "X-RateLimit-Remaining",
-							"value": "59"
-						},
-						{
-							"key": "Access-Control-Allow-Origin",
-							"value": "*"
-						},
-						{
-							"key": "Set-Cookie",
-							"value": "top_soft_session=q51FiSi6NLcxzKn9rN3ziTLbKwz40EssullOj3c0; expires=Thu, 10-Feb-2022 13:17:16 GMT; Max-Age=7200; path=/; httponly; samesite=lax"
-						},
-						{
-							"key": "Upgrade",
-							"value": "h2,h2c"
-						},
-						{
-							"key": "Connection",
-							"value": "Upgrade, Keep-Alive"
-						},
-						{
-							"key": "Accept-Ranges",
-							"value": "none"
+							"value": "top_soft_session=i0xT10GYfLZFuPi9i4Q0xFxMGFKLNueB9NhxZkyN; expires=Thu, 10-Feb-2022 10:31:20 GMT; Max-Age=7200; path=/; httponly; samesite=lax"
 						},
 						{
 							"key": "Content-Length",
@@ -288,7 +272,11 @@
 						},
 						{
 							"key": "Keep-Alive",
-							"value": "timeout=5, max=75"
+							"value": "timeout=5, max=100"
+						},
+						{
+							"key": "Connection",
+							"value": "Keep-Alive"
 						},
 						{
 							"key": "Content-Type",
@@ -299,7 +287,7 @@
 					"body": "{\"error\":true,\"message\":\"Please check your password\",\"code\":201}"
 				},
 				{
-					"name": "Required keys not found",
+					"name": "required keys not found",
 					"originalRequest": {
 						"method": "POST",
 						"header": [],
@@ -332,11 +320,15 @@
 					"header": [
 						{
 							"key": "Date",
-							"value": "Thu, 10 Feb 2022 11:17:44 GMT"
+							"value": "Thu, 10 Feb 2022 08:43:18 GMT"
 						},
 						{
 							"key": "Server",
-							"value": "Apache"
+							"value": "Apache/2.4.52 (Win64) OpenSSL/1.1.1m PHP/8.0.14"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/8.0.14"
 						},
 						{
 							"key": "Cache-Control",
@@ -348,7 +340,7 @@
 						},
 						{
 							"key": "X-RateLimit-Remaining",
-							"value": "58"
+							"value": "55"
 						},
 						{
 							"key": "Access-Control-Allow-Origin",
@@ -356,19 +348,7 @@
 						},
 						{
 							"key": "Set-Cookie",
-							"value": "top_soft_session=q51FiSi6NLcxzKn9rN3ziTLbKwz40EssullOj3c0; expires=Thu, 10-Feb-2022 13:17:45 GMT; Max-Age=7200; path=/; httponly; samesite=lax"
-						},
-						{
-							"key": "Upgrade",
-							"value": "h2,h2c"
-						},
-						{
-							"key": "Connection",
-							"value": "Upgrade, Keep-Alive"
-						},
-						{
-							"key": "Accept-Ranges",
-							"value": "none"
+							"value": "top_soft_session=i0xT10GYfLZFuPi9i4Q0xFxMGFKLNueB9NhxZkyN; expires=Thu, 10-Feb-2022 10:43:19 GMT; Max-Age=7200; path=/; httponly; samesite=lax"
 						},
 						{
 							"key": "Content-Length",
@@ -376,7 +356,11 @@
 						},
 						{
 							"key": "Keep-Alive",
-							"value": "timeout=5, max=75"
+							"value": "timeout=5, max=100"
+						},
+						{
+							"key": "Connection",
+							"value": "Keep-Alive"
 						},
 						{
 							"key": "Content-Type",
@@ -389,13 +373,13 @@
 			]
 		},
 		{
-			"name": "Forget password send otp",
+			"name": "Forget Password Send OTP",
 			"request": {
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "",
+					"raw": "{\r\n    \"email\":\"sumit.chauhan183@gmail.com\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -419,96 +403,7 @@
 			},
 			"response": [
 				{
-					"name": "Success",
-					"originalRequest": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"email\":\"sumit.chauhan183@gmail.com\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://topsoft.appscioto.com/api/forgotPassword/sendOtp",
-							"protocol": "http",
-							"host": [
-								"topsoft",
-								"appscioto",
-								"com"
-							],
-							"path": [
-								"api",
-								"forgotPassword",
-								"sendOtp"
-							]
-						}
-					},
-					"status": "OK",
-					"code": 200,
-					"_postman_previewlanguage": "html",
-					"header": [
-						{
-							"key": "Date",
-							"value": "Thu, 10 Feb 2022 11:22:15 GMT"
-						},
-						{
-							"key": "Server",
-							"value": "Apache"
-						},
-						{
-							"key": "Cache-Control",
-							"value": "no-cache, private"
-						},
-						{
-							"key": "X-RateLimit-Limit",
-							"value": "60"
-						},
-						{
-							"key": "X-RateLimit-Remaining",
-							"value": "58"
-						},
-						{
-							"key": "Access-Control-Allow-Origin",
-							"value": "*"
-						},
-						{
-							"key": "Set-Cookie",
-							"value": "top_soft_session=q51FiSi6NLcxzKn9rN3ziTLbKwz40EssullOj3c0; expires=Thu, 10-Feb-2022 13:22:16 GMT; Max-Age=7200; path=/; httponly; samesite=lax"
-						},
-						{
-							"key": "Upgrade",
-							"value": "h2,h2c"
-						},
-						{
-							"key": "Connection",
-							"value": "Upgrade, Keep-Alive"
-						},
-						{
-							"key": "Accept-Ranges",
-							"value": "none"
-						},
-						{
-							"key": "Content-Length",
-							"value": "61"
-						},
-						{
-							"key": "Keep-Alive",
-							"value": "timeout=5, max=75"
-						},
-						{
-							"key": "Content-Type",
-							"value": "text/html; charset=UTF-8"
-						}
-					],
-					"cookie": [],
-					"body": "{\"error\":false,\"message\":\"OTP sent successfully.\",\"code\":200}"
-				},
-				{
-					"name": "Required key not found",
+					"name": "Required error",
 					"originalRequest": {
 						"method": "POST",
 						"header": [],
@@ -542,11 +437,15 @@
 					"header": [
 						{
 							"key": "Date",
-							"value": "Thu, 10 Feb 2022 11:20:06 GMT"
+							"value": "Thu, 10 Feb 2022 10:19:00 GMT"
 						},
 						{
 							"key": "Server",
-							"value": "Apache"
+							"value": "Apache/2.4.52 (Win64) OpenSSL/1.1.1m PHP/8.0.14"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/8.0.14"
 						},
 						{
 							"key": "Cache-Control",
@@ -566,15 +465,7 @@
 						},
 						{
 							"key": "Set-Cookie",
-							"value": "top_soft_session=q51FiSi6NLcxzKn9rN3ziTLbKwz40EssullOj3c0; expires=Thu, 10-Feb-2022 13:20:06 GMT; Max-Age=7200; path=/; httponly; samesite=lax"
-						},
-						{
-							"key": "Upgrade",
-							"value": "h2,h2c"
-						},
-						{
-							"key": "Connection",
-							"value": "Upgrade, Keep-Alive"
+							"value": "top_soft_session=i0xT10GYfLZFuPi9i4Q0xFxMGFKLNueB9NhxZkyN; expires=Thu, 10-Feb-2022 12:19:00 GMT; Max-Age=7200; path=/; httponly; samesite=lax"
 						},
 						{
 							"key": "Content-Length",
@@ -582,7 +473,128 @@
 						},
 						{
 							"key": "Keep-Alive",
-							"value": "timeout=5, max=75"
+							"value": "timeout=5, max=100"
+						},
+						{
+							"key": "Connection",
+							"value": "Keep-Alive"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/html; charset=UTF-8"
+						}
+					],
+					"cookie": [],
+					"body": "{\"error\":true,\"message\":\"email is required key\",\"code\":201}"
+				}
+			]
+		},
+		{
+			"name": "Forget password reset password",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\":\"sumit.chauhan183@gmail.com\",\r\n    \"password\":\"123456789\",\r\n    \"otp\":\"816567\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://topsoft.appscioto.com/api/forgotPassword/reset",
+					"protocol": "http",
+					"host": [
+						"topsoft",
+						"appscioto",
+						"com"
+					],
+					"path": [
+						"api",
+						"forgotPassword",
+						"reset"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Required parameter error",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"\",\r\n    \"password\":\"\",\r\n    \"otp\":\"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://topsoft.appscioto.com/api/forgotPassword/reset",
+							"protocol": "http",
+							"host": [
+								"topsoft",
+								"appscioto",
+								"com"
+							],
+							"path": [
+								"api",
+								"forgotPassword",
+								"reset"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "html",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Thu, 10 Feb 2022 10:45:02 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Apache/2.4.52 (Win64) OpenSSL/1.1.1m PHP/8.0.14"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/8.0.14"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, private"
+						},
+						{
+							"key": "X-RateLimit-Limit",
+							"value": "60"
+						},
+						{
+							"key": "X-RateLimit-Remaining",
+							"value": "58"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "top_soft_session=i0xT10GYfLZFuPi9i4Q0xFxMGFKLNueB9NhxZkyN; expires=Thu, 10-Feb-2022 12:45:02 GMT; Max-Age=7200; path=/; httponly; samesite=lax"
+						},
+						{
+							"key": "Content-Length",
+							"value": "59"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5, max=100"
+						},
+						{
+							"key": "Connection",
+							"value": "Keep-Alive"
 						},
 						{
 							"key": "Content-Type",
@@ -593,299 +605,13 @@
 					"body": "{\"error\":true,\"message\":\"email is required key\",\"code\":201}"
 				},
 				{
-					"name": "Email not found in database",
-					"originalRequest": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"email\":\"sumit.chauhan183@gmail.co\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://topsoft.appscioto.com/api/forgotPassword/sendOtp",
-							"protocol": "http",
-							"host": [
-								"topsoft",
-								"appscioto",
-								"com"
-							],
-							"path": [
-								"api",
-								"forgotPassword",
-								"sendOtp"
-							]
-						}
-					},
-					"status": "OK",
-					"code": 200,
-					"_postman_previewlanguage": "html",
-					"header": [
-						{
-							"key": "Date",
-							"value": "Thu, 10 Feb 2022 11:20:39 GMT"
-						},
-						{
-							"key": "Server",
-							"value": "Apache"
-						},
-						{
-							"key": "Cache-Control",
-							"value": "no-cache, private"
-						},
-						{
-							"key": "X-RateLimit-Limit",
-							"value": "60"
-						},
-						{
-							"key": "X-RateLimit-Remaining",
-							"value": "58"
-						},
-						{
-							"key": "Access-Control-Allow-Origin",
-							"value": "*"
-						},
-						{
-							"key": "Set-Cookie",
-							"value": "top_soft_session=q51FiSi6NLcxzKn9rN3ziTLbKwz40EssullOj3c0; expires=Thu, 10-Feb-2022 13:20:39 GMT; Max-Age=7200; path=/; httponly; samesite=lax"
-						},
-						{
-							"key": "Upgrade",
-							"value": "h2,h2c"
-						},
-						{
-							"key": "Connection",
-							"value": "Upgrade, Keep-Alive"
-						},
-						{
-							"key": "Content-Length",
-							"value": "57"
-						},
-						{
-							"key": "Keep-Alive",
-							"value": "timeout=5, max=75"
-						},
-						{
-							"key": "Content-Type",
-							"value": "text/html; charset=UTF-8"
-						}
-					],
-					"cookie": [],
-					"body": "{\"error\":true,\"message\":\"Please check email.\",\"code\":201}"
-				}
-			]
-		},
-		{
-			"name": "Reset Password with otp",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"url": {
-					"raw": "http://topsoft.appscioto.com/api/forgotPassword/sendOtp",
-					"protocol": "http",
-					"host": [
-						"topsoft",
-						"appscioto",
-						"com"
-					],
-					"path": [
-						"api",
-						"forgotPassword",
-						"sendOtp"
-					]
-				}
-			},
-			"response": [
-				{
-					"name": "Success",
-					"originalRequest": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"email\":\"sumit.chauhan183@gmail.com\",\r\n    \"password\":\"12345678\",\r\n    \"otp\":\"356536\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://topsoft.appscioto.com/api/forgotPassword/reset",
-							"protocol": "http",
-							"host": [
-								"topsoft",
-								"appscioto",
-								"com"
-							],
-							"path": [
-								"api",
-								"forgotPassword",
-								"reset"
-							]
-						}
-					},
-					"status": "OK",
-					"code": 200,
-					"_postman_previewlanguage": "html",
-					"header": [
-						{
-							"key": "Date",
-							"value": "Thu, 10 Feb 2022 11:27:33 GMT"
-						},
-						{
-							"key": "Server",
-							"value": "Apache"
-						},
-						{
-							"key": "Cache-Control",
-							"value": "no-cache, private"
-						},
-						{
-							"key": "X-RateLimit-Limit",
-							"value": "60"
-						},
-						{
-							"key": "X-RateLimit-Remaining",
-							"value": "59"
-						},
-						{
-							"key": "Access-Control-Allow-Origin",
-							"value": "*"
-						},
-						{
-							"key": "Set-Cookie",
-							"value": "top_soft_session=q51FiSi6NLcxzKn9rN3ziTLbKwz40EssullOj3c0; expires=Thu, 10-Feb-2022 13:27:34 GMT; Max-Age=7200; path=/; httponly; samesite=lax"
-						},
-						{
-							"key": "Upgrade",
-							"value": "h2,h2c"
-						},
-						{
-							"key": "Connection",
-							"value": "Upgrade, Keep-Alive"
-						},
-						{
-							"key": "Vary",
-							"value": "Accept-Encoding"
-						},
-						{
-							"key": "Content-Encoding",
-							"value": "gzip"
-						},
-						{
-							"key": "Content-Length",
-							"value": "87"
-						},
-						{
-							"key": "Keep-Alive",
-							"value": "timeout=5, max=75"
-						},
-						{
-							"key": "Content-Type",
-							"value": "text/html; charset=UTF-8"
-						}
-					],
-					"cookie": [],
-					"body": "{\"error\":false,\"message\":\"Password updated successfully.\",\"code\":200}"
-				},
-				{
-					"name": "Invalid Email",
-					"originalRequest": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"email\":\"sumit.chauhan183@gmail.co\",\r\n    \"password\":\"12345678\",\r\n    \"otp\":\"993083\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://topsoft.appscioto.com/api/forgotPassword/reset",
-							"protocol": "http",
-							"host": [
-								"topsoft",
-								"appscioto",
-								"com"
-							],
-							"path": [
-								"api",
-								"forgotPassword",
-								"reset"
-							]
-						}
-					},
-					"status": "OK",
-					"code": 200,
-					"_postman_previewlanguage": "html",
-					"header": [
-						{
-							"key": "Date",
-							"value": "Thu, 10 Feb 2022 11:26:31 GMT"
-						},
-						{
-							"key": "Server",
-							"value": "Apache"
-						},
-						{
-							"key": "Cache-Control",
-							"value": "no-cache, private"
-						},
-						{
-							"key": "X-RateLimit-Limit",
-							"value": "60"
-						},
-						{
-							"key": "X-RateLimit-Remaining",
-							"value": "59"
-						},
-						{
-							"key": "Access-Control-Allow-Origin",
-							"value": "*"
-						},
-						{
-							"key": "Set-Cookie",
-							"value": "top_soft_session=q51FiSi6NLcxzKn9rN3ziTLbKwz40EssullOj3c0; expires=Thu, 10-Feb-2022 13:26:31 GMT; Max-Age=7200; path=/; httponly; samesite=lax"
-						},
-						{
-							"key": "Upgrade",
-							"value": "h2,h2c"
-						},
-						{
-							"key": "Connection",
-							"value": "Upgrade, Keep-Alive"
-						},
-						{
-							"key": "Content-Length",
-							"value": "57"
-						},
-						{
-							"key": "Keep-Alive",
-							"value": "timeout=5, max=75"
-						},
-						{
-							"key": "Content-Type",
-							"value": "text/html; charset=UTF-8"
-						}
-					],
-					"cookie": [],
-					"body": "{\"error\":true,\"message\":\"Please check email.\",\"code\":201}"
-				},
-				{
 					"name": "Invalid OTP",
 					"originalRequest": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\":\"sumit.chauhan183@gmail.com\",\r\n    \"password\":\"12345678\",\r\n    \"otp\":\"993083\"\r\n}",
+							"raw": "{\r\n    \"email\":\"sumit.chauhan183@gmail.com\",\r\n    \"password\":\"123456789\",\r\n    \"otp\":\"742375\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -913,11 +639,15 @@
 					"header": [
 						{
 							"key": "Date",
-							"value": "Thu, 10 Feb 2022 11:26:56 GMT"
+							"value": "Thu, 10 Feb 2022 10:47:45 GMT"
 						},
 						{
 							"key": "Server",
-							"value": "Apache"
+							"value": "Apache/2.4.52 (Win64) OpenSSL/1.1.1m PHP/8.0.14"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/8.0.14"
 						},
 						{
 							"key": "Cache-Control",
@@ -937,15 +667,7 @@
 						},
 						{
 							"key": "Set-Cookie",
-							"value": "top_soft_session=q51FiSi6NLcxzKn9rN3ziTLbKwz40EssullOj3c0; expires=Thu, 10-Feb-2022 13:26:56 GMT; Max-Age=7200; path=/; httponly; samesite=lax"
-						},
-						{
-							"key": "Upgrade",
-							"value": "h2,h2c"
-						},
-						{
-							"key": "Connection",
-							"value": "Upgrade, Keep-Alive"
+							"value": "top_soft_session=i0xT10GYfLZFuPi9i4Q0xFxMGFKLNueB9NhxZkyN; expires=Thu, 10-Feb-2022 12:47:45 GMT; Max-Age=7200; path=/; httponly; samesite=lax"
 						},
 						{
 							"key": "Content-Length",
@@ -953,7 +675,11 @@
 						},
 						{
 							"key": "Keep-Alive",
-							"value": "timeout=5, max=75"
+							"value": "timeout=5, max=100"
+						},
+						{
+							"key": "Connection",
+							"value": "Keep-Alive"
 						},
 						{
 							"key": "Content-Type",
@@ -962,15 +688,47 @@
 					],
 					"cookie": [],
 					"body": "{\"error\":true,\"message\":\"invalid otp.\",\"code\":201}"
+				}
+			]
+		},
+		{
+			"name": "Add customer",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"device_id\":\"1\",\r\n    \"token\":\"3a336184fb093973f990a43b9eb30217\",\r\n    \"name\":\"Appscioto\",\r\n    \"region\":\"Farrukhabad\",\r\n    \"address\":\"248, sainic colony nagla deena bholepur\",\r\n    \"city\":\"farrukhabad\",\r\n    \"postal_code\":\"209601\",\r\n    \"telephone\":\"05692234317\",\r\n    \"mobile\":\"8604106692\",\r\n    \"tax_number\":\"AZUPC7395R\",\r\n    \"tax_post\":\"farrukhabad\",\r\n    \"occupation\":\"Engineer\",\r\n    \"email\":\"sumit.chauhan181@gmail.com\",\r\n    \"discount\":\"20\",\r\n    \"note\":\"Hello\",\r\n    \"note2\":\"Hello2\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
 				},
+				"url": {
+					"raw": "http://topsoft.appscioto.com/api/customer/add",
+					"protocol": "http",
+					"host": [
+						"topsoft",
+						"appscioto",
+						"com"
+					],
+					"path": [
+						"api",
+						"customer",
+						"add"
+					]
+				}
+			},
+			"response": [
 				{
-					"name": "Required input missing",
+					"name": "Required key missing",
 					"originalRequest": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\":\"sumit.chauhan183@gmail.com\",\r\n    \"password\":\"12345678\",\r\n    \"otp\":\"\"\r\n}",
+							"raw": "{\r\n    \"name\":\"Appscioto\",\r\n    \"region\":\"Farrukhabad\",\r\n    \"address\":\"248, sainic colony nagla deena bholepur\",\r\n    \"city\":\"farrukhabad\",\r\n    \"postal_code\":\"209601\",\r\n    \"telephone\":\"05692234317\",\r\n    \"mobile\":\"8604106692\",\r\n    \"tax_number\":\"AZUPC7395R\",\r\n    \"tax_post\":\"farrukhabad\",\r\n    \"occupation\":\"Engineer\",\r\n    \"email\":\"sumit.chauhan183@gmail.com\",\r\n    \"discount\":\"20\",\r\n    \"note\":\"Hello\",\r\n    \"note2\":\"Hello2\"\r\n\r\n\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -978,7 +736,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://topsoft.appscioto.com/api/forgotPassword/reset",
+							"raw": "http://topsoft.appscioto.com/api/customer/add",
 							"protocol": "http",
 							"host": [
 								"topsoft",
@@ -987,8 +745,8 @@
 							],
 							"path": [
 								"api",
-								"forgotPassword",
-								"reset"
+								"customer",
+								"add"
 							]
 						}
 					},
@@ -998,11 +756,15 @@
 					"header": [
 						{
 							"key": "Date",
-							"value": "Thu, 10 Feb 2022 11:28:01 GMT"
+							"value": "Mon, 14 Feb 2022 09:33:40 GMT"
 						},
 						{
 							"key": "Server",
-							"value": "Apache"
+							"value": "Apache/2.4.52 (Win64) OpenSSL/1.1.1m PHP/8.0.14"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/8.0.14"
 						},
 						{
 							"key": "Cache-Control",
@@ -1022,23 +784,19 @@
 						},
 						{
 							"key": "Set-Cookie",
-							"value": "top_soft_session=q51FiSi6NLcxzKn9rN3ziTLbKwz40EssullOj3c0; expires=Thu, 10-Feb-2022 13:28:02 GMT; Max-Age=7200; path=/; httponly; samesite=lax"
-						},
-						{
-							"key": "Upgrade",
-							"value": "h2,h2c"
-						},
-						{
-							"key": "Connection",
-							"value": "Upgrade, Keep-Alive"
+							"value": "top_soft_session=vFpWN1m6D1TJ925T1JS0K46fM6R1racRm3KDqepx; expires=Mon, 14-Feb-2022 11:33:40 GMT; Max-Age=7200; path=/; httponly; samesite=lax"
 						},
 						{
 							"key": "Content-Length",
-							"value": "57"
+							"value": "58"
 						},
 						{
 							"key": "Keep-Alive",
-							"value": "timeout=5, max=75"
+							"value": "timeout=5, max=100"
+						},
+						{
+							"key": "Connection",
+							"value": "Keep-Alive"
 						},
 						{
 							"key": "Content-Type",
@@ -1046,7 +804,1368 @@
 						}
 					],
 					"cookie": [],
-					"body": "{\"error\":true,\"message\":\"otp is required key\",\"code\":201}"
+					"body": "{\"error\":true,\"message\":\"note is required key\",\"code\":201}"
+				},
+				{
+					"name": "Duplicate email",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"Appscioto\",\r\n    \"region\":\"Farrukhabad\",\r\n    \"address\":\"248, sainic colony nagla deena bholepur\",\r\n    \"city\":\"farrukhabad\",\r\n    \"postal_code\":\"209601\",\r\n    \"telephone\":\"05692234317\",\r\n    \"mobile\":\"8604106692\",\r\n    \"tax_number\":\"AZUPC7395R\",\r\n    \"tax_post\":\"farrukhabad\",\r\n    \"occupation\":\"Engineer\",\r\n    \"email\":\"sumit.chauhan183@gmail.com\",\r\n    \"discount\":\"20\",\r\n    \"note\":\"Hello\",\r\n    \"note2\":\"Hello2\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://topsoft.appscioto.com/api/customer/add",
+							"protocol": "http",
+							"host": [
+								"topsoft",
+								"appscioto",
+								"com"
+							],
+							"path": [
+								"api",
+								"customer",
+								"add"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "html",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Mon, 14 Feb 2022 09:35:20 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Apache/2.4.52 (Win64) OpenSSL/1.1.1m PHP/8.0.14"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/8.0.14"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, private"
+						},
+						{
+							"key": "X-RateLimit-Limit",
+							"value": "60"
+						},
+						{
+							"key": "X-RateLimit-Remaining",
+							"value": "58"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "top_soft_session=vFpWN1m6D1TJ925T1JS0K46fM6R1racRm3KDqepx; expires=Mon, 14-Feb-2022 11:35:21 GMT; Max-Age=7200; path=/; httponly; samesite=lax"
+						},
+						{
+							"key": "Content-Length",
+							"value": "74"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5, max=100"
+						},
+						{
+							"key": "Connection",
+							"value": "Keep-Alive"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/html; charset=UTF-8"
+						}
+					],
+					"cookie": [],
+					"body": "{\"error\":true,\"message\":\"email already use for another client\",\"code\":201}"
+				},
+				{
+					"name": "Success",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"Appscioto\",\r\n    \"region\":\"Farrukhabad\",\r\n    \"address\":\"248, sainic colony nagla deena bholepur\",\r\n    \"city\":\"farrukhabad\",\r\n    \"postal_code\":\"209601\",\r\n    \"telephone\":\"05692234317\",\r\n    \"mobile\":\"8604106692\",\r\n    \"tax_number\":\"AZUPC7395R\",\r\n    \"tax_post\":\"farrukhabad\",\r\n    \"occupation\":\"Engineer\",\r\n    \"email\":\"sumit.chauhan182@gmail.com\",\r\n    \"discount\":\"20\",\r\n    \"note\":\"Hello\",\r\n    \"note2\":\"Hello2\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://topsoft.appscioto.com/api/customer/add",
+							"protocol": "http",
+							"host": [
+								"topsoft",
+								"appscioto",
+								"com"
+							],
+							"path": [
+								"api",
+								"customer",
+								"add"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "html",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Mon, 14 Feb 2022 09:36:14 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Apache/2.4.52 (Win64) OpenSSL/1.1.1m PHP/8.0.14"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/8.0.14"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, private"
+						},
+						{
+							"key": "X-RateLimit-Limit",
+							"value": "60"
+						},
+						{
+							"key": "X-RateLimit-Remaining",
+							"value": "59"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "top_soft_session=vFpWN1m6D1TJ925T1JS0K46fM6R1racRm3KDqepx; expires=Mon, 14-Feb-2022 11:36:14 GMT; Max-Age=7200; path=/; httponly; samesite=lax"
+						},
+						{
+							"key": "Content-Length",
+							"value": "68"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5, max=100"
+						},
+						{
+							"key": "Connection",
+							"value": "Keep-Alive"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/html; charset=UTF-8"
+						}
+					],
+					"cookie": [],
+					"body": "{\"error\":false,\"message\":\"Customer created successfully\",\"code\":201}"
+				},
+				{
+					"name": "Device_id missing",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"Appscioto\",\r\n    \"region\":\"Farrukhabad\",\r\n    \"address\":\"248, sainic colony nagla deena bholepur\",\r\n    \"city\":\"farrukhabad\",\r\n    \"postal_code\":\"209601\",\r\n    \"telephone\":\"05692234317\",\r\n    \"mobile\":\"8604106692\",\r\n    \"tax_number\":\"AZUPC7395R\",\r\n    \"tax_post\":\"farrukhabad\",\r\n    \"occupation\":\"Engineer\",\r\n    \"email\":\"sumit.chauhan181@gmail.com\",\r\n    \"discount\":\"20\",\r\n    \"note\":\"Hello\",\r\n    \"note2\":\"Hello2\"\r\n}"
+						},
+						"url": {
+							"raw": "http://topsoft.appscioto.com/api/customer/add",
+							"protocol": "http",
+							"host": [
+								"topsoft",
+								"appscioto",
+								"com"
+							],
+							"path": [
+								"api",
+								"customer",
+								"add"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "html",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Mon, 14 Feb 2022 09:55:57 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Apache/2.4.52 (Win64) OpenSSL/1.1.1m PHP/8.0.14"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/8.0.14"
+						},
+						{
+							"key": "Content-Length",
+							"value": "63"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5, max=100"
+						},
+						{
+							"key": "Connection",
+							"value": "Keep-Alive"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/html; charset=UTF-8"
+						}
+					],
+					"cookie": [],
+					"body": "{\"error\":true,\"message\":\"device_id is required key\",\"code\":201}"
+				},
+				{
+					"name": "Token is missing",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"device_id\":\"1\",\r\n    \"token\":\"123456\",\r\n    \"name\":\"Appscioto\",\r\n    \"region\":\"Farrukhabad\",\r\n    \"address\":\"248, sainic colony nagla deena bholepur\",\r\n    \"city\":\"farrukhabad\",\r\n    \"postal_code\":\"209601\",\r\n    \"telephone\":\"05692234317\",\r\n    \"mobile\":\"8604106692\",\r\n    \"tax_number\":\"AZUPC7395R\",\r\n    \"tax_post\":\"farrukhabad\",\r\n    \"occupation\":\"Engineer\",\r\n    \"email\":\"sumit.chauhan181@gmail.com\",\r\n    \"discount\":\"20\",\r\n    \"note\":\"Hello\",\r\n    \"note2\":\"Hello2\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://topsoft.appscioto.com/api/customer/add",
+							"protocol": "http",
+							"host": [
+								"topsoft",
+								"appscioto",
+								"com"
+							],
+							"path": [
+								"api",
+								"customer",
+								"add"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "html",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Mon, 14 Feb 2022 09:57:21 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Apache/2.4.52 (Win64) OpenSSL/1.1.1m PHP/8.0.14"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/8.0.14"
+						},
+						{
+							"key": "Content-Length",
+							"value": "59"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5, max=100"
+						},
+						{
+							"key": "Connection",
+							"value": "Keep-Alive"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/html; charset=UTF-8"
+						}
+					],
+					"cookie": [],
+					"body": "{\"error\":true,\"message\":\"token is required key\",\"code\":201}"
+				},
+				{
+					"name": "Invalid token",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"device_id\":\"1\",\r\n    \"token\":\"191e2a209c9aa819312ec21803ef79a3\",\r\n    \"name\":\"Appscioto\",\r\n    \"region\":\"Farrukhabad\",\r\n    \"address\":\"248, sainic colony nagla deena bholepur\",\r\n    \"city\":\"farrukhabad\",\r\n    \"postal_code\":\"209601\",\r\n    \"telephone\":\"05692234317\",\r\n    \"mobile\":\"8604106692\",\r\n    \"tax_number\":\"AZUPC7395R\",\r\n    \"tax_post\":\"farrukhabad\",\r\n    \"occupation\":\"Engineer\",\r\n    \"email\":\"sumit.chauhan181@gmail.com\",\r\n    \"discount\":\"20\",\r\n    \"note\":\"Hello\",\r\n    \"note2\":\"Hello2\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://topsoft.appscioto.com/api/customer/add",
+							"protocol": "http",
+							"host": [
+								"topsoft",
+								"appscioto",
+								"com"
+							],
+							"path": [
+								"api",
+								"customer",
+								"add"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "html",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Mon, 14 Feb 2022 09:59:00 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Apache/2.4.52 (Win64) OpenSSL/1.1.1m PHP/8.0.14"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/8.0.14"
+						},
+						{
+							"key": "Content-Length",
+							"value": "51"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5, max=100"
+						},
+						{
+							"key": "Connection",
+							"value": "Keep-Alive"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/html; charset=UTF-8"
+						}
+					],
+					"cookie": [],
+					"body": "{\"error\":true,\"message\":\"Invalid Token\",\"code\":201}"
+				}
+			]
+		},
+		{
+			"name": "Update Customer",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"device_id\":\"1\",\r\n    \"token\":\"3a336184fb093973f990a43b9eb30217\",\r\n    \"client_id\":\"4\",\r\n    \"name\":\"Appscioto\",\r\n    \"region\":\"Farrukhabad\",\r\n    \"address\":\"248, sainic colony nagla deena bholepur\",\r\n    \"city\":\"farrukhabad\",\r\n    \"postal_code\":\"209601\",\r\n    \"telephone\":\"05692234317\",\r\n    \"mobile\":\"8604106692\",\r\n    \"tax_number\":\"AZUPC7395R\",\r\n    \"tax_post\":\"farrukhabad\",\r\n    \"occupation\":\"Engineer\",\r\n    \"email\":\"sumit.chauhan183@gmail.com\",\r\n    \"discount\":\"20\",\r\n    \"note\":\"Hello\",\r\n    \"note2\":\"Hello2\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://topsoft.appscioto.com/api/customer/update",
+					"protocol": "http",
+					"host": [
+						"topsoft",
+						"appscioto",
+						"com"
+					],
+					"path": [
+						"api",
+						"customer",
+						"update"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Customer id missing",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \r\n    \"name\":\"Appscioto\",\r\n    \"region\":\"Farrukhabad\",\r\n    \"address\":\"248, sainic colony nagla deena bholepur\",\r\n    \"city\":\"farrukhabad\",\r\n    \"postal_code\":\"209601\",\r\n    \"telephone\":\"05692234317\",\r\n    \"mobile\":\"8604106692\",\r\n    \"tax_number\":\"AZUPC7395R\",\r\n    \"tax_post\":\"farrukhabad\",\r\n    \"occupation\":\"Engineer\",\r\n    \"email\":\"sumit.chauhan182@gmail.com\",\r\n    \"discount\":\"20\",\r\n    \"note\":\"Hello\",\r\n    \"note2\":\"Hello2\"\r\n}"
+						},
+						"url": {
+							"raw": "http://topsoft.appscioto.com/api/customer/update",
+							"protocol": "http",
+							"host": [
+								"topsoft",
+								"appscioto",
+								"com"
+							],
+							"path": [
+								"api",
+								"customer",
+								"update"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "html",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Mon, 14 Feb 2022 09:42:07 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Apache/2.4.52 (Win64) OpenSSL/1.1.1m PHP/8.0.14"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/8.0.14"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, private"
+						},
+						{
+							"key": "X-RateLimit-Limit",
+							"value": "60"
+						},
+						{
+							"key": "X-RateLimit-Remaining",
+							"value": "59"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "top_soft_session=vFpWN1m6D1TJ925T1JS0K46fM6R1racRm3KDqepx; expires=Mon, 14-Feb-2022 11:42:07 GMT; Max-Age=7200; path=/; httponly; samesite=lax"
+						},
+						{
+							"key": "Content-Length",
+							"value": "63"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5, max=100"
+						},
+						{
+							"key": "Connection",
+							"value": "Keep-Alive"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/html; charset=UTF-8"
+						}
+					],
+					"cookie": [],
+					"body": "{\"error\":true,\"message\":\"client_id is required key\",\"code\":201}"
+				},
+				{
+					"name": "Email used by another client",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"client_id\":\"1\",\r\n    \"name\":\"Appscioto New\",\r\n    \"region\":\"Farrukhabad\",\r\n    \"address\":\"248, sainic colony nagla deena bholepur\",\r\n    \"city\":\"farrukhabad\",\r\n    \"postal_code\":\"209601\",\r\n    \"telephone\":\"05692234317\",\r\n    \"mobile\":\"8604106692\",\r\n    \"tax_number\":\"AZUPC7395R\",\r\n    \"tax_post\":\"farrukhabad\",\r\n    \"occupation\":\"Engineer\",\r\n    \"email\":\"sumit.chauhan182@gmail.com\",\r\n    \"discount\":\"20\",\r\n    \"note\":\"Hello\",\r\n    \"note2\":\"Hello2\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://topsoft.appscioto.com/api/customer/update",
+							"protocol": "http",
+							"host": [
+								"topsoft",
+								"appscioto",
+								"com"
+							],
+							"path": [
+								"api",
+								"customer",
+								"update"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "html",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Mon, 14 Feb 2022 09:46:46 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Apache/2.4.52 (Win64) OpenSSL/1.1.1m PHP/8.0.14"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/8.0.14"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, private"
+						},
+						{
+							"key": "X-RateLimit-Limit",
+							"value": "60"
+						},
+						{
+							"key": "X-RateLimit-Remaining",
+							"value": "59"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "top_soft_session=vFpWN1m6D1TJ925T1JS0K46fM6R1racRm3KDqepx; expires=Mon, 14-Feb-2022 11:46:47 GMT; Max-Age=7200; path=/; httponly; samesite=lax"
+						},
+						{
+							"key": "Content-Length",
+							"value": "74"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5, max=100"
+						},
+						{
+							"key": "Connection",
+							"value": "Keep-Alive"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/html; charset=UTF-8"
+						}
+					],
+					"cookie": [],
+					"body": "{\"error\":true,\"message\":\"email already use for another client\",\"code\":201}"
+				},
+				{
+					"name": "Success",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"client_id\":\"1\",\r\n    \"name\":\"Appscioto New\",\r\n    \"region\":\"Farrukhabad\",\r\n    \"address\":\"248, sainic colony nagla deena bholepur\",\r\n    \"city\":\"farrukhabad\",\r\n    \"postal_code\":\"209601\",\r\n    \"telephone\":\"05692234317\",\r\n    \"mobile\":\"8604106692\",\r\n    \"tax_number\":\"AZUPC7395R\",\r\n    \"tax_post\":\"farrukhabad\",\r\n    \"occupation\":\"Engineer\",\r\n    \"email\":\"sumit.chauhan183@gmail.com\",\r\n    \"discount\":\"20\",\r\n    \"note\":\"Hello\",\r\n    \"note2\":\"Hello2\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://topsoft.appscioto.com/api/customer/update",
+							"protocol": "http",
+							"host": [
+								"topsoft",
+								"appscioto",
+								"com"
+							],
+							"path": [
+								"api",
+								"customer",
+								"update"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "html",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Mon, 14 Feb 2022 09:47:33 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Apache/2.4.52 (Win64) OpenSSL/1.1.1m PHP/8.0.14"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/8.0.14"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, private"
+						},
+						{
+							"key": "X-RateLimit-Limit",
+							"value": "60"
+						},
+						{
+							"key": "X-RateLimit-Remaining",
+							"value": "58"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "top_soft_session=vFpWN1m6D1TJ925T1JS0K46fM6R1racRm3KDqepx; expires=Mon, 14-Feb-2022 11:47:33 GMT; Max-Age=7200; path=/; httponly; samesite=lax"
+						},
+						{
+							"key": "Content-Length",
+							"value": "67"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5, max=100"
+						},
+						{
+							"key": "Connection",
+							"value": "Keep-Alive"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/html; charset=UTF-8"
+						}
+					],
+					"cookie": [],
+					"body": "{\"error\":false,\"message\":\"Details updated successfully\",\"code\":201}"
+				},
+				{
+					"name": "Device id missing",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"client_id\":\"1\",\r\n    \"name\":\"Appscioto New\",\r\n    \"region\":\"Farrukhabad\",\r\n    \"address\":\"248, sainic colony nagla deena bholepur\",\r\n    \"city\":\"farrukhabad\",\r\n    \"postal_code\":\"209601\",\r\n    \"telephone\":\"05692234317\",\r\n    \"mobile\":\"8604106692\",\r\n    \"tax_number\":\"AZUPC7395R\",\r\n    \"tax_post\":\"farrukhabad\",\r\n    \"occupation\":\"Engineer\",\r\n    \"email\":\"sumit.chauhan183@gmail.com\",\r\n    \"discount\":\"20\",\r\n    \"note\":\"Hello\",\r\n    \"note2\":\"Hello2\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://topsoft.appscioto.com/api/customer/update",
+							"protocol": "http",
+							"host": [
+								"topsoft",
+								"appscioto",
+								"com"
+							],
+							"path": [
+								"api",
+								"customer",
+								"update"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "html",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Mon, 14 Feb 2022 10:00:29 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Apache/2.4.52 (Win64) OpenSSL/1.1.1m PHP/8.0.14"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/8.0.14"
+						},
+						{
+							"key": "Content-Length",
+							"value": "63"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5, max=100"
+						},
+						{
+							"key": "Connection",
+							"value": "Keep-Alive"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/html; charset=UTF-8"
+						}
+					],
+					"cookie": [],
+					"body": "{\"error\":true,\"message\":\"device_id is required key\",\"code\":201}"
+				},
+				{
+					"name": "Token Missing",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"device_id\":\"1\",\r\n    \"client_id\":\"1\",\r\n    \"name\":\"Appscioto New\",\r\n    \"region\":\"Farrukhabad\",\r\n    \"address\":\"248, sainic colony nagla deena bholepur\",\r\n    \"city\":\"farrukhabad\",\r\n    \"postal_code\":\"209601\",\r\n    \"telephone\":\"05692234317\",\r\n    \"mobile\":\"8604106692\",\r\n    \"tax_number\":\"AZUPC7395R\",\r\n    \"tax_post\":\"farrukhabad\",\r\n    \"occupation\":\"Engineer\",\r\n    \"email\":\"sumit.chauhan183@gmail.com\",\r\n    \"discount\":\"20\",\r\n    \"note\":\"Hello\",\r\n    \"note2\":\"Hello2\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://topsoft.appscioto.com/api/customer/update",
+							"protocol": "http",
+							"host": [
+								"topsoft",
+								"appscioto",
+								"com"
+							],
+							"path": [
+								"api",
+								"customer",
+								"update"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "html",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Mon, 14 Feb 2022 10:01:03 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Apache/2.4.52 (Win64) OpenSSL/1.1.1m PHP/8.0.14"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/8.0.14"
+						},
+						{
+							"key": "Content-Length",
+							"value": "59"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5, max=100"
+						},
+						{
+							"key": "Connection",
+							"value": "Keep-Alive"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/html; charset=UTF-8"
+						}
+					],
+					"cookie": [],
+					"body": "{\"error\":true,\"message\":\"token is required key\",\"code\":201}"
+				},
+				{
+					"name": "Invalid Token",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"device_id\":\"1\",\r\n    \"token\":\"12d5ed3280500a91d369fa6a1d7e255\",\r\n    \"client_id\":\"1\",\r\n    \"name\":\"Appscioto New\",\r\n    \"region\":\"Farrukhabad\",\r\n    \"address\":\"248, sainic colony nagla deena bholepur\",\r\n    \"city\":\"farrukhabad\",\r\n    \"postal_code\":\"209601\",\r\n    \"telephone\":\"05692234317\",\r\n    \"mobile\":\"8604106692\",\r\n    \"tax_number\":\"AZUPC7395R\",\r\n    \"tax_post\":\"farrukhabad\",\r\n    \"occupation\":\"Engineer\",\r\n    \"email\":\"sumit.chauhan183@gmail.com\",\r\n    \"discount\":\"20\",\r\n    \"note\":\"Hello\",\r\n    \"note2\":\"Hello2\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://topsoft.appscioto.com/api/customer/update",
+							"protocol": "http",
+							"host": [
+								"topsoft",
+								"appscioto",
+								"com"
+							],
+							"path": [
+								"api",
+								"customer",
+								"update"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "html",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Mon, 14 Feb 2022 10:01:39 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Apache/2.4.52 (Win64) OpenSSL/1.1.1m PHP/8.0.14"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/8.0.14"
+						},
+						{
+							"key": "Content-Length",
+							"value": "51"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5, max=100"
+						},
+						{
+							"key": "Connection",
+							"value": "Keep-Alive"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/html; charset=UTF-8"
+						}
+					],
+					"cookie": [],
+					"body": "{\"error\":true,\"message\":\"Invalid Token\",\"code\":201}"
+				}
+			]
+		},
+		{
+			"name": "Customer Detail",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"device_id\":\"1\",\r\n    \"token\":\"3a336184fb093973f990a43b9eb30217\",\r\n    \"client_id\":\"4\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://topsoft.appscioto.com/api/customer/detail",
+					"protocol": "http",
+					"host": [
+						"topsoft",
+						"appscioto",
+						"com"
+					],
+					"path": [
+						"api",
+						"customer",
+						"detail"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Required field missing",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost/topsoft/api/customer/detail",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"topsoft",
+								"api",
+								"customer",
+								"detail"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "html",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Mon, 14 Feb 2022 10:04:37 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Apache/2.4.52 (Win64) OpenSSL/1.1.1m PHP/8.0.14"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/8.0.14"
+						},
+						{
+							"key": "Content-Length",
+							"value": "63"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5, max=100"
+						},
+						{
+							"key": "Connection",
+							"value": "Keep-Alive"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/html; charset=UTF-8"
+						}
+					],
+					"cookie": [],
+					"body": "{\"error\":true,\"message\":\"device_id is required key\",\"code\":201}"
+				},
+				{
+					"name": "Invalid Token",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"device_id\":\"1\",\r\n    \"token\":\"12d5ed3280500a91d369fa6a1d7e255\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost/topsoft/api/customer/detail",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"topsoft",
+								"api",
+								"customer",
+								"detail"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "html",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Mon, 14 Feb 2022 10:05:47 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Apache/2.4.52 (Win64) OpenSSL/1.1.1m PHP/8.0.14"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/8.0.14"
+						},
+						{
+							"key": "Content-Length",
+							"value": "51"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5, max=100"
+						},
+						{
+							"key": "Connection",
+							"value": "Keep-Alive"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/html; charset=UTF-8"
+						}
+					],
+					"cookie": [],
+					"body": "{\"error\":true,\"message\":\"Invalid Token\",\"code\":201}"
+				},
+				{
+					"name": "Success",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"device_id\":\"1\",\r\n    \"token\":\"12d5ed3280500a91d369fa6a1d7e255a\",\r\n    \"client_id\":\"1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost/topsoft/api/customer/detail",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"topsoft",
+								"api",
+								"customer",
+								"detail"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "html",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Mon, 14 Feb 2022 10:06:32 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Apache/2.4.52 (Win64) OpenSSL/1.1.1m PHP/8.0.14"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/8.0.14"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, private"
+						},
+						{
+							"key": "X-RateLimit-Limit",
+							"value": "60"
+						},
+						{
+							"key": "X-RateLimit-Remaining",
+							"value": "58"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "top_soft_session=vFpWN1m6D1TJ925T1JS0K46fM6R1racRm3KDqepx; expires=Mon, 14-Feb-2022 12:06:32 GMT; Max-Age=7200; path=/; httponly; samesite=lax"
+						},
+						{
+							"key": "Content-Length",
+							"value": "530"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5, max=100"
+						},
+						{
+							"key": "Connection",
+							"value": "Keep-Alive"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/html; charset=UTF-8"
+						}
+					],
+					"cookie": [],
+					"body": "{\"error\":false,\"message\":\"details listed\",\"data\":{\"client_id\":1,\"name\":\"Appscioto New\",\"tax_number\":\"AZUPC7395R\",\"address\":\"248, sainic colony nagla deena bholepur\",\"city\":\"farrukhabad\",\"telephone\":\"05692234317\",\"mobile\":\"8604106692\",\"occupation\":\"Engineer\",\"email\":\"sumit.chauhan183@gmail.com\",\"status\":\"active\",\"note\":\"Hello\",\"note2\":\"Hello2\",\"postal_code\":\"209601\",\"region\":\"Farrukhabad\",\"tax_post\":\"farrukhabad\",\"discount\":\"20\",\"created_at\":\"2022-02-14T09:35:11.000000Z\",\"updated_at\":\"2022-02-14T10:01:59.000000Z\"},\"code\":200}"
+				},
+				{
+					"name": "Customer Detail",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"device_id\":\"1\",\r\n    \"token\":\"12d5ed3280500a91d369fa6a1d7e255a\",\r\n    \"client_id\":\"1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost/topsoft/api/customer/detail",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"topsoft",
+								"api",
+								"customer",
+								"detail"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "Customer List",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"device_id\":\"1\",\r\n    \"token\":\"3a336184fb093973f990a43b9eb30217\",\r\n    \"page\":\"0\",\r\n    \"count\":\"1\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://topsoft.appscioto.com/api/customer/list",
+					"protocol": "http",
+					"host": [
+						"topsoft",
+						"appscioto",
+						"com"
+					],
+					"path": [
+						"api",
+						"customer",
+						"list"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Required field missing",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"device_id\":\"1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://topsoft.appscioto.com/api/customer/list",
+							"protocol": "http",
+							"host": [
+								"topsoft",
+								"appscioto",
+								"com"
+							],
+							"path": [
+								"api",
+								"customer",
+								"list"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "html",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Mon, 14 Feb 2022 10:09:12 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Apache/2.4.52 (Win64) OpenSSL/1.1.1m PHP/8.0.14"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/8.0.14"
+						},
+						{
+							"key": "Content-Length",
+							"value": "59"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5, max=100"
+						},
+						{
+							"key": "Connection",
+							"value": "Keep-Alive"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/html; charset=UTF-8"
+						}
+					],
+					"cookie": [],
+					"body": "{\"error\":true,\"message\":\"token is required key\",\"code\":201}"
+				},
+				{
+					"name": "Invalid Token",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"device_id\":\"1\",\r\n    \"token\":\"ghchj,vjk.\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://topsoft.appscioto.com/api/customer/list",
+							"protocol": "http",
+							"host": [
+								"topsoft",
+								"appscioto",
+								"com"
+							],
+							"path": [
+								"api",
+								"customer",
+								"list"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "html",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Mon, 14 Feb 2022 10:10:00 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Apache/2.4.52 (Win64) OpenSSL/1.1.1m PHP/8.0.14"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/8.0.14"
+						},
+						{
+							"key": "Content-Length",
+							"value": "51"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5, max=100"
+						},
+						{
+							"key": "Connection",
+							"value": "Keep-Alive"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/html; charset=UTF-8"
+						}
+					],
+					"cookie": [],
+					"body": "{\"error\":true,\"message\":\"Invalid Token\",\"code\":201}"
+				},
+				{
+					"name": "Success",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"device_id\":\"1\",\r\n    \"token\":\"12d5ed3280500a91d369fa6a1d7e255a\",\r\n    \"page\":\"0\",\r\n    \"count\":\"1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://topsoft.appscioto.com/api/customer/list",
+							"protocol": "http",
+							"host": [
+								"topsoft",
+								"appscioto",
+								"com"
+							],
+							"path": [
+								"api",
+								"customer",
+								"list"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "html",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Mon, 14 Feb 2022 10:12:35 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Apache/2.4.52 (Win64) OpenSSL/1.1.1m PHP/8.0.14"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/8.0.14"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, private"
+						},
+						{
+							"key": "X-RateLimit-Limit",
+							"value": "60"
+						},
+						{
+							"key": "X-RateLimit-Remaining",
+							"value": "55"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "top_soft_session=vFpWN1m6D1TJ925T1JS0K46fM6R1racRm3KDqepx; expires=Mon, 14-Feb-2022 12:12:35 GMT; Max-Age=7200; path=/; httponly; samesite=lax"
+						},
+						{
+							"key": "Content-Length",
+							"value": "530"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5, max=100"
+						},
+						{
+							"key": "Connection",
+							"value": "Keep-Alive"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/html; charset=UTF-8"
+						}
+					],
+					"cookie": [],
+					"body": "{\"error\":false,\"message\":\"listing done\",\"data\":[{\"client_id\":1,\"name\":\"Appscioto New\",\"tax_number\":\"AZUPC7395R\",\"address\":\"248, sainic colony nagla deena bholepur\",\"city\":\"farrukhabad\",\"telephone\":\"05692234317\",\"mobile\":\"8604106692\",\"occupation\":\"Engineer\",\"email\":\"sumit.chauhan183@gmail.com\",\"status\":\"active\",\"note\":\"Hello\",\"note2\":\"Hello2\",\"postal_code\":\"209601\",\"region\":\"Farrukhabad\",\"tax_post\":\"farrukhabad\",\"discount\":\"20\",\"created_at\":\"2022-02-14T09:35:11.000000Z\",\"updated_at\":\"2022-02-14T10:01:59.000000Z\"}],\"code\":200}"
 				}
 			]
 		}
