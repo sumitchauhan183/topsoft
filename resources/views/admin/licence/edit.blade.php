@@ -9,7 +9,7 @@
             <li class="breadcrumb-item text-sm"><a class="opacity-5 text-dark" href="javascript:;">Pages</a></li>
             <li class="breadcrumb-item text-sm text-dark active" aria-current="page">{{$title}}</li>
           </ol>
-          <h6 class="font-weight-bolder mb-0">{{$title}} > List</h6>
+          <h6 class="font-weight-bolder mb-0">Company > Edit</h6>
         </nav>
           <ul class="navbar-nav  justify-content-end">
             <li class="nav-item d-flex align-items-center">
@@ -44,31 +44,34 @@
             <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
               <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
                 <h6 class="text-white text-capitalize ps-3 inline">{{$title}}</h6>
-                <button class="btn revert fl-rgt inline">
-               <a href="{{route('admin.company.add')}}"> <i class="material-icons py-2 add-icon" title="Add new client">add</i></a>
-                </button>
               </div>
             </div>
             <div class="card-body px-0 pb-2">
-              <div class="table-responsive p-0 mx-4">
-                <table class="table align-items-center justify-content-center mb-0" id="company_table">
-                  <thead>
-                    <tr>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">App Users</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Name</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Greek Name</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Email</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder text-center opacity-7 ps-2">Status</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder text-center opacity-7 ps-2">License</th>
-                      <th>Action</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                  
-                  </tbody>
-                </table>
+            <div class="ms-md-auto pe-md-3 d-flex align-items-center mb-4">
+                            <input type="hidden" id="license-id" value="{{$license->licence_id}}">
+                            <div class="input-group input-group-outline mx-3 focused is-focused">
+                                <label class="form-label">Device Count</label>
+                                <input type="text" class="form-control" id="device-count"  value="{{$license->device_count}}"  autocomplete="off">
+                            </div>
+                            <div class="input-group input-group-outline mx-3 focused is-focused">
+                                <label class="form-label">Expiration Date</label>
+                                <input type="date" class="form-control" id="expiration-date" value="{{date('Y-m-d',strtotime($license->expiration_date))}}"  autocomplete="off">
+                            </div>
+                    </div>
+                    
+
+
+                    <div class="ms-md-auto pe-md-3 d-flex align-items-center">
+                    <div class="sidenav-footer w-100 bottom-0 ">
+                        <div class="mx-3 text-center">
+                            <button class="btn bg-gradient-primary mt-4 w-40" id="update-license"  type="button">Update</button>
+                        </div>
+                    </div>
+                            
+                    </div>
+
+
               </div>
-            </div>
           </div>
         </div>
       </div>

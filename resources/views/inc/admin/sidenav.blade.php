@@ -18,33 +18,18 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white" href="{{route('admin.dashboard')}}">
+          <a class="nav-link text-white" href="javascript:void(0)">
             <span class="nav-link-text ms-1">Items</span>
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white" href="{{route('admin.dashboard')}}">
+          <a class="nav-link text-white" href="javascript:void(0)">
             <span class="nav-link-text ms-1">Invoices</span>
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white" href="{{route('admin.dashboard')}}">
+          <a class="nav-link text-white" href="javascript:void(0)">
             <span class="nav-link-text ms-1">Receipts</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-white" href="{{route('admin.dashboard')}}">
-            <span class="nav-link-text ms-1">Features</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-white" href="{{route('admin.dashboard')}}">
-            <span class="nav-link-text ms-1">Devices</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-white" href="{{route('admin.dashboard')}}">
-            <span class="nav-link-text ms-1">Licences</span>
           </a>
         </li>
         <li class="nav-item">

@@ -1,7 +1,7 @@
 {
 	"info": {
-		"_postman_id": "90f47e7d-6e29-406d-87fd-36f34bbbe365",
-		"name": "TopSoft API Production",
+		"_postman_id": "b89fb07e-f94a-4bbc-a640-cc1367186011",
+		"name": "TopSoft API",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -12,7 +12,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"email\":\"sumit.chauhan183@gmail.com\",\r\n    \"password\":\"12345678\",\r\n    \"unique_token\":\"000000002\",\r\n    \"device_token\":\"lhgjlbljvjhbvjhvjhvjhllh\",\r\n    \"type\":\"android\",\r\n    \"company_id\":\"1\"\r\n}",
+					"raw": "{\r\n    \"email\":\"sumit.chauhan183@gmail.com\",\r\n    \"password\":\"123456789\",\r\n    \"unique_token\":\"000000001\",\r\n    \"device_token\":\"lhgjlbljvjhbvjhvjhvjhllh\",\r\n    \"type\":\"android\",\r\n    \"company_id\":\"1\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -20,14 +20,13 @@
 					}
 				},
 				"url": {
-					"raw": "http://topsoft.appscioto.com/api/login",
+					"raw": "http://localhost/topsoft/api/login",
 					"protocol": "http",
 					"host": [
-						"topsoft",
-						"appscioto",
-						"com"
+						"localhost"
 					],
 					"path": [
+						"topsoft",
 						"api",
 						"login"
 					]
@@ -49,14 +48,13 @@
 							}
 						},
 						"url": {
-							"raw": "http://topsoft.appscioto.com/api/login",
+							"raw": "http://localhost/topsoft/api/login",
 							"protocol": "http",
 							"host": [
-								"topsoft",
-								"appscioto",
-								"com"
+								"localhost"
 							],
 							"path": [
+								"topsoft",
 								"api",
 								"login"
 							]
@@ -133,14 +131,13 @@
 							}
 						},
 						"url": {
-							"raw": "http://topsoft.appscioto.com/api/login",
+							"raw": "http://localhost/topsoft/api/login",
 							"protocol": "http",
 							"host": [
-								"topsoft",
-								"appscioto",
-								"com"
+								"localhost"
 							],
 							"path": [
+								"topsoft",
 								"api",
 								"login"
 							]
@@ -217,14 +214,13 @@
 							}
 						},
 						"url": {
-							"raw": "http://topsoft.appscioto.com/api/login",
+							"raw": "http://localhost/topsoft/api/login",
 							"protocol": "http",
 							"host": [
-								"topsoft",
-								"appscioto",
-								"com"
+								"localhost"
 							],
 							"path": [
+								"topsoft",
 								"api",
 								"login"
 							]
@@ -301,14 +297,13 @@
 							}
 						},
 						"url": {
-							"raw": "http://topsoft.appscioto.com/api/login",
+							"raw": "http://localhost/topsoft/api/login",
 							"protocol": "http",
 							"host": [
-								"topsoft",
-								"appscioto",
-								"com"
+								"localhost"
 							],
 							"path": [
+								"topsoft",
 								"api",
 								"login"
 							]
@@ -387,14 +382,13 @@
 					}
 				},
 				"url": {
-					"raw": "http://topsoft.appscioto.com/api/forgotPassword/sendOtp",
+					"raw": "http://localhost/topsoft/api/forgotPassword/sendOtp",
 					"protocol": "http",
 					"host": [
-						"topsoft",
-						"appscioto",
-						"com"
+						"localhost"
 					],
 					"path": [
+						"topsoft",
 						"api",
 						"forgotPassword",
 						"sendOtp"
@@ -417,14 +411,13 @@
 							}
 						},
 						"url": {
-							"raw": "http://topsoft.appscioto.com/api/forgotPassword/sendOtp",
+							"raw": "http://localhost/topsoft/api/forgotPassword/sendOtp",
 							"protocol": "http",
 							"host": [
-								"topsoft",
-								"appscioto",
-								"com"
+								"localhost"
 							],
 							"path": [
+								"topsoft",
 								"api",
 								"forgotPassword",
 								"sendOtp"
@@ -504,14 +497,13 @@
 					}
 				},
 				"url": {
-					"raw": "http://topsoft.appscioto.com/api/forgotPassword/reset",
+					"raw": "http://localhost/topsoft/api/forgotPassword/reset",
 					"protocol": "http",
 					"host": [
-						"topsoft",
-						"appscioto",
-						"com"
+						"localhost"
 					],
 					"path": [
+						"topsoft",
 						"api",
 						"forgotPassword",
 						"reset"
@@ -534,14 +526,13 @@
 							}
 						},
 						"url": {
-							"raw": "http://topsoft.appscioto.com/api/forgotPassword/reset",
+							"raw": "http://localhost/topsoft/api/forgotPassword/reset",
 							"protocol": "http",
 							"host": [
-								"topsoft",
-								"appscioto",
-								"com"
+								"localhost"
 							],
 							"path": [
+								"topsoft",
 								"api",
 								"forgotPassword",
 								"reset"
@@ -619,14 +610,13 @@
 							}
 						},
 						"url": {
-							"raw": "http://topsoft.appscioto.com/api/forgotPassword/reset",
+							"raw": "http://localhost/topsoft/api/forgotPassword/reset",
 							"protocol": "http",
 							"host": [
-								"topsoft",
-								"appscioto",
-								"com"
+								"localhost"
 							],
 							"path": [
+								"topsoft",
 								"api",
 								"forgotPassword",
 								"reset"
@@ -698,7 +688,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"device_id\":\"1\",\r\n    \"token\":\"3a336184fb093973f990a43b9eb30217\",\r\n    \"name\":\"Appscioto\",\r\n    \"region\":\"Farrukhabad\",\r\n    \"address\":\"248, sainic colony nagla deena bholepur\",\r\n    \"city\":\"farrukhabad\",\r\n    \"postal_code\":\"209601\",\r\n    \"telephone\":\"05692234317\",\r\n    \"mobile\":\"8604106692\",\r\n    \"tax_number\":\"AZUPC7395R\",\r\n    \"tax_post\":\"farrukhabad\",\r\n    \"occupation\":\"Engineer\",\r\n    \"email\":\"sumit.chauhan181@gmail.com\",\r\n    \"discount\":\"20\",\r\n    \"note\":\"Hello\",\r\n    \"note2\":\"Hello2\"\r\n}",
+					"raw": "{\r\n    \"device_id\":\"1\",\r\n    \"token\":\"12d5ed3280500a91d369fa6a1d7e255a\",\r\n    \"name\":\"Appscioto\",\r\n    \"region\":\"Farrukhabad\",\r\n    \"address\":\"248, sainic colony nagla deena bholepur\",\r\n    \"city\":\"farrukhabad\",\r\n    \"postal_code\":\"209601\",\r\n    \"telephone\":\"05692234317\",\r\n    \"mobile\":\"8604106692\",\r\n    \"tax_number\":\"AZUPC7395R\",\r\n    \"tax_post\":\"farrukhabad\",\r\n    \"occupation\":\"Engineer\",\r\n    \"email\":\"sumit.chauhan181@gmail.com\",\r\n    \"discount\":\"20\",\r\n    \"note\":\"Hello\",\r\n    \"note2\":\"Hello2\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -706,14 +696,13 @@
 					}
 				},
 				"url": {
-					"raw": "http://topsoft.appscioto.com/api/customer/add",
+					"raw": "http://localhost/topsoft/api/customer/add",
 					"protocol": "http",
 					"host": [
-						"topsoft",
-						"appscioto",
-						"com"
+						"localhost"
 					],
 					"path": [
+						"topsoft",
 						"api",
 						"customer",
 						"add"
@@ -736,14 +725,13 @@
 							}
 						},
 						"url": {
-							"raw": "http://topsoft.appscioto.com/api/customer/add",
+							"raw": "http://localhost/topsoft/api/customer/add",
 							"protocol": "http",
 							"host": [
-								"topsoft",
-								"appscioto",
-								"com"
+								"localhost"
 							],
 							"path": [
+								"topsoft",
 								"api",
 								"customer",
 								"add"
@@ -821,14 +809,13 @@
 							}
 						},
 						"url": {
-							"raw": "http://topsoft.appscioto.com/api/customer/add",
+							"raw": "http://localhost/topsoft/api/customer/add",
 							"protocol": "http",
 							"host": [
-								"topsoft",
-								"appscioto",
-								"com"
+								"localhost"
 							],
 							"path": [
+								"topsoft",
 								"api",
 								"customer",
 								"add"
@@ -906,14 +893,13 @@
 							}
 						},
 						"url": {
-							"raw": "http://topsoft.appscioto.com/api/customer/add",
+							"raw": "http://localhost/topsoft/api/customer/add",
 							"protocol": "http",
 							"host": [
-								"topsoft",
-								"appscioto",
-								"com"
+								"localhost"
 							],
 							"path": [
+								"topsoft",
 								"api",
 								"customer",
 								"add"
@@ -986,14 +972,13 @@
 							"raw": "{\r\n    \"name\":\"Appscioto\",\r\n    \"region\":\"Farrukhabad\",\r\n    \"address\":\"248, sainic colony nagla deena bholepur\",\r\n    \"city\":\"farrukhabad\",\r\n    \"postal_code\":\"209601\",\r\n    \"telephone\":\"05692234317\",\r\n    \"mobile\":\"8604106692\",\r\n    \"tax_number\":\"AZUPC7395R\",\r\n    \"tax_post\":\"farrukhabad\",\r\n    \"occupation\":\"Engineer\",\r\n    \"email\":\"sumit.chauhan181@gmail.com\",\r\n    \"discount\":\"20\",\r\n    \"note\":\"Hello\",\r\n    \"note2\":\"Hello2\"\r\n}"
 						},
 						"url": {
-							"raw": "http://topsoft.appscioto.com/api/customer/add",
+							"raw": "http://localhost/topsoft/api/customer/add",
 							"protocol": "http",
 							"host": [
-								"topsoft",
-								"appscioto",
-								"com"
+								"localhost"
 							],
 							"path": [
+								"topsoft",
 								"api",
 								"customer",
 								"add"
@@ -1051,14 +1036,13 @@
 							}
 						},
 						"url": {
-							"raw": "http://topsoft.appscioto.com/api/customer/add",
+							"raw": "http://localhost/topsoft/api/customer/add",
 							"protocol": "http",
 							"host": [
-								"topsoft",
-								"appscioto",
-								"com"
+								"localhost"
 							],
 							"path": [
+								"topsoft",
 								"api",
 								"customer",
 								"add"
@@ -1116,14 +1100,13 @@
 							}
 						},
 						"url": {
-							"raw": "http://topsoft.appscioto.com/api/customer/add",
+							"raw": "http://localhost/topsoft/api/customer/add",
 							"protocol": "http",
 							"host": [
-								"topsoft",
-								"appscioto",
-								"com"
+								"localhost"
 							],
 							"path": [
+								"topsoft",
 								"api",
 								"customer",
 								"add"
@@ -1175,7 +1158,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"device_id\":\"1\",\r\n    \"token\":\"3a336184fb093973f990a43b9eb30217\",\r\n    \"client_id\":\"4\",\r\n    \"name\":\"Appscioto\",\r\n    \"region\":\"Farrukhabad\",\r\n    \"address\":\"248, sainic colony nagla deena bholepur\",\r\n    \"city\":\"farrukhabad\",\r\n    \"postal_code\":\"209601\",\r\n    \"telephone\":\"05692234317\",\r\n    \"mobile\":\"8604106692\",\r\n    \"tax_number\":\"AZUPC7395R\",\r\n    \"tax_post\":\"farrukhabad\",\r\n    \"occupation\":\"Engineer\",\r\n    \"email\":\"sumit.chauhan183@gmail.com\",\r\n    \"discount\":\"20\",\r\n    \"note\":\"Hello\",\r\n    \"note2\":\"Hello2\"\r\n}",
+					"raw": "{\r\n    \"device_id\":\"1\",\r\n    \"token\":\"12d5ed3280500a91d369fa6a1d7e255a\",\r\n    \"client_id\":\"1\",\r\n    \"name\":\"Appscioto New\",\r\n    \"region\":\"Farrukhabad\",\r\n    \"address\":\"248, sainic colony nagla deena bholepur\",\r\n    \"city\":\"farrukhabad\",\r\n    \"postal_code\":\"209601\",\r\n    \"telephone\":\"05692234317\",\r\n    \"mobile\":\"8604106692\",\r\n    \"tax_number\":\"AZUPC7395R\",\r\n    \"tax_post\":\"farrukhabad\",\r\n    \"occupation\":\"Engineer\",\r\n    \"email\":\"sumit.chauhan183@gmail.com\",\r\n    \"discount\":\"20\",\r\n    \"note\":\"Hello\",\r\n    \"note2\":\"Hello2\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -1183,14 +1166,13 @@
 					}
 				},
 				"url": {
-					"raw": "http://topsoft.appscioto.com/api/customer/update",
+					"raw": "http://localhost/topsoft/api/customer/update",
 					"protocol": "http",
 					"host": [
-						"topsoft",
-						"appscioto",
-						"com"
+						"localhost"
 					],
 					"path": [
+						"topsoft",
 						"api",
 						"customer",
 						"update"
@@ -1208,14 +1190,13 @@
 							"raw": "{\r\n    \r\n    \"name\":\"Appscioto\",\r\n    \"region\":\"Farrukhabad\",\r\n    \"address\":\"248, sainic colony nagla deena bholepur\",\r\n    \"city\":\"farrukhabad\",\r\n    \"postal_code\":\"209601\",\r\n    \"telephone\":\"05692234317\",\r\n    \"mobile\":\"8604106692\",\r\n    \"tax_number\":\"AZUPC7395R\",\r\n    \"tax_post\":\"farrukhabad\",\r\n    \"occupation\":\"Engineer\",\r\n    \"email\":\"sumit.chauhan182@gmail.com\",\r\n    \"discount\":\"20\",\r\n    \"note\":\"Hello\",\r\n    \"note2\":\"Hello2\"\r\n}"
 						},
 						"url": {
-							"raw": "http://topsoft.appscioto.com/api/customer/update",
+							"raw": "http://localhost/topsoft/api/customer/update",
 							"protocol": "http",
 							"host": [
-								"topsoft",
-								"appscioto",
-								"com"
+								"localhost"
 							],
 							"path": [
+								"topsoft",
 								"api",
 								"customer",
 								"update"
@@ -1293,14 +1274,13 @@
 							}
 						},
 						"url": {
-							"raw": "http://topsoft.appscioto.com/api/customer/update",
+							"raw": "http://localhost/topsoft/api/customer/update",
 							"protocol": "http",
 							"host": [
-								"topsoft",
-								"appscioto",
-								"com"
+								"localhost"
 							],
 							"path": [
+								"topsoft",
 								"api",
 								"customer",
 								"update"
@@ -1378,14 +1358,13 @@
 							}
 						},
 						"url": {
-							"raw": "http://topsoft.appscioto.com/api/customer/update",
+							"raw": "http://localhost/topsoft/api/customer/update",
 							"protocol": "http",
 							"host": [
-								"topsoft",
-								"appscioto",
-								"com"
+								"localhost"
 							],
 							"path": [
+								"topsoft",
 								"api",
 								"customer",
 								"update"
@@ -1463,14 +1442,13 @@
 							}
 						},
 						"url": {
-							"raw": "http://topsoft.appscioto.com/api/customer/update",
+							"raw": "http://localhost/topsoft/api/customer/update",
 							"protocol": "http",
 							"host": [
-								"topsoft",
-								"appscioto",
-								"com"
+								"localhost"
 							],
 							"path": [
+								"topsoft",
 								"api",
 								"customer",
 								"update"
@@ -1528,14 +1506,13 @@
 							}
 						},
 						"url": {
-							"raw": "http://topsoft.appscioto.com/api/customer/update",
+							"raw": "http://localhost/topsoft/api/customer/update",
 							"protocol": "http",
 							"host": [
-								"topsoft",
-								"appscioto",
-								"com"
+								"localhost"
 							],
 							"path": [
+								"topsoft",
 								"api",
 								"customer",
 								"update"
@@ -1593,14 +1570,13 @@
 							}
 						},
 						"url": {
-							"raw": "http://topsoft.appscioto.com/api/customer/update",
+							"raw": "http://localhost/topsoft/api/customer/update",
 							"protocol": "http",
 							"host": [
-								"topsoft",
-								"appscioto",
-								"com"
+								"localhost"
 							],
 							"path": [
+								"topsoft",
 								"api",
 								"customer",
 								"update"
@@ -1652,7 +1628,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"device_id\":\"1\",\r\n    \"token\":\"3a336184fb093973f990a43b9eb30217\",\r\n    \"client_id\":\"4\"\r\n}",
+					"raw": "{\r\n    \"device_id\":\"1\",\r\n    \"token\":\"12d5ed3280500a91d369fa6a1d7e255a\",\r\n    \"client_id\":\"1\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -1660,14 +1636,13 @@
 					}
 				},
 				"url": {
-					"raw": "http://topsoft.appscioto.com/api/customer/detail",
+					"raw": "http://localhost/topsoft/api/customer/detail",
 					"protocol": "http",
 					"host": [
-						"topsoft",
-						"appscioto",
-						"com"
+						"localhost"
 					],
 					"path": [
+						"topsoft",
 						"api",
 						"customer",
 						"detail"
@@ -1929,7 +1904,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"device_id\":\"1\",\r\n    \"token\":\"3a336184fb093973f990a43b9eb30217\",\r\n    \"page\":\"0\",\r\n    \"count\":\"1\"\r\n}",
+					"raw": "{\r\n    \"device_id\":\"1\",\r\n    \"token\":\"12d5ed3280500a91d369fa6a1d7e255a\",\r\n    \"page\":\"0\",\r\n    \"count\":\"1\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -1937,14 +1912,13 @@
 					}
 				},
 				"url": {
-					"raw": "http://topsoft.appscioto.com/api/customer/list",
+					"raw": "http://localhost/topsoft/api/customer/list",
 					"protocol": "http",
 					"host": [
-						"topsoft",
-						"appscioto",
-						"com"
+						"localhost"
 					],
 					"path": [
+						"topsoft",
 						"api",
 						"customer",
 						"list"
@@ -1967,14 +1941,13 @@
 							}
 						},
 						"url": {
-							"raw": "http://topsoft.appscioto.com/api/customer/list",
+							"raw": "http://localhost/topsoft/api/customer/list",
 							"protocol": "http",
 							"host": [
-								"topsoft",
-								"appscioto",
-								"com"
+								"localhost"
 							],
 							"path": [
+								"topsoft",
 								"api",
 								"customer",
 								"list"
@@ -2032,14 +2005,13 @@
 							}
 						},
 						"url": {
-							"raw": "http://topsoft.appscioto.com/api/customer/list",
+							"raw": "http://localhost/topsoft/api/customer/list",
 							"protocol": "http",
 							"host": [
-								"topsoft",
-								"appscioto",
-								"com"
+								"localhost"
 							],
 							"path": [
+								"topsoft",
 								"api",
 								"customer",
 								"list"
@@ -2097,14 +2069,13 @@
 							}
 						},
 						"url": {
-							"raw": "http://topsoft.appscioto.com/api/customer/list",
+							"raw": "http://localhost/topsoft/api/customer/list",
 							"protocol": "http",
 							"host": [
-								"topsoft",
-								"appscioto",
-								"com"
+								"localhost"
 							],
 							"path": [
+								"topsoft",
 								"api",
 								"customer",
 								"list"
@@ -2166,6 +2137,2478 @@
 					],
 					"cookie": [],
 					"body": "{\"error\":false,\"message\":\"listing done\",\"data\":[{\"client_id\":1,\"name\":\"Appscioto New\",\"tax_number\":\"AZUPC7395R\",\"address\":\"248, sainic colony nagla deena bholepur\",\"city\":\"farrukhabad\",\"telephone\":\"05692234317\",\"mobile\":\"8604106692\",\"occupation\":\"Engineer\",\"email\":\"sumit.chauhan183@gmail.com\",\"status\":\"active\",\"note\":\"Hello\",\"note2\":\"Hello2\",\"postal_code\":\"209601\",\"region\":\"Farrukhabad\",\"tax_post\":\"farrukhabad\",\"discount\":\"20\",\"created_at\":\"2022-02-14T09:35:11.000000Z\",\"updated_at\":\"2022-02-14T10:01:59.000000Z\"}],\"code\":200}"
+				}
+			]
+		},
+		{
+			"name": "Item/add",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"device_id\":\"1\",\r\n    \"token\":\"2c29ade55e1a1695e9ba8658b75e43a2\",\r\n    \"name\":\"Soap 1\",\r\n    \"description\":\"shampoo for wash hairs.\",\r\n    \"quantity\":50,\r\n    \"price\":290.99,\r\n    \"vat\":10,\r\n    \"discount\":10,\r\n    \"final_price\":290.99\r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost/topsoft/api/item/add",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"topsoft",
+						"api",
+						"item",
+						"add"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Success",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"device_id\":\"1\",\r\n    \"token\":\"2c29ade55e1a1695e9ba8658b75e43a2\",\r\n    \"name\":\"Soap 1\",\r\n    \"description\":\"shampoo for wash hairs.\",\r\n    \"quantity\":50,\r\n    \"price\":290.99,\r\n    \"vat\":10,\r\n    \"discount\":10,\r\n    \"final_price\":290.99\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost/topsoft/api/item/add",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"topsoft",
+								"api",
+								"item",
+								"add"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "html",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Tue, 01 Mar 2022 11:36:36 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Apache/2.4.52 (Win64) OpenSSL/1.1.1m PHP/8.0.14"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/8.0.14"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, private"
+						},
+						{
+							"key": "X-RateLimit-Limit",
+							"value": "60"
+						},
+						{
+							"key": "X-RateLimit-Remaining",
+							"value": "57"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "top_soft_session=V7JooB1xQ08c8e6cIJMTYkOCE293mBO4gZFFgbY7; expires=Tue, 01-Mar-2022 13:36:37 GMT; Max-Age=7200; path=/; httponly; samesite=lax"
+						},
+						{
+							"key": "Content-Length",
+							"value": "64"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5, max=100"
+						},
+						{
+							"key": "Connection",
+							"value": "Keep-Alive"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/html; charset=UTF-8"
+						}
+					],
+					"cookie": [],
+					"body": "{\"error\":false,\"message\":\"Item created successfully\",\"code\":201}"
+				},
+				{
+					"name": "required keys not found",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost/topsoft/api/item/add",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"topsoft",
+								"api",
+								"item",
+								"add"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "html",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Tue, 01 Mar 2022 11:38:26 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Apache/2.4.52 (Win64) OpenSSL/1.1.1m PHP/8.0.14"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/8.0.14"
+						},
+						{
+							"key": "Content-Length",
+							"value": "63"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5, max=100"
+						},
+						{
+							"key": "Connection",
+							"value": "Keep-Alive"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/html; charset=UTF-8"
+						}
+					],
+					"cookie": [],
+					"body": "{\"error\":true,\"message\":\"device_id is required key\",\"code\":201}"
+				},
+				{
+					"name": "Trying to create item with same NAME",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"device_id\":\"1\",\r\n    \"token\":\"2c29ade55e1a1695e9ba8658b75e43a2\",\r\n    \"name\":\"Soap 1\",\r\n    \"description\":\"shampoo for wash hairs.\",\r\n    \"quantity\":50,\r\n    \"price\":290.99,\r\n    \"vat\":10,\r\n    \"discount\":10,\r\n    \"final_price\":290.99\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost/topsoft/api/item/add",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"topsoft",
+								"api",
+								"item",
+								"add"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "html",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Tue, 01 Mar 2022 11:38:57 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Apache/2.4.52 (Win64) OpenSSL/1.1.1m PHP/8.0.14"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/8.0.14"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, private"
+						},
+						{
+							"key": "X-RateLimit-Limit",
+							"value": "60"
+						},
+						{
+							"key": "X-RateLimit-Remaining",
+							"value": "59"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "top_soft_session=V7JooB1xQ08c8e6cIJMTYkOCE293mBO4gZFFgbY7; expires=Tue, 01-Mar-2022 13:38:57 GMT; Max-Age=7200; path=/; httponly; samesite=lax"
+						},
+						{
+							"key": "Content-Length",
+							"value": "77"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5, max=100"
+						},
+						{
+							"key": "Connection",
+							"value": "Keep-Alive"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/html; charset=UTF-8"
+						}
+					],
+					"cookie": [],
+					"body": "{\"error\":true,\"message\":\"Item alredy in item list with same name\",\"code\":201}"
+				}
+			]
+		},
+		{
+			"name": "Item/update",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"device_id\":\"1\",\r\n    \"token\":\"2c29ade55e1a1695e9ba8658b75e43a2\",\r\n    \"name\":\"Soap 8\",\r\n    \"description\":\"shampoo for wash hairs.\",\r\n    \"quantity\":50,\r\n    \"price\":260.99,\r\n    \"vat\":10,\r\n    \"discount\":10,\r\n    \"final_price\":260.99,\r\n    \"item_id\":6\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost/topsoft/api/item/update",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"topsoft",
+						"api",
+						"item",
+						"update"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Required fields missing",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost/topsoft/api/item/update",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"topsoft",
+								"api",
+								"item",
+								"update"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "html",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Tue, 01 Mar 2022 11:46:36 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Apache/2.4.52 (Win64) OpenSSL/1.1.1m PHP/8.0.14"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/8.0.14"
+						},
+						{
+							"key": "Content-Length",
+							"value": "63"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5, max=100"
+						},
+						{
+							"key": "Connection",
+							"value": "Keep-Alive"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/html; charset=UTF-8"
+						}
+					],
+					"cookie": [],
+					"body": "{\"error\":true,\"message\":\"device_id is required key\",\"code\":201}"
+				},
+				{
+					"name": "Item Name alreadyy in use",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"device_id\":\"1\",\r\n    \"token\":\"2c29ade55e1a1695e9ba8658b75e43a2\",\r\n    \"name\":\"Soap 1\",\r\n    \"description\":\"shampoo for wash hairs.\",\r\n    \"quantity\":50,\r\n    \"price\":290.99,\r\n    \"vat\":10,\r\n    \"discount\":10,\r\n    \"final_price\":290.99,\r\n    \"item_id\":6\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost/topsoft/api/item/update",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"topsoft",
+								"api",
+								"item",
+								"update"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "html",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Tue, 01 Mar 2022 11:55:59 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Apache/2.4.52 (Win64) OpenSSL/1.1.1m PHP/8.0.14"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/8.0.14"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, private"
+						},
+						{
+							"key": "X-RateLimit-Limit",
+							"value": "60"
+						},
+						{
+							"key": "X-RateLimit-Remaining",
+							"value": "59"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "top_soft_session=V7JooB1xQ08c8e6cIJMTYkOCE293mBO4gZFFgbY7; expires=Tue, 01-Mar-2022 13:56:00 GMT; Max-Age=7200; path=/; httponly; samesite=lax"
+						},
+						{
+							"key": "Content-Length",
+							"value": "71"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5, max=100"
+						},
+						{
+							"key": "Connection",
+							"value": "Keep-Alive"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/html; charset=UTF-8"
+						}
+					],
+					"cookie": [],
+					"body": "{\"error\":true,\"message\":\"Item already exist with same name\",\"code\":201}"
+				},
+				{
+					"name": "Success",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"device_id\":\"1\",\r\n    \"token\":\"2c29ade55e1a1695e9ba8658b75e43a2\",\r\n    \"name\":\"Soap 8\",\r\n    \"description\":\"shampoo for wash hairs.\",\r\n    \"quantity\":50,\r\n    \"price\":260.99,\r\n    \"vat\":10,\r\n    \"discount\":10,\r\n    \"final_price\":260.99,\r\n    \"item_id\":6\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost/topsoft/api/item/update",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"topsoft",
+								"api",
+								"item",
+								"update"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "html",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Tue, 01 Mar 2022 12:02:36 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Apache/2.4.52 (Win64) OpenSSL/1.1.1m PHP/8.0.14"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/8.0.14"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, private"
+						},
+						{
+							"key": "X-RateLimit-Limit",
+							"value": "60"
+						},
+						{
+							"key": "X-RateLimit-Remaining",
+							"value": "59"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "top_soft_session=V7JooB1xQ08c8e6cIJMTYkOCE293mBO4gZFFgbY7; expires=Tue, 01-Mar-2022 14:02:36 GMT; Max-Age=7200; path=/; httponly; samesite=lax"
+						},
+						{
+							"key": "Content-Length",
+							"value": "67"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5, max=100"
+						},
+						{
+							"key": "Connection",
+							"value": "Keep-Alive"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/html; charset=UTF-8"
+						}
+					],
+					"cookie": [],
+					"body": "{\"error\":false,\"message\":\"Details updated successfully\",\"code\":201}"
+				}
+			]
+		},
+		{
+			"name": "Item/list",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"device_id\":\"1\",\r\n    \"token\":\"2c29ade55e1a1695e9ba8658b75e43a2\",\r\n    \"count\":3,\r\n    \"page\":0\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost/topsoft/api/item/list",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"topsoft",
+						"api",
+						"item",
+						"list"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Required key missing",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost/topsoft/api/item/list",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"topsoft",
+								"api",
+								"item",
+								"list"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "html",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Tue, 01 Mar 2022 12:06:44 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Apache/2.4.52 (Win64) OpenSSL/1.1.1m PHP/8.0.14"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/8.0.14"
+						},
+						{
+							"key": "Content-Length",
+							"value": "63"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5, max=100"
+						},
+						{
+							"key": "Connection",
+							"value": "Keep-Alive"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/html; charset=UTF-8"
+						}
+					],
+					"cookie": [],
+					"body": "{\"error\":true,\"message\":\"device_id is required key\",\"code\":201}"
+				},
+				{
+					"name": "Success",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"device_id\":\"1\",\r\n    \"token\":\"2c29ade55e1a1695e9ba8658b75e43a2\",\r\n    \"count\":3,\r\n    \"page\":0\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost/topsoft/api/item/list",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"topsoft",
+								"api",
+								"item",
+								"list"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "html",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Tue, 01 Mar 2022 12:08:53 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Apache/2.4.52 (Win64) OpenSSL/1.1.1m PHP/8.0.14"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/8.0.14"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, private"
+						},
+						{
+							"key": "X-RateLimit-Limit",
+							"value": "60"
+						},
+						{
+							"key": "X-RateLimit-Remaining",
+							"value": "56"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "top_soft_session=V7JooB1xQ08c8e6cIJMTYkOCE293mBO4gZFFgbY7; expires=Tue, 01-Mar-2022 14:08:53 GMT; Max-Age=7200; path=/; httponly; samesite=lax"
+						},
+						{
+							"key": "Content-Length",
+							"value": "883"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5, max=100"
+						},
+						{
+							"key": "Connection",
+							"value": "Keep-Alive"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/html; charset=UTF-8"
+						}
+					],
+					"cookie": [],
+					"body": "{\"error\":false,\"message\":\"listing done\",\"data\":[{\"item_id\":6,\"name\":\"Soap 8\",\"quantity\":50,\"price\":260.99,\"description\":\"shampoo for wash hairs.\",\"vat\":10,\"discount\":10,\"final_price\":260.99,\"barcode\":\"sha6IaJA9r\",\"status\":\"available\",\"created_at\":\"2022-03-01T11:35:10.000000Z\",\"updated_at\":\"2022-03-01T12:02:36.000000Z\"},{\"item_id\":7,\"name\":\"shampoo\",\"quantity\":20,\"price\":293.99,\"description\":\"shampoo for wash hairs.\",\"vat\":20,\"discount\":20,\"final_price\":293.99,\"barcode\":\"sha7Uh5TqM\",\"status\":\"available\",\"created_at\":\"2022-03-01T11:35:58.000000Z\",\"updated_at\":\"2022-03-01T11:35:58.000000Z\"},{\"item_id\":8,\"name\":\"shampoo 1\",\"quantity\":50,\"price\":290.99,\"description\":\"shampoo for wash hairs.\",\"vat\":10,\"discount\":10,\"final_price\":290.99,\"barcode\":\"sha8lFqPXm\",\"status\":\"available\",\"created_at\":\"2022-03-01T11:36:23.000000Z\",\"updated_at\":\"2022-03-01T11:36:23.000000Z\"}],\"code\":200}"
+				}
+			]
+		},
+		{
+			"name": "Item/detail",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"device_id\":\"1\",\r\n    \"token\":\"2c29ade55e1a1695e9ba8658b75e43a2\",\r\n    \"item_id\":6\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost/topsoft/api/item/details",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"topsoft",
+						"api",
+						"item",
+						"details"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Requred parameters missing",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost/topsoft/api/item/details",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"topsoft",
+								"api",
+								"item",
+								"details"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "html",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Wed, 02 Mar 2022 08:52:53 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Apache/2.4.52 (Win64) OpenSSL/1.1.1m PHP/8.0.14"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/8.0.14"
+						},
+						{
+							"key": "Content-Length",
+							"value": "63"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5, max=100"
+						},
+						{
+							"key": "Connection",
+							"value": "Keep-Alive"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/html; charset=UTF-8"
+						}
+					],
+					"cookie": [],
+					"body": "{\"error\":true,\"message\":\"device_id is required key\",\"code\":201}"
+				},
+				{
+					"name": "Success",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"device_id\":\"1\",\r\n    \"token\":\"2c29ade55e1a1695e9ba8658b75e43a2\",\r\n    \"item_id\":6\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost/topsoft/api/item/details",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"topsoft",
+								"api",
+								"item",
+								"details"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "html",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Wed, 02 Mar 2022 08:59:25 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Apache/2.4.52 (Win64) OpenSSL/1.1.1m PHP/8.0.14"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/8.0.14"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, private"
+						},
+						{
+							"key": "X-RateLimit-Limit",
+							"value": "60"
+						},
+						{
+							"key": "X-RateLimit-Remaining",
+							"value": "59"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "top_soft_session=gSlKGrXy00N4e2ME9usdNk7luQBLeJQYpa1lfpc8; expires=Wed, 02-Mar-2022 10:59:25 GMT; Max-Age=7200; path=/; httponly; samesite=lax"
+						},
+						{
+							"key": "Content-Length",
+							"value": "333"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5, max=100"
+						},
+						{
+							"key": "Connection",
+							"value": "Keep-Alive"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/html; charset=UTF-8"
+						}
+					],
+					"cookie": [],
+					"body": "{\"error\":false,\"message\":\"details listed\",\"data\":{\"item_id\":6,\"name\":\"Soap 8\",\"quantity\":50,\"price\":260.99,\"description\":\"shampoo for wash hairs.\",\"vat\":10,\"discount\":10,\"final_price\":260.99,\"barcode\":\"sha6IaJA9r\",\"status\":\"available\",\"created_at\":\"2022-03-01T11:35:10.000000Z\",\"updated_at\":\"2022-03-01T12:02:36.000000Z\"},\"code\":200}"
+				}
+			]
+		},
+		{
+			"name": "Item/detail/barcode",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"device_id\":\"1\",\r\n    \"token\":\"2c29ade55e1a1695e9ba8658b75e43a2\",\r\n    \"barcode\":\"sha8lFqPXm\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost/topsoft/api/item/details/barcode",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"topsoft",
+						"api",
+						"item",
+						"details",
+						"barcode"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Required parameter missing",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"device_id\":\"1\",\r\n    \"token\":\"2c29ade55e1a1695e9ba8658b75e43a2\",\r\n    \"item_id\":6\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost/topsoft/api/item/details/barcode",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"topsoft",
+								"api",
+								"item",
+								"details",
+								"barcode"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "html",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Wed, 02 Mar 2022 09:15:33 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Apache/2.4.52 (Win64) OpenSSL/1.1.1m PHP/8.0.14"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/8.0.14"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, private"
+						},
+						{
+							"key": "X-RateLimit-Limit",
+							"value": "60"
+						},
+						{
+							"key": "X-RateLimit-Remaining",
+							"value": "59"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "top_soft_session=gSlKGrXy00N4e2ME9usdNk7luQBLeJQYpa1lfpc8; expires=Wed, 02-Mar-2022 11:15:34 GMT; Max-Age=7200; path=/; httponly; samesite=lax"
+						},
+						{
+							"key": "Content-Length",
+							"value": "61"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5, max=100"
+						},
+						{
+							"key": "Connection",
+							"value": "Keep-Alive"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/html; charset=UTF-8"
+						}
+					],
+					"cookie": [],
+					"body": "{\"error\":true,\"message\":\"barcode is required key\",\"code\":201}"
+				},
+				{
+					"name": "Invalid barcode",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"device_id\":\"1\",\r\n    \"token\":\"2c29ade55e1a1695e9ba8658b75e43a2\",\r\n    \"barcode\":\"hgfkvhhj\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost/topsoft/api/item/details/barcode",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"topsoft",
+								"api",
+								"item",
+								"details",
+								"barcode"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "html",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Wed, 02 Mar 2022 09:17:21 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Apache/2.4.52 (Win64) OpenSSL/1.1.1m PHP/8.0.14"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/8.0.14"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, private"
+						},
+						{
+							"key": "X-RateLimit-Limit",
+							"value": "60"
+						},
+						{
+							"key": "X-RateLimit-Remaining",
+							"value": "58"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "top_soft_session=gSlKGrXy00N4e2ME9usdNk7luQBLeJQYpa1lfpc8; expires=Wed, 02-Mar-2022 11:17:21 GMT; Max-Age=7200; path=/; httponly; samesite=lax"
+						},
+						{
+							"key": "Content-Length",
+							"value": "53"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5, max=100"
+						},
+						{
+							"key": "Connection",
+							"value": "Keep-Alive"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/html; charset=UTF-8"
+						}
+					],
+					"cookie": [],
+					"body": "{\"error\":true,\"message\":\"Invalid barcode\",\"code\":201}"
+				},
+				{
+					"name": "Success",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"device_id\":\"1\",\r\n    \"token\":\"2c29ade55e1a1695e9ba8658b75e43a2\",\r\n    \"barcode\":\"sha8lFqPXm\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost/topsoft/api/item/details/barcode",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"topsoft",
+								"api",
+								"item",
+								"details",
+								"barcode"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "html",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Wed, 02 Mar 2022 09:18:39 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Apache/2.4.52 (Win64) OpenSSL/1.1.1m PHP/8.0.14"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/8.0.14"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, private"
+						},
+						{
+							"key": "X-RateLimit-Limit",
+							"value": "60"
+						},
+						{
+							"key": "X-RateLimit-Remaining",
+							"value": "59"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "top_soft_session=gSlKGrXy00N4e2ME9usdNk7luQBLeJQYpa1lfpc8; expires=Wed, 02-Mar-2022 11:18:40 GMT; Max-Age=7200; path=/; httponly; samesite=lax"
+						},
+						{
+							"key": "Content-Length",
+							"value": "336"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5, max=100"
+						},
+						{
+							"key": "Connection",
+							"value": "Keep-Alive"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/html; charset=UTF-8"
+						}
+					],
+					"cookie": [],
+					"body": "{\"error\":false,\"message\":\"details listed\",\"data\":{\"item_id\":8,\"name\":\"shampoo 1\",\"quantity\":50,\"price\":290.99,\"description\":\"shampoo for wash hairs.\",\"vat\":10,\"discount\":10,\"final_price\":290.99,\"barcode\":\"sha8lFqPXm\",\"status\":\"available\",\"created_at\":\"2022-03-01T11:36:23.000000Z\",\"updated_at\":\"2022-03-01T11:36:23.000000Z\"},\"code\":200}"
+				}
+			]
+		},
+		{
+			"name": "Invoice/add",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"device_id\":\"1\",\r\n    \"token\":\"2c29ade55e1a1695e9ba8658b75e43a2\",\r\n    \"client_id\":\"4\",\r\n    \"company_id\":\"1\",\r\n    \"item_list\":[\r\n        {\r\n            \"item_id\": \"6\",\r\n            \"quantity\": \"2\"\r\n        },\r\n        {\r\n            \"item_id\": \"7\",\r\n            \"quantity\": \"2\"\r\n        }\r\n\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost/topsoft/api/invoice/add",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"topsoft",
+						"api",
+						"invoice",
+						"add"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "required param missing",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost/topsoft/api/invoice/add",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"topsoft",
+								"api",
+								"invoice",
+								"add"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "html",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Wed, 02 Mar 2022 11:37:52 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Apache/2.4.52 (Win64) OpenSSL/1.1.1m PHP/8.0.14"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/8.0.14"
+						},
+						{
+							"key": "Content-Length",
+							"value": "63"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5, max=100"
+						},
+						{
+							"key": "Connection",
+							"value": "Keep-Alive"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/html; charset=UTF-8"
+						}
+					],
+					"cookie": [],
+					"body": "{\"error\":true,\"message\":\"device_id is required key\",\"code\":201}"
+				},
+				{
+					"name": "Success",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"device_id\":\"1\",\r\n    \"token\":\"2c29ade55e1a1695e9ba8658b75e43a2\",\r\n    \"client_id\":\"4\",\r\n    \"company_id\":\"1\",\r\n    \"item_list\":[\r\n        {\r\n            \"item_id\": \"6\",\r\n            \"quantity\": \"2\"\r\n        },\r\n        {\r\n            \"item_id\": \"7\",\r\n            \"quantity\": \"2\"\r\n        }\r\n\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost/topsoft/api/invoice/add",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"topsoft",
+								"api",
+								"invoice",
+								"add"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "html",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Wed, 02 Mar 2022 11:48:24 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Apache/2.4.52 (Win64) OpenSSL/1.1.1m PHP/8.0.14"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/8.0.14"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, private"
+						},
+						{
+							"key": "X-RateLimit-Limit",
+							"value": "60"
+						},
+						{
+							"key": "X-RateLimit-Remaining",
+							"value": "58"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "top_soft_session=In4Y7HR5KKeJEjZjGsJwPFEuQwLqFFYsPy0I9FpP; expires=Wed, 02-Mar-2022 13:48:24 GMT; Max-Age=7200; path=/; httponly; samesite=lax"
+						},
+						{
+							"key": "Content-Length",
+							"value": "67"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5, max=100"
+						},
+						{
+							"key": "Connection",
+							"value": "Keep-Alive"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/html; charset=UTF-8"
+						}
+					],
+					"cookie": [],
+					"body": "{\"error\":false,\"message\":\"Invoice created successfully\",\"code\":201}"
+				},
+				{
+					"name": "Invoice/add",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"device_id\":\"1\",\r\n    \"token\":\"2c29ade55e1a1695e9ba8658b75e43a2\",\r\n    \"client_id\":\"4\",\r\n    \"company_id\":\"1\",\r\n    \"item_list\":[\r\n        {\r\n            \"item_id\": \"6\",\r\n            \"quantity\": \"2\"\r\n        },\r\n        {\r\n            \"item_id\": \"7\",\r\n            \"quantity\": \"2\"\r\n        }\r\n\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost/topsoft/api/invoice/add",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"topsoft",
+								"api",
+								"invoice",
+								"add"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "html",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Wed, 02 Mar 2022 11:56:06 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Apache/2.4.52 (Win64) OpenSSL/1.1.1m PHP/8.0.14"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/8.0.14"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, private"
+						},
+						{
+							"key": "X-RateLimit-Limit",
+							"value": "60"
+						},
+						{
+							"key": "X-RateLimit-Remaining",
+							"value": "54"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "top_soft_session=In4Y7HR5KKeJEjZjGsJwPFEuQwLqFFYsPy0I9FpP; expires=Wed, 02-Mar-2022 13:56:06 GMT; Max-Age=7200; path=/; httponly; samesite=lax"
+						},
+						{
+							"key": "Content-Length",
+							"value": "67"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5, max=95"
+						},
+						{
+							"key": "Connection",
+							"value": "Keep-Alive"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/html; charset=UTF-8"
+						}
+					],
+					"cookie": [],
+					"body": "{\"error\":false,\"message\":\"Invoice created successfully\",\"code\":201}"
+				}
+			]
+		},
+		{
+			"name": "Invoice/update",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"device_id\":\"1\",\r\n    \"token\":\"2c29ade55e1a1695e9ba8658b75e43a2\",\r\n    \"type\":\"xyz\",\r\n    \"payment_method\":\"cash\",\r\n    \"address\":\"new shivaji, bholepur, fatehgarh, farrukhabad, 209601 UP\",\r\n    \"note\":\"xyz\",\r\n    \"user_info\":\"xyz\",\r\n    \"invoice_id\":\"2\",\r\n    \"item_list\":[\r\n        {\r\n            \"item_id\": \"6\",\r\n            \"quantity\": \"2\"\r\n        },\r\n        {\r\n            \"item_id\": \"7\",\r\n            \"quantity\": \"2\"\r\n        }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost/topsoft/api/invoice/update",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"topsoft",
+						"api",
+						"invoice",
+						"update"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Required parameter missing",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"device_id\":\"1\",\r\n    \"token\":\"2c29ade55e1a1695e9ba8658b75e43a2\",\r\n    \"type\":\"xyz\",\r\n    \"payment_method\":\"cash\",\r\n    \"address\":\"new shivaji, bholepur, fatehgarh, farrukhabad, 209601 UP\",\r\n    \"note\":\"xyz\",\r\n    \"user_info\":\"xyz\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost/topsoft/api/invoice/update",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"topsoft",
+								"api",
+								"invoice",
+								"update"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "html",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Wed, 02 Mar 2022 12:19:03 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Apache/2.4.52 (Win64) OpenSSL/1.1.1m PHP/8.0.14"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/8.0.14"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, private"
+						},
+						{
+							"key": "X-RateLimit-Limit",
+							"value": "60"
+						},
+						{
+							"key": "X-RateLimit-Remaining",
+							"value": "59"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "top_soft_session=In4Y7HR5KKeJEjZjGsJwPFEuQwLqFFYsPy0I9FpP; expires=Wed, 02-Mar-2022 14:19:03 GMT; Max-Age=7200; path=/; httponly; samesite=lax"
+						},
+						{
+							"key": "Content-Length",
+							"value": "64"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5, max=100"
+						},
+						{
+							"key": "Connection",
+							"value": "Keep-Alive"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/html; charset=UTF-8"
+						}
+					],
+					"cookie": [],
+					"body": "{\"error\":true,\"message\":\"invoice_id is required key\",\"code\":201}"
+				},
+				{
+					"name": "Success",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"device_id\":\"1\",\r\n    \"token\":\"2c29ade55e1a1695e9ba8658b75e43a2\",\r\n    \"type\":\"xyz\",\r\n    \"payment_method\":\"cash\",\r\n    \"address\":\"new shivaji, bholepur, fatehgarh, farrukhabad, 209601 UP\",\r\n    \"note\":\"xyz\",\r\n    \"user_info\":\"xyz\",\r\n    \"invoice_id\":\"2\",\r\n    \"item_list\":[\r\n        {\r\n            \"item_id\": \"6\",\r\n            \"quantity\": \"2\"\r\n        },\r\n        {\r\n            \"item_id\": \"7\",\r\n            \"quantity\": \"2\"\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost/topsoft/api/invoice/update",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"topsoft",
+								"api",
+								"invoice",
+								"update"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "html",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Wed, 02 Mar 2022 12:21:29 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Apache/2.4.52 (Win64) OpenSSL/1.1.1m PHP/8.0.14"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/8.0.14"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, private"
+						},
+						{
+							"key": "X-RateLimit-Limit",
+							"value": "60"
+						},
+						{
+							"key": "X-RateLimit-Remaining",
+							"value": "59"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "top_soft_session=In4Y7HR5KKeJEjZjGsJwPFEuQwLqFFYsPy0I9FpP; expires=Wed, 02-Mar-2022 14:21:29 GMT; Max-Age=7200; path=/; httponly; samesite=lax"
+						},
+						{
+							"key": "Content-Length",
+							"value": "66"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5, max=100"
+						},
+						{
+							"key": "Connection",
+							"value": "Keep-Alive"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/html; charset=UTF-8"
+						}
+					],
+					"cookie": [],
+					"body": "{\"error\":false,\"message\":\"Invoice update successfully\",\"code\":201}"
+				}
+			]
+		},
+		{
+			"name": "Invoice/detail",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"device_id\":\"1\",\r\n    \"token\":\"2c29ade55e1a1695e9ba8658b75e43a2\",\r\n    \"invoice_id\":2\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost/topsoft/api/invoice/details",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"topsoft",
+						"api",
+						"invoice",
+						"details"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Required Keys Missing",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost/topsoft/api/invoice/details",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"topsoft",
+								"api",
+								"invoice",
+								"details"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "html",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Wed, 02 Mar 2022 11:49:38 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Apache/2.4.52 (Win64) OpenSSL/1.1.1m PHP/8.0.14"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/8.0.14"
+						},
+						{
+							"key": "Content-Length",
+							"value": "63"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5, max=100"
+						},
+						{
+							"key": "Connection",
+							"value": "Keep-Alive"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/html; charset=UTF-8"
+						}
+					],
+					"cookie": [],
+					"body": "{\"error\":true,\"message\":\"device_id is required key\",\"code\":201}"
+				},
+				{
+					"name": "Success",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"device_id\":\"1\",\r\n    \"token\":\"2c29ade55e1a1695e9ba8658b75e43a2\",\r\n    \"invoice_id\":2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost/topsoft/api/invoice/details",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"topsoft",
+								"api",
+								"invoice",
+								"details"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "html",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Wed, 02 Mar 2022 11:51:15 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Apache/2.4.52 (Win64) OpenSSL/1.1.1m PHP/8.0.14"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/8.0.14"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, private"
+						},
+						{
+							"key": "X-RateLimit-Limit",
+							"value": "60"
+						},
+						{
+							"key": "X-RateLimit-Remaining",
+							"value": "58"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "top_soft_session=In4Y7HR5KKeJEjZjGsJwPFEuQwLqFFYsPy0I9FpP; expires=Wed, 02-Mar-2022 13:51:15 GMT; Max-Age=7200; path=/; httponly; samesite=lax"
+						},
+						{
+							"key": "Content-Length",
+							"value": "652"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5, max=100"
+						},
+						{
+							"key": "Connection",
+							"value": "Keep-Alive"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/html; charset=UTF-8"
+						}
+					],
+					"cookie": [],
+					"body": "{\"error\":false,\"message\":\"details listed\",\"data\":{\"invoice_id\":2,\"client_id\":4,\"device_id\":1,\"company_id\":1,\"type\":\"\",\"invoice_number\":\"APPINV1000002\",\"payment_method\":\"\",\"address\":\"\",\"maintainance\":\"\",\"note\":\"\",\"user_info\":\"\",\"status\":\"draft\",\"created_at\":\"2022-03-02T11:48:24.000000Z\",\"updated_at\":\"2022-03-02T11:48:24.000000Z\",\"item_list\":[{\"invoice_item_id\":1,\"invoice_id\":2,\"item_id\":6,\"quantity\":2,\"created_at\":\"2022-03-02T11:48:24.000000Z\",\"updated_at\":\"2022-03-02T11:48:24.000000Z\"},{\"invoice_item_id\":2,\"invoice_id\":2,\"item_id\":7,\"quantity\":2,\"created_at\":\"2022-03-02T11:48:24.000000Z\",\"updated_at\":\"2022-03-02T11:48:24.000000Z\"}]},\"code\":200}"
+				}
+			]
+		},
+		{
+			"name": "Invoice/list",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"device_id\":\"1\",\r\n    \"token\":\"2c29ade55e1a1695e9ba8658b75e43a2\",\r\n    \"page\":\"1\",\r\n    \"count\":\"2\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost/topsoft/api/invoice/list",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"topsoft",
+						"api",
+						"invoice",
+						"list"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Missing Required params",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost/topsoft/api/invoice/list",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"topsoft",
+								"api",
+								"invoice",
+								"list"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "html",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Wed, 02 Mar 2022 11:56:41 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Apache/2.4.52 (Win64) OpenSSL/1.1.1m PHP/8.0.14"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/8.0.14"
+						},
+						{
+							"key": "Content-Length",
+							"value": "63"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5, max=100"
+						},
+						{
+							"key": "Connection",
+							"value": "Keep-Alive"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/html; charset=UTF-8"
+						}
+					],
+					"cookie": [],
+					"body": "{\"error\":true,\"message\":\"device_id is required key\",\"code\":201}"
+				},
+				{
+					"name": "Success",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"device_id\":\"1\",\r\n    \"token\":\"2c29ade55e1a1695e9ba8658b75e43a2\",\r\n    \"page\":\"1\",\r\n    \"count\":\"2\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost/topsoft/api/invoice/list",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"topsoft",
+								"api",
+								"invoice",
+								"list"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "html",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Wed, 02 Mar 2022 12:02:40 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Apache/2.4.52 (Win64) OpenSSL/1.1.1m PHP/8.0.14"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/8.0.14"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, private"
+						},
+						{
+							"key": "X-RateLimit-Limit",
+							"value": "60"
+						},
+						{
+							"key": "X-RateLimit-Remaining",
+							"value": "58"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "top_soft_session=In4Y7HR5KKeJEjZjGsJwPFEuQwLqFFYsPy0I9FpP; expires=Wed, 02-Mar-2022 14:02:40 GMT; Max-Age=7200; path=/; httponly; samesite=lax"
+						},
+						{
+							"key": "Content-Length",
+							"value": "624"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5, max=100"
+						},
+						{
+							"key": "Connection",
+							"value": "Keep-Alive"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/html; charset=UTF-8"
+						}
+					],
+					"cookie": [],
+					"body": "{\"error\":false,\"message\":\"listing done\",\"data\":[{\"invoice_id\":4,\"client_id\":4,\"device_id\":1,\"company_id\":1,\"type\":\"\",\"invoice_number\":\"APPINV1000004\",\"payment_method\":\"\",\"address\":\"\",\"maintainance\":\"\",\"note\":\"\",\"user_info\":\"\",\"status\":\"draft\",\"created_at\":\"2022-03-02T11:56:00.000000Z\",\"updated_at\":\"2022-03-02T11:56:00.000000Z\"},{\"invoice_id\":5,\"client_id\":4,\"device_id\":1,\"company_id\":1,\"type\":\"\",\"invoice_number\":\"APPINV1000005\",\"payment_method\":\"\",\"address\":\"\",\"maintainance\":\"\",\"note\":\"\",\"user_info\":\"\",\"status\":\"draft\",\"created_at\":\"2022-03-02T11:56:02.000000Z\",\"updated_at\":\"2022-03-02T11:56:02.000000Z\"}],\"code\":200}"
+				}
+			]
+		},
+		{
+			"name": "Invoice/items",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"device_id\":\"1\",\r\n    \"token\":\"2c29ade55e1a1695e9ba8658b75e43a2\",\r\n    \"invoice_id\":\"2\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost/topsoft/api/invoice/items",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"topsoft",
+						"api",
+						"invoice",
+						"items"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Required Params Missing",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"device_id\":\"1\",\r\n    \"token\":\"2c29ade55e1a1695e9ba8658b75e43a2\",\r\n    \"page\":\"1\",\r\n    \"count\":\"2\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost/topsoft/api/invoice/items",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"topsoft",
+								"api",
+								"invoice",
+								"items"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "html",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Wed, 02 Mar 2022 12:25:37 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Apache/2.4.52 (Win64) OpenSSL/1.1.1m PHP/8.0.14"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/8.0.14"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, private"
+						},
+						{
+							"key": "X-RateLimit-Limit",
+							"value": "60"
+						},
+						{
+							"key": "X-RateLimit-Remaining",
+							"value": "59"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "top_soft_session=In4Y7HR5KKeJEjZjGsJwPFEuQwLqFFYsPy0I9FpP; expires=Wed, 02-Mar-2022 14:25:38 GMT; Max-Age=7200; path=/; httponly; samesite=lax"
+						},
+						{
+							"key": "Content-Length",
+							"value": "64"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5, max=100"
+						},
+						{
+							"key": "Connection",
+							"value": "Keep-Alive"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/html; charset=UTF-8"
+						}
+					],
+					"cookie": [],
+					"body": "{\"error\":true,\"message\":\"invoice_id is required key\",\"code\":201}"
+				},
+				{
+					"name": "Success",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"device_id\":\"1\",\r\n    \"token\":\"2c29ade55e1a1695e9ba8658b75e43a2\",\r\n    \"invoice_id\":\"2\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost/topsoft/api/invoice/items",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"topsoft",
+								"api",
+								"invoice",
+								"items"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "html",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Wed, 02 Mar 2022 12:26:30 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Apache/2.4.52 (Win64) OpenSSL/1.1.1m PHP/8.0.14"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/8.0.14"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, private"
+						},
+						{
+							"key": "X-RateLimit-Limit",
+							"value": "60"
+						},
+						{
+							"key": "X-RateLimit-Remaining",
+							"value": "58"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "top_soft_session=In4Y7HR5KKeJEjZjGsJwPFEuQwLqFFYsPy0I9FpP; expires=Wed, 02-Mar-2022 14:26:30 GMT; Max-Age=7200; path=/; httponly; samesite=lax"
+						},
+						{
+							"key": "Content-Length",
+							"value": "654"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5, max=100"
+						},
+						{
+							"key": "Connection",
+							"value": "Keep-Alive"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/html; charset=UTF-8"
+						}
+					],
+					"cookie": [],
+					"body": "{\"error\":false,\"message\":\"listing done\",\"data\":[{\"invoice_item_id\":1,\"invoice_id\":2,\"item_id\":6,\"quantity\":2,\"created_at\":\"2022-03-02T11:48:24.000000Z\",\"updated_at\":\"2022-03-02T11:48:24.000000Z\"},{\"invoice_item_id\":2,\"invoice_id\":2,\"item_id\":7,\"quantity\":2,\"created_at\":\"2022-03-02T11:48:24.000000Z\",\"updated_at\":\"2022-03-02T11:48:24.000000Z\"},{\"invoice_item_id\":15,\"invoice_id\":2,\"item_id\":6,\"quantity\":2,\"created_at\":\"2022-03-02T12:21:29.000000Z\",\"updated_at\":\"2022-03-02T12:21:29.000000Z\"},{\"invoice_item_id\":16,\"invoice_id\":2,\"item_id\":7,\"quantity\":2,\"created_at\":\"2022-03-02T12:21:29.000000Z\",\"updated_at\":\"2022-03-02T12:21:29.000000Z\"}],\"code\":200}"
+				}
+			]
+		},
+		{
+			"name": "Invoice/items/quantity/update",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"device_id\":\"1\",\r\n    \"token\":\"2c29ade55e1a1695e9ba8658b75e43a2\",\r\n    \"invoice_item_id\":\"1\",\r\n    \"quantity\":\"0\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost/topsoft/api/invoice/item/quantity/update",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"topsoft",
+						"api",
+						"invoice",
+						"item",
+						"quantity",
+						"update"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Required param missing",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"device_id\":\"1\",\r\n    \"token\":\"2c29ade55e1a1695e9ba8658b75e43a2\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost/topsoft/api/invoice/item/quantity/update",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"topsoft",
+								"api",
+								"invoice",
+								"item",
+								"quantity",
+								"update"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "html",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Wed, 02 Mar 2022 12:32:41 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Apache/2.4.52 (Win64) OpenSSL/1.1.1m PHP/8.0.14"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/8.0.14"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, private"
+						},
+						{
+							"key": "X-RateLimit-Limit",
+							"value": "60"
+						},
+						{
+							"key": "X-RateLimit-Remaining",
+							"value": "59"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "top_soft_session=In4Y7HR5KKeJEjZjGsJwPFEuQwLqFFYsPy0I9FpP; expires=Wed, 02-Mar-2022 14:32:41 GMT; Max-Age=7200; path=/; httponly; samesite=lax"
+						},
+						{
+							"key": "Content-Length",
+							"value": "69"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5, max=100"
+						},
+						{
+							"key": "Connection",
+							"value": "Keep-Alive"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/html; charset=UTF-8"
+						}
+					],
+					"cookie": [],
+					"body": "{\"error\":true,\"message\":\"invoice_item_id is required key\",\"code\":201}"
+				},
+				{
+					"name": "Success",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"device_id\":\"1\",\r\n    \"token\":\"2c29ade55e1a1695e9ba8658b75e43a2\",\r\n    \"invoice_item_id\":\"1\",\r\n    \"quantity\":\"4\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost/topsoft/api/invoice/item/quantity/update",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"topsoft",
+								"api",
+								"invoice",
+								"item",
+								"quantity",
+								"update"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "html",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Wed, 02 Mar 2022 12:37:10 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Apache/2.4.52 (Win64) OpenSSL/1.1.1m PHP/8.0.14"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/8.0.14"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, private"
+						},
+						{
+							"key": "X-RateLimit-Limit",
+							"value": "60"
+						},
+						{
+							"key": "X-RateLimit-Remaining",
+							"value": "58"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "top_soft_session=In4Y7HR5KKeJEjZjGsJwPFEuQwLqFFYsPy0I9FpP; expires=Wed, 02-Mar-2022 14:37:10 GMT; Max-Age=7200; path=/; httponly; samesite=lax"
+						},
+						{
+							"key": "Content-Length",
+							"value": "55"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5, max=100"
+						},
+						{
+							"key": "Connection",
+							"value": "Keep-Alive"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/html; charset=UTF-8"
+						}
+					],
+					"cookie": [],
+					"body": "{\"error\":false,\"message\":\"quantity updated\",\"code\":200}"
+				},
+				{
+					"name": "Item is removed when quantity is 0",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"device_id\":\"1\",\r\n    \"token\":\"2c29ade55e1a1695e9ba8658b75e43a2\",\r\n    \"invoice_item_id\":\"1\",\r\n    \"quantity\":\"0\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost/topsoft/api/invoice/item/quantity/update",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"topsoft",
+								"api",
+								"invoice",
+								"item",
+								"quantity",
+								"update"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "html",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Wed, 02 Mar 2022 12:39:39 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Apache/2.4.52 (Win64) OpenSSL/1.1.1m PHP/8.0.14"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/8.0.14"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, private"
+						},
+						{
+							"key": "X-RateLimit-Limit",
+							"value": "60"
+						},
+						{
+							"key": "X-RateLimit-Remaining",
+							"value": "58"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "top_soft_session=In4Y7HR5KKeJEjZjGsJwPFEuQwLqFFYsPy0I9FpP; expires=Wed, 02-Mar-2022 14:39:40 GMT; Max-Age=7200; path=/; httponly; samesite=lax"
+						},
+						{
+							"key": "Content-Length",
+							"value": "51"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5, max=100"
+						},
+						{
+							"key": "Connection",
+							"value": "Keep-Alive"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/html; charset=UTF-8"
+						}
+					],
+					"cookie": [],
+					"body": "{\"error\":false,\"message\":\"Item removed\",\"code\":200}"
 				}
 			]
 		}

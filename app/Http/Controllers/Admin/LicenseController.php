@@ -5,11 +5,11 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Admin;
-use App\Models\Company;
+use App\Models\Licences;
 use Illuminate\Support\Facades\Hash;
 use App\Classes\Utils;
 
-class CompanyController extends Controller
+class LicenseController extends Controller
 {
 
     private $admin;
@@ -24,62 +24,51 @@ class CompanyController extends Controller
 
     }
 
-    public function list(Request $request){
-        $company = Company::get();
-        return view('admin.company.list',[
-            'title'=>'Company',
-            'url' => 'company',
-            'main'=> 'company',
-            'company'=> $company,
-            'admin'=> (object)$this->admin['data']
-        ]);
-    }
-
-    public function add(Request $request){
+    public function add($company_id){
         
-        return view('admin.company.add',[
-            'title'=>'Add New Client',
-            'url' => 'company/add',
-            'main'=> 'company',
-            'admin'=> (object)$this->admin['data']
-        ]);
-    }
-
-    public function view($company_id){
-        $company = Company::where('company_id',$company_id)->first();
-        return view('admin.company.view',[
-            'title'=>'Company Detail',
-            'url' => 'company/view',
+        return view('admin.licence.add',[
+            'title'=>'Add Licence',
+            'url' => 'license/add',
             'main'=> 'company',
             'admin'=> (object)$this->admin['data'],
-            'company' => $company
+            'company_id'=> $company_id
         ]);
     }
 
-    public function edit($company_id){
-        $company = Company::where('company_id',$company_id)->first();
-        return view('admin.company.edit',[
-            'title'=>'Company Update',
-            'url' => 'company/edit',
+    public function view($licence_id){
+        $license = Licences::where('licence_id',$licence_id)->first();
+        return view('admin.licence.view',[
+            'title'=>'License Detail',
+            'url' => 'license/view',
             'main'=> 'company',
             'admin'=> (object)$this->admin['data'],
-            'company' => $company
+            'license' => $license
         ]);
     }
 
-    public function delete($company_id){
+    public function edit($licence_id){
+        $license = Licences::where('licence_id',$licence_id)->first();
+        return view('admin.licence.edit',[
+            'title'=>'License Update',
+            'url' => 'license/edit',
+            'main'=> 'company',
+            'admin'=> (object)$this->admin['data'],
+            'license' => $license
+        ]);
+    }
+
+    public function delete($licence_id){
         try{
-            $company = Company::where('company_id',$company_id)->get()->first();
-           Company::where('company_id',$company_id)->delete();
+            $license = Licences::where('licence_id',$licence_id)->first();
+            Licences::where('licence_id',$licence_id)->delete();
         }
         catch(Exception $e){
-            $company = Company::where('company_id',$company_id)->get()->first();
+            $license = Licences::where('licence_id',$licence_id)->first();
         }
-        Utils::jsredirect("../../company");
+        Utils::jsredirect("../../../company");
         
         
     }
-
 
 
     private function checkToken(){

@@ -5,10 +5,12 @@ namespace App\Http\Controllers\API;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Devices;
-use App\Models\Clients;
+use App\Models\Invoices;
+use App\Models\InvoiceItems;
+use App\Models\Company;
 use Exception;
 
-class CustomerController extends Controller
+class InvoiceController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -55,15 +57,16 @@ class CustomerController extends Controller
     public function detail(Request $request){
         $input = $this->input;
         $required = $this->checkRequiredParams($input,[
-            'client_id'
+            'invoice_id'
         ]);
         if(!$required):
-            $client = Clients::where('client_id',$input['client_id'])->get()->first();
-            if($client):
+            $invoices = Invoices::where('invoice_id',$input['invoice_id'])->get()->first();
+            if($invoices):
+                $invoices->item_list = InvoiceItems::where('invoice_id',$input['invoice_id'])->get();
                 return json_encode([
                     'error'=>false,
                     'message'=>"details listed",
-                    'data'=> $client,
+                    'data'=> $invoices,
                     'code'=>200
                 ]);
             else:
@@ -86,32 +89,45 @@ class CustomerController extends Controller
     {
         $input = $this->input;
         $required = $this->checkRequiredParams($input,[
-            'name','region','address','city','postal_code','telephone','mobile','tax_number','tax_post','occupation',
-            'email','discount','note','note2'
+            'client_id','device_id','company_id','item_list'
         ]);
         if(!$required):
-            $check = Clients::where('email',$input['email'])->get()->count();
-            if(!$check):
-                $client = Clients::create([
-                        'name' => $input['name'],
-                        'region' => $input['region'],
-                        'address' => $input['address'],
-                        'city' => $input['city'],
-                        'postal_code' => $input['postal_code'],
-                        'telephone' => $input['telephone'],
-                        'mobile' => $input['mobile'],
-                        'tax_number' => $input['tax_number'],
-                        'tax_post' => $input['tax_post'],
-                        'occupation' => $input['occupation'],
-                        'email' => $input['email'],
-                        'discount' => $input['discount'],
-                        'note' => $input['note'],
-                        'note2' => $input['note2']
+            foreach($input['item_list'] as $item):
+                $required = $this->checkRequiredParams($item,[
+                    'item_id','quantity'
                 ]);
-                if($client):
+            endforeach;
+            if(!$required):
+            	$input = $this->SetColumnsToBlank($input,[
+                    'type','payment_method','address','maintainance','note','user_info'
+                ]);								
+                $invoice = Invoices::create([
+                        'client_id' => $input['client_id'],
+                        'device_id' => $input['device_id'],
+                        'company_id' => $input['company_id'],
+                        'type' => $input['type'],
+                        'payment_method' => $input['payment_method'],
+                        'address' => $input['address'],
+                        'maintainance' => $input['maintainance'],
+                        'note' => $input['note'],
+                        'user_info' => $input['user_info'],
+                        'status' => $input['status']
+                ]);
+                if($invoice):
+                    $invoiceNumber = $this->generateInvoiceNumber($invoice);
+                    Invoices::where('invoice_id',$invoice->id)->update([
+                        'invoice_number' => $invoiceNumber
+                    ]);
+                    foreach($input['item_list'] as $item):
+                        InvoiceItems::create([
+                            'invoice_id'=>$invoice->id,
+                            'item_id'=>$item['item_id'],
+                            'quantity'=>$item['quantity']
+                        ]);
+                    endforeach;
                     return json_encode([
                         'error'=>false,
-                        'message'=>"Customer created successfully",
+                        'message'=>"Invoice created successfully",
                         'code'=>201
                     ]);
                 else:
@@ -124,7 +140,7 @@ class CustomerController extends Controller
             else:
                 return json_encode([
                     'error'=>true,
-                    'message'=>"email already use for another client",
+                    'message'=>"$required is required key",
                     'code'=>201
                 ]);
             endif;
@@ -141,53 +157,56 @@ class CustomerController extends Controller
     public function update(Request $request){
         $input = $this->input;
         $required = $this->checkRequiredParams($input,[
-            'client_id','name','region','address','city','postal_code','telephone','mobile','tax_number','tax_post','occupation',
-            'email','discount','note','note2'
+            'invoice_id','item_list'
         ]);
         if(!$required):
-            $check  = Clients::where('email',$input['email'])
-                            ->where('client_id','!=',$input['client_id'])
-                            ->get()->count();
-            if(!$check):
-                
-                $client = Clients::where('client_id',$input['client_id'])->update([
-                    'name' => $input['name'],
-                    'region' => $input['region'],
-                    'address' => $input['address'],
-                    'city' => $input['city'],
-                    'postal_code' => $input['postal_code'],
-                    'telephone' => $input['telephone'],
-                    'mobile' => $input['mobile'],
-                    'tax_number' => $input['tax_number'],
-                    'tax_post' => $input['tax_post'],
-                    'occupation' => $input['occupation'],
-                    'email' => $input['email'],
-                    'discount' => $input['discount'],
-                    'note' => $input['note'],
-                    'note2' => $input['note2']
+            foreach($input['item_list'] as $item):
+                $required = $this->checkRequiredParams($item,[
+                    'item_id','quantity'
                 ]);
-                
-                if($client):
-                    return json_encode([
-                        'error'=>false,
-                        'message'=>"Details updated successfully",
-                        'code'=>201
+            endforeach;
+            if(!$required):
+            $input = $this->SetColumnsToBlank($input,[
+                'type','payment_method','address','maintainance','note','user_info'
+            ]);									
+            $invoice = Invoices::where('invoice_id',$input['invoice_id'])->update([
+                'type' => $input['type'],
+                'payment_method' => $input['payment_method'],
+                'address' => $input['address'],
+                'maintainance' => $input['maintainance'],
+                'note' => $input['note'],
+                'user_info' => $input['user_info'],
+                'status' => $input['status']
+            ]);
+            if($invoice):
+                Invoices::where('invoice_id',$input['invoice_id'])->delete();
+                foreach($input['item_list'] as $item):
+                    InvoiceItems::create([
+                        'invoice_id'=>$input['invoice_id'],
+                        'item_id'=>$item['item_id'],
+                        'quantity'=>$item['quantity']
                     ]);
-                else:
-                    return json_encode([
-                        'error'=>true,
-                        'message'=>"server issue client not created",
-                        'code'=>201
-                    ]);
-                endif;
+                endforeach;
+                return json_encode([
+                    'error'=>false,
+                    'message'=>"Invoice update successfully",
+                    'code'=>201
+                ]);
             else:
                 return json_encode([
                     'error'=>true,
-                    'message'=>"email already use for another client",
+                    'message'=>"server issue client not created",
                     'code'=>201
                 ]);
             endif;
-                       
+            
+        else:
+            return json_encode([
+                'error'=>true,
+                'message'=>"$required is required key",
+                'code'=>201
+            ]);
+        endif;
         else:
             return json_encode([
                 'error'=>true,
@@ -203,11 +222,11 @@ class CustomerController extends Controller
             'page','count'
         ]);
         if(!$required):
-            $clients = Clients::skip($input['page']*$input['count'])->take($input['count'])->get();
+            $invoices = Invoices::where('device_id',$input['device_id'])->skip($input['page']*$input['count'])->take($input['count'])->get();
             return json_encode([
                 'error'=>false,
                 'message'=>"listing done",
-                'data'=> $clients,
+                'data'=> $invoices,
                 'code'=>200
             ]);
         else:
@@ -218,6 +237,65 @@ class CustomerController extends Controller
             ]);
         endif;
     }
+
+    public function items(Request $request){
+        $input = $this->input;
+        $required = $this->checkRequiredParams($input,[
+            'invoice_id'
+        ]);
+        if(!$required):
+            $items = InvoiceItems::where('invoice_id',$input['invoice_id'])->get();
+            return json_encode([
+                'error'=>false,
+                'message'=>"listing done",
+                'data'=> $items,
+                'code'=>200
+            ]);
+        else:
+            return json_encode([
+                'error'=>true,
+                'message'=>"$required is required key",
+                'code'=>201
+            ]);
+        endif;
+    }
+
+    public function itemQuantityUpdate(Request $request){
+        $input = $this->input;
+        $required = $this->checkRequiredParams($input,[
+            'invoice_item_id', 'quantity'
+        ]);
+        if(!$required):
+            if($input['quantity']):
+                InvoiceItems::where('invoice_item_id',$input['invoice_item_id'])->update([
+                    "quantity"=>$input['quantity']
+                ]);
+                return json_encode([
+                    'error'=>false,
+                    'message'=>"quantity updated",
+                    'code'=>200
+                ]);
+            else:
+                InvoiceItems::where('invoice_item_id',$input['invoice_item_id'])->delete();
+                return json_encode([
+                    'error'=>false,
+                    'message'=>"Item removed",
+                    'code'=>200
+                ]);
+            endif;
+                
+                
+            
+        else:
+            return json_encode([
+                'error'=>true,
+                'message'=>"$required is required key",
+                'code'=>201
+            ]);
+        endif;
+    }
+
+    
 
     public function delete(Request $request){
         $input = $this->input;
@@ -257,6 +335,14 @@ class CustomerController extends Controller
         
    }
 
+   private function generateInvoiceNumber($invoice){
+        $company = Company::where('company_id',$invoice->company_id)->get()->first();
+
+        $name = strtoupper(substr($company->name, 0, 3));
+        $id = str_pad($invoice->id, 6, '0', STR_PAD_LEFT);
+        return $name.'INV'.$invoice->company_id.$id;
+    }
+
    private function checkRequiredParams($input,$required){
         foreach($required as $r):
             if(isset($input["$r"])==false || $r=''):
@@ -265,6 +351,17 @@ class CustomerController extends Controller
         endforeach;
         return false;
    }
+
+   private function SetColumnsToBlank($input,$required){
+       $input["status"] = 'success';
+    foreach($required as $r):
+        if(isset($input["$r"])==false):
+            $input["$r"] = '';
+            $input["status"] = 'draft';
+        endif;
+    endforeach;
+    return $input;
+}
 
     private function generateToken($id)
     {

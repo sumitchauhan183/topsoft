@@ -67,6 +67,19 @@ class ClientController extends Controller
         ]);
     }
 
+    public function delete($client_id){
+        try{
+            $clients = Clients::where('client_id',$client_id)->first();
+            //Clients::where('client_id',$client_id)->delete();
+        }
+        catch(Exception $e){
+            $clients = Clients::where('client_id',$client_id)->first();
+        }
+        Utils::jsredirect("../../clients");
+        
+        
+    }
+
 
 
     private function checkToken(){

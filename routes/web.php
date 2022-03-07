@@ -42,5 +42,18 @@ Route::get('admin/company/edit/{id}',[App\Http\Controllers\Admin\CompanyControll
 Route::get('admin/company/view/{id}',[App\Http\Controllers\Admin\CompanyController::class,'view']);
 Route::get('admin/company/delete/{id}',[App\Http\Controllers\Admin\CompanyController::class,'delete']);
 
+// COMPANY LICENSE ROUTE
+Route::get('admin/company/{id}/license/add',[App\Http\Controllers\Admin\LicenseController::class,'add']);
+Route::get('admin/company/license/view/{license_id}',[App\Http\Controllers\Admin\LicenseController::class,'view']);
+Route::get('admin/company/license/edit/{license_id}',[App\Http\Controllers\Admin\LicenseController::class,'edit']);
+Route::get('admin/company/license/delete/{license_id}',[App\Http\Controllers\Admin\LicenseController::class,'delete']);
+
+// COMPANY APP USERS
+Route::get('admin/company/{id}/app-users',[App\Http\Controllers\Admin\AppUserController::class,'list']);
+Route::get('admin/company/{id}/app-users/add',[App\Http\Controllers\Admin\AppUserController::class,'add']);
+Route::get('admin/company/app-users/view/{app_user_id}',[App\Http\Controllers\Admin\AppUserController::class,'view']);
+Route::get('admin/company/app-users/edit/{app_user_id}',[App\Http\Controllers\Admin\AppUserController::class,'edit']);
+Route::get('admin/company/app-users/delete/{app_user_id}',[App\Http\Controllers\Admin\AppUserController::class,'delete']);
+
 
 

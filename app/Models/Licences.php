@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Company;
 
 class Licences extends Authenticatable
 {
@@ -17,6 +18,7 @@ class Licences extends Authenticatable
     protected $table = 'licences';
 
     public $timestamps = true;
+    protected $primaryKey = 'licence_id';
 
     /**
      * The attributes that are mass assignable.
@@ -26,4 +28,8 @@ class Licences extends Authenticatable
     protected $fillable = [
         'licence_id','company_id','licence_key','device_count','expiration_date'
     ];	
+
+    public function company(){
+        return $this->belongsTo(Company::Class);
+    }
 }

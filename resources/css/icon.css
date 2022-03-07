@@ -12,38 +12,28 @@
 .revert{
     overflow: revert !important;
     width: auto;
-}
-.view-icon{
-    font-size: 20px !important;
-    padding: 5px 8px;
-    border-radius: 30px;
-    color: #d63384;
-    position: absolute;
-    right: 90px;
-    top: 0px !important;
-    cursor: pointer;
+    padding: 5px 0 !important;
+    margin: 0 !important;
 }
 
-.edit-icon{
+
+.view-iconl{
     font-size: 20px !important;
     padding: 5px 8px;
     border-radius: 30px;
     color: #d63384;
-    position: absolute;
-    right: 60px;
-    top: 0px !important;
     cursor: pointer;
+    float: left;
 }
 
-.delete-icon{
+
+.delete-iconl{
     font-size: 20px !important;
     padding: 5px 8px;
     border-radius: 30px;
     color: #d63384;
-    position: absolute;
-    right: 30px;
-    top: 0px !important;
     cursor: pointer;
+    float: right;
 }
 
 .btn:focus {

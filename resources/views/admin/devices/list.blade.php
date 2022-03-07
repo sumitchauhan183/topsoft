@@ -45,21 +45,19 @@
               <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
                 <h6 class="text-white text-capitalize ps-3 inline">{{$title}}</h6>
                 <button class="btn revert fl-rgt inline">
-               <a href="{{route('admin.company.add')}}"> <i class="material-icons py-2 add-icon" title="Add new client">add</i></a>
+               <a href="app-users/add"> <i class="material-icons py-2 add-icon" title="Add new client">add</i></a>
                 </button>
               </div>
             </div>
             <div class="card-body px-0 pb-2">
+              <input type="hidden" id="company_id" value="{{$company_id}}"> 
               <div class="table-responsive p-0 mx-4">
-                <table class="table align-items-center justify-content-center mb-0" id="company_table">
+                <table class="table align-items-center justify-content-center mb-0" id="devices_table">
                   <thead>
                     <tr>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">App Users</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Name</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Greek Name</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Email</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder text-center opacity-7 ps-2">Status</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder text-center opacity-7 ps-2">License</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Email</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Created on</th>
                       <th>Action</th>
                     </tr>
                   </thead>

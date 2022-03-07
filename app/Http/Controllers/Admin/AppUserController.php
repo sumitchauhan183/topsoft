@@ -5,13 +5,14 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Admin;
+use App\Models\Licences;
 use App\Models\Company;
+use App\Models\Devices;
 use Illuminate\Support\Facades\Hash;
 use App\Classes\Utils;
 
-class CompanyController extends Controller
+class AppUserController extends Controller
 {
-
     private $admin;
     public function __construct(Request $request)
     { 
@@ -24,58 +25,58 @@ class CompanyController extends Controller
 
     }
 
-    public function list(Request $request){
-        $company = Company::get();
-        return view('admin.company.list',[
-            'title'=>'Company',
-            'url' => 'company',
+    public function list($company_id){
+        return view('admin.devices.list',[
+            'title'=>'App Users',
+            'url' => 'devices',
             'main'=> 'company',
-            'company'=> $company,
+            'company_id'=> $company_id,
             'admin'=> (object)$this->admin['data']
         ]);
     }
 
-    public function add(Request $request){
+    public function add($company_id){
         
-        return view('admin.company.add',[
-            'title'=>'Add New Client',
-            'url' => 'company/add',
-            'main'=> 'company',
-            'admin'=> (object)$this->admin['data']
-        ]);
-    }
-
-    public function view($company_id){
-        $company = Company::where('company_id',$company_id)->first();
-        return view('admin.company.view',[
-            'title'=>'Company Detail',
-            'url' => 'company/view',
+        return view('admin.devices.add',[
+            'title'=>'Add App User',
+            'url' => 'devices/add',
             'main'=> 'company',
             'admin'=> (object)$this->admin['data'],
-            'company' => $company
+            'company_id'=> $company_id
         ]);
     }
 
-    public function edit($company_id){
-        $company = Company::where('company_id',$company_id)->first();
-        return view('admin.company.edit',[
-            'title'=>'Company Update',
-            'url' => 'company/edit',
+    public function view($device_id){
+        $device = Devices::where('device_id',$device_id)->first();
+        return view('admin.devices.view',[
+            'title'=>'App User Detail',
+            'url' => 'devices/view',
             'main'=> 'company',
             'admin'=> (object)$this->admin['data'],
-            'company' => $company
+            'devices' => $device
         ]);
     }
 
-    public function delete($company_id){
+    public function edit($device_id){
+        $device = Devices::where('device_id',$device_id)->first();
+        return view('admin.devices.edit',[
+            'title'=>'App User Update',
+            'url' => 'devices/edit',
+            'main'=> 'company',
+            'admin'=> (object)$this->admin['data'],
+            'devices' => $device
+        ]);
+    }
+
+    public function delete($device_id){
         try{
-            $company = Company::where('company_id',$company_id)->get()->first();
-           Company::where('company_id',$company_id)->delete();
+            $device = Devices::where('device_id',$device_id)->get()->first();
+            Devices::where('device_id',$device_id)->delete();
         }
         catch(Exception $e){
-            $company = Company::where('company_id',$company_id)->get()->first();
+            $device = Devices::where('device_id',$device_id)->get()->first();
         }
-        Utils::jsredirect("../../company");
+        Utils::jsredirect("../../../../admin/company/$device->company_id/app-users");
         
         
     }

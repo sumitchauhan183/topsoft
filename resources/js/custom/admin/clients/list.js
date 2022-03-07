@@ -3,7 +3,7 @@ let list = function(){
     let client_table = $('#client_table').DataTable({columnDefs: [
         {
             targets: [-1,3],
-            className: 'dt-body-center'
+            className: 'text-center'
         },
         {
             targets: [0,1],
@@ -36,9 +36,9 @@ let list = function(){
                       obj.address,
                       obj.status,
                       '<button class="btn revert">'+
-                      '<a href="clients/view/'+obj.client_id+'"><i class="material-icons py-2 view-icon" title="view">visibility</i></a>'+
-                      '<a href="clients/edit/'+obj.client_id+'"><i class="material-icons py-2 edit-icon" title="edit">edit</i></a>'+
-                      '<a href="clients/delete/'+obj.client_id+'"><i class="material-icons py-2 delete-icon" title="delete">delete</i></a>'+
+                      '<a href="clients/view/'+obj.client_id+'"><i class="material-icons py-2 view-iconl" title="view">visibility</i></a>'+
+                      '<a href="clients/edit/'+obj.client_id+'"><i class="material-icons py-2 view-iconl" title="edit">edit</i></a>'+
+                      '<a href="clients/delete/'+obj.client_id+'"><i class="material-icons py-2 view-iconl" title="delete">delete</i></a>'+
                     '</button>'
                   ];
 

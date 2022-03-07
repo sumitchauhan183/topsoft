@@ -5,11 +5,13 @@ namespace App\Http\Controllers\API\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\company;
+use App\Models\Licences;
+use App\Models\Devices;
 use Illuminate\Support\Facades\Hash;
 use App\Classes\Email;
 use Exception;
 
-class CompanyController extends Controller
+class AppUserController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -35,7 +37,7 @@ class CompanyController extends Controller
     {
         $input = $request->all();
         if(isset($input['email'])):
-            $check = Company::where('public_key',$input['email'])->count();
+            $check = Devices::where('email',$input['email'])->count();
             if($check<1):
                 return json_encode([
                     'error'=>false
@@ -43,7 +45,30 @@ class CompanyController extends Controller
             else:
                 return json_encode([
                     'error'=>true,
-                    'message'=>'This email is already used by another company'
+                    'message'=>'This email is already used by another App User'
+                ]);
+            endif;
+        else:
+            return json_encode([
+                'error'=>true,
+                'message'=>'Email id is required'
+            ]);
+        endif;
+    }
+
+    public function checkMobileExist(Request $request)
+    {
+        $input = $request->all();
+        if(isset($input['mobile'])):
+            $check = Devices::where('mobile',$input['mobile'])->count();
+            if($check<1):
+                return json_encode([
+                    'error'=>false
+                ]);
+            else:
+                return json_encode([
+                    'error'=>true,
+                    'message'=>'This mobile is already used by another App User'
                 ]);
             endif;
         else:
@@ -58,16 +83,16 @@ class CompanyController extends Controller
     {
         $input = $request->all();
         $data = [
-                "name"  => $input["name"],
-                "greek_name" => $input["greekName"],
-                "public_key"  => $input["email"],
-                "private_key" => Hash::make($input["password"])
+                "company_id"  => $input["company_id"],
+                "email"       => $input["email"],
+                "status"      => $input["status"],
+                "password"    => Hash::make($input["password"])
         ];
        try{
-        Company::create($data);
+        Devices::create($data);
         return json_encode([
             'error'=>false,
-            'message'=>'Company created successfully.'
+            'message'=>'App User created successfully.'
         ]);
        }catch(Exception $e){
         return json_encode([
@@ -82,20 +107,18 @@ class CompanyController extends Controller
     public function update(Request $request)
     {
         $input     = $request->all();
-        $company_id = $input['company_id'];
+        $device_id = $input['device_id'];
         $data = [
-            "name"  => $input["name"],
-            "greek_name" => $input["greekName"],
-            
+            "status"   => $input["status"]
         ];
         if($input['is_password']){
-            $data['private_key'] = Hash::make($input["password"]);
+            $data['password'] = Hash::make($input["password"]);
         }
        try{
-        Company::where('company_id',$company_id)->update($data);
+        Devices::where('device_id',$device_id)->update($data);
         return json_encode([
             'error'=>false,
-            'message'=>'company updated successfully.'
+            'message'=>'App User updated successfully.'
         ]);
        }catch(Exception $e){
         return json_encode([
@@ -110,12 +133,13 @@ class CompanyController extends Controller
     public function list(Request $request)
     {
         $input     = $request->all();
+        $company_id = $input['company_id'];
         try{
-            $company = Company::with('license')->get()->toArray();
+            $devices = Devices::where('company_id',$company_id)->get()->toArray();
             return json_encode([
                 'error'=>false,
-                'message'=>'company list',
-                'company'=> $company
+                'message'=>'App User list',
+                'devices'=> $devices
             ]);
         }
         catch(Excepyion $e){

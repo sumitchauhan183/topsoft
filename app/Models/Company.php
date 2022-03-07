@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\Models\Licences;
 
 class Company extends Authenticatable
 {
@@ -15,6 +16,7 @@ class Company extends Authenticatable
      * @var string
      */
     protected $table = 'company';
+    protected $primaryKey = 'company_id';
 
     public $timestamps = true;
 
@@ -26,6 +28,10 @@ class Company extends Authenticatable
     protected $fillable = [
         'company_id','name', 'greek_name', 'private_key','public_key','status'
     ];
+
+    public function license(){
+        return $this->hasOne(Licences::Class,'company_id');
+    }
 
     
 }

@@ -23,6 +23,7 @@
   <link id="pagestyle" href="{{asset('css/material-dashboard.css?v=3.0.0')}}" rel="stylesheet" />
   @include('inc.admin.css.clients')
   @include('inc.admin.css.company')
+  @include('inc.admin.css.devices')
   <style>
       #sidenav-collapse-main{
           height: 80% !important;
@@ -66,6 +67,8 @@
   @include('inc.admin.js.dashboard')
   @include('inc.admin.js.clients')
   @include('inc.admin.js.company')
+  @include('inc.admin.js.license')
+  @include('inc.admin.js.devices')
 
 </body>
 
