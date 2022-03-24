@@ -8,6 +8,7 @@ use App\Models\Devices;
 use App\Models\Invoices;
 use App\Models\InvoiceItems;
 use App\Models\Company;
+use DB;
 use Exception;
 
 class InvoiceController extends Controller
@@ -62,7 +63,9 @@ class InvoiceController extends Controller
         if(!$required):
             $invoices = Invoices::where('invoice_id',$input['invoice_id'])->get()->first();
             if($invoices):
-                $invoices->item_list = InvoiceItems::where('invoice_id',$input['invoice_id'])->get();
+                $invoices->item_list = DB::table('invoice_items as ii')->select('ii.*','i.name','i.description','i.vat','i.barcode','i.discount')
+                                        ->where('ii.invoice_id',$input['invoice_id'])
+                                        ->join('items as i', 'ii.item_id','i.item_id')->get();
                 return json_encode([
                     'error'=>false,
                     'message'=>"details listed",
@@ -72,7 +75,7 @@ class InvoiceController extends Controller
             else:
                 return json_encode([
                     'error'=>true,
-                    'message'=>"Invalid customer id",
+                    'message'=>"Invalid invoice id",
                     'code'=>201
                 ]);
             endif;
@@ -222,7 +225,12 @@ class InvoiceController extends Controller
             'page','count'
         ]);
         if(!$required):
-            $invoices = Invoices::where('device_id',$input['device_id'])->skip($input['page']*$input['count'])->take($input['count'])->get();
+            $invoices = Invoices::where('invoices.device_id',$input['device_id'])
+                                  ->join('clients as c','invoices.client_id','c.client_id')  
+                                  ->skip($input['page']*$input['count'])
+                                  ->take($input['count'])
+                                  ->select('invoices.*','c.name as client_name')
+                                  ->get();
             return json_encode([
                 'error'=>false,
                 'message'=>"listing done",
