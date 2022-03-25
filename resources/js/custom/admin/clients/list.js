@@ -32,6 +32,7 @@ let list = function(){
               d.clients.forEach(obj => {
                   let d = [
                       obj.name,
+                      obj.company_name,
                       obj.email,
                       obj.address,
                       obj.status,

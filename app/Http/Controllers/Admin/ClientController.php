@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Admin;
 use App\Models\Clients;
+use App\Models\Company;
 use Illuminate\Support\Facades\Hash;
 use App\Classes\Utils;
 
@@ -25,7 +26,7 @@ class ClientController extends Controller
     }
 
     public function list(Request $request){
-        $clients = Clients::get();
+        $clients = Clients::join('company as c','clients.company_id','c.company_id')->select('clients.*','c.name as company_name')->get();
         return view('admin.clients.list',[
             'title'=>'Clients',
             'url' => 'clients',
@@ -36,11 +37,12 @@ class ClientController extends Controller
     }
 
     public function add(Request $request){
-        
+        $companies = Company::get();
         return view('admin.clients.add',[
             'title'=>'Add New Client',
             'url' => 'clients/add',
             'main'=> 'clients',
+            'companies'=> $companies,
             'admin'=> (object)$this->admin['data']
         ]);
     }

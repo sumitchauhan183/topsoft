@@ -16,6 +16,7 @@ let add = function(){
     let note        = $('#note');
     let note2       = $('#note2');
     let add         = $('#add-client');
+    let company     = $('#company_id');
     let baseurl     = '/topsoft/';
     let data = {
         'name':name.val(),
@@ -30,6 +31,7 @@ let add = function(){
         'taxPost':taxPost.val(),
         'discount':discount.val(),
         'occupation':occupation.val(),
+        'company_id':company.val(),
         'note':note.val(),
         'note2':note2.val()
     }
@@ -80,6 +82,10 @@ let add = function(){
 
     occupation.mouseout(function(){
         data.occupation = occupation.val();
+    });
+
+    company.change(function(){
+        data.company_id=company.val();
     });
 
     note.mouseout(function(){
@@ -175,12 +181,14 @@ let add = function(){
             return;
         }
 
-       /* if(data.discount.length < 1){
-            discount.parent().append('<span class="text-danger position-absolute text-gradient text-xs py-3 mt-4 error">*required</span>');
-            return;
-        } */
+       
         if(data.occupation.length < 1){
             occupation.parent().append('<span class="text-danger position-absolute text-gradient text-xs py-3 mt-4 error">*required</span>');
+            return;
+        }
+         
+        if(data.company_id == ""){
+            company.parent().append('<span class="text-danger position-absolute text-gradient text-xs py-3 mt-4 error">*required</span>');
             return;
         }
 

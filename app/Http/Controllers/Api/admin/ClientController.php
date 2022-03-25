@@ -58,6 +58,7 @@ class ClientController extends Controller
     {
         $input = $request->all();
         $data = [
+                "company_id" => $input["company_id"],
                 "name" => $input["name"],
                 "email" => $input["email"],
                 "mobile" => $input["mobile"],
@@ -128,7 +129,7 @@ class ClientController extends Controller
     {
         $input     = $request->all();
         try{
-            $clients = Clients::get()->toArray();
+            $clients = Clients::join('company as c','clients.company_id','c.company_id')->select('clients.*','c.name as company_name')->get()->toArray();
         
             return json_encode([
                 'error'=>false,

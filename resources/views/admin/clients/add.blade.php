@@ -104,7 +104,15 @@
                     </div>
 
                     <div class="ms-md-auto pe-md-3 d-flex align-items-center  mb-4">
-                            
+                            <div class="input-group input-group-outline mx-3 focused is-focused" >
+                                <label class="form-label">Company</label>
+                                <select class="form-control" id="company_id" >
+                                  <option value="">Select Company</option>
+                                  @foreach ($companies as $c)
+                                      <option value="{{$c->company_id}}">{{$c->name}}</option>
+                                  @endforeach
+                                </select> 
+                            </div>
                             <div class="input-group input-group-outline mx-3">
                                 <label class="form-label">Note</label>
                                 <input type="text" class="form-control" id="note" onfocus="focused(this)" onfocusout="defocused(this)" autocomplete="off">

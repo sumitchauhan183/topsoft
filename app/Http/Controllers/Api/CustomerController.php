@@ -86,13 +86,14 @@ class CustomerController extends Controller
     {
         $input = $this->input;
         $required = $this->checkRequiredParams($input,[
-            'name','region','address','city','postal_code','telephone','mobile','tax_number','tax_post','occupation',
+            'company_id','name','region','address','city','postal_code','telephone','mobile','tax_number','tax_post','occupation',
             'email','discount','note','note2'
         ]);
         if(!$required):
             $check = Clients::where('email',$input['email'])->get()->count();
             if(!$check):
                 $client = Clients::create([
+                    'company_id'=>$input['company_id'],
                         'name' => $input['name'],
                         'region' => $input['region'],
                         'address' => $input['address'],
