@@ -371,6 +371,7 @@ class InvoiceController extends Controller
     return $input;
 }
 
+
     private function generateToken($id)
     {
         return  md5($id.time());
