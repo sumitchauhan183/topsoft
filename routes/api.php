@@ -18,7 +18,6 @@ use Illuminate\Support\Facades\Route;
 Route::POST('admin/login',[App\Http\Controllers\Api\admin\LoginController::class,'login']);
 Route::POST('admin/mail/check',[App\Http\Controllers\Api\admin\LoginController::class,'checkEmail']);
 
-
 Route::POST('admin/clients/check/email',[App\Http\Controllers\Api\admin\ClientController::class,'checkEmailExist']);
 Route::POST('admin/clients/add',[App\Http\Controllers\Api\admin\ClientController::class,'add']);
 Route::POST('admin/clients/update',[App\Http\Controllers\Api\admin\ClientController::class,'update']);
@@ -37,8 +36,6 @@ Route::POST('admin/app-users',[App\Http\Controllers\Api\admin\AppUserController:
 Route::POST('admin/company/license/add',[App\Http\Controllers\Api\admin\LicenseController::class,'add']);
 Route::POST('admin/company/license/update',[App\Http\Controllers\Api\admin\LicenseController::class,'update']);
 
-
-
 // Android API
 Route::POST('login',[App\Http\Controllers\Api\LoginController::class,'login']);
 Route::POST('forgotPassword/sendOtp',[App\Http\Controllers\Api\LoginController::class,'forgotPasswordSendOtp']);
@@ -49,7 +46,7 @@ Route::POST('customer/update',[App\Http\Controllers\Api\CustomerController::clas
 Route::POST('customer/list',[App\Http\Controllers\Api\CustomerController::class,'list']);
 Route::POST('customer/detail',[App\Http\Controllers\Api\CustomerController::class,'detail']);
 Route::POST('customer/search',[App\Http\Controllers\Api\CustomerController::class,'search']);
-
+Route::POST('customer/invoices',[App\Http\Controllers\Api\CustomerController::class,'invoices']);
 
 Route::POST('item/add',[App\Http\Controllers\Api\ItemController::class,'add']);
 Route::POST('item/update',[App\Http\Controllers\Api\ItemController::class,'update']);

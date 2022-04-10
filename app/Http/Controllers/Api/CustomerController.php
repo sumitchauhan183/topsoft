@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Devices;
 use App\Models\Clients;
+use App\Models\Invoices;
 use Exception;
 
 class CustomerController extends Controller
@@ -52,6 +53,28 @@ class CustomerController extends Controller
         return "Wrong page";
     }
 
+    public function invoices(Request $request){
+        $input = $this->input;
+        $required = $this->checkRequiredParams($input,[
+            'client_id'
+        ]);
+        if(!$required):
+            $client = Invoices::where('client_id',$input['client_id'])->get();
+                return json_encode([
+                    'error'=>false,
+                    'message'=>"details listed",
+                    'data'=> $client,
+                    'code'=>200
+                ]);
+        else:
+            return json_encode([
+                'error'=>true,
+                'message'=>"$required is required key",
+                'code'=>201
+            ]);
+        endif;
+    }
+
     public function detail(Request $request){
         $input = $this->input;
         $required = $this->checkRequiredParams($input,[
@@ -87,7 +110,7 @@ class CustomerController extends Controller
         $input = $this->input;
         $required = $this->checkRequiredParams($input,[
             'company_id','name','region','address','city','postal_code','telephone','mobile','tax_number','tax_post','occupation',
-            'email','discount','note','note2'
+            'email','discount','note','note2','payment_mode'
         ]);
         if(!$required):
             $check = Clients::where('email',$input['email'])->get()->count();
@@ -107,7 +130,9 @@ class CustomerController extends Controller
                         'email' => $input['email'],
                         'discount' => $input['discount'],
                         'note' => $input['note'],
-                        'note2' => $input['note2']
+                        'note2' => $input['note2'],
+                        'payment_mode' => $input['payment_mode']
+
                 ]);
                 if($client):
                     return json_encode([

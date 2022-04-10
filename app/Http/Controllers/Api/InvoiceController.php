@@ -7,7 +7,9 @@ use App\Http\Controllers\Controller;
 use App\Models\Devices;
 use App\Models\Invoices;
 use App\Models\InvoiceItems;
+use App\Models\Items;
 use App\Models\Company;
+use App\Models\Clients;
 use DB;
 use Exception;
 
@@ -103,7 +105,11 @@ class InvoiceController extends Controller
             if(!$required):
             	$input = $this->SetColumnsToBlank($input,[
                     'type','payment_method','address','maintainance','note','user_info'
-                ]);								
+                ]);	
+                $subtotal = $this->subtotal($input['item_list']);
+                $discount = $this->discount($input['item_list']);
+                $vat = $this->vat($input['item_list']);
+                $this->subquantity($input['item_list']); 
                 $invoice = Invoices::create([
                         'client_id' => $input['client_id'],
                         'device_id' => $input['device_id'],
@@ -114,6 +120,9 @@ class InvoiceController extends Controller
                         'maintainance' => $input['maintainance'],
                         'note' => $input['note'],
                         'user_info' => $input['user_info'],
+                        'sub_total' => $subtotal,
+                        'discount'  => $discount,
+                        'vat'       => $vat,
                         'status' => $input['status']
                 ]);
                 if($invoice):
@@ -157,6 +166,8 @@ class InvoiceController extends Controller
         
     }
 
+    
+
     public function update(Request $request){
         $input = $this->input;
         $required = $this->checkRequiredParams($input,[
@@ -171,7 +182,11 @@ class InvoiceController extends Controller
             if(!$required):
             $input = $this->SetColumnsToBlank($input,[
                 'type','payment_method','address','maintainance','note','user_info'
-            ]);									
+            ]);		
+                $subtotal = $this->subtotal($input['item_list']);
+                $discount = $this->discount($input['item_list']);
+                $vat = $this->vat($input['item_list']);
+            $this->subquantity($input['item_list']);							
             $invoice = Invoices::where('invoice_id',$input['invoice_id'])->update([
                 'type' => $input['type'],
                 'payment_method' => $input['payment_method'],
@@ -179,9 +194,14 @@ class InvoiceController extends Controller
                 'maintainance' => $input['maintainance'],
                 'note' => $input['note'],
                 'user_info' => $input['user_info'],
+                'sub_total' => $subtotal,
+                        'discount'  => $discount,
+                        'vat'       => $vat,
                 'status' => $input['status']
             ]);
             if($invoice):
+                $prevItems = InvoiceItems::where('invoice_id',$input['invoice_id'])->get()->toArray();
+                $this->addquantity($prevItems);
                 Invoices::where('invoice_id',$input['invoice_id'])->delete();
                 foreach($input['item_list'] as $item):
                     InvoiceItems::create([
@@ -333,6 +353,51 @@ class InvoiceController extends Controller
             ]);
         endif;
     }
+
+    private function addquantity($items){
+        foreach($items as $item):
+            $q = Items::where('item_id',$item['item_id'])->get()->first();
+            Items::where('item_id',$item['item_id'])->update(['quantity'=>$q->quantity+$item['quantity']]);
+        endforeach;
+    }
+
+    private function subquantity($items){
+        foreach($items as $item):
+            $q = Items::where('item_id',$item['item_id'])->get()->first();
+            Items::where('item_id',$item['item_id'])->update(['quantity'=>$q->quantity-$item['quantity']]);
+        endforeach;
+    }
+
+    private function subtotal($item){
+        $subtotal = 0;
+        foreach($item as $i):
+            $d = Items::where('item_id',$i['item_id'])->get()->first();
+            $subtotal += $i['quantity']*$d->price;
+        endforeach;
+
+        return $subtotal;
+    }
+
+    private function discount($item){
+        $discount = 0;
+        foreach($item as $i):
+            $d = Items::where('item_id',$i['item_id'])->get()->first();
+            $discount += ($d->discount/100)*($d->price*$i['quantity']);
+        endforeach;
+
+        return $discount;
+    }
+
+    private function vat($item){
+        $vat = 0;
+        foreach($item as $i):
+            $d = Items::where('item_id',$i['item_id'])->get()->first();
+            $vat += ($d->vat/100)*($d->price*$i['quantity']);
+        endforeach;
+
+        return $vat;
+    }
+
 
 
    private function checkToken(){

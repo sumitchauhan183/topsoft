@@ -25,6 +25,6 @@ class Invoices extends Authenticatable
      */
     protected $fillable = [
         'invoice_id','client_id','device_id','company_id','type','invoice_number','payment_method','address','maintainance',
-        'note','user_info','status'
+        'note','user_info','status','sub_total', 'discount', 'vat', 'credit_amount'
     ];
 }
