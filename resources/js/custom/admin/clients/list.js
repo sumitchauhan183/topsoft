@@ -13,22 +13,29 @@ let list = function(){
     var data = [
         
     ];
+
+    let company = $('#companies');
+
+    company.change(function(){
+        getClientList(this.value)
+    });
     function runOnPageload(){
-        getClientList();
+        getClientList('all');
     }
 
-    function getClientList(){
+    function getClientList(id){
         $('.loader').show();
         $.ajax({
             url: baseurl+"api/admin/clients",
-            data: [],
-            type: "GET",
+            data: {'id':id},
+            type: "POST",
             dataType: 'json'
           })
         .done(function( d ) {
               $('.loader').hide();
               console.log(d.clients);
               client_table.clear();
+              let data = [];
               d.clients.forEach(obj => {
                   let d = [
                       obj.name,
@@ -47,8 +54,6 @@ let list = function(){
               });
               client_table.rows.add(data);
               client_table.draw();
-              
-              
         });
     }
   

@@ -129,7 +129,20 @@ class ClientController extends Controller
     {
         $input     = $request->all();
         try{
-            $clients = Clients::join('company as c','clients.company_id','c.company_id')->select('clients.*','c.name as company_name')->get()->toArray();
+            $id = $input['id'];
+            if($id=='all'):
+                $clients = Clients::join('company as c','clients.company_id','c.company_id')
+                                    ->select('clients.*','c.name as company_name')
+                                    ->get()
+                                    ->toArray();
+            else:
+                $clients = Clients::join('company as c','clients.company_id','c.company_id')
+                                    ->select('clients.*','c.name as company_name')
+                                    ->where('clients.company_id',$id)
+                                    ->get()
+                                    ->toArray();
+            endif;
+            
         
             return json_encode([
                 'error'=>false,

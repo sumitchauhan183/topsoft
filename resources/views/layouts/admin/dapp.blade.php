@@ -21,6 +21,7 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
   <!-- CSS Files -->
   <link id="pagestyle" href="{{asset('css/material-dashboard.css?v=3.0.0')}}" rel="stylesheet" />
+  @include('inc.admin.css.items')
   @include('inc.admin.css.clients')
   @include('inc.admin.css.company')
   @include('inc.admin.css.devices')
@@ -66,6 +67,7 @@
   
   @include('inc.admin.js.dashboard')
   @include('inc.admin.js.clients')
+  @include('inc.admin.js.items')
   @include('inc.admin.js.company')
   @include('inc.admin.js.license')
   @include('inc.admin.js.devices')

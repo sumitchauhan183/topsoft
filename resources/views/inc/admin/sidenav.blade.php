@@ -7,18 +7,19 @@
             <span class="nav-link-text ms-1">Dashboard</span>
           </a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link text-white  @if($main=='clients') active bg-gradient-primary @endif " href="{{route('admin.clients.list')}}">
-            <span class="nav-link-text ms-1">Clients</span>
-          </a>
-        </li>
+        
         <li class="nav-item">
           <a class="nav-link text-white @if($main=='company') active bg-gradient-primary @endif"  href="{{route('admin.company.list')}}">
             <span class="nav-link-text ms-1">Company</span>
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white" href="javascript:void(0)">
+          <a class="nav-link text-white  @if($main=='clients') active bg-gradient-primary @endif " href="{{route('admin.clients.list')}}">
+            <span class="nav-link-text ms-1">Clients</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white  @if($main=='items') active bg-gradient-primary @endif"  href="{{route('admin.items.list')}}">
             <span class="nav-link-text ms-1">Items</span>
           </a>
         </li>

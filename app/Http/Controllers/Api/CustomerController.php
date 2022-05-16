@@ -109,12 +109,15 @@ class CustomerController extends Controller
     {
         $input = $this->input;
         $required = $this->checkRequiredParams($input,[
-            'company_id','name','region','address','city','postal_code','telephone','mobile','tax_number','tax_post','occupation',
+            'company_id','name','address','city','postal_code','telephone','mobile','tax_number','occupation',
             'email','discount','note','note2','payment_mode'
         ]);
         if(!$required):
             $check = Clients::where('email',$input['email'])->get()->count();
             if(!$check):
+                $input = $this->SetColumnsToBlank($input,[
+                    'region','tax_post'
+                ]);	
                 $client = Clients::create([
                     'company_id'=>$input['company_id'],
                         'name' => $input['name'],
@@ -175,7 +178,9 @@ class CustomerController extends Controller
                             ->where('client_id','!=',$input['client_id'])
                             ->get()->count();
             if(!$check):
-                
+                $input = $this->SetColumnsToBlank($input,[
+                    'region','tax_post'
+                ]);	
                 $client = Clients::where('client_id',$input['client_id'])->update([
                     'name' => $input['name'],
                     'region' => $input['region'],
@@ -297,5 +302,14 @@ class CustomerController extends Controller
         return  md5($id.time());
     }
 
+    private function SetColumnsToBlank($input,$required){
+        $input["status"] = 'success';
+     foreach($required as $r):
+         if(isset($input["$r"])==false):
+             $input["$r"] = '';
+         endif;
+     endforeach;
+     return $input;
+ }
     
 }

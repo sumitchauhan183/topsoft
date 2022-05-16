@@ -7,10 +7,11 @@ use App\Http\Controllers\Controller;
 use App\Models\Admin;
 use App\Models\Clients;
 use App\Models\Company;
+use App\Models\Items;
 use Illuminate\Support\Facades\Hash;
 use App\Classes\Utils;
 
-class ClientController extends Controller
+class ItemsController extends Controller
 {
 
     private $admin;
@@ -26,13 +27,13 @@ class ClientController extends Controller
     }
 
     public function list(Request $request){
-        $clients = Clients::join('company as c','clients.company_id','c.company_id')->select('clients.*','c.name as company_name')->get();
+        $items = Items::get();
         $companies = Company::get()->toArray();
-        return view('admin.clients.list',[
-            'title'=>'Clients',
-            'url' => 'clients',
-            'main'=> 'clients',
-            'clients'=> $clients,
+        return view('admin.items.list',[
+            'title'=>'Items',
+            'url' => 'items',
+            'main'=> 'items',
+            'items'=> $items, 
             'company'=> $companies,
             'admin'=> (object)$this->admin['data']
         ]);
@@ -40,46 +41,46 @@ class ClientController extends Controller
 
     public function add(Request $request){
         $companies = Company::get();
-        return view('admin.clients.add',[
-            'title'=>'Add New Client',
-            'url' => 'clients/add',
-            'main'=> 'clients',
+        return view('admin.items.add',[
+            'title'=>'Add New Item',
+            'url' => 'items/add',
+            'main'=> 'items',
             'companies'=> $companies,
             'admin'=> (object)$this->admin['data']
         ]);
     }
 
-    public function view($client_id){
-        $clients = Clients::where('client_id',$client_id)->first();
-        return view('admin.clients.view',[
-            'title'=>'Client Detail',
-            'url' => 'clients/view',
-            'main'=> 'clients',
+    public function view($item_id){
+        $items = Items::where('item_id',$item_id)->first();
+        return view('admin.items.view',[
+            'title'=>'Item Detail',
+            'url' => 'items/view',
+            'main'=> 'items',
             'admin'=> (object)$this->admin['data'],
-            'client' => $clients
+            'item' => $items
         ]);
     }
 
-    public function edit($client_id){
-        $clients = Clients::where('client_id',$client_id)->first();
-        return view('admin.clients.edit',[
-            'title'=>'Client Update',
-            'url' => 'clients/edit',
-            'main'=> 'clients',
+    public function edit($item_id){
+        $items = Items::where('item_id',$item_id)->first();
+        return view('admin.items.edit',[
+            'title'=>'Item Update',
+            'url' => 'item/edit',
+            'main'=> 'items',
             'admin'=> (object)$this->admin['data'],
-            'client' => $clients
+            'item' => $items
         ]);
     }
 
-    public function delete($client_id){
+    public function delete($item_id){
         try{
-            $clients = Clients::where('client_id',$client_id)->first();
+            $clients = Items::where('item_id_id',$item_id)->first();
             //Clients::where('client_id',$client_id)->delete();
         }
         catch(Exception $e){
-            $clients = Clients::where('client_id',$client_id)->first();
+            $items = Items::where('item_id',$item_id)->first();
         }
-        Utils::jsredirect("../../clients");
+        Utils::jsredirect("../../items");
         
         
     }

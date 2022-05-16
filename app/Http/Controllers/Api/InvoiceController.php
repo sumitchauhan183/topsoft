@@ -202,7 +202,7 @@ class InvoiceController extends Controller
             if($invoice):
                 $prevItems = InvoiceItems::where('invoice_id',$input['invoice_id'])->get()->toArray();
                 $this->addquantity($prevItems);
-                Invoices::where('invoice_id',$input['invoice_id'])->delete();
+                InvoiceItems::where('invoice_id',$input['invoice_id'])->delete();
                 foreach($input['item_list'] as $item):
                     InvoiceItems::create([
                         'invoice_id'=>$input['invoice_id'],

@@ -21,7 +21,11 @@ Route::POST('admin/mail/check',[App\Http\Controllers\Api\admin\LoginController::
 Route::POST('admin/clients/check/email',[App\Http\Controllers\Api\admin\ClientController::class,'checkEmailExist']);
 Route::POST('admin/clients/add',[App\Http\Controllers\Api\admin\ClientController::class,'add']);
 Route::POST('admin/clients/update',[App\Http\Controllers\Api\admin\ClientController::class,'update']);
-Route::GET('admin/clients',[App\Http\Controllers\Api\admin\ClientController::class,'list']);
+Route::POST('admin/clients',[App\Http\Controllers\Api\admin\ClientController::class,'list']);
+
+Route::POST('admin/items/add',[App\Http\Controllers\Api\admin\ItemsController::class,'add']);
+Route::POST('admin/items/update',[App\Http\Controllers\Api\admin\ItemsController::class,'update']);
+Route::POST('admin/items',[App\Http\Controllers\Api\admin\ItemsController::class,'list']);
 
 Route::POST('admin/company/check/email',[App\Http\Controllers\Api\admin\CompanyController::class,'checkEmailExist']);
 Route::POST('admin/company/add',[App\Http\Controllers\Api\admin\CompanyController::class,'add']);
@@ -48,6 +52,15 @@ Route::POST('customer/detail',[App\Http\Controllers\Api\CustomerController::clas
 Route::POST('customer/search',[App\Http\Controllers\Api\CustomerController::class,'search']);
 Route::POST('customer/invoices',[App\Http\Controllers\Api\CustomerController::class,'invoices']);
 
+
+Route::POST('event/add',[App\Http\Controllers\Api\EventController::class,'add']);
+Route::POST('event/update',[App\Http\Controllers\Api\EventController::class,'update']);
+Route::POST('event/list',[App\Http\Controllers\Api\EventController::class,'list']);
+Route::POST('event/list/type',[App\Http\Controllers\Api\EventController::class,'listbytype']);
+Route::POST('event/list/status',[App\Http\Controllers\Api\EventController::class,'listbystatus']);
+Route::POST('event/list/client',[App\Http\Controllers\Api\EventController::class,'listbyclient']);
+Route::POST('event/delete',[App\Http\Controllers\Api\EventController::class,'delete']);
+
 Route::POST('item/add',[App\Http\Controllers\Api\ItemController::class,'add']);
 Route::POST('item/update',[App\Http\Controllers\Api\ItemController::class,'update']);
 Route::POST('item/list',[App\Http\Controllers\Api\ItemController::class,'list']);
@@ -61,4 +74,8 @@ Route::POST('invoice/list',[App\Http\Controllers\Api\InvoiceController::class,'l
 Route::POST('invoice/details',[App\Http\Controllers\Api\InvoiceController::class,'detail']);
 Route::POST('invoice/items',[App\Http\Controllers\Api\InvoiceController::class,'items']);
 Route::POST('invoice/item/quantity/update',[App\Http\Controllers\Api\InvoiceController::class,'itemQuantityUpdate']);
+
+
+// ERP API
+
 

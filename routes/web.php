@@ -35,6 +35,13 @@ Route::get('admin/clients/edit/{id}',[App\Http\Controllers\Admin\ClientControlle
 Route::get('admin/clients/view/{id}',[App\Http\Controllers\Admin\ClientController::class,'view']);
 Route::get('admin/clients/delete/{id}',[App\Http\Controllers\Admin\ClientController::class,'delete']);
 
+// Items ROUTES
+Route::get('admin/items',[App\Http\Controllers\Admin\ItemsController::class,'list'])->name('admin.items.list');
+Route::get('admin/items/add',[App\Http\Controllers\Admin\ItemsController::class,'add'])->name('admin.items.add');
+Route::get('admin/items/edit/{id}',[App\Http\Controllers\Admin\ItemsController::class,'edit']);
+Route::get('admin/items/view/{id}',[App\Http\Controllers\Admin\ItemsController::class,'view']);
+Route::get('admin/items/delete/{id}',[App\Http\Controllers\Admin\ItemsController::class,'delete']);
+
 // COMPANY ROUTES
 Route::get('admin/company',[App\Http\Controllers\Admin\CompanyController::class,'list'])->name('admin.company.list');
 Route::get('admin/company/add',[App\Http\Controllers\Admin\CompanyController::class,'add'])->name('admin.company.add');

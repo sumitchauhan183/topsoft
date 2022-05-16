@@ -52,19 +52,19 @@
                   @endforeach
 </select>
                 <button class="btn revert fl-rgt inline">
-               <a href="{{route('admin.clients.add')}}"> <i class="material-icons py-2 add-icon" title="Add new client">add</i></a>
+                    <a href="{{route('admin.items.add')}}"> <i class="material-icons py-2 add-icon" title="Add new client">add</i></a>
                 </button>
               </div>
             </div>
             <div class="card-body px-0 pb-2">
               <div class="table-responsive p-0 mx-4">
-                <table class="table align-items-center justify-content-center mb-0" id="client_table">
+                <table class="table align-items-center justify-content-center mb-0" id="item_table">
                   <thead>
                     <tr>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Name</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Company Name</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Email</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Address</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Quantity</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Price</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Description</th>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder text-center opacity-7 ps-2">Status</th>
                       <th>Action</th>
                     </tr>
