@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\API;
+namespace App\Http\Controllers\Api\ERP;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -116,19 +116,20 @@ class ItemController extends Controller
     {
         $input = $this->input;
         $required = $this->checkRequiredParams($input,[
-            'name','quantity','price','description','vat','discount','final_price'
+            'company_id','name','quantity','price','description','vat','discount','final_price'
         ]);
         if(!$required):
-            $check = Items::where('name',$input['name'])->get()->count();
+            $check = Items::where('name',$input['name'])->where('company_id',$input['company_id'])->get()->count();
             if(!$check):
                 $item = Items::create([
+                        'company_id' => $input['company_id'],
                         'name' => $input['name'],
                         'quantity' => $input['quantity'],
                         'price' => $input['price'],
                         'description'=> $input['description'],
                         'vat' => $input['vat'],
                         'discount'=> $input['discount'],
-                        'final_price' => $input['price']
+                        'final_price' => $input['price'] + ($input['price']*($input['vat']/100)) - ($input['price']*($input['discount']/100))
                 ]);
                 if($item):
                     $barcode = $this->generateBarcode($item);
@@ -165,11 +166,12 @@ class ItemController extends Controller
     public function update(Request $request){
         $input = $this->input;
         $required = $this->checkRequiredParams($input,[
-            'name','quantity','price','description','vat','discount','final_price','item_id'
+           'company_id', 'name','quantity','price','description','vat','discount','final_price','item_id'
         ]);
         if(!$required):
             $check  = Items::where('name',$input['name'])
                             ->where('item_id','!=',$input['item_id'])
+                            ->where('company_id','==',$input['company_id'])
                             ->get()->count();
             if(!$check):
                 
@@ -276,7 +278,7 @@ class ItemController extends Controller
 
    private function checkToken(){
     $token = $this->input['token'];
-    if(env('erp_token'!=$token)):
+    if(env('erp_token')!=$token):
         return false;
     else:
         return true;

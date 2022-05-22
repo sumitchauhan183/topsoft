@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\API;
+namespace App\Http\Controllers\Api\ERP;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -250,39 +250,11 @@ class CustomerController extends Controller
         endif;
     }
 
-    public function delete(Request $request){
-        $input = $this->input;
-        $required = $this->checkRequiredParams($input,[
-            'client_id'
-        ]);
-        if(!$required):
-            $client = Clients::where('client_id',$input['client_id'])->delete();
-            if($client):
-                return json_encode([
-                    'error'=>false,
-                    'message'=>"client removed successfully",
-                    'code'=>200
-                ]);
-            else:
-                return json_encode([
-                    'error'=>true,
-                    'message'=>"sever issue client not removed",
-                    'code'=>201
-                ]);
-            endif;
-        else:
-            return json_encode([
-                'error'=>true,
-                'message'=>"$required is required key",
-                'code'=>201
-            ]);
-        endif;
-    }
 
 
    private function checkToken(){
            $token = $this->input['token'];
-           if(env('erp_token'!=$token)):
+           if(env('erp_token')!=$token):
                return false;
            else:
                return true;

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\API;
+namespace App\Http\Controllers\API\ERP;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -90,154 +90,6 @@ class InvoiceController extends Controller
         endif;
     }
 
-    public function add()
-    {
-        $input = $this->input;
-        $required = $this->checkRequiredParams($input,[
-            'client_id','device_id','company_id','item_list'
-        ]);
-        if(!$required):
-            foreach($input['item_list'] as $item):
-                $required = $this->checkRequiredParams($item,[
-                    'item_id','quantity'
-                ]);
-            endforeach;
-            if(!$required):
-            	$input = $this->SetColumnsToBlank($input,[
-                    'type','payment_method','address','maintainance','note','user_info'
-                ]);	
-                $subtotal = $this->subtotal($input['item_list']);
-                $discount = $this->discount($input['item_list']);
-                $vat = $this->vat($input['item_list']);
-                $this->subquantity($input['item_list']); 
-                $invoice = Invoices::create([
-                        'client_id' => $input['client_id'],
-                        'device_id' => $input['device_id'],
-                        'company_id' => $input['company_id'],
-                        'type' => $input['type'],
-                        'payment_method' => $input['payment_method'],
-                        'address' => $input['address'],
-                        'maintainance' => $input['maintainance'],
-                        'note' => $input['note'],
-                        'user_info' => $input['user_info'],
-                        'sub_total' => $subtotal,
-                        'discount'  => $discount,
-                        'vat'       => $vat,
-                        'status' => $input['status']
-                ]);
-                if($invoice):
-                    $invoiceNumber = $this->generateInvoiceNumber($invoice);
-                    Invoices::where('invoice_id',$invoice->id)->update([
-                        'invoice_number' => $invoiceNumber
-                    ]);
-                    foreach($input['item_list'] as $item):
-                        InvoiceItems::create([
-                            'invoice_id'=>$invoice->id,
-                            'item_id'=>$item['item_id'],
-                            'quantity'=>$item['quantity']
-                        ]);
-                    endforeach;
-                    return json_encode([
-                        'error'=>false,
-                        'message'=>"Invoice created successfully",
-                        'code'=>201
-                    ]);
-                else:
-                    return json_encode([
-                        'error'=>true,
-                        'message'=>"server issue client not created",
-                        'code'=>201
-                    ]);
-                endif;
-            else:
-                return json_encode([
-                    'error'=>true,
-                    'message'=>"$required is required key",
-                    'code'=>201
-                ]);
-            endif;
-        else:
-            return json_encode([
-                'error'=>true,
-                'message'=>"$required is required key",
-                'code'=>201
-            ]);
-        endif;
-        
-    }
-
-    
-
-    public function update(Request $request){
-        $input = $this->input;
-        $required = $this->checkRequiredParams($input,[
-            'invoice_id','item_list'
-        ]);
-        if(!$required):
-            foreach($input['item_list'] as $item):
-                $required = $this->checkRequiredParams($item,[
-                    'item_id','quantity'
-                ]);
-            endforeach;
-            if(!$required):
-            $input = $this->SetColumnsToBlank($input,[
-                'type','payment_method','address','maintainance','note','user_info'
-            ]);		
-                $subtotal = $this->subtotal($input['item_list']);
-                $discount = $this->discount($input['item_list']);
-                $vat = $this->vat($input['item_list']);
-            $this->subquantity($input['item_list']);							
-            $invoice = Invoices::where('invoice_id',$input['invoice_id'])->update([
-                'type' => $input['type'],
-                'payment_method' => $input['payment_method'],
-                'address' => $input['address'],
-                'maintainance' => $input['maintainance'],
-                'note' => $input['note'],
-                'user_info' => $input['user_info'],
-                'sub_total' => $subtotal,
-                        'discount'  => $discount,
-                        'vat'       => $vat,
-                'status' => $input['status']
-            ]);
-            if($invoice):
-                $prevItems = InvoiceItems::where('invoice_id',$input['invoice_id'])->get()->toArray();
-                $this->addquantity($prevItems);
-                InvoiceItems::where('invoice_id',$input['invoice_id'])->delete();
-                foreach($input['item_list'] as $item):
-                    InvoiceItems::create([
-                        'invoice_id'=>$input['invoice_id'],
-                        'item_id'=>$item['item_id'],
-                        'quantity'=>$item['quantity']
-                    ]);
-                endforeach;
-                return json_encode([
-                    'error'=>false,
-                    'message'=>"Invoice update successfully",
-                    'code'=>201
-                ]);
-            else:
-                return json_encode([
-                    'error'=>true,
-                    'message'=>"server issue client not created",
-                    'code'=>201
-                ]);
-            endif;
-            
-        else:
-            return json_encode([
-                'error'=>true,
-                'message'=>"$required is required key",
-                'code'=>201
-            ]);
-        endif;
-        else:
-            return json_encode([
-                'error'=>true,
-                'message'=>"$required is required key",
-                'code'=>201
-            ]);
-        endif;
-    }
 
     public function list(Request $request){
         $input = $this->input;
@@ -245,8 +97,7 @@ class InvoiceController extends Controller
             'page','count'
         ]);
         if(!$required):
-            $invoices = Invoices::where('invoices.device_id',$input['device_id'])
-                                  ->join('clients as c','invoices.client_id','c.client_id')  
+            $invoices = Invoices::join('clients as c','invoices.client_id','c.client_id')  
                                   ->skip($input['page']*$input['count'])
                                   ->take($input['count'])
                                   ->select('invoices.*','c.name as client_name')
@@ -288,121 +139,13 @@ class InvoiceController extends Controller
         endif;
     }
 
-    public function itemQuantityUpdate(Request $request){
-        $input = $this->input;
-        $required = $this->checkRequiredParams($input,[
-            'invoice_item_id', 'quantity'
-        ]);
-        if(!$required):
-            if($input['quantity']):
-                InvoiceItems::where('invoice_item_id',$input['invoice_item_id'])->update([
-                    "quantity"=>$input['quantity']
-                ]);
-                return json_encode([
-                    'error'=>false,
-                    'message'=>"quantity updated",
-                    'code'=>200
-                ]);
-            else:
-                InvoiceItems::where('invoice_item_id',$input['invoice_item_id'])->delete();
-                return json_encode([
-                    'error'=>false,
-                    'message'=>"Item removed",
-                    'code'=>200
-                ]);
-            endif;
-                
-                
-            
-        else:
-            return json_encode([
-                'error'=>true,
-                'message'=>"$required is required key",
-                'code'=>201
-            ]);
-        endif;
-    }
 
-    
-
-    public function delete(Request $request){
-        $input = $this->input;
-        $required = $this->checkRequiredParams($input,[
-            'client_id'
-        ]);
-        if(!$required):
-            $client = Clients::where('client_id',$input['client_id'])->delete();
-            if($client):
-                return json_encode([
-                    'error'=>false,
-                    'message'=>"client removed successfully",
-                    'code'=>200
-                ]);
-            else:
-                return json_encode([
-                    'error'=>true,
-                    'message'=>"sever issue client not removed",
-                    'code'=>201
-                ]);
-            endif;
-        else:
-            return json_encode([
-                'error'=>true,
-                'message'=>"$required is required key",
-                'code'=>201
-            ]);
-        endif;
-    }
-
-    private function addquantity($items){
-        foreach($items as $item):
-            $q = Items::where('item_id',$item['item_id'])->get()->first();
-            Items::where('item_id',$item['item_id'])->update(['quantity'=>$q->quantity+$item['quantity']]);
-        endforeach;
-    }
-
-    private function subquantity($items){
-        foreach($items as $item):
-            $q = Items::where('item_id',$item['item_id'])->get()->first();
-            Items::where('item_id',$item['item_id'])->update(['quantity'=>$q->quantity-$item['quantity']]);
-        endforeach;
-    }
-
-    private function subtotal($item){
-        $subtotal = 0;
-        foreach($item as $i):
-            $d = Items::where('item_id',$i['item_id'])->get()->first();
-            $subtotal += $i['quantity']*$d->price;
-        endforeach;
-
-        return $subtotal;
-    }
-
-    private function discount($item){
-        $discount = 0;
-        foreach($item as $i):
-            $d = Items::where('item_id',$i['item_id'])->get()->first();
-            $discount += ($d->discount/100)*($d->price*$i['quantity']);
-        endforeach;
-
-        return $discount;
-    }
-
-    private function vat($item){
-        $vat = 0;
-        foreach($item as $i):
-            $d = Items::where('item_id',$i['item_id'])->get()->first();
-            $vat += ($d->vat/100)*($d->price*$i['quantity']);
-        endforeach;
-
-        return $vat;
-    }
 
 
 
     private function checkToken(){
         $token = $this->input['token'];
-        if(env('erp_token'!=$token)):
+        if(env('erp_token')!=$token):
             return false;
         else:
             return true;
@@ -410,13 +153,6 @@ class InvoiceController extends Controller
      
 }
 
-   private function generateInvoiceNumber($invoice){
-        $company = Company::where('company_id',$invoice->company_id)->get()->first();
-
-        $name = strtoupper(substr($company->name, 0, 3));
-        $id = str_pad($invoice->id, 6, '0', STR_PAD_LEFT);
-        return $name.'INV'.$invoice->company_id.$id;
-    }
 
    private function checkRequiredParams($input,$required){
         foreach($required as $r):
