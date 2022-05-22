@@ -52,10 +52,12 @@ class ItemsController extends Controller
 
     public function view($item_id){
         $items = Items::where('item_id',$item_id)->first();
+        $companies = Company::get();
         return view('admin.items.view',[
             'title'=>'Item Detail',
             'url' => 'items/view',
             'main'=> 'items',
+            'companies'=> $companies,
             'admin'=> (object)$this->admin['data'],
             'item' => $items
         ]);
@@ -63,23 +65,21 @@ class ItemsController extends Controller
 
     public function edit($item_id){
         $items = Items::where('item_id',$item_id)->first();
+        $companies = Company::get();
         return view('admin.items.edit',[
             'title'=>'Item Update',
-            'url' => 'item/edit',
+            'url' => 'items/edit',
             'main'=> 'items',
+            'companies'=> $companies,
             'admin'=> (object)$this->admin['data'],
             'item' => $items
         ]);
     }
 
     public function delete($item_id){
-        try{
-            $clients = Items::where('item_id_id',$item_id)->first();
-            //Clients::where('client_id',$client_id)->delete();
-        }
-        catch(Exception $e){
-            $items = Items::where('item_id',$item_id)->first();
-        }
+      
+            Items::where('item_id',$item_id)->delete();
+        
         Utils::jsredirect("../../items");
         
         

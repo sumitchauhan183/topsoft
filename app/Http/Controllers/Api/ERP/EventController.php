@@ -23,7 +23,7 @@ class EventController extends Controller
     {
        
         $this->input = $request->all();
-        $required = $this->checkRequiredParams($this->input,['device_id','token']);
+        $required = $this->checkRequiredParams($this->input,['token']);
         
         if($required):
             echo json_encode([
@@ -352,13 +352,15 @@ class EventController extends Controller
     }
 
 
-   private function checkToken(){
-           $check = Devices::where('device_id',$this->input['device_id'])
-                        ->where('login_token',$this->input['token'])
-                        ->get()->count();   
-            return $check;                    
-        
-   }
+    private function checkToken(){
+        $token = $this->input['token'];
+        if(env('erp_token'!=$token)):
+            return false;
+        else:
+            return true;
+        endif;                    
+     
+}
 
    private function checkRequiredParams($input,$required){
         foreach($required as $r):

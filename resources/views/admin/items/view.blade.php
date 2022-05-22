@@ -9,7 +9,7 @@
             <li class="breadcrumb-item text-sm"><a class="opacity-5 text-dark" href="javascript:;">Pages</a></li>
             <li class="breadcrumb-item text-sm text-dark active" aria-current="page">{{$title}}</li>
           </ol>
-          <h6 class="font-weight-bolder mb-0">Clients > Add New</h6>
+          <h6 class="font-weight-bolder mb-0">Item > View</h6>
         </nav>
           <ul class="navbar-nav  justify-content-end">
             <li class="nav-item d-flex align-items-center">
@@ -48,71 +48,49 @@
             </div>
             <div class="card-body px-0 pb-2">
             <div class="ms-md-auto pe-md-3 d-flex align-items-center mb-4">
-                            <div class="input-group input-group-outline mx-3 focused is-focused">
+                            <div class="input-group input-group-outline mx-3 is-focused">
                                 <label class="form-label">Name</label>
-                                <input type="text" class="form-control" id="name" value="{{$client->name}}" autocomplete="off">
+                                <input type="text" class="form-control" value="{{$item->name}}" disabled autocomplete="off">
                             </div>
-                            <div class="input-group input-group-outline mx-3 focused is-focused">
-                                <label class="form-label">Email</label>
-                                <input type="text" class="form-control" id="email" value="{{$client->email}}" readonly autocomplete="off">
+                            <div class="input-group input-group-outline mx-3 is-focused">
+                                <label class="form-label">Quantity</label>
+                                <input type="number" class="form-control" value="{{$item->quantity}}" disabled autocomplete="off">
                             </div>
-                            <div class="input-group input-group-outline mx- focused is-focused">
-                                <label class="form-label">Mobile</label>
-                                <input type="number" class="form-control" id="mobile" value="{{$client->mobile}}" readonly autocomplete="off">
+                            <div class="input-group input-group-outline mx-3 is-focused">
+                                <label class="form-label">Price</label>
+                                <input type="number" class="form-control" value="{{$item->price}}" disabled autocomplete="off">
                             </div>
-                            <div class="input-group input-group-outline mx-3 focused is-focused">
-                                <label class="form-label">Telephone</label>
-                                <input type="number" class="form-control" id="telephone" value="{{$client->telephone}}" readonly autocomplete="off">
+                            <div class="input-group input-group-outline mx-3 is-focused">
+                                <label class="form-label">Description</label>
+                                <textarea id="description" class="form-control" disabled autocomplete="off">{{$item->description}}</textarea>
                             </div>
                     </div>
                     <div class="ms-md-auto pe-md-3 d-flex align-items-center  mb-4">
-                            <div class="input-group input-group-outline mx-3  focused is-focused">
-                                <label class="form-label">Address</label>
-                                <input type="text" class="form-control" id="address" value="{{$client->address}}" readonly autocomplete="off">
+                    <div class="input-group input-group-outline mx-3 focused is-focused" >
+                                <label class="form-label">Company</label>
+                                <select class="form-control" disabled >
+                                  @foreach ($companies as $c)
+                                      <option value="{{$c->company_id}}" @if($c->company_id==$item->company_id) checked @endif >{{$c->name}}</option>
+                                  @endforeach
+                                </select> 
                             </div>
-                            <div class="input-group input-group-outline mx-3  focused is-focused">
-                                <label class="form-label">City</label>
-                                <input type="text" class="form-control" id="city" value="{{$client->city}}" readonly autocomplete="off">
+                            <div class="input-group input-group-outline mx-3 is-focused">
+                                <label class="form-label">VAT%</label>
+                                <input type="text" class="form-control" value="{{$item->vat}}" disabled  autocomplete="off">
                             </div>
-                            <div class="input-group input-group-outline mx-3  focused is-focused">
-                                <label class="form-label">Region</label>
-                                <input type="text" class="form-control" id="region" value="{{$client->region}}" readonly autocomplete="off">
+                            <div class="input-group input-group-outline mx-3 is-focused">
+                                <label class="form-label">Discount%</label>
+                                <input type="text" class="form-control" value="{{$item->discount}}" disabled  autocomplete="off">
                             </div>
-                            <div class="input-group input-group-outline mx-3  focused is-focused">
-                                <label class="form-label">postal Code</label>
-                                <input type="text" class="form-control" id="postal-code" value="{{$client->postal_code}}" readonly autocomplete="off">
+                            <div class="input-group input-group-outline mx-3 is-focused">
+                                <label class="form-label">Status</label>
+                                <select class="form-control" disabled >
+                                  <option value="available" @if($c->quantity>0) checked @endif>Available</option>
+                                  <option value="out of stock" @if($c->quantity<1) checked @endif>Out of Stock</option>
+                                </select> 
                             </div>
-                    </div>
-                    <div class="ms-md-auto pe-md-3 d-flex align-items-center mb-4">
-                            <div class="input-group input-group-outline mx-3  focused is-focused">
-                                <label class="form-label">Tax Number</label>
-                                <input type="text" class="form-control" id="tax-number" value="{{$client->tax_number}}" readonly autocomplete="off">
-                            </div>
-                            <div class="input-group input-group-outline mx-3  focused is-focused">
-                                <label class="form-label">Tax Post</label>
-                                <input type="text" class="form-control" id="tax-post" value="{{$client->tax_post}}" readonly autocomplete="off">
-                            </div>
-                            <div class="input-group input-group-outline mx-3 focused is-focused"> 
-                                <label class="form-label">Occupation</label>
-                                <input type="text" class="form-control" id="occupation" value="{{$client->occupation}}" readonly autocomplete="off">
-                            </div>
-                            <div class="input-group input-group-outline mx-3 focused is-focused"> 
-                                <label class="form-label">Discount</label>
-                                <input type="text" class="form-control" id="discount" value="{{$client->discount}}" readonly autocomplete="off">
-                            </div>
-                            
-                    </div>
 
-                    <div class="ms-md-auto pe-md-3 d-flex align-items-center  mb-4">
                             
-                            <div class="input-group input-group-outline mx-3 focused is-focused">
-                                <label class="form-label">Note</label>
-                                <input type="text" class="form-control" id="note" value="{{$client->note}}" readonly autocomplete="off">
-                            </div>
-                            <div class="input-group input-group-outline mx-3 focused is-focused"> 
-                                <label class="form-label">Note 2</label>
-                                <input type="text" class="form-control" id="note2" value="{{$client->note2}}" readonly autocomplete="off">
-                            </div>
                     </div>
               </div>
           </div>

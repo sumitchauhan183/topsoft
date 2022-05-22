@@ -27,6 +27,9 @@ Route::POST('admin/items/add',[App\Http\Controllers\Api\admin\ItemsController::c
 Route::POST('admin/items/update',[App\Http\Controllers\Api\admin\ItemsController::class,'update']);
 Route::POST('admin/items',[App\Http\Controllers\Api\admin\ItemsController::class,'list']);
 
+Route::POST('admin/invoices',[App\Http\Controllers\Api\admin\InvoiceController::class,'list']);
+Route::POST('admin/receipts',[App\Http\Controllers\Api\admin\ReceiptController::class,'list']);
+
 Route::POST('admin/company/check/email',[App\Http\Controllers\Api\admin\CompanyController::class,'checkEmailExist']);
 Route::POST('admin/company/add',[App\Http\Controllers\Api\admin\CompanyController::class,'add']);
 Route::POST('admin/company/update',[App\Http\Controllers\Api\admin\CompanyController::class,'update']);

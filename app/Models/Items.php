@@ -24,6 +24,6 @@ class Items extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'item_id','name','quantity','price','barcode','status', 'description','vat','discount','final_price'
+        'item_id','company_id','name','quantity','price','barcode','status', 'description','vat','discount','final_price'
     ];
 }

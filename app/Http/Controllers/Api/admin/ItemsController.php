@@ -36,7 +36,7 @@ class ItemsController extends Controller
     public function add(Request $request)
     {
         $input = $request->all();
-        $data = [
+        $data = [ 
                 "company_id" => $input["company_id"],
                 "name" => $input["name"],
                 "quantity" => $input["quantity"],
@@ -45,10 +45,25 @@ class ItemsController extends Controller
                 "vat" => $input["vat"],
                 "discount" => $input["discount"],
                 "status" => $input["status"],
-                "barcode" => ""
+                "final_price" => $input["price"] + $input["price"]*($input["vat"]/100) - $input["price"]*($input["discount"]/100)
         ];
        try{
-        Items::create($data);
+        $item = Items::create($data);
+        if($item):
+            $barcode = $this->generateBarcode($item);
+            Items::where('item_id',$item->id)->update(['barcode'=>$barcode]);
+            return json_encode([
+                'error'=>false,
+                'message'=>"Item created successfully",
+                'code'=>201
+            ]);
+        else:
+            return json_encode([
+                'error'=>true,
+                'message'=>"server issue item not created",
+                'code'=>201
+            ]);
+        endif;
         return json_encode([
             'error'=>false,
             'message'=>'Item created successfully.'
@@ -56,7 +71,7 @@ class ItemsController extends Controller
        }catch(Exception $e){
         return json_encode([
             'error'=>true,
-            'message'=>'Exception occured.',
+            'message'=>json_encode($e),
             'exception'=> $e
         ]);
        }
@@ -68,16 +83,18 @@ class ItemsController extends Controller
         $input     = $request->all();
         $item_id = $input['item_id'];
         $data = [
+            "company_id" => $input["company_id"],
             "name" => $input["name"],
             "quantity" => $input["quantity"],
             "price" => $input["price"],
             "description" => $input["description"],
             "vat" => $input["vat"],
             "discount" => $input["discount"],
-            "status" => $input["status"]
+            "status" => $input["status"],
+            "final_price" => $input["price"] + $input["price"]*($input["vat"]/100) - $input["price"]*($input["discount"]/100)
         ];
        try{
-        Items::where('item_id',$item_id)->update($data);
+        $item =  Items::where('item_id',$item_id)->update($data);
         return json_encode([
             'error'=>false,
             'message'=>'Item updated successfully.'
@@ -127,4 +144,14 @@ class ItemsController extends Controller
         
         
     } 
+
+    private function generateBarcode($item){
+        $name = substr($item->name, 0, 3);
+        $id = $item->id;
+        $permitted_chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $randInt = substr(str_shuffle($permitted_chars),0, 6);
+
+
+        return $name.$id.$randInt;
+   }
 }

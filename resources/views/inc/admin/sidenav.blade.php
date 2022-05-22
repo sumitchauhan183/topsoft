@@ -24,12 +24,12 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white" href="javascript:void(0)">
+        <a class="nav-link text-white  @if($main=='invoices') active bg-gradient-primary @endif"  href="{{route('admin.invoices.list')}}">
             <span class="nav-link-text ms-1">Invoices</span>
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white" href="javascript:void(0)">
+        <a class="nav-link text-white  @if($main=='receipts') active bg-gradient-primary @endif"  href="{{route('admin.receipts.list')}}">
             <span class="nav-link-text ms-1">Receipts</span>
           </a>
         </li>

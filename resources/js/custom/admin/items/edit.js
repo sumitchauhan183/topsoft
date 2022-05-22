@@ -10,6 +10,7 @@ let edit = function(){
     let status      = $('#status');
     let company     = $('#company');
     let item        = $('#item');
+    let update = $("#update-item");
     let baseurl     = '/topsoft/';
     let data = {
         'name':name.val(),
@@ -19,7 +20,7 @@ let edit = function(){
         'vat':vat.val(),
         'discount':discount.val(),
         'status':status.val(),
-        'company':company.val(),
+        'company_id':company.val(),
         'item_id':item.val()
     }
 
@@ -38,7 +39,9 @@ let edit = function(){
     description.mouseout(function(){
         data.description = description.val();
     });
-
+    company.change(function(){
+        data.company_id = company.val();
+    });
     vat.mouseout(function(){
         data.vat = vat.val();
     });
@@ -47,7 +50,7 @@ let edit = function(){
         data.discount = discount.val();
     });
 
-    status.mouseout(function(){
+    status.change(function(){
         data.status = status.val();
     });
 
@@ -56,10 +59,9 @@ let edit = function(){
     update.click(function(){
         $('.error').remove();
         if(data.item_id.length < 1){
-            name.parent().append('<span class="text-danger position-absolute text-gradient text-xs py-3 mt-4 error">*client id is missing</span>');
+            name.parent().append('<span class="text-danger position-absolute text-gradient text-xs py-3 mt-4 error">*item id is missing</span>');
             return;
         }
-        $('.error').remove();
         if(data.name.length < 1){
             name.parent().append('<span class="text-danger position-absolute text-gradient text-xs py-3 mt-4 error">*required</span>');
             return;
@@ -78,9 +80,22 @@ let edit = function(){
             description.parent().append('<span class="text-danger position-absolute text-gradient text-xs py-3 mt-4 error">*required</span>');
             return;
         }
-
         if(data.company_id == ""){
             company.parent().append('<span class="text-danger position-absolute text-gradient text-xs py-3 mt-4 error">*required</span>');
+            return;
+        }
+
+        if(data.vat == ""){
+            vat.parent().append('<span class="text-danger position-absolute text-gradient text-xs py-3 mt-4 error">*required</span>');
+            return;
+        }
+
+        if(data.discount == ""){
+            discount.parent().append('<span class="text-danger position-absolute text-gradient text-xs py-3 mt-4 error">*required</span>');
+            return;
+        }
+        if(data.status == ""){
+            status.parent().append('<span class="text-danger position-absolute text-gradient text-xs py-3 mt-4 error">*required</span>');
             return;
         }
         

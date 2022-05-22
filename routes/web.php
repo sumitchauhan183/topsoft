@@ -49,6 +49,14 @@ Route::get('admin/company/edit/{id}',[App\Http\Controllers\Admin\CompanyControll
 Route::get('admin/company/view/{id}',[App\Http\Controllers\Admin\CompanyController::class,'view']);
 Route::get('admin/company/delete/{id}',[App\Http\Controllers\Admin\CompanyController::class,'delete']);
 
+// INVOICES ROUTES
+Route::get('admin/invoices',[App\Http\Controllers\Admin\InvoiceController::class,'list'])->name('admin.invoices.list');
+Route::get('admin/invoice/view/{id}',[App\Http\Controllers\Admin\InvoiceController::class,'view']);
+
+// RECEIPT ROUTES
+Route::get('admin/receipts',[App\Http\Controllers\Admin\ReceiptController::class,'list'])->name('admin.receipts.list');
+Route::get('admin/receipt/view/{id}',[App\Http\Controllers\Admin\ReceiptController::class,'view']);
+
 // COMPANY LICENSE ROUTE
 Route::get('admin/company/{id}/license/add',[App\Http\Controllers\Admin\LicenseController::class,'add']);
 Route::get('admin/company/license/view/{license_id}',[App\Http\Controllers\Admin\LicenseController::class,'view']);

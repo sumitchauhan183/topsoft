@@ -23,6 +23,8 @@
   <link id="pagestyle" href="{{asset('css/material-dashboard.css?v=3.0.0')}}" rel="stylesheet" />
   @include('inc.admin.css.items')
   @include('inc.admin.css.clients')
+  @include('inc.admin.css.receipts')
+  @include('inc.admin.css.invoices')
   @include('inc.admin.css.company')
   @include('inc.admin.css.devices')
   <style>
@@ -67,6 +69,8 @@
   
   @include('inc.admin.js.dashboard')
   @include('inc.admin.js.clients')
+  @include('inc.admin.js.invoices')
+  @include('inc.admin.js.receipts')
   @include('inc.admin.js.items')
   @include('inc.admin.js.company')
   @include('inc.admin.js.license')

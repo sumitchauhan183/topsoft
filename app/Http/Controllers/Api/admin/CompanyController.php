@@ -4,7 +4,7 @@ namespace App\Http\Controllers\API\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\company;
+use App\Models\Company;
 use Illuminate\Support\Facades\Hash;
 use App\Classes\Email;
 use Exception;
