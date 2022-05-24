@@ -78,6 +78,11 @@ Route::POST('invoice/details',[App\Http\Controllers\Api\InvoiceController::class
 Route::POST('invoice/items',[App\Http\Controllers\Api\InvoiceController::class,'items']);
 Route::POST('invoice/item/quantity/update',[App\Http\Controllers\Api\InvoiceController::class,'itemQuantityUpdate']);
 
+Route::POST('receipt/add',[App\Http\Controllers\Api\ReceiptController::class,'add']);
+Route::POST('receipt/update',[App\Http\Controllers\Api\ReceiptController::class,'update']);
+Route::POST('receipt/list',[App\Http\Controllers\Api\ReceiptController::class,'list']);
+Route::POST('receipt/details',[App\Http\Controllers\Api\ReceiptController::class,'detail']);
+
 
 // ERP API
 Route::POST('erp/customer/add',[App\Http\Controllers\Api\ERP\CustomerController::class,'add']);
