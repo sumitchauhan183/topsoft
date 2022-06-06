@@ -136,7 +136,7 @@ class ItemController extends Controller
                     return json_encode([
                         'error'=>false,
                         'message'=>"Item created successfully",
-                        'code'=>201
+                        'code'=>200
                     ]);
                 else:
                     return json_encode([
@@ -187,7 +187,7 @@ class ItemController extends Controller
                     return json_encode([
                         'error'=>false,
                         'message'=>"Details updated successfully",
-                        'code'=>201
+                        'code'=>200
                     ]);
                 else:
                     return json_encode([

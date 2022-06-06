@@ -58,6 +58,7 @@ Route::POST('customer/invoices',[App\Http\Controllers\Api\CustomerController::cl
 
 Route::POST('event/add',[App\Http\Controllers\Api\EventController::class,'add']);
 Route::POST('event/update',[App\Http\Controllers\Api\EventController::class,'update']);
+Route::POST('checklist/list',[App\Http\Controllers\Api\ChecklistController::class,'list']);
 Route::POST('event/list',[App\Http\Controllers\Api\EventController::class,'list']);
 Route::POST('event/list/type',[App\Http\Controllers\Api\EventController::class,'listbytype']);
 Route::POST('event/list/status',[App\Http\Controllers\Api\EventController::class,'listbystatus']);
@@ -77,11 +78,18 @@ Route::POST('invoice/list',[App\Http\Controllers\Api\InvoiceController::class,'l
 Route::POST('invoice/details',[App\Http\Controllers\Api\InvoiceController::class,'detail']);
 Route::POST('invoice/items',[App\Http\Controllers\Api\InvoiceController::class,'items']);
 Route::POST('invoice/item/quantity/update',[App\Http\Controllers\Api\InvoiceController::class,'itemQuantityUpdate']);
+Route::POST('invoice/delete',[App\Http\Controllers\Api\InvoiceController::class,'delete']);
 
 Route::POST('receipt/add',[App\Http\Controllers\Api\ReceiptController::class,'add']);
 Route::POST('receipt/update',[App\Http\Controllers\Api\ReceiptController::class,'update']);
 Route::POST('receipt/list',[App\Http\Controllers\Api\ReceiptController::class,'list']);
 Route::POST('receipt/details',[App\Http\Controllers\Api\ReceiptController::class,'detail']);
+
+Route::POST('chat/send',[App\Http\Controllers\Api\ChatController::class,'send']);
+Route::POST('chat/messages',[App\Http\Controllers\Api\ChatController::class,'messages']);
+Route::POST('chat/delete',[App\Http\Controllers\Api\ChatController::class,'delete']);
+Route::POST('chat/delete/all',[App\Http\Controllers\Api\ChatController::class,'deleteAll']);
+
 
 
 // ERP API
@@ -108,4 +116,11 @@ Route::POST('erp/item/details/barcode',[App\Http\Controllers\Api\ERP\ItemControl
 Route::POST('erp/invoice/list',[App\Http\Controllers\Api\ERP\InvoiceController::class,'list']);
 Route::POST('erp/invoice/details',[App\Http\Controllers\Api\ERP\InvoiceController::class,'detail']);
 Route::POST('erp/invoice/items',[App\Http\Controllers\Api\ERP\InvoiceController::class,'items']);
+
+
+Route::POST('erp/chat/list',[App\Http\Controllers\Api\ERP\ChatController::class,'messagesList']);
+Route::POST('erp/chat/send',[App\Http\Controllers\Api\ERP\ChatController::class,'send']);
+Route::POST('erp/chat/messages',[App\Http\Controllers\Api\ERP\ChatController::class,'messages']);
+Route::POST('erp/chat/delete',[App\Http\Controllers\Api\ERP\ChatController::class,'delete']);
+Route::POST('erp/chat/delete/all',[App\Http\Controllers\Api\ERP\ChatController::class,'deleteAll']);
 

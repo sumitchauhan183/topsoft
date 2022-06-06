@@ -266,6 +266,38 @@ class InvoiceController extends Controller
         endif;
     }
 
+    public function delete(Request $request){
+        $input = $this->input;
+        $required = $this->checkRequiredParams($input,[
+            'invoice_id'
+        ]);
+        if(!$required):
+            $invoices = Invoices::where('invoice_id',$input['invoice_id'])->delete();
+            $items = InvoiceItems::where('invoice_id',$input['invoice_id'])->get();
+            $this->addquantity($items);
+            InvoiceItems::where('invoice_id',$input['invoice_id'])->delete();
+            if($invoices):
+                return json_encode([
+                    'error'=>false,
+                    'message'=>"Invoice removed successfully",
+                    'code'=>200
+                ]);
+            else:
+                return json_encode([
+                    'error'=>true,
+                    'message'=>"sever issue invoice not removed",
+                    'code'=>201
+                ]);
+            endif;
+        else:
+            return json_encode([
+                'error'=>true,
+                'message'=>"$required is required key",
+                'code'=>201
+            ]);
+        endif;
+    }
+
     public function items(Request $request){
         $input = $this->input;
         $required = $this->checkRequiredParams($input,[
@@ -323,36 +355,6 @@ class InvoiceController extends Controller
         endif;
     }
 
-    
-
-    public function delete(Request $request){
-        $input = $this->input;
-        $required = $this->checkRequiredParams($input,[
-            'client_id'
-        ]);
-        if(!$required):
-            $client = Clients::where('client_id',$input['client_id'])->delete();
-            if($client):
-                return json_encode([
-                    'error'=>false,
-                    'message'=>"client removed successfully",
-                    'code'=>200
-                ]);
-            else:
-                return json_encode([
-                    'error'=>true,
-                    'message'=>"sever issue client not removed",
-                    'code'=>201
-                ]);
-            endif;
-        else:
-            return json_encode([
-                'error'=>true,
-                'message'=>"$required is required key",
-                'code'=>201
-            ]);
-        endif;
-    }
 
     private function addquantity($items){
         foreach($items as $item):

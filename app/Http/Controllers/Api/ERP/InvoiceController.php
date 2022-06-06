@@ -117,6 +117,8 @@ class InvoiceController extends Controller
         endif;
     }
 
+    
+
     public function items(Request $request){
         $input = $this->input;
         $required = $this->checkRequiredParams($input,[

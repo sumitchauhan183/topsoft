@@ -58,13 +58,22 @@ class EventController extends Controller
     {
         $input = $this->input;
         $required = $this->checkRequiredParams($input,[
-            'client_id','event_type','status','event_date'
-        ]);
+            'client_id','event_type','event_date'
+        ]); 
         if(!$required):
                 $input = $this->SetColumnsToBlank($input,[
-                    'observation','is_completed', 'signature', 'completed_date'
+                    'observation','is_completed', 'status','signature', 'completed_date'
                 ]);	
-                if($input['completed_date']!=""):
+                if($input["event_type"]=="checklist"):
+                    $data = [
+                        'client_id'=>$input['client_id'],
+                        'event_type' => $input['event_type'],
+                        'observation' => $input['observation'],
+                        'checklist' => $input['checklist'],
+                        'event_date'   => $input['event_date']
+                    ];
+                else:
+                    if($input['completed_date']==""):
                         $data = [
                             'client_id'=>$input['client_id'],
                             'event_type' => $input['event_type'],
@@ -72,7 +81,6 @@ class EventController extends Controller
                             'observation' => $input['observation'],
                             'is_completed' => $input['is_completed'],
                             'signature' => $input['signature'],
-                            'completed_date' => $input['completed_date'],
                             'event_date'   => $input['event_date']
                         ];
                     else:
@@ -83,10 +91,11 @@ class EventController extends Controller
                             'observation' => $input['observation'],
                             'is_completed' => $input['is_completed'],
                             'signature' => $input['signature'],
+                            'completed_date' => $input['completed_date'],
                             'event_date'   => $input['event_date']
                         ];
+                     endif;
                 endif;
-
                 $events = Events::create($data);
                 if($events):
                     return json_encode([
@@ -114,14 +123,23 @@ class EventController extends Controller
     public function update(Request $request){
         $input = $this->input;
         $required = $this->checkRequiredParams($input,[
-            'client_id','event_type','status','event_id','event_date'
+            'client_id','event_type','event_id','event_date'
         ]);
         if(!$required):
             
                 $input = $this->SetColumnsToBlank($input,[
-                    'observation','is_completed', 'signature', 'completed_date'
+                    'observation','is_completed','status', 'signature', 'completed_date'
                 ]);	
-                $event = Events::where('event_id',$input['event_id'])->update([
+                if($input["event_type"=="checklist"]):
+                    $data = [
+                        'client_id'=>$input['client_id'],
+                        'event_type' => $input['event_type'],
+                        'observation' => $input['observation'],
+                        'checklist' => $input['checklist'],
+                        'event_date'   => $input['event_date']
+                    ];
+                else:
+                    $data = [
                         'client_id'=>$input['client_id'],
                         'event_type' => $input['event_type'],
                         'status' => $input['status'],
@@ -130,7 +148,9 @@ class EventController extends Controller
                         'signature' => $input['signature'],
                         'completed_date' => $input['completed_date'],
                         'event_date' => $input['event_date']
-                ]);
+                    ];
+                endif;
+                $event = Events::where('event_id',$input['event_id'])->update($data);
                 if($event):
                     return json_encode([
                         'error'=>false,

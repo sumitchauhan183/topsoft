@@ -272,7 +272,6 @@ class CustomerController extends Controller
    }
 
     private function SetColumnsToBlank($input,$required){
-        $input["status"] = 'success';
      foreach($required as $r):
          if(isset($input["$r"])==false):
              $input["$r"] = '';
