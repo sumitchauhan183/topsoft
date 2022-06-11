@@ -12,6 +12,7 @@ use App\Models\Company;
 use App\Models\Clients;
 use DB;
 use Exception;
+use PDF;
 
 class InvoiceController extends Controller
 {
@@ -165,8 +166,6 @@ class InvoiceController extends Controller
         endif;
         
     }
-
-    
 
     public function update(Request $request){
         $input = $this->input;
@@ -353,6 +352,46 @@ class InvoiceController extends Controller
                 'code'=>201
             ]);
         endif;
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function invoicePDF()
+    {
+        $input = $this->input;
+        $required = $this->checkRequiredParams($input,[
+            'invoice_id'
+        ]);
+        if(!$required):
+            $invoices = Invoices::where('invoice_id',$input['invoice_id'])->get()->first();
+            if($invoices):
+                $invoices->item_list = DB::table('invoice_items as ii')
+                                        ->select('ii.*','i.name','i.description','i.vat','i.barcode','i.discount','i.price','i.final_price')
+                                        ->where('ii.invoice_id',$input['invoice_id'])
+                                        ->join('items as i', 'ii.item_id','i.item_id')->get();
+                //dd($invoices);
+                $pdf = PDF::loadView('pdf/invoice', ['data'=>$invoices]);
+  
+                return $pdf->download('invoice.pdf');
+            
+            else:
+                return json_encode([
+                    'error'=>true,
+                    'message'=>"Invalid invoice id",
+                    'code'=>201
+                ]);
+            endif;
+        else:
+            return json_encode([
+                'error'=>true,
+                'message'=>"$required is required key",
+                'code'=>201
+            ]);
+        endif;
+        
     }
 
 

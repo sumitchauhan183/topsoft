@@ -134,10 +134,13 @@ class ItemController extends Controller
                 if($item):
                     $barcode = $this->generateBarcode($item);
                     Items::where('item_id',$item->id)->update(['barcode'=>$barcode]);
+                    $item->item_id = $item->id;
+                    unset($item->id);
                     return json_encode([
                         'error'=>false,
                         'message'=>"Item created successfully",
-                        'code'=>201
+                        'code'=>201,
+                        'data'=>$item
                     ]);
                 else:
                     return json_encode([

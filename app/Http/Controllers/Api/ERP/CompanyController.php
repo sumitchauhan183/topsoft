@@ -5,11 +5,11 @@ namespace App\Http\Controllers\Api\ERP;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Devices;
-use App\Models\Clients;
-use App\Models\Invoices;
+use App\Models\Company;
+use Illuminate\Support\Facades\Hash;
 use Exception;
 
-class CustomerController extends Controller
+class CompanyController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -53,17 +53,18 @@ class CustomerController extends Controller
         return "Wrong page";
     }
 
-    public function invoices(Request $request){
+    public function devices(Request $request){
         $input = $this->input;
         $required = $this->checkRequiredParams($input,[
-            'client_id'
+            'company_id'
         ]);
         if(!$required):
-            $client = Invoices::where('client_id',$input['client_id'])->get();
+            $devices = Devices::select('device_id','email','type','status','created_at')
+                        ->where('company_id',$input['company_id'])->get();
                 return json_encode([
                     'error'=>false,
-                    'message'=>"details listed",
-                    'data'=> $client,
+                    'message'=>"device listed",
+                    'data'=> $devices,
                     'code'=>200
                 ]);
         else:
@@ -78,15 +79,16 @@ class CustomerController extends Controller
     public function detail(Request $request){
         $input = $this->input;
         $required = $this->checkRequiredParams($input,[
-            'client_id'
+            'company_id'
         ]);
         if(!$required):
-            $client = Clients::where('client_id',$input['client_id'])->get()->first();
-            if($client):
+            $company = Company::select('company_id','name','greek_name','public_key as email','status')
+                              ->where('company_id',$input['company_id'])->get()->first();
+            if($company):
                 return json_encode([
                     'error'=>false,
                     'message'=>"details listed",
-                    'data'=> $client,
+                    'data'=> $company,
                     'code'=>200
                 ]);
             else:
@@ -109,42 +111,28 @@ class CustomerController extends Controller
     {
         $input = $this->input;
         $required = $this->checkRequiredParams($input,[
-            'company_id','name','address','city','postal_code','telephone','mobile','tax_number','occupation',
-            'email','discount','note','note2','payment_mode'
+            'name','greek_name','email','password'
         ]);
         if(!$required):
-            $check = Clients::where('email',$input['email'])->get()->count();
+            $check = Company::where('public_key',$input['email'])->get()->count();
             if(!$check):
-                $input = $this->SetColumnsToBlank($input,[
-                    'region','tax_post'
-                ]);	
-                $client = Clients::create([
-                    'company_id'=>$input['company_id'],
+                $company = Company::create([
                         'name' => $input['name'],
-                        'region' => $input['region'],
-                        'address' => $input['address'],
-                        'city' => $input['city'],
-                        'postal_code' => $input['postal_code'],
-                        'telephone' => $input['telephone'],
-                        'mobile' => $input['mobile'],
-                        'tax_number' => $input['tax_number'],
-                        'tax_post' => $input['tax_post'],
-                        'occupation' => $input['occupation'],
-                        'email' => $input['email'],
-                        'discount' => $input['discount'],
-                        'note' => $input['note'],
-                        'note2' => $input['note2'],
-                        'payment_mode' => $input['payment_mode']
-
+                        'greek_name' => $input['greek_name'],
+                        'public_key' => $input['email'],
+                        'private_key' => Hash::make($input['password']),
+                        'status' => 'active'
                 ]);
-                if($client):
-                    $client->client_id = $client->id;
-                    unset($client->id);
+                if($company):
+                    //$company->company_id = $company->id;
+                    //unset($company->id);
+                    unset($company->private_key);
+                    unset($company->public_key);
                     return json_encode([
                         'error'=>false,
-                        'message'=>"Customer created successfully",
+                        'message'=>"Company created successfully",
                         'code'=>201,
-                        'data'=>$client
+                        'data'=>$company
                     ]);
                 else:
                     return json_encode([
@@ -156,7 +144,7 @@ class CustomerController extends Controller
             else:
                 return json_encode([
                     'error'=>true,
-                    'message'=>"email already use for another client",
+                    'message'=>"email already use for another company",
                     'code'=>201
                 ]);
             endif;
@@ -173,35 +161,26 @@ class CustomerController extends Controller
     public function update(Request $request){
         $input = $this->input;
         $required = $this->checkRequiredParams($input,[
-            'client_id','name','region','address','city','postal_code','telephone','mobile','tax_number','tax_post','occupation',
-            'email','discount','note','note2'
+            'company_id','name','greek_name','email'
         ]);
         if(!$required):
-            $check  = Clients::where('email',$input['email'])
-                            ->where('client_id','!=',$input['client_id'])
+            $check  = Company::where('public_key',$input['email'])
+                            ->where('company_id','!=',$input['company_id'])
                             ->get()->count();
             if(!$check):
-                $input = $this->SetColumnsToBlank($input,[
-                    'region','tax_post'
-                ]);	
-                $client = Clients::where('client_id',$input['client_id'])->update([
-                    'name' => $input['name'],
-                    'region' => $input['region'],
-                    'address' => $input['address'],
-                    'city' => $input['city'],
-                    'postal_code' => $input['postal_code'],
-                    'telephone' => $input['telephone'],
-                    'mobile' => $input['mobile'],
-                    'tax_number' => $input['tax_number'],
-                    'tax_post' => $input['tax_post'],
-                    'occupation' => $input['occupation'],
-                    'email' => $input['email'],
-                    'discount' => $input['discount'],
-                    'note' => $input['note'],
-                    'note2' => $input['note2']
-                ]);
+                $data = [
+                    "name"=> $input['name'],
+                    "greek_name"=> $input['greek_name'],
+                    "public_key"=> $input['email']
+                ];	
+                if(isset($input['password'])):
+                    $data['private_key'] = Hash::make($input['password']);
+                endif;
+                $company = Company::where('company_id',$input['company_id'])->update(
+                    $data
+                );
                 
-                if($client):
+                if($company):
                     return json_encode([
                         'error'=>false,
                         'message'=>"Details updated successfully",
@@ -217,7 +196,7 @@ class CustomerController extends Controller
             else:
                 return json_encode([
                     'error'=>true,
-                    'message'=>"email already use for another client",
+                    'message'=>"email already use for another company",
                     'code'=>201
                 ]);
             endif;
@@ -237,11 +216,12 @@ class CustomerController extends Controller
             'page','count'
         ]);
         if(!$required):
-            $clients = Clients::skip($input['page']*$input['count'])->take($input['count'])->get();
+            $company = Company::select('company_id','name','greek_name','public_key as email','status')
+                       ->skip($input['page']*$input['count'])->take($input['count'])->get();
             return json_encode([
                 'error'=>false,
                 'message'=>"listing done",
-                'data'=> $clients,
+                'data'=> $company,
                 'code'=>200
             ]);
         else:

@@ -10,6 +10,7 @@ use App\Models\Company;
 use Illuminate\Support\Facades\Hash;
 use App\Classes\Email;
 use Exception;
+use PDF;
 
 class ReceiptController extends Controller
 {
@@ -131,8 +132,6 @@ class ReceiptController extends Controller
         
     }
 
-    
-
     public function update(Request $request){
         $input = $this->input;
         $required = $this->checkRequiredParams($input,[
@@ -192,6 +191,43 @@ class ReceiptController extends Controller
                 'code'=>201
             ]);
         endif;
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function receiptPDF()
+    {
+        $input = $this->input;
+        $required = $this->checkRequiredParams($input,[
+            'receipt_id'
+        ]);
+        if(!$required):
+            $receipts = Receipts::join('clients as c','receipts.client_id','c.client_id') 
+                                ->where('receipt_id',$input['receipt_id'])
+                                ->select('receipts.*','c.name as client_name')
+                                ->get()
+                                ->first();
+            if($receipts):
+                $pdf = PDF::loadView('pdf/receipt', ['data'=>$receipts]);
+                return $pdf->download('receipt.pdf');
+            else:
+                return json_encode([
+                    'error'=>true,
+                    'message'=>"Invalid receipt id",
+                    'code'=>201
+                ]);
+            endif;
+        else:
+            return json_encode([
+                'error'=>true,
+                'message'=>"$required is required key",
+                'code'=>201
+            ]);
+        endif;
+        
     }
 
 private function checkToken(){
