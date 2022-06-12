@@ -61,11 +61,12 @@
                 <table class="table align-items-center justify-content-center mb-0" id="item_table">
                   <thead>
                     <tr>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Name</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Quantity</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Price</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Description</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder text-center opacity-7 ps-2">Status</th>
+                      <th class="text-uppercase  text-xxs font-weight-bolder opacity-7">Item ID</th>
+                      <th class="text-uppercase  text-xxs font-weight-bolder opacity-7">Name</th>
+                      <th class="text-uppercase  text-xxs font-weight-bolder opacity-7 ps-2">Quantity</th>
+                      <th class="text-uppercase  text-xxs font-weight-bolder opacity-7 ps-2">Price</th>
+                      <th class="text-uppercase  text-xxs font-weight-bolder opacity-7 ps-2">Description</th>
+                      <th class="text-uppercase  text-xxs font-weight-bolder text-center opacity-7 ps-2">Status</th>
                       <th>Action</th>
                     </tr>
                   </thead>

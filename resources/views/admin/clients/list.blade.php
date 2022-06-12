@@ -61,12 +61,14 @@
                 <table class="table align-items-center justify-content-center mb-0" id="client_table">
                   <thead>
                     <tr>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Name</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Company Name</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Email</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Address</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder text-center opacity-7 ps-2">Status</th>
-                      <th>Action</th>
+                      
+                      <th class="text-uppercase text-xxs font-weight-bolder opacity-7" width="60px">Client ID</th>
+                      <th class="text-uppercase  text-xxs font-weight-bolder opacity-7" width="80px">Name</th>
+                      <th class="text-uppercase  text-xxs font-weight-bolder opacity-7 ps-2">Company Name</th>
+                      <th class="text-uppercase  text-xxs font-weight-bolder opacity-7 ps-2">Email</th>
+                      <th class="text-uppercase  text-xxs font-weight-bolder opacity-7 ps-2">Address</th>
+                      <th class="text-uppercase  text-xxs font-weight-bolder text-center opacity-7 ps-2">Status</th>
+                      <th class="text-uppercase  text-xxs font-weight-bolder text-center opacity-7 ps-2" >Action</th>
                     </tr>
                   </thead>
                   <tbody>

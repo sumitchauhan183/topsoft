@@ -58,13 +58,14 @@
                 <table class="table align-items-center justify-content-center mb-0" id="receipt_table">
                   <thead>
                     <tr>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Receipt Number</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Company Name</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Client Name</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Observation</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder text-center opacity-7 ps-2">Amount</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Note</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder text-center opacity-7 ps-2">Created On</th>
+                      <th class="text-uppercase  text-xxs font-weight-bolder opacity-7">Receipt ID</th>
+                      <th class="text-uppercase  text-xxs font-weight-bolder opacity-7">Receipt Number</th>
+                      <th class="text-uppercase  text-xxs font-weight-bolder opacity-7 ps-2">Company Name</th>
+                      <th class="text-uppercase  text-xxs font-weight-bolder opacity-7 ps-2">Client Name</th>
+                      <th class="text-uppercase  text-xxs font-weight-bolder opacity-7 ps-2">Observation</th>
+                      <th class="text-uppercase  text-xxs font-weight-bolder text-center opacity-7 ps-2">Amount</th>
+                      <th class="text-uppercase  text-xxs font-weight-bolder opacity-7 ps-2">Note</th>
+                      <th class="text-uppercase  text-xxs font-weight-bolder text-center opacity-7 ps-2">Created On</th>
                     </tr>
                   </thead>
                   <tbody>

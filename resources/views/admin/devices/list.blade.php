@@ -1,5 +1,10 @@
 @extends('layouts.admin.dapp')
 @section('content')
+@php 
+  $device_count = count($devices);
+  //echo $device_count;
+  //echo '<pre>';print_r($licence);die();
+@endphp
 <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
     <!-- Navbar -->
     <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl" id="navbarBlur" navbar-scroll="true">
@@ -44,9 +49,15 @@
             <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
               <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
                 <h6 class="text-white text-capitalize ps-3 inline">{{$title}}</h6>
+                @if(date('Y-m-d',strtotime($licence->expiration_date)) >= date('Y-m-d'))
+                @if($device_count < $licence->device_count):
                 <button class="btn revert fl-rgt inline">
-               <a href="app-users/add"> <i class="material-icons py-2 add-icon" title="Add new client">add</i></a>
+                   <a href="app-users/add"> <i class="material-icons py-2 add-icon" title="Add new client">add</i></a>
                 </button>
+                @endif
+                @else
+                   <span style="color:black;float: right;margin-right: 20px;"> Licence Expired on {{date('d M Y',strtotime($licence->expiration_date))}} </span> 
+                @endif
               </div>
             </div>
             <div class="card-body px-0 pb-2">
@@ -55,9 +66,10 @@
                 <table class="table align-items-center justify-content-center mb-0" id="devices_table">
                   <thead>
                     <tr>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Email</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Created on</th>
+                      <th class="text-uppercase  text-xxs font-weight-bolder opacity-7">Device ID</th>
+                      <th class="text-uppercase  text-xxs font-weight-bolder opacity-7">Email</th>
+                      <th class="text-uppercase  text-xxs font-weight-bolder opacity-7">Status</th>
+                      <th class="text-uppercase  text-xxs font-weight-bolder opacity-7">Created on</th>
                       <th>Action</th>
                     </tr>
                   </thead>

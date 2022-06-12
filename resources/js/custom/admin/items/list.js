@@ -2,7 +2,7 @@ let list = function(){
     let baseurl = '/topsoft/';
     let item_table = $('#item_table').DataTable({columnDefs: [
         {
-            targets: [-1,3],
+            targets: [-1,0,3],
             className: 'text-center'
         },
         {
@@ -37,6 +37,7 @@ company.change(function(){
               let data = [];
               d.items.forEach(obj => {
                   let d = [
+                    obj.item_id,
                       obj.name,
                       obj.quantity,
                       obj.price,

@@ -2,13 +2,17 @@ let list = function(){
     let baseurl = '/topsoft/';
     let client_table = $('#client_table').DataTable({columnDefs: [
         {
-            targets: [-1,3],
+            targets: [-1,0,3],
             className: 'text-center'
         },
         {
             targets: [0,1],
             className: 'dt-body-left'
         },
+        {
+            targets:[4],
+            sWidth:'100px'
+        }
       ]});
     var data = [
         
@@ -38,6 +42,7 @@ let list = function(){
               let data = [];
               d.clients.forEach(obj => {
                   let d = [
+                      obj.client_id,
                       obj.name,
                       obj.company_name,
                       obj.email,

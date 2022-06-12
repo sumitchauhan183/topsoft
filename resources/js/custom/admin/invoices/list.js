@@ -2,7 +2,7 @@ let list = function(){
     let baseurl = '/topsoft/';
     let invoice_table = $('#invoice_table').DataTable({columnDefs: [
         {
-            targets: [-1,3],
+            targets: [-1,0,3],
             className: 'text-center'
         },
         {
@@ -37,6 +37,7 @@ let list = function(){
               let data = [];
               d.invoices.forEach(obj => {
                   let d = [
+                      obj.invoice_id,
                       obj.invoice_number,
                       obj.client_name,
                       obj.address,

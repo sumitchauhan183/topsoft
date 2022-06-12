@@ -54,12 +54,13 @@
                 <table class="table align-items-center justify-content-center mb-0" id="company_table">
                   <thead>
                     <tr>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">App Users</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Name</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Greek Name</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Email</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder text-center opacity-7 ps-2">Status</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder text-center opacity-7 ps-2">License</th>
+                      <th class="text-uppercase  text-xxs font-weight-bolder opacity-7" width="60px">App Users</th>
+                      <th class="text-uppercase  text-xxs font-weight-bolder opacity-7" width="60px">Company ID</th>
+                      <th class="text-uppercase  text-xxs font-weight-bolder opacity-7">Name</th>
+                      <th class="text-uppercase  text-xxs font-weight-bolder opacity-7 ps-2">Greek Name</th>
+                      <th class="text-uppercase  text-xxs font-weight-bolder opacity-7 ps-2">Email</th>
+                      <th class="text-uppercase  text-xxs font-weight-bolder text-center opacity-7 ps-2">Status</th>
+                      <th class="text-uppercase  text-xxs font-weight-bolder text-center opacity-7 ps-2">License</th>
                       <th>Action</th>
                     </tr>
                   </thead>

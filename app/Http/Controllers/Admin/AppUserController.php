@@ -26,11 +26,15 @@ class AppUserController extends Controller
     }
 
     public function list($company_id){
+        $licence = Licences::where('company_id',$company_id)->get()->first();
+        $devices = Devices::where('company_id',$company_id)->get();
         return view('admin.devices.list',[
             'title'=>'App Users',
             'url' => 'devices',
             'main'=> 'company',
             'company_id'=> $company_id,
+            'licence' => $licence,
+            'devices' => $devices,
             'admin'=> (object)$this->admin['data']
         ]);
     }

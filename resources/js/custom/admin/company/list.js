@@ -3,8 +3,9 @@ let list = function(){
     let table = $('#company_table').DataTable({columnDefs: [
         
         {
-            targets: [4,5,-6],
-            className: 'text-center'
+            targets: [0,1,4,5,-6],
+            className: 'text-center',
+            order:[]
         }
       ]});
     var data = [
@@ -38,6 +39,7 @@ let list = function(){
                     }
                   let d = [
                     '<a href="company/'+obj.company_id+'/app-users"><i class="material-icons py-2 view-iconl" title="app users">people</i></a>',
+                      obj.company_id,
                       obj.name,
                       obj.greek_name,
                       obj.public_key,

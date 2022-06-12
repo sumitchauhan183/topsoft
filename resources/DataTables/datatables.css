@@ -493,4 +493,20 @@ table.dataTable td {
   }
 }
 
+.table td, .table th {
+  white-space: unset;
+}
+
+table, td, tr,th{
+  border:1px solid powderblue;
+}
+th{
+  background-color: cornflowerblue !important;
+  color:black;
+}
+
+tr:last-child td{
+  border-width:1px !important;
+}
+
 

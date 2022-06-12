@@ -4,8 +4,9 @@ let list = function(){
     let table = $('#devices_table').DataTable({columnDefs: [
         
         {
-            targets: [2,3],
-            className: 'text-center'
+            targets: [-1,0,2],
+            className: 'text-center',
+            oreder:[]
         }
       ]});
     var data = [
@@ -29,6 +30,7 @@ let list = function(){
               d.devices.forEach(obj => {
                   
                   let d = [
+                      obj.device_id,
                       obj.email,
                       obj.status,
                       obj.created_at,

@@ -58,11 +58,12 @@
                 <table class="table align-items-center justify-content-center mb-0" id="invoice_table">
                   <thead>
                     <tr>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Invoice Number</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Client Name</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Address</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Amount</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder text-center opacity-7 ps-2">Status</th>
+                    <th class="text-uppercase  text-xxs font-weight-bolder opacity-7">Invoice ID</th>
+                      <th class="text-uppercase  text-xxs font-weight-bolder opacity-7">Invoice Number</th>
+                      <th class="text-uppercase  text-xxs font-weight-bolder opacity-7 ps-2">Client Name</th>
+                      <th class="text-uppercase  text-xxs font-weight-bolder opacity-7 ps-2">Address</th>
+                      <th class="text-uppercase  text-xxs font-weight-bolder opacity-7 ps-2">Amount</th>
+                      <th class="text-uppercase  text-xxs font-weight-bolder text-center opacity-7 ps-2">Status</th>
                       <th>Action</th>
                     </tr>
                   </thead>
