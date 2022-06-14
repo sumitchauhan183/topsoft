@@ -110,13 +110,13 @@ class CustomerController extends Controller
         $input = $this->input;
         $required = $this->checkRequiredParams($input,[
             'company_id','name','address','city','postal_code','telephone','mobile','tax_number','occupation',
-            'email','discount','note','note2','payment_mode'
+            'email','payment_mode'
         ]);
         if(!$required):
             $check = Clients::where('email',$input['email'])->get()->count();
             if(!$check):
                 $input = $this->SetColumnsToBlank($input,[
-                    'region','tax_post'
+                    'region','tax_post','discount','note','note2'
                 ]);	
                 $client = Clients::create([
                     'company_id'=>$input['company_id'],
@@ -303,7 +303,7 @@ class CustomerController extends Controller
     }
 
     private function SetColumnsToBlank($input,$required){
-        $input["status"] = 'success';
+    
      foreach($required as $r):
          if(isset($input["$r"])==false):
              $input["$r"] = '';
