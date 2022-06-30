@@ -55,7 +55,6 @@ Route::POST('customer/detail',[App\Http\Controllers\Api\CustomerController::clas
 Route::POST('customer/search',[App\Http\Controllers\Api\CustomerController::class,'search']);
 Route::POST('customer/invoices',[App\Http\Controllers\Api\CustomerController::class,'invoices']);
 
-
 Route::POST('event/add',[App\Http\Controllers\Api\EventController::class,'add']);
 Route::POST('event/update',[App\Http\Controllers\Api\EventController::class,'update']);
 Route::POST('checklist/list',[App\Http\Controllers\Api\ChecklistController::class,'list']);
@@ -87,6 +86,7 @@ Route::POST('receipt/update',[App\Http\Controllers\Api\ReceiptController::class,
 Route::POST('receipt/list',[App\Http\Controllers\Api\ReceiptController::class,'list']);
 Route::POST('receipt/details',[App\Http\Controllers\Api\ReceiptController::class,'detail']);
 Route::POST('receipt/pdf',[App\Http\Controllers\Api\ReceiptController::class,'receiptPDF']);
+Route::POST('receipt/delete',[App\Http\Controllers\Api\ReceiptController::class,'delete']);
 
 Route::POST('chat/send',[App\Http\Controllers\Api\ChatController::class,'send']);
 Route::POST('chat/messages',[App\Http\Controllers\Api\ChatController::class,'messages']);

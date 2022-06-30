@@ -278,8 +278,7 @@ class ItemController extends Controller
            $check = Devices::where('device_id',$this->input['device_id'])
                         ->where('login_token',$this->input['token'])
                         ->get()->count();   
-            return $check;                    
-        
+            return $check;              
    }
 
    private function checkRequiredParams($input,$required){

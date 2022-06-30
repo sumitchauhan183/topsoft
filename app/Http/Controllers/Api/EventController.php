@@ -62,7 +62,7 @@ class EventController extends Controller
         ]); 
         if(!$required):
                 $input = $this->SetColumnsToBlank($input,[
-                    'observation','is_completed', 'status','signature', 'completed_date'
+                    'observation','is_completed', 'status','signature', 'completed_date','latitude','longitude'
                 ]);	
                 if($input["event_type"]=="checklist"):
                     $data = [
@@ -70,7 +70,9 @@ class EventController extends Controller
                         'event_type' => $input['event_type'],
                         'observation' => $input['observation'],
                         'checklist' => $input['checklist'],
-                        'event_date'   => $input['event_date']
+                        'event_date'   => $input['event_date'],
+                        'latitude' => $input['latitude'],
+                        'longitude'   => $input['longitude']
                     ];
                 else:
                     if($input['completed_date']==""):
@@ -81,7 +83,9 @@ class EventController extends Controller
                             'observation' => $input['observation'],
                             'is_completed' => $input['is_completed'],
                             'signature' => $input['signature'],
-                            'event_date'   => $input['event_date']
+                            'event_date'   => $input['event_date'],
+                            'latitude' => $input['latitude'],
+                            'longitude'   => $input['longitude']
                         ];
                     else:
                         $data = [
@@ -92,7 +96,9 @@ class EventController extends Controller
                             'is_completed' => $input['is_completed'],
                             'signature' => $input['signature'],
                             'completed_date' => $input['completed_date'],
-                            'event_date'   => $input['event_date']
+                            'event_date'   => $input['event_date'],
+                            'latitude' => $input['latitude'],
+                            'longitude'   => $input['longitude']
                         ];
                      endif;
                 endif;
@@ -128,15 +134,17 @@ class EventController extends Controller
         if(!$required):
             
                 $input = $this->SetColumnsToBlank($input,[
-                    'observation','is_completed','status', 'signature', 'completed_date'
+                    'observation','is_completed','status', 'signature', 'completed_date','latitude','longitude'
                 ]);	
-                if($input["event_type"=="checklist"]):
+                if($input["event_type"]=="checklist"):
                     $data = [
                         'client_id'=>$input['client_id'],
                         'event_type' => $input['event_type'],
                         'observation' => $input['observation'],
                         'checklist' => $input['checklist'],
-                        'event_date'   => $input['event_date']
+                        'event_date'   => $input['event_date'],
+                        'latitude' => $input['latitude'],
+                        'longitude'   => $input['longitude']
                     ];
                 else:
                     $data = [
@@ -147,7 +155,9 @@ class EventController extends Controller
                         'is_completed' => $input['is_completed'],
                         'signature' => $input['signature'],
                         'completed_date' => $input['completed_date'],
-                        'event_date' => $input['event_date']
+                        'event_date' => $input['event_date'],
+                        'latitude' => $input['latitude'],
+                        'longitude'   => $input['longitude']
                     ];
                 endif;
                 $event = Events::where('event_id',$input['event_id'])->update($data);
@@ -182,7 +192,8 @@ class EventController extends Controller
         ]);
         if(!$required):
             if(isset($input['month'])):
-                $timestamp    = strtotime(''.$input['month'].' '.$input['year'].'');
+                //$timestamp    = strtotime(''.$input['month'].' '.$input['year'].'');
+                $timestamp = strtotime($input["year"].'-'.$input['month'].'-01');
                 $first = date('Y-m-01', $timestamp);
                 $last  = date('Y-m-t', $timestamp);
 
@@ -223,7 +234,7 @@ class EventController extends Controller
         ]);
         if(!$required):
             if(isset($input['month'])):
-                $timestamp    = strtotime(''.$input['month'].' '.$input['year'].'');
+                $timestamp = strtotime($input["year"].'-'.$input['month'].'-01');
                 $first = date('Y-m-01', $timestamp);
                 $last  = date('Y-m-t', $timestamp);
 
@@ -265,7 +276,7 @@ class EventController extends Controller
         ]);
         if(!$required):
             if(isset($input['month'])):
-                $timestamp    = strtotime(''.$input['month'].' '.$input['year'].'');
+                $timestamp = strtotime($input["year"].'-'.$input['month'].'-01');
                 $first = date('Y-m-01', $timestamp);
                 $last  = date('Y-m-t', $timestamp);
 
@@ -307,7 +318,7 @@ class EventController extends Controller
         ]);
         if(!$required):
             if(isset($input['month'])):
-                $timestamp    = strtotime(''.$input['month'].' '.$input['year'].'');
+                $timestamp = strtotime($input["year"].'-'.$input['month'].'-01');
                 $first = date('Y-m-01', $timestamp);
                 $last  = date('Y-m-t', $timestamp);
 

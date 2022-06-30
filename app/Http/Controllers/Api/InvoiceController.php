@@ -123,6 +123,7 @@ class InvoiceController extends Controller
                         'user_info' => $input['user_info'],
                         'sub_total' => $subtotal,
                         'discount'  => $discount,
+                        'final_total' => ($subtotal+$vat)-$discount,
                         'vat'       => $vat,
                         'status' => $input['status']
                 ]);
@@ -185,18 +186,19 @@ class InvoiceController extends Controller
                 $subtotal = $this->subtotal($input['item_list']);
                 $discount = $this->discount($input['item_list']);
                 $vat = $this->vat($input['item_list']);
-            $this->subquantity($input['item_list']);							
-            $invoice = Invoices::where('invoice_id',$input['invoice_id'])->update([
-                'type' => $input['type'],
-                'payment_method' => $input['payment_method'],
-                'address' => $input['address'],
-                'maintainance' => $input['maintainance'],
-                'note' => $input['note'],
-                'user_info' => $input['user_info'],
-                'sub_total' => $subtotal,
+                $this->subquantity($input['item_list']);							
+               $invoice = Invoices::where('invoice_id',$input['invoice_id'])->update([
+                        'type' => $input['type'],
+                        'payment_method' => $input['payment_method'],
+                        'address' => $input['address'],
+                        'maintainance' => $input['maintainance'],
+                        'note' => $input['note'],
+                        'user_info' => $input['user_info'],
+                        'sub_total' => $subtotal,
                         'discount'  => $discount,
                         'vat'       => $vat,
-                'status' => $input['status']
+                        'final_total' => ($subtotal+$vat)-$discount,
+                        'status' => $input['status']
             ]);
             if($invoice):
                 $prevItems = InvoiceItems::where('invoice_id',$input['invoice_id'])->get()->toArray();

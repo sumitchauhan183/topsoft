@@ -24,7 +24,8 @@ class Events extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'event_id','client_id','event_type','status','observation','is_completed','signature','completed_date','event_date'	
+        'event_id','client_id','event_type','status','observation','is_completed','signature','completed_date','event_date',
+        'latitude','longitude'	
     ];
 
    

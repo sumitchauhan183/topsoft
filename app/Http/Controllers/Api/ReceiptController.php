@@ -193,6 +193,28 @@ class ReceiptController extends Controller
         endif;
     }
 
+    public function delete(Request $request){
+        $input = $this->input;
+        $required = $this->checkRequiredParams($input,[
+            'receipt_id'
+        ]);
+        if(!$required):
+            Receipts::where('receipt_id',$input['receipt_id'])  
+                                  ->delete();
+            return json_encode([
+                'error'=>true,
+                'message'=>"Receipt deleted",
+                'code'=>200
+            ]);
+        else:
+            return json_encode([
+                'error'=>true,
+                'message'=>"$required is required key",
+                'code'=>201
+            ]);
+        endif;
+    }
+
     /**
      * Display a listing of the resource.
      *

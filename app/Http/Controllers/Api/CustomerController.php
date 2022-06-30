@@ -116,7 +116,7 @@ class CustomerController extends Controller
             $check = Clients::where('email',$input['email'])->get()->count();
             if(!$check):
                 $input = $this->SetColumnsToBlank($input,[
-                    'region','tax_post','discount','note','note2'
+                    'region','tax_post','discount','note','note2','latitude','longitude'
                 ]);	
                 $client = Clients::create([
                     'company_id'=>$input['company_id'],
@@ -134,7 +134,9 @@ class CustomerController extends Controller
                         'discount' => $input['discount'],
                         'note' => $input['note'],
                         'note2' => $input['note2'],
-                        'payment_mode' => $input['payment_mode']
+                        'payment_mode' => $input['payment_mode'],
+                        'latitude' => $input['latitude'],
+                        'longitude'   => $input['longitude']
 
                 ]);
                 if($client):
@@ -179,7 +181,7 @@ class CustomerController extends Controller
                             ->get()->count();
             if(!$check):
                 $input = $this->SetColumnsToBlank($input,[
-                    'region','tax_post'
+                    'region','tax_post','latitude','longitude'
                 ]);	
                 $client = Clients::where('client_id',$input['client_id'])->update([
                     'name' => $input['name'],
@@ -195,7 +197,9 @@ class CustomerController extends Controller
                     'email' => $input['email'],
                     'discount' => $input['discount'],
                     'note' => $input['note'],
-                    'note2' => $input['note2']
+                    'note2' => $input['note2'],
+                    'latitude' => $input['latitude'],
+                    'longitude'   => $input['longitude']
                 ]);
                 
                 if($client):
