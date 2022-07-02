@@ -16,13 +16,79 @@
   <div class="cs-container">
     <div class="cs-invoice cs-style1">
       <div class="cs-invoice_in" id="download_section">
-        <div class="cs-invoice_head cs-type1 cs-mb25">
+        <div class="cs-invoice_head cs-type1 cs-mb25" style="height:60px;">
           <div class="cs-invoice_left">
             <p class="cs-invoice_number cs-primary_color cs-mb5 cs-f16"><b class="cs-primary_color">Receipt No:</b> #{{$data->receipt_number}}</p>
             <p class="cs-invoice_date cs-primary_color cs-m0"><b class="cs-primary_color">Date: </b>{{date('d M Y', strtotime($data->receipt_date))}}</p>
           </div>
         </div>
-        <div class="cs-table cs-style1">
+          <div class="cs-invoice_head cs-mb10" style="min-height:125px;">
+              <div class="cs-invoice_left">
+                  <b class="cs-primary_color">Invoice To:</b>
+                  <p>
+                      {{$data->client->name}}
+                      @if($data->client->address),
+                      <br>{{$data->client->address}}
+                      @if($data->client->city),
+                      {{$data->client->city}}
+                      @endif
+                      @else
+                          @if($data->client->city),
+                          <br>{{$data->client->city}}
+                          @endif
+                      @endif
+                      @if($data->client->region),
+                      <br>{{$data->client->region}}
+                      @if($data->client->postal_code),
+                      {{$data->client->postal_code}}
+                      @endif
+                      @else
+                          @if($data->client->postal_code),
+                          <br>{{$data->client->postal_code}}
+                          @endif
+                      @endif
+                      @if($data->client->email),
+                      <br>email: {{$data->client->email}}
+                      @endif
+                      @if($data->client->mobile),
+                      <br>email: {{$data->client->mobile}}
+                      @endif
+                  </p>
+              </div>
+              <div class="cs-invoice_right cs-text_right">
+                  <b class="cs-primary_color">Pay To:</b>
+                  <p>
+                      {{$data->client->name}}
+                      @if($data->company->address),
+                      <br>{{$data->company->address}}
+                      @if($data->company->city),
+                      {{$data->company->city}}
+                      @endif
+                      @else
+                          @if($data->company->city),
+                          <br>{{$data->company->city}}
+                          @endif
+                      @endif
+                      @if($data->company->region),
+                      <br>{{$data->company->region}}
+                      @if($data->company->postal_code),
+                      {{$data->company->postal_code}}
+                      @endif
+                      @else
+                          @if($data->company->postal_code),
+                          <br>{{$data->client->postal_code}}
+                          @endif
+                      @endif
+                      @if($data->company->public_key),
+                      <br>email: {{$data->company->public_key}}
+                      @endif
+                      @if($data->company->mobile),
+                      <br>email: {{$data->company->mobile}}
+                      @endif
+                  </p>
+              </div>
+          </div>
+          <div class="cs-table cs-style1">
           <div class="cs-round_border">
             <div class="cs-table_responsive">
               <table>

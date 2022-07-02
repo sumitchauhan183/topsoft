@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Hash;
 use App\Classes\Email;
 use Exception;
 use PDF;
+use Illuminate\Support\Facades\DB;
 
 class ReceiptController extends Controller
 {
@@ -19,13 +20,13 @@ class ReceiptController extends Controller
      *
      * @return void
      */
-    private $input; 
+    private $input;
     public function __construct(Request $request)
     {
-       
+
         $this->input = $request->all();
         $required = $this->checkRequiredParams($this->input,['device_id','token']);
-        
+
         if($required):
             echo json_encode([
                 'error'=>true,
@@ -60,13 +61,13 @@ class ReceiptController extends Controller
             'receipt_id'
         ]);
         if(!$required):
-            $receipts = Receipts::join('clients as c','receipts.client_id','c.client_id') 
+            $receipts = Receipts::join('clients as c','receipts.client_id','c.client_id')
                                 ->where('receipt_id',$input['receipt_id'])
                                 ->select('receipts.*','c.name as client_name')
                                 ->get()
                                 ->first();
             if($receipts):
-                
+
                 return json_encode([
                     'error'=>false,
                     'message'=>"details listed",
@@ -96,7 +97,7 @@ class ReceiptController extends Controller
             'client_id','company_id','amount','observation','note','receipt_date'
         ]);
             if(!$required):
-            	
+
                 $receipt = Receipts::create([
                         'client_id' => $input['client_id'],
                         'company_id' => $input['company_id'],
@@ -129,7 +130,7 @@ class ReceiptController extends Controller
                     'code'=>201
                 ]);
             endif;
-        
+
     }
 
     public function update(Request $request){
@@ -138,7 +139,7 @@ class ReceiptController extends Controller
             'receipt_id','amount','observation','note'
         ]);
             if(!$required):
-            						
+
             $receipt = Receipts::where('receipt_id',$input['receipt_id'])->update([
                         'amount' => $input['amount'],
                         'observation' => $input['observation'],
@@ -157,7 +158,7 @@ class ReceiptController extends Controller
                     'code'=>201
                 ]);
             endif;
-            
+
         else:
             return json_encode([
                 'error'=>true,
@@ -173,7 +174,7 @@ class ReceiptController extends Controller
             'page','count'
         ]);
         if(!$required):
-            $receipts = Receipts::join('clients as c','receipts.client_id','c.client_id')  
+            $receipts = Receipts::join('clients as c','receipts.client_id','c.client_id')
                                   ->skip($input['page']*$input['count'])
                                   ->take($input['count'])
                                   ->select('receipts.*','c.name as client_name')
@@ -199,7 +200,7 @@ class ReceiptController extends Controller
             'receipt_id'
         ]);
         if(!$required):
-            Receipts::where('receipt_id',$input['receipt_id'])  
+            Receipts::where('receipt_id',$input['receipt_id'])
                                   ->delete();
             return json_encode([
                 'error'=>true,
@@ -227,12 +228,14 @@ class ReceiptController extends Controller
             'receipt_id'
         ]);
         if(!$required):
-            $receipts = Receipts::join('clients as c','receipts.client_id','c.client_id') 
+            $receipts = Receipts::join('clients as c','receipts.client_id','c.client_id')
                                 ->where('receipt_id',$input['receipt_id'])
                                 ->select('receipts.*','c.name as client_name')
                                 ->get()
                                 ->first();
             if($receipts):
+                $receipts->client = DB::table('clients')->where('client_id',$receipts->client_id)->get()->first();
+                $receipts->company = DB::table('company')->where('company_id',$receipts->client_id)->get()->first();
                 $pdf = PDF::loadView('pdf/receipt', ['data'=>$receipts]);
                 return $pdf->download('receipt.pdf');
             else:
@@ -249,15 +252,15 @@ class ReceiptController extends Controller
                 'code'=>201
             ]);
         endif;
-        
+
     }
 
 private function checkToken(){
         $check = Devices::where('device_id',$this->input['device_id'])
                      ->where('login_token',$this->input['token'])
-                     ->get()->count();   
-         return $check;                    
-     
+                     ->get()->count();
+         return $check;
+
 }
 
 private function generateReceiptNumber($receipt){

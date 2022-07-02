@@ -50,7 +50,7 @@
             <div class="ms-md-auto pe-md-3 d-flex align-items-center mb-4">
                             <div class="input-group input-group-outline mx-3 focused is-focused">
                                 <label class="form-label">Email</label>
-                                <input type="text" class="form-control" id="email" value="{{$devices->email}}" >
+                                <input type="text" class="form-control" disabled id="email" value="{{$devices->email}}" >
                                 <input type="hidden" class="form-control" id="device-id" value="{{$devices->device_id}}" >
                             </div>
                             <div class="input-group input-group-outline mx-3 focused is-focused">
@@ -65,7 +65,7 @@
                                 </select>
                             </div>
                     </div>
-                    
+
 
 
                     <div class="ms-md-auto pe-md-3 d-flex align-items-center">
@@ -74,7 +74,7 @@
                             <button class="btn bg-gradient-primary mt-4 w-40" id="update-device"  type="button">Update</button>
                         </div>
                     </div>
-                            
+
                     </div>
 
 

@@ -23,13 +23,13 @@ class InvoiceController extends Controller
      */
 
 
-    private $input; 
+    private $input;
     public function __construct(Request $request)
     {
-       
+
         $this->input = $request->all();
         $required = $this->checkRequiredParams($this->input,['device_id','token']);
-        
+
         if($required):
             echo json_encode([
                 'error'=>true,
@@ -106,11 +106,11 @@ class InvoiceController extends Controller
             if(!$required):
             	$input = $this->SetColumnsToBlank($input,[
                     'type','payment_method','address','maintainance','note','user_info'
-                ]);	
+                ]);
                 $subtotal = $this->subtotal($input['item_list']);
                 $discount = $this->discount($input['item_list']);
                 $vat = $this->vat($input['item_list']);
-                $this->subquantity($input['item_list']); 
+                $this->subquantity($input['item_list']);
                 $invoice = Invoices::create([
                         'client_id' => $input['client_id'],
                         'device_id' => $input['device_id'],
@@ -165,7 +165,7 @@ class InvoiceController extends Controller
                 'code'=>201
             ]);
         endif;
-        
+
     }
 
     public function update(Request $request){
@@ -182,11 +182,11 @@ class InvoiceController extends Controller
             if(!$required):
             $input = $this->SetColumnsToBlank($input,[
                 'type','payment_method','address','maintainance','note','user_info'
-            ]);		
+            ]);
                 $subtotal = $this->subtotal($input['item_list']);
                 $discount = $this->discount($input['item_list']);
                 $vat = $this->vat($input['item_list']);
-                $this->subquantity($input['item_list']);							
+                $this->subquantity($input['item_list']);
                $invoice = Invoices::where('invoice_id',$input['invoice_id'])->update([
                         'type' => $input['type'],
                         'payment_method' => $input['payment_method'],
@@ -223,7 +223,7 @@ class InvoiceController extends Controller
                     'code'=>201
                 ]);
             endif;
-            
+
         else:
             return json_encode([
                 'error'=>true,
@@ -247,7 +247,7 @@ class InvoiceController extends Controller
         ]);
         if(!$required):
             $invoices = Invoices::where('invoices.device_id',$input['device_id'])
-                                  ->join('clients as c','invoices.client_id','c.client_id')  
+                                  ->join('clients as c','invoices.client_id','c.client_id')
                                   ->skip($input['page']*$input['count'])
                                   ->take($input['count'])
                                   ->select('invoices.*','c.name as client_name')
@@ -344,9 +344,9 @@ class InvoiceController extends Controller
                     'code'=>200
                 ]);
             endif;
-                
-                
-            
+
+
+
         else:
             return json_encode([
                 'error'=>true,
@@ -374,11 +374,14 @@ class InvoiceController extends Controller
                                         ->select('ii.*','i.name','i.description','i.vat','i.barcode','i.discount','i.price','i.final_price')
                                         ->where('ii.invoice_id',$input['invoice_id'])
                                         ->join('items as i', 'ii.item_id','i.item_id')->get();
-                //dd($invoices);
+                $invoices->client = DB::table('clients')->where('client_id',$invoices->client_id)->get()->first();
+                $invoices->company = DB::table('company')->where('company_id',$invoices->client_id)->get()->first();
+
+
                 $pdf = PDF::loadView('pdf/invoice', ['data'=>$invoices]);
-  
+
                 return $pdf->download('invoice.pdf');
-            
+
             else:
                 return json_encode([
                     'error'=>true,
@@ -393,7 +396,7 @@ class InvoiceController extends Controller
                 'code'=>201
             ]);
         endif;
-        
+
     }
 
 
@@ -446,9 +449,9 @@ class InvoiceController extends Controller
    private function checkToken(){
            $check = Devices::where('device_id',$this->input['device_id'])
                         ->where('login_token',$this->input['token'])
-                        ->get()->count();   
-            return $check;                    
-        
+                        ->get()->count();
+            return $check;
+
    }
 
    private function generateInvoiceNumber($invoice){
@@ -485,5 +488,5 @@ class InvoiceController extends Controller
         return  md5($id.time());
     }
 
-    
+
 }

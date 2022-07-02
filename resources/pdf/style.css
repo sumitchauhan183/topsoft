@@ -962,7 +962,11 @@ kbd {
 }
 
 .cs-invoice.cs-style1 .cs-invoice_left {
-  max-width: 55%;
+  max-width: 48%;
+  float:left;
+}
+
+.cs-text_right {
 }
 
 .cs-invoice_btns {
@@ -1280,6 +1284,7 @@ kbd {
     width: 100%;
   }
 }
+
 
 @media (max-width: 500px) {
   .cs-invoice.cs-style1 .cs-logo {

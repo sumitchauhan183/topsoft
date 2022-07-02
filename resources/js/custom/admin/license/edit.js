@@ -1,9 +1,9 @@
 let edit = function(){
-   
+
     let deviceCount          = $('#device-count');
     let expirationDate       = $('#expiration-date');
     let license_id           = $('#license-id');
-    
+
     let update         = $('#update-license');
     let baseurl        = '/topsoft/';
     let data = {
@@ -16,7 +16,7 @@ let edit = function(){
         data.device_count = deviceCount.val();
     });
 
-    expirationDate.mouseout(function(){
+    expirationDate.change(function(){
         data.expiration_date = expirationDate.val();
     });
 
@@ -35,7 +35,7 @@ let edit = function(){
             return;
         }
 
-
+        console.log(data);
         $('.loader').show();
         $.ajax({
             url: baseurl+"api/admin/company/license/update",
@@ -47,7 +47,7 @@ let edit = function(){
               $('.loader').hide();
               if(d.error){
                 alert(d.message);
-               
+
               }else{
                   alert(d.message);
                   location.reload();
@@ -55,11 +55,11 @@ let edit = function(){
         });
 
 
-       
+
     });
-  
+
     return {
       init: function(){
       }
-  }  
+  }
   }();
