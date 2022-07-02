@@ -27,6 +27,7 @@
               <div class="cs-invoice_left">
                   <b class="cs-primary_color">Invoice To:</b>
                   <p>
+
                       {{$data->client->name}}
                       @if($data->client->address),
                           <br>{{$data->client->address}}
@@ -59,7 +60,7 @@
               <div class="cs-invoice_right cs-text_right">
                   <b class="cs-primary_color">Pay To:</b>
                   <p>
-                      {{$data->client->name}}
+                      {{$data->company->name}}
                       @if($data->company->address),
                           <br>{{$data->company->address}}
                           @if($data->company->city),
@@ -128,7 +129,7 @@
                             <td class="cs-width_1">{{$item->price}}</td>
                             <td class="cs-width_1">{{$item->vat}}</td>
                             <td class="cs-width_1">{{$item->discount}}</td>
-                            <td class="cs-width_2 cs-text_right">{{$item->final_price*$item->quantity}}</td>
+                            <td class="cs-width_2 cs-text_right">{{round($item->final_price*$item->quantity,2)}}</td>
                         </tr>
                     @endforeach
                 </tbody>
@@ -148,15 +149,15 @@
                   </tr>
                     <tr class="cs-border_left">
                       <td class="cs-width_3 cs-semi_bold cs-primary_color cs-focus_bg">Subtoal</td>
-                      <td class="cs-width_3 cs-semi_bold cs-focus_bg cs-primary_color cs-text_right">{{$stotal}}</td>
+                      <td class="cs-width_3 cs-semi_bold cs-focus_bg cs-primary_color cs-text_right">{{round($stotal,2)}}</td>
                     </tr>
                     <tr class="cs-border_left">
                         <td class="cs-width_3 cs-semi_bold cs-primary_color cs-focus_bg">Tax</td>
-                        <td class="cs-width_3 cs-semi_bold cs-focus_bg cs-primary_color cs-text_right">{{$tax}}</td>
+                        <td class="cs-width_3 cs-semi_bold cs-focus_bg cs-primary_color cs-text_right">{{round($tax,2)}}</td>
                     </tr>
                     <tr class="cs-border_left">
                       <td class="cs-width_3 cs-semi_bold cs-primary_color cs-focus_bg">Discount</td>
-                      <td class="cs-width_3 cs-semi_bold cs-focus_bg cs-primary_color cs-text_right">{{$discount}}</td>
+                      <td class="cs-width_3 cs-semi_bold cs-focus_bg cs-primary_color cs-text_right">{{round($discount,2)}}</td>
                     </tr>
 
                   </tbody>
@@ -171,7 +172,7 @@
                 <tbody>
                   <tr class="cs-border_none">
                     <td class="cs-width_3 cs-border_top_0 cs-bold cs-f16 cs-primary_color">Grand Total</td>
-                    <td class="cs-width_3 cs-border_top_0 cs-bold cs-f16 cs-primary_color cs-text_right">{{$total}}</td>
+                    <td class="cs-width_3 cs-border_top_0 cs-bold cs-f16 cs-primary_color cs-text_right">{{round($total,2)}}</td>
                   </tr>
                 </tbody>
               </table>

@@ -67,8 +67,8 @@ class InvoiceController extends Controller
             $invoices = Invoices::where('invoice_id',$input['invoice_id'])->get()->first();
             if($invoices):
                 $invoices->item_list = DB::table('invoice_items as ii')->select('ii.*','i.name','i.description','i.vat','i.barcode','i.discount')
-                                        ->where('ii.invoice_id',$input['invoice_id'])
-                                        ->join('items as i', 'ii.item_id','i.item_id')->get();
+                    ->where('ii.invoice_id',$input['invoice_id'])
+                    ->join('items as i', 'ii.item_id','i.item_id')->get();
                 return json_encode([
                     'error'=>false,
                     'message'=>"details listed",
@@ -104,7 +104,7 @@ class InvoiceController extends Controller
                 ]);
             endforeach;
             if(!$required):
-            	$input = $this->SetColumnsToBlank($input,[
+                $input = $this->SetColumnsToBlank($input,[
                     'type','payment_method','address','maintainance','note','user_info'
                 ]);
                 $subtotal = $this->subtotal($input['item_list']);
@@ -112,20 +112,20 @@ class InvoiceController extends Controller
                 $vat = $this->vat($input['item_list']);
                 $this->subquantity($input['item_list']);
                 $invoice = Invoices::create([
-                        'client_id' => $input['client_id'],
-                        'device_id' => $input['device_id'],
-                        'company_id' => $input['company_id'],
-                        'type' => $input['type'],
-                        'payment_method' => $input['payment_method'],
-                        'address' => $input['address'],
-                        'maintainance' => $input['maintainance'],
-                        'note' => $input['note'],
-                        'user_info' => $input['user_info'],
-                        'sub_total' => $subtotal,
-                        'discount'  => $discount,
-                        'final_total' => ($subtotal+$vat)-$discount,
-                        'vat'       => $vat,
-                        'status' => $input['status']
+                    'client_id' => $input['client_id'],
+                    'device_id' => $input['device_id'],
+                    'company_id' => $input['company_id'],
+                    'type' => $input['type'],
+                    'payment_method' => $input['payment_method'],
+                    'address' => $input['address'],
+                    'maintainance' => $input['maintainance'],
+                    'note' => $input['note'],
+                    'user_info' => $input['user_info'],
+                    'sub_total' => $subtotal,
+                    'discount'  => $discount,
+                    'final_total' => ($subtotal+$vat)-$discount,
+                    'vat'       => $vat,
+                    'status' => $input['status']
                 ]);
                 if($invoice):
                     $invoiceNumber = $this->generateInvoiceNumber($invoice);
@@ -180,57 +180,57 @@ class InvoiceController extends Controller
                 ]);
             endforeach;
             if(!$required):
-            $input = $this->SetColumnsToBlank($input,[
-                'type','payment_method','address','maintainance','note','user_info'
-            ]);
+                $input = $this->SetColumnsToBlank($input,[
+                    'type','payment_method','address','maintainance','note','user_info'
+                ]);
                 $subtotal = $this->subtotal($input['item_list']);
                 $discount = $this->discount($input['item_list']);
                 $vat = $this->vat($input['item_list']);
                 $this->subquantity($input['item_list']);
-               $invoice = Invoices::where('invoice_id',$input['invoice_id'])->update([
-                        'type' => $input['type'],
-                        'payment_method' => $input['payment_method'],
-                        'address' => $input['address'],
-                        'maintainance' => $input['maintainance'],
-                        'note' => $input['note'],
-                        'user_info' => $input['user_info'],
-                        'sub_total' => $subtotal,
-                        'discount'  => $discount,
-                        'vat'       => $vat,
-                        'final_total' => ($subtotal+$vat)-$discount,
-                        'status' => $input['status']
-            ]);
-            if($invoice):
-                $prevItems = InvoiceItems::where('invoice_id',$input['invoice_id'])->get()->toArray();
-                $this->addquantity($prevItems);
-                InvoiceItems::where('invoice_id',$input['invoice_id'])->delete();
-                foreach($input['item_list'] as $item):
-                    InvoiceItems::create([
-                        'invoice_id'=>$input['invoice_id'],
-                        'item_id'=>$item['item_id'],
-                        'quantity'=>$item['quantity']
-                    ]);
-                endforeach;
-                return json_encode([
-                    'error'=>false,
-                    'message'=>"Invoice update successfully",
-                    'code'=>201
+                $invoice = Invoices::where('invoice_id',$input['invoice_id'])->update([
+                    'type' => $input['type'],
+                    'payment_method' => $input['payment_method'],
+                    'address' => $input['address'],
+                    'maintainance' => $input['maintainance'],
+                    'note' => $input['note'],
+                    'user_info' => $input['user_info'],
+                    'sub_total' => $subtotal,
+                    'discount'  => $discount,
+                    'vat'       => $vat,
+                    'final_total' => ($subtotal+$vat)-$discount,
+                    'status' => $input['status']
                 ]);
+                if($invoice):
+                    $prevItems = InvoiceItems::where('invoice_id',$input['invoice_id'])->get()->toArray();
+                    $this->addquantity($prevItems);
+                    InvoiceItems::where('invoice_id',$input['invoice_id'])->delete();
+                    foreach($input['item_list'] as $item):
+                        InvoiceItems::create([
+                            'invoice_id'=>$input['invoice_id'],
+                            'item_id'=>$item['item_id'],
+                            'quantity'=>$item['quantity']
+                        ]);
+                    endforeach;
+                    return json_encode([
+                        'error'=>false,
+                        'message'=>"Invoice update successfully",
+                        'code'=>201
+                    ]);
+                else:
+                    return json_encode([
+                        'error'=>true,
+                        'message'=>"server issue client not created",
+                        'code'=>201
+                    ]);
+                endif;
+
             else:
                 return json_encode([
                     'error'=>true,
-                    'message'=>"server issue client not created",
+                    'message'=>"$required is required key",
                     'code'=>201
                 ]);
             endif;
-
-        else:
-            return json_encode([
-                'error'=>true,
-                'message'=>"$required is required key",
-                'code'=>201
-            ]);
-        endif;
         else:
             return json_encode([
                 'error'=>true,
@@ -247,11 +247,11 @@ class InvoiceController extends Controller
         ]);
         if(!$required):
             $invoices = Invoices::where('invoices.device_id',$input['device_id'])
-                                  ->join('clients as c','invoices.client_id','c.client_id')
-                                  ->skip($input['page']*$input['count'])
-                                  ->take($input['count'])
-                                  ->select('invoices.*','c.name as client_name')
-                                  ->get();
+                ->join('clients as c','invoices.client_id','c.client_id')
+                ->skip($input['page']*$input['count'])
+                ->take($input['count'])
+                ->select('invoices.*','c.name as client_name')
+                ->get();
             return json_encode([
                 'error'=>false,
                 'message'=>"listing done",
@@ -371,12 +371,11 @@ class InvoiceController extends Controller
             $invoices = Invoices::where('invoice_id',$input['invoice_id'])->get()->first();
             if($invoices):
                 $invoices->item_list = DB::table('invoice_items as ii')
-                                        ->select('ii.*','i.name','i.description','i.vat','i.barcode','i.discount','i.price','i.final_price')
-                                        ->where('ii.invoice_id',$input['invoice_id'])
-                                        ->join('items as i', 'ii.item_id','i.item_id')->get();
+                    ->select('ii.*','i.name','i.description','i.vat','i.barcode','i.discount','i.price','i.final_price')
+                    ->where('ii.invoice_id',$input['invoice_id'])
+                    ->join('items as i', 'ii.item_id','i.item_id')->get();
                 $invoices->client = DB::table('clients')->where('client_id',$invoices->client_id)->get()->first();
-                $invoices->company = DB::table('company')->where('company_id',$invoices->client_id)->get()->first();
-
+                $invoices->company = DB::table('company')->where('company_id',$invoices->company_id)->get()->first();
 
                 $pdf = PDF::loadView('pdf/invoice', ['data'=>$invoices]);
 
@@ -438,7 +437,8 @@ class InvoiceController extends Controller
         $vat = 0;
         foreach($item as $i):
             $d = Items::where('item_id',$i['item_id'])->get()->first();
-            $vat += ($d->vat/100)*($d->price*$i['quantity']);
+            $dis = ($d->discount/100)*($d->price*$i['quantity']);
+            $vat += ($d->vat/100)*($d->price*$i['quantity']-$dis);
         endforeach;
 
         return $vat;
@@ -446,15 +446,15 @@ class InvoiceController extends Controller
 
 
 
-   private function checkToken(){
-           $check = Devices::where('device_id',$this->input['device_id'])
-                        ->where('login_token',$this->input['token'])
-                        ->get()->count();
-            return $check;
+    private function checkToken(){
+        $check = Devices::where('device_id',$this->input['device_id'])
+            ->where('login_token',$this->input['token'])
+            ->get()->count();
+        return $check;
 
-   }
+    }
 
-   private function generateInvoiceNumber($invoice){
+    private function generateInvoiceNumber($invoice){
         $company = Company::where('company_id',$invoice->company_id)->get()->first();
 
         $name = strtoupper(substr($company->name, 0, 3));
@@ -462,25 +462,25 @@ class InvoiceController extends Controller
         return $name.'INV'.$invoice->company_id.$id;
     }
 
-   private function checkRequiredParams($input,$required){
+    private function checkRequiredParams($input,$required){
         foreach($required as $r):
             if(isset($input["$r"])==false || $r=''):
                 return $r;
             endif;
         endforeach;
         return false;
-   }
+    }
 
-   private function SetColumnsToBlank($input,$required){
-       $input["status"] = 'success';
-    foreach($required as $r):
-        if(isset($input["$r"])==false):
-            $input["$r"] = '';
-            $input["status"] = 'draft';
-        endif;
-    endforeach;
-    return $input;
-}
+    private function SetColumnsToBlank($input,$required){
+        $input["status"] = 'success';
+        foreach($required as $r):
+            if(isset($input["$r"])==false):
+                $input["$r"] = '';
+                $input["status"] = 'draft';
+            endif;
+        endforeach;
+        return $input;
+    }
 
 
     private function generateToken($id)

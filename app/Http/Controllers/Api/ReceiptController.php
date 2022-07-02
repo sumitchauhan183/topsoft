@@ -235,7 +235,7 @@ class ReceiptController extends Controller
                                 ->first();
             if($receipts):
                 $receipts->client = DB::table('clients')->where('client_id',$receipts->client_id)->get()->first();
-                $receipts->company = DB::table('company')->where('company_id',$receipts->client_id)->get()->first();
+                $receipts->company = DB::table('company')->where('company_id',$receipts->company_id)->get()->first();
                 $pdf = PDF::loadView('pdf/receipt', ['data'=>$receipts]);
                 return $pdf->download('receipt.pdf');
             else:
