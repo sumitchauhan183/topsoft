@@ -26,12 +26,13 @@ class Company extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'company_id','name', 'greek_name', 'private_key','public_key','status'
+        'company_id','name', 'greek_name', 'private_key','public_key',
+        'address','city','mobile','region','postal_code','status'
     ];
 
     public function license(){
         return $this->hasOne(Licences::Class,'company_id');
     }
 
-    
+
 }

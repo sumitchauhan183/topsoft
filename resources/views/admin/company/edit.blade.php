@@ -61,12 +61,38 @@
                                 <label class="form-label">Email (Public key)</label>
                                 <input type="email" class="form-control" id="email" disabled value="{{$company->public_key}}"  autocomplete="off">
                             </div>
-                            <div class="input-group input-group-outline mx-3 focused is-focused">
-                                <label class="form-label">Password (Private key)</label>
-                                <input type="number" class="form-control" id="password"  autocomplete="off">
-                            </div>
+
                     </div>
-                    
+                <div class="ms-md-auto pe-md-3 d-flex align-items-center mb-4">
+                    <div class="input-group input-group-outline mx-3 focused is-focused">
+                        <label class="form-label">Password (Private key)</label>
+                        <input type="number" class="form-control" id="password"  autocomplete="off">
+                    </div>
+                    <div class="input-group input-group-outline mx-3 is-filled">
+                        <label class="form-label">Mobile</label>
+                        <input type="text" class="form-control" id="mobile" onfocus="focused(this)" onfocusout="defocused(this)" value="{{$company->mobile}}" autocomplete="off">
+                    </div>
+                    <div class="input-group input-group-outline mx-3 is-filled">
+                        <label class="form-label">Address</label>
+                        <textarea class="form-control" id="address" onfocus="focused(this)" onfocusout="defocused(this)"  autocomplete="off">{{$company->address}}</textarea>
+                    </div>
+
+                </div>
+                <div class="ms-md-auto pe-md-3 d-flex align-items-center mb-4">
+                    <div class="input-group input-group-outline mx-3 is-filled">
+                        <label class="form-label">City</label>
+                        <input type="text" class="form-control" id="city" onfocus="focused(this)" onfocusout="defocused(this)" value="{{$company->city}}" autocomplete="off">
+                    </div>
+                    <div class="input-group input-group-outline mx-3 is-filled">
+                        <label class="form-label">Region</label>
+                        <input type="text" class="form-control" id="region" onfocus="focused(this)" onfocusout="defocused(this)" value="{{$company->region}}" autocomplete="off">
+                    </div>
+                    <div class="input-group input-group-outline mx-3 is-filled">
+                        <label class="form-label">Postal Code</label>
+                        <input type="text" class="form-control" id="postal_code" onfocus="focused(this)" onfocusout="defocused(this)" value="{{$company->postal_code}}" autocomplete="off">
+                    </div>
+                </div>
+
 
 
                     <div class="ms-md-auto pe-md-3 d-flex align-items-center">
@@ -75,7 +101,7 @@
                             <button class="btn bg-gradient-primary mt-4 w-40" id="update-company"  type="button">Update</button>
                         </div>
                     </div>
-                            
+
                     </div>
 
 

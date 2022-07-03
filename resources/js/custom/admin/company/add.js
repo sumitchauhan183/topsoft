@@ -1,18 +1,29 @@
 let add = function(){
-   
-    
+
+
     let name        = $('#name');
     let email       = $('#email');
     let greekName   = $('#greek-name');
     let password    = $('#password');
-    
+    let mobile      = $('#mobile');
+    let address     = $('#address');
+    let city        = $('#city');
+    let region      = $('#region');
+    let postal_code = $('#postal_code');
+
+
     let add         = $('#add-company');
     let baseurl     = '/topsoft/';
     let data = {
         'name':name.val(),
         'greekName':greekName.val(),
         'email':email.val(),
-        'password':password.val()
+        'password':password.val(),
+        'mobile': mobile.val(),
+        'address': address.val(),
+        'city':city.val(),
+        'region':region.val(),
+        'postal_code': postal_code.val(),
     }
 
     name.mouseout(function(){
@@ -31,6 +42,27 @@ let add = function(){
         data.password = password.val();
     });
 
+    mobile.change(function (){
+        data.mobile = mobile.val();
+    });
+
+    address.change(function (){
+        data.address = address.val();
+    });
+
+    city.change(function (){
+        data.city = city.val();
+    });
+
+    region.change(function (){
+        data.region = region.val();
+    });
+
+    postal_code.change(function (){
+        data.postal_code = postal_code.val();
+    });
+
+
 
     function validateEmail(){
             if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(data.email))
@@ -38,7 +70,7 @@ let add = function(){
                return (false)
              }
                return (true)
-        
+
     }
 
     function checkEmailExist(){
@@ -57,7 +89,7 @@ let add = function(){
                   return false;
               }
             });
-    
+
 }
 
     add.click(function(){
@@ -71,7 +103,7 @@ let add = function(){
             name.parent().append('<span class="text-danger position-absolute text-gradient text-xs py-3 mt-4 error">*required</span>');
             return;
         } */
-        
+
         if(data.email.length < 1){
             email.parent().append('<span class="text-danger position-absolute text-gradient text-xs py-3 mt-4 error">*required</span>');
             return;
@@ -110,11 +142,11 @@ let add = function(){
         });
 
 
-       
+
     });
-  
+
     return {
       init: function(){
       }
-  }  
+  }
   }();

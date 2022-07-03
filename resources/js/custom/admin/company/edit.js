@@ -1,17 +1,27 @@
 let edit = function(){
-   
+
     let name        = $('#name');
     let greekName   = $('#greek-name');
     let password    = $('#password');
     let company_id  = $('#company_id');
     let update      = $('#update-company');
+    let mobile      = $('#mobile');
+    let address     = $('#address');
+    let city        = $('#city');
+    let region      = $('#region');
+    let postal_code = $('#postal_code');
     let baseurl     = '/topsoft/';
     let data = {
         'name':name.val(),
         'greekName':greekName.val(),
         'company_id':company_id.val(),
         'password':password.val(),
-        'is_password':false
+        'is_password':false,
+        'mobile': mobile.val(),
+        'address': address.val(),
+        'city':city.val(),
+        'region':region.val(),
+        'postal_code': postal_code.val(),
     }
 
     name.mouseout(function(){
@@ -26,13 +36,33 @@ let edit = function(){
         data.password = password.val();
     });
 
+    mobile.change(function (){
+        data.mobile = mobile.val();
+    });
+
+    address.change(function (){
+        data.address = address.val();
+    });
+
+    city.change(function (){
+        data.city = city.val();
+    });
+
+    region.change(function (){
+        data.region = region.val();
+    });
+
+    postal_code.change(function (){
+        data.postal_code = postal_code.val();
+    });
+
     function validateEmail(){
             if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(data.email))
              {
                return (false)
              }
                return (true)
-        
+
     }
 
     function checkEmailExist(){
@@ -51,7 +81,7 @@ let edit = function(){
                   return false;
               }
             });
-    
+
 }
 
     update.click(function(){
@@ -71,7 +101,7 @@ let edit = function(){
             data.is_password == false;
         }
 
-        
+
 
         $('.loader').show();
         $.ajax({
@@ -84,7 +114,7 @@ let edit = function(){
               $('.loader').hide();
               if(d.error){
                 alert(d.message);
-               
+
               }else{
                   alert(d.message);
                   location.reload();
@@ -92,11 +122,11 @@ let edit = function(){
         });
 
 
-       
+
     });
-  
+
     return {
       init: function(){
       }
-  }  
+  }
   }();

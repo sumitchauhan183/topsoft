@@ -14,12 +14,12 @@ class CompanyController extends Controller
 
     private $admin;
     public function __construct(Request $request)
-    { 
+    {
         $this->admin = Session()->get('admin');
         if(!$this->admin):
             Utils::jsredirect(route('admin.login'));
         else:
-            $this->checkToken();    
+            $this->checkToken();
         endif;
 
     }
@@ -36,7 +36,7 @@ class CompanyController extends Controller
     }
 
     public function add(Request $request){
-        
+
         return view('admin.company.add',[
             'title'=>'Add New Client',
             'url' => 'company/add',
@@ -76,8 +76,8 @@ class CompanyController extends Controller
             $company = Company::where('company_id',$company_id)->get()->first();
         }
         Utils::jsredirect("../../company");
-        
-        
+
+
     }
 
 
@@ -88,7 +88,7 @@ class CompanyController extends Controller
         if(!$check):
             session()->flush();
             Utils::jsredirect(route('admin.login'));
-        else:  
+        else:
             $admin = Admin::where('admin_id',$this->admin['data']['admin_id'])
                 ->get()->first()->toArray();
                 Session()->put('admin',[
@@ -96,8 +96,8 @@ class CompanyController extends Controller
                    "data"=>$admin,
                    "token" => $admin['login_token']
             ]);
-        $this->admin = Session()->get('admin');      
+        $this->admin = Session()->get('admin');
         endif;
-        
+
     }
 }

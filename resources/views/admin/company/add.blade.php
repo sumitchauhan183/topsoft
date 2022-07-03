@@ -49,7 +49,7 @@
             <div class="card-body px-0 pb-2">
                     <div class="ms-md-auto pe-md-3 d-flex align-items-center mb-4">
                             <div class="input-group input-group-outline mx-3">
-                                <label class="form-label">Name</label>
+                                <label class="form-label">Name*</label>
                                 <input type="text" class="form-control" id="name" onfocus="focused(this)" onfocusout="defocused(this)" autocomplete="off">
                             </div>
                             <div class="input-group input-group-outline mx-3">
@@ -57,15 +57,41 @@
                                 <input type="text" class="form-control" id="greek-name" onfocus="focused(this)" onfocusout="defocused(this)" autocomplete="off">
                             </div>
                             <div class="input-group input-group-outline mx-3">
-                                <label class="form-label">Email (Public Key)</label>
-                                <input type="email" class="form-control" id="email" onfocus="focused(this)" onfocusout="defocused(this)" autocomplete="off">
-                            </div>
-                            <div class="input-group input-group-outline mx-3">
-                                <label class="form-label">Password (Private Key)</label>
-                                <input type="password" class="form-control" id="password" onfocus="focused(this)" onfocusout="defocused(this)" autocomplete="off">
+                                <label class="form-label">Email (Public Key)*</label>
+                                <input type="email" name="email2" class="form-control" id="email" onfocus="focused(this)" onfocusout="defocused(this)" autocomplete="new-email">
                             </div>
                     </div>
-                    
+                <div class="ms-md-auto pe-md-3 d-flex align-items-center mb-4">
+                            <div class="input-group input-group-outline mx-3">
+                                <label class="form-label">Password (Private Key)*</label>
+                                <input type="password" name="pass2" class="form-control" id="password" onfocus="focused(this)" onfocusout="defocused(this)" autocomplete="new-password">
+                            </div>
+
+                    <div class="input-group input-group-outline mx-3">
+                        <label class="form-label">Mobile</label>
+                        <input type="text" class="form-control" id="mobile" onfocus="focused(this)" onfocusout="defocused(this)" autocomplete="off">
+                    </div>
+                        <div class="input-group input-group-outline mx-3">
+                            <label class="form-label">Address</label>
+                            <textarea class="form-control" id="address" onfocus="focused(this)" onfocusout="defocused(this)" autocomplete="off"></textarea>
+                        </div>
+
+                </div>
+                <div class="ms-md-auto pe-md-3 d-flex align-items-center mb-4">
+                    <div class="input-group input-group-outline mx-3">
+                        <label class="form-label">City</label>
+                        <input type="text" class="form-control" id="city" onfocus="focused(this)" onfocusout="defocused(this)" autocomplete="off">
+                    </div>
+                        <div class="input-group input-group-outline mx-3">
+                            <label class="form-label">Region</label>
+                            <input type="text" class="form-control" id="region" onfocus="focused(this)" onfocusout="defocused(this)" autocomplete="off">
+                        </div>
+                        <div class="input-group input-group-outline mx-3">
+                            <label class="form-label">Postal Code</label>
+                            <input type="text" class="form-control" id="postal_code" onfocus="focused(this)" onfocusout="defocused(this)" autocomplete="off">
+                        </div>
+                    </div>
+
 
                     <div class="ms-md-auto pe-md-3 d-flex align-items-center">
                     <div class="sidenav-footer w-100 bottom-0 ">
@@ -73,7 +99,7 @@
                             <button class="btn bg-gradient-primary mt-4 w-40 " id="add-company" type="button">Add</button>
                         </div>
                     </div>
-                            
+
                     </div>
 
 

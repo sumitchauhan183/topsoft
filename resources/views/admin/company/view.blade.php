@@ -58,10 +58,36 @@
                             </div>
                             <div class="input-group input-group-outline mx- focused is-focused">
                                 <label class="form-label">Email (Public key)</label>
-                                <input type="number" class="form-control" id="email" value="{{$company->pblic_key}}" readonly autocomplete="off">
+                                <input type="email" class="form-control" id="email" value="{{$company->public_key}}" readonly autocomplete="off">
                             </div>
                     </div>
-                    
+                <div class="ms-md-auto pe-md-3 d-flex align-items-center mb-4">
+
+                    <div class="input-group input-group-outline mx-3 is-filled">
+                        <label class="form-label">Mobile</label>
+                        <input type="text" class="form-control" id="mobile" onfocus="focused(this)" readonly onfocusout="defocused(this)" value="{{$company->mobile}}" autocomplete="off">
+                    </div>
+                    <div class="input-group input-group-outline mx-3 is-filled">
+                        <label class="form-label">Address</label>
+                        <textarea class="form-control" id="address" onfocus="focused(this)" readonly onfocusout="defocused(this)"  autocomplete="off">{{$company->address}}</textarea>
+                    </div>
+                    <div class="input-group input-group-outline mx-3 is-filled">
+                        <label class="form-label">City</label>
+                        <input type="text" class="form-control" id="city" onfocus="focused(this)" readonly onfocusout="defocused(this)" value="{{$company->city}}" autocomplete="off">
+                    </div>
+                </div>
+                <div class="ms-md-auto pe-md-3 d-flex align-items-center mb-4">
+
+                    <div class="input-group input-group-outline mx-3 is-filled">
+                        <label class="form-label">Region</label>
+                        <input type="text" class="form-control" id="region" onfocus="focused(this)" readonly onfocusout="defocused(this)" value="{{$company->region}}" autocomplete="off">
+                    </div>
+                    <div class="input-group input-group-outline mx-3 is-filled">
+                        <label class="form-label">Postal Code</label>
+                        <input type="text" class="form-control" id="postal_code" onfocus="focused(this)" readonly onfocusout="defocused(this)" value="{{$company->postal_code}}" autocomplete="off">
+                    </div>
+                </div>
+
               </div>
           </div>
         </div>

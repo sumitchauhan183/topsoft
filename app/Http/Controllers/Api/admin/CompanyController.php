@@ -18,7 +18,7 @@ class CompanyController extends Controller
      */
     public function __construct()
     {
-        
+
     }
 
     /**
@@ -57,11 +57,17 @@ class CompanyController extends Controller
     public function add(Request $request)
     {
         $input = $request->all();
+
         $data = [
                 "name"  => $input["name"],
                 "greek_name" => $input["greekName"],
                 "public_key"  => $input["email"],
-                "private_key" => Hash::make($input["password"])
+                "private_key" => Hash::make($input["password"]),
+                "address" => $input["address"]??"",
+                "city" => $input["city"]??"",
+                "region" => $input["region"]??"",
+                "mobile" => $input["mobile"]??"",
+                "postal_code" => $input["postal_code"]??""
         ];
        try{
         Company::create($data);
@@ -76,8 +82,9 @@ class CompanyController extends Controller
             'exception'=> $e
         ]);
        }
-        
-    } 
+
+    }
+
 
     public function update(Request $request)
     {
@@ -86,9 +93,14 @@ class CompanyController extends Controller
         $data = [
             "name"  => $input["name"],
             "greek_name" => $input["greekName"],
-            
+            "address" => $input["address"]??"",
+            "city" => $input["city"]??"",
+            "region" => $input["region"]??"",
+            "mobile" => $input["mobile"]??"",
+            "postal_code" => $input["postal_code"]??""
+
         ];
-        if($input['is_password']){
+        if($input['is_password']!="false"){
             $data['private_key'] = Hash::make($input["password"]);
         }
        try{
@@ -104,8 +116,8 @@ class CompanyController extends Controller
             'exception'=> $e
         ]);
        }
-        
-    } 
+
+    }
 
     public function list(Request $request)
     {
@@ -125,7 +137,7 @@ class CompanyController extends Controller
                 'exception'=> $e
             ]);
         }
-        
-        
-    } 
+
+
+    }
 }
