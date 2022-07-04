@@ -99,14 +99,25 @@ Route::POST('erp/company/add',[App\Http\Controllers\Api\ERP\CompanyController::c
 Route::POST('erp/company/update',[App\Http\Controllers\Api\ERP\CompanyController::class,'update']);
 Route::POST('erp/company/list',[App\Http\Controllers\Api\ERP\CompanyController::class,'list']);
 Route::POST('erp/company/detail',[App\Http\Controllers\Api\ERP\CompanyController::class,'detail']);
-Route::POST('erp/company/devices',[App\Http\Controllers\Api\ERP\CompanyController::class,'devices']);
+Route::POST('erp/company/delete',[App\Http\Controllers\Api\ERP\CompanyController::class,'delete']);
 
 Route::POST('erp/customer/add',[App\Http\Controllers\Api\ERP\CustomerController::class,'add']);
 Route::POST('erp/customer/update',[App\Http\Controllers\Api\ERP\CustomerController::class,'update']);
 Route::POST('erp/customer/list',[App\Http\Controllers\Api\ERP\CustomerController::class,'list']);
 Route::POST('erp/customer/detail',[App\Http\Controllers\Api\ERP\CustomerController::class,'detail']);
+Route::POST('erp/customer/delete',[App\Http\Controllers\Api\ERP\CompanyController::class,'delete']);
+
+Route::POST('erp/devices/add',[App\Http\Controllers\Api\ERP\AppUserController::class,'add']);
+Route::POST('erp/devices/update',[App\Http\Controllers\Api\ERP\AppUserController::class,'update']);
+Route::POST('erp/devices/detail',[App\Http\Controllers\Api\ERP\AppUserController::class,'detail']);
+Route::POST('erp/devices/delete',[App\Http\Controllers\Api\ERP\AppUserController::class,'delete']);
+Route::POST('erp/devices/company',[App\Http\Controllers\Api\ERP\AppUserController::class,'listByCompany']);
+Route::POST('erp/devices',[App\Http\Controllers\Api\ERP\AppUserController::class,'list']);
+
+
 Route::POST('erp/customer/search',[App\Http\Controllers\Api\ERP\CustomerController::class,'search']);
 Route::POST('erp/customer/invoices',[App\Http\Controllers\Api\ERP\CustomerController::class,'invoices']);
+
 
 Route::POST('erp/event/list',[App\Http\Controllers\Api\ERP\EventController::class,'list']);
 Route::POST('erp/event/list/type',[App\Http\Controllers\Api\ERP\EventController::class,'listbytype']);
@@ -129,4 +140,7 @@ Route::POST('erp/chat/send',[App\Http\Controllers\Api\ERP\ChatController::class,
 Route::POST('erp/chat/messages',[App\Http\Controllers\Api\ERP\ChatController::class,'messages']);
 Route::POST('erp/chat/delete',[App\Http\Controllers\Api\ERP\ChatController::class,'delete']);
 Route::POST('erp/chat/delete/all',[App\Http\Controllers\Api\ERP\ChatController::class,'deleteAll']);
+
+
+
 

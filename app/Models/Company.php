@@ -27,7 +27,7 @@ class Company extends Authenticatable
      */
     protected $fillable = [
         'company_id','name', 'greek_name', 'private_key','public_key',
-        'address','city','mobile','region','postal_code','status'
+        'address','city','mobile','region','postal_code','notes','status'
     ];
 
     public function license(){

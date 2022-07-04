@@ -136,7 +136,9 @@ class InvoiceController extends Controller
                         InvoiceItems::create([
                             'invoice_id'=>$invoice->id,
                             'item_id'=>$item['item_id'],
-                            'quantity'=>$item['quantity']
+                            'quantity'=>$item['quantity'],
+                            'company_id' => $item['company_id'],
+                            'client_id' => $item['client_id']
                         ]);
                     endforeach;
                     return json_encode([
@@ -208,7 +210,9 @@ class InvoiceController extends Controller
                         InvoiceItems::create([
                             'invoice_id'=>$input['invoice_id'],
                             'item_id'=>$item['item_id'],
-                            'quantity'=>$item['quantity']
+                            'quantity'=>$item['quantity'],
+                            'company_id' => $item['company_id'],
+                            'client_id' => $item['client_id']
                         ]);
                     endforeach;
                     return json_encode([

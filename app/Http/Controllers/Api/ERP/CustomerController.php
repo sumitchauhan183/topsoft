@@ -8,6 +8,7 @@ use App\Models\Devices;
 use App\Models\Clients;
 use App\Models\Invoices;
 use Exception;
+use Illuminate\Support\Facades\DB;
 
 class CustomerController extends Controller
 {
@@ -18,13 +19,13 @@ class CustomerController extends Controller
      */
 
 
-    private $input; 
+    private $input;
     public function __construct(Request $request)
     {
-       
+
         $this->input = $request->all();
         $required = $this->checkRequiredParams($this->input,['token']);
-        
+
         if($required):
             echo json_encode([
                 'error'=>true,
@@ -78,10 +79,11 @@ class CustomerController extends Controller
     public function detail(Request $request){
         $input = $this->input;
         $required = $this->checkRequiredParams($input,[
-            'client_id'
+            'client_id','company_id'
         ]);
         if(!$required):
-            $client = Clients::where('client_id',$input['client_id'])->get()->first();
+            $client = Clients::where('client_id',$input['client_id'])
+                ->where('company_id',$input['company_id'])->get()->first();
             if($client):
                 return json_encode([
                     'error'=>false,
@@ -92,8 +94,8 @@ class CustomerController extends Controller
             else:
                 return json_encode([
                     'error'=>true,
-                    'message'=>"Invalid customer id",
-                    'code'=>201
+                    'message'=>"Invalid client id or company id",
+                    'code'=>202
                 ]);
             endif;
         else:
@@ -110,14 +112,14 @@ class CustomerController extends Controller
         $input = $this->input;
         $required = $this->checkRequiredParams($input,[
             'company_id','name','address','city','postal_code','telephone','mobile','tax_number','occupation',
-            'email','discount','note','note2','payment_mode'
+            'email','payment_mode'
         ]);
         if(!$required):
             $check = Clients::where('email',$input['email'])->get()->count();
             if(!$check):
                 $input = $this->SetColumnsToBlank($input,[
-                    'region','tax_post'
-                ]);	
+                    'region','tax_post','discount','note','note2','latitude','longitude'
+                ]);
                 $client = Clients::create([
                     'company_id'=>$input['company_id'],
                         'name' => $input['name'],
@@ -134,7 +136,9 @@ class CustomerController extends Controller
                         'discount' => $input['discount'],
                         'note' => $input['note'],
                         'note2' => $input['note2'],
-                        'payment_mode' => $input['payment_mode']
+                        'payment_mode' => $input['payment_mode'],
+                        'latitude' => $input['latitude'],
+                        'longitude'   => $input['longitude']
 
                 ]);
                 if($client):
@@ -143,21 +147,21 @@ class CustomerController extends Controller
                     return json_encode([
                         'error'=>false,
                         'message'=>"Customer created successfully",
-                        'code'=>201,
+                        'code'=>200,
                         'data'=>$client
                     ]);
                 else:
                     return json_encode([
                         'error'=>true,
-                        'message'=>"server issue client not created",
-                        'code'=>201
+                        'message'=>"server issue customer not created",
+                        'code'=>203
                     ]);
                 endif;
             else:
                 return json_encode([
                     'error'=>true,
-                    'message'=>"email already use for another client",
-                    'code'=>201
+                    'message'=>"email already use for another customer",
+                    'code'=>202
                 ]);
             endif;
         else:
@@ -167,14 +171,14 @@ class CustomerController extends Controller
                 'code'=>201
             ]);
         endif;
-        
+
     }
 
     public function update(Request $request){
         $input = $this->input;
         $required = $this->checkRequiredParams($input,[
-            'client_id','name','region','address','city','postal_code','telephone','mobile','tax_number','tax_post','occupation',
-            'email','discount','note','note2'
+            'company_id','client_id','name','address','city','postal_code','telephone','mobile','tax_number','occupation',
+            'email','payment_mode'
         ]);
         if(!$required):
             $check  = Clients::where('email',$input['email'])
@@ -182,9 +186,10 @@ class CustomerController extends Controller
                             ->get()->count();
             if(!$check):
                 $input = $this->SetColumnsToBlank($input,[
-                    'region','tax_post'
-                ]);	
-                $client = Clients::where('client_id',$input['client_id'])->update([
+                    'region','tax_post','discount','note','note2','latitude','longitude'
+                ]);
+                $client = Clients::where('client_id',$input['client_id'])
+                    ->where('company_id',$input['company_id'])->update([
                     'name' => $input['name'],
                     'region' => $input['region'],
                     'address' => $input['address'],
@@ -198,30 +203,33 @@ class CustomerController extends Controller
                     'email' => $input['email'],
                     'discount' => $input['discount'],
                     'note' => $input['note'],
-                    'note2' => $input['note2']
+                    'note2' => $input['note2'],
+                    'payment_mode' => $input['payment_mode'],
+                    'latitude' => $input['latitude'],
+                    'longitude'   => $input['longitude']
                 ]);
-                
+
                 if($client):
                     return json_encode([
                         'error'=>false,
                         'message'=>"Details updated successfully",
-                        'code'=>201
+                        'code'=>200
                     ]);
                 else:
                     return json_encode([
                         'error'=>true,
                         'message'=>"server issue client not created",
-                        'code'=>201
+                        'code'=>203
                     ]);
                 endif;
             else:
                 return json_encode([
                     'error'=>true,
                     'message'=>"email already use for another client",
-                    'code'=>201
+                    'code'=>202
                 ]);
             endif;
-                       
+
         else:
             return json_encode([
                 'error'=>true,
@@ -234,10 +242,10 @@ class CustomerController extends Controller
     public function list(Request $request){
         $input = $this->input;
         $required = $this->checkRequiredParams($input,[
-            'page','count'
+            'company_id','page','count'
         ]);
         if(!$required):
-            $clients = Clients::skip($input['page']*$input['count'])->take($input['count'])->get();
+            $clients = Clients::where('company_id',$input['company_id'])->skip($input['page']*$input['count'])->take($input['count'])->get();
             return json_encode([
                 'error'=>false,
                 'message'=>"listing done",
@@ -253,7 +261,51 @@ class CustomerController extends Controller
         endif;
     }
 
+    public function delete(Request $request){
+        $input = $this->input;
+        $required = $this->checkRequiredParams($input,[
+            'company_id','client_id'
+        ]);
+        if(!$required):
+            DB::beginTransaction();
 
+            try {
+
+                DB::table('clients')->where('company_id',$input['company_id'])
+                    ->where('client_id',$input['client_id'])->delete();
+                DB::table('invoices')->where('company_id',$input['company_id'])
+                    ->where('client_id',$input['client_id'])->delete();
+                DB::table('receipts')->where('company_id',$input['company_id'])
+                    ->where('client_id',$input['client_id'])->delete();
+                DB::table('events')->where('company_id',$input['company_id'])
+                    ->where('client_id',$input['client_id'])->delete();
+                DB::table('invoice_items')->where('company_id',$input['company_id'])
+                    ->where('client_id',$input['client_id'])->delete();
+                DB::commit();
+                return json_encode([
+                    'error'=>false,
+                    'message'=>"Customer deleted successfully",
+                    'data'=> (object)[],
+                    'code'=>200
+                ]);
+            } catch (\Exception $e) {
+                DB::rollback();
+                return json_encode([
+                    'error'=>false,
+                    'message'=>"Something went wrong",
+                    'data'=> $e,
+                    'code'=>202
+                ]);
+            }
+
+        else:
+            return json_encode([
+                'error'=>true,
+                'message'=>"$required is required key",
+                'code'=>201
+            ]);
+        endif;
+    }
 
    private function checkToken(){
            $token = $this->input['token'];
@@ -261,8 +313,8 @@ class CustomerController extends Controller
                return false;
            else:
                return true;
-           endif;                    
-        
+           endif;
+
    }
 
    private function checkRequiredParams($input,$required){
@@ -282,5 +334,5 @@ class CustomerController extends Controller
      endforeach;
      return $input;
  }
-    
+
 }

@@ -18,13 +18,14 @@ class EventController extends Controller
      */
 
 
-    private $input; 
+    private $input;
+    private $company_id;
     public function __construct(Request $request)
     {
-       
+
         $this->input = $request->all();
         $required = $this->checkRequiredParams($this->input,['device_id','token']);
-        
+
         if($required):
             echo json_encode([
                 'error'=>true,
@@ -59,14 +60,15 @@ class EventController extends Controller
         $input = $this->input;
         $required = $this->checkRequiredParams($input,[
             'client_id','event_type','event_date'
-        ]); 
+        ]);
         if(!$required):
                 $input = $this->SetColumnsToBlank($input,[
                     'observation','is_completed', 'status','signature', 'completed_date','latitude','longitude'
-                ]);	
+                ]);
                 if($input["event_type"]=="checklist"):
                     $data = [
                         'client_id'=>$input['client_id'],
+                        'company_id'=>$this->company_id,
                         'event_type' => $input['event_type'],
                         'observation' => $input['observation'],
                         'checklist' => $input['checklist'],
@@ -78,6 +80,7 @@ class EventController extends Controller
                     if($input['completed_date']==""):
                         $data = [
                             'client_id'=>$input['client_id'],
+                            'company_id'=>$this->company_id,
                             'event_type' => $input['event_type'],
                             'status' => $input['status'],
                             'observation' => $input['observation'],
@@ -90,6 +93,7 @@ class EventController extends Controller
                     else:
                         $data = [
                             'client_id'=>$input['client_id'],
+                            'company_id'=>$this->company_id,
                             'event_type' => $input['event_type'],
                             'status' => $input['status'],
                             'observation' => $input['observation'],
@@ -123,7 +127,7 @@ class EventController extends Controller
                 'code'=>201
             ]);
         endif;
-        
+
     }
 
     public function update(Request $request){
@@ -132,10 +136,10 @@ class EventController extends Controller
             'client_id','event_type','event_id','event_date'
         ]);
         if(!$required):
-            
+
                 $input = $this->SetColumnsToBlank($input,[
                     'observation','is_completed','status', 'signature', 'completed_date','latitude','longitude'
-                ]);	
+                ]);
                 if($input["event_type"]=="checklist"):
                     $data = [
                         'client_id'=>$input['client_id'],
@@ -174,8 +178,8 @@ class EventController extends Controller
                         'code'=>201
                     ]);
                 endif;
-                
-                
+
+
         else:
             return json_encode([
                 'error'=>true,
@@ -386,9 +390,16 @@ class EventController extends Controller
    private function checkToken(){
            $check = Devices::where('device_id',$this->input['device_id'])
                         ->where('login_token',$this->input['token'])
-                        ->get()->count();   
-            return $check;                    
-        
+                        ->get()->count();
+           if($check):
+               $detail = Devices::where('device_id',$this->input['device_id'])
+                   ->where('login_token',$this->input['token'])
+                   ->get()->first();
+               $this->company_id = $detail->company_id;
+           endif;
+
+            return $check;
+
    }
 
    private function checkRequiredParams($input,$required){
@@ -413,5 +424,5 @@ class EventController extends Controller
      endforeach;
      return $input;
  }
-    
+
 }
