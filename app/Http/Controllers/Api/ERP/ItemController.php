@@ -17,13 +17,13 @@ class ItemController extends Controller
      */
 
 
-    private $input; 
+    private $input;
     public function __construct(Request $request)
     {
-       
+
         $this->input = $request->all();
         $required = $this->checkRequiredParams($this->input,['token']);
-        
+
         if($required):
             echo json_encode([
                 'error'=>true,
@@ -53,37 +53,42 @@ class ItemController extends Controller
     }
 
     public function detail(Request $request){
-        $input = $this->input;
+        $input = $request->all();
         $required = $this->checkRequiredParams($input,[
-            'item_id'
+            'item_id','company_id'
         ]);
         if(!$required):
-            $item = Items::where('item_id',$input['item_id'])->get()->first();
+            $item = Items::where('company_id',$input['company_id'])
+                ->where('item_id',$input['item_id'])
+                ->get()
+                ->first();
             if($item):
                 return json_encode([
                     'error'=>false,
-                    'message'=>"details listed",
+                    'message'=>"Item details listed",
                     'data'=> $item,
                     'code'=>200
                 ]);
             else:
                 return json_encode([
                     'error'=>true,
-                    'message'=>"Invalid item id",
-                    'code'=>201
+                    'message'=>"Invalid item id or company id",
+                    'data'=> (object)[],
+                    'code'=>202
                 ]);
             endif;
         else:
             return json_encode([
                 'error'=>true,
                 'message'=>"$required is required key",
+                'data'=>(object)[],
                 'code'=>201
             ]);
         endif;
     }
 
     public function detailByBarcode(Request $request){
-        $input = $this->input;
+        $input = $request->all();
         $required = $this->checkRequiredParams($input,[
             'barcode'
         ]);
@@ -92,7 +97,7 @@ class ItemController extends Controller
             if($item):
                 return json_encode([
                     'error'=>false,
-                    'message'=>"details listed",
+                    'message'=>"item details listed",
                     'data'=> $item,
                     'code'=>200
                 ]);
@@ -100,23 +105,25 @@ class ItemController extends Controller
                 return json_encode([
                     'error'=>true,
                     'message'=>"Invalid barcode",
-                    'code'=>201
+                    'data'=> (object)[],
+                    'code'=>202
                 ]);
             endif;
         else:
             return json_encode([
                 'error'=>true,
                 'message'=>"$required is required key",
+                'data'=> (object)[],
                 'code'=>201
             ]);
         endif;
     }
 
-    public function add()
+    public function add(Request $request)
     {
-        $input = $this->input;
+        $input = $request->all();
         $required = $this->checkRequiredParams($input,[
-            'company_id','name','quantity','price','description','vat','discount','final_price'
+            'company_id','name','quantity','price','description','vat','discount'
         ]);
         if(!$required):
             $check = Items::where('name',$input['name'])->where('company_id',$input['company_id'])->get()->count();
@@ -129,7 +136,7 @@ class ItemController extends Controller
                         'description'=> $input['description'],
                         'vat' => $input['vat'],
                         'discount'=> $input['discount'],
-                        'final_price' => $input['price'] + ($input['price']*($input['vat']/100)) - ($input['price']*($input['discount']/100))
+                        'final_price' => $input['price'] + (($input['price']-($input['price']*($input['discount']/100)))*($input['vat']/100)) - ($input['price']*($input['discount']/100))
                 ]);
                 if($item):
                     $barcode = $this->generateBarcode($item);
@@ -139,37 +146,40 @@ class ItemController extends Controller
                     return json_encode([
                         'error'=>false,
                         'message'=>"Item created successfully",
-                        'code'=>201,
+                        'code'=>200,
                         'data'=>$item
                     ]);
                 else:
                     return json_encode([
                         'error'=>true,
                         'message'=>"server issue item not created",
-                        'code'=>201
+                        'data'=> (object)[],
+                        'code'=>203
                     ]);
                 endif;
             else:
                 return json_encode([
                     'error'=>true,
                     'message'=>"Item alredy in item list with same name",
-                    'code'=>201
+                    'data'=> (object)[],
+                    'code'=>202
                 ]);
             endif;
         else:
             return json_encode([
                 'error'=>true,
                 'message'=>"$required is required key",
+                'data'=> (object)[],
                 'code'=>201
             ]);
         endif;
-        
+
     }
 
     public function update(Request $request){
-        $input = $this->input;
+        $input = $request->all();
         $required = $this->checkRequiredParams($input,[
-           'company_id', 'name','quantity','price','description','vat','discount','final_price','item_id'
+           'company_id', 'name','quantity','price','description','vat','discount','item_id'
         ]);
         if(!$required):
             $check  = Items::where('name',$input['name'])
@@ -177,42 +187,47 @@ class ItemController extends Controller
                             ->where('company_id','==',$input['company_id'])
                             ->get()->count();
             if(!$check):
-                
-                $item = Items::where('item_id',$input['item_id'])->update([
+
+                $item = Items::where('item_id',$input['item_id'])
+                         ->where('company_id',$input['company_id'])->update([
                         'name' => $input['name'],
                         'quantity' => $input['quantity'],
                         'price' => $input['price'],
                         'description'=> $input['description'],
                         'vat' => $input['vat'],
                         'discount'=> $input['discount'],
-                        'final_price' => $input['price']
+                        'final_price' => $input['price'] + (($input['price']-($input['price']*($input['discount']/100)))*($input['vat']/100)) - ($input['price']*($input['discount']/100))
                 ]);
-                
+
                 if($item):
                     return json_encode([
                         'error'=>false,
-                        'message'=>"Details updated successfully",
-                        'code'=>201
+                        'message'=>"Item updated successfully",
+                        'data'=> (object)[],
+                        'code'=>200
                     ]);
                 else:
                     return json_encode([
                         'error'=>true,
-                        'message'=>"server issue client not created",
-                        'code'=>201
+                        'message'=>"server issue item not updated",
+                        'data'=> (object)[],
+                        'code'=>203
                     ]);
                 endif;
             else:
                 return json_encode([
                     'error'=>true,
                     'message'=>"Item already exist with same name",
-                    'code'=>201
+                    'data'=> (object)[],
+                    'code'=>202
                 ]);
             endif;
-                       
+
         else:
             return json_encode([
                 'error'=>true,
                 'message'=>"$required is required key",
+                'data'=> (object)[],
                 'code'=>201
             ]);
         endif;
@@ -221,10 +236,13 @@ class ItemController extends Controller
     public function list(Request $request){
         $input = $this->input;
         $required = $this->checkRequiredParams($input,[
-            'page','count'
+            'company_id','page','count'
         ]);
         if(!$required):
-            $items = Items::skip($input['page']*$input['count'])->take($input['count'])->get();
+            $items = Items::where('company_id',$input['company_id'])
+                            ->skip($input['page']*$input['count'])
+                            ->take($input['count'])
+                            ->get();
             return json_encode([
                 'error'=>false,
                 'message'=>"listing done",
@@ -235,35 +253,41 @@ class ItemController extends Controller
             return json_encode([
                 'error'=>true,
                 'message'=>"$required is required key",
+                'data'=> (object)[],
                 'code'=>201
             ]);
         endif;
     }
 
     public function delete(Request $request){
-        $input = $this->input;
+        $input = $request->all();
         $required = $this->checkRequiredParams($input,[
-            'client_id'
+            'company_id','item_id'
         ]);
         if(!$required):
-            $client = Clients::where('client_id',$input['client_id'])->delete();
-            if($client):
+            $item = Items::where('company_id',$input['company_id'])
+                        ->where('item_id',$input['item_id'])
+                        ->delete();
+            if($item):
                 return json_encode([
                     'error'=>false,
-                    'message'=>"client removed successfully",
+                    'message'=>"item removed successfully",
+                    'data'=>(object)[],
                     'code'=>200
                 ]);
             else:
                 return json_encode([
                     'error'=>true,
-                    'message'=>"sever issue client not removed",
-                    'code'=>201
+                    'message'=>"sever issue item not removed",
+                    'data'=>(object)[],
+                    'code'=>202
                 ]);
             endif;
         else:
             return json_encode([
                 'error'=>true,
                 'message'=>"$required is required key",
+                'data'=>(object)[],
                 'code'=>201
             ]);
         endif;
@@ -285,8 +309,8 @@ class ItemController extends Controller
         return false;
     else:
         return true;
-    endif;                    
- 
+    endif;
+
 }
 
    private function checkRequiredParams($input,$required){
@@ -303,5 +327,5 @@ class ItemController extends Controller
         return  md5($id.time());
     }
 
-    
+
 }
