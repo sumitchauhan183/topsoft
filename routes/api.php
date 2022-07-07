@@ -105,7 +105,7 @@ Route::POST('erp/customer/add',[App\Http\Controllers\Api\ERP\CustomerController:
 Route::POST('erp/customer/update',[App\Http\Controllers\Api\ERP\CustomerController::class,'update']);
 Route::POST('erp/customer/list',[App\Http\Controllers\Api\ERP\CustomerController::class,'list']);
 Route::POST('erp/customer/detail',[App\Http\Controllers\Api\ERP\CustomerController::class,'detail']);
-Route::POST('erp/customer/delete',[App\Http\Controllers\Api\ERP\CompanyController::class,'delete']);
+Route::POST('erp/customer/delete',[App\Http\Controllers\Api\ERP\CustomerController::class,'delete']);
 
 Route::POST('erp/devices/add',[App\Http\Controllers\Api\ERP\AppUserController::class,'add']);
 Route::POST('erp/devices/update',[App\Http\Controllers\Api\ERP\AppUserController::class,'update']);
@@ -120,9 +120,11 @@ Route::POST('erp/item/details',[App\Http\Controllers\Api\ERP\ItemController::cla
 Route::POST('erp/item/delete',[App\Http\Controllers\Api\ERP\ItemController::class,'delete']);
 Route::POST('erp/item/details/barcode',[App\Http\Controllers\Api\ERP\ItemController::class,'detailByBarcode']);
 
+
+
 Route::POST('erp/chat/list',[App\Http\Controllers\Api\ERP\ChatController::class,'messagesList']);
-Route::POST('erp/chat/send',[App\Http\Controllers\Api\ERP\ChatController::class,'send']);
 Route::POST('erp/chat/messages',[App\Http\Controllers\Api\ERP\ChatController::class,'messages']);
+Route::POST('erp/chat/send',[App\Http\Controllers\Api\ERP\ChatController::class,'send']);
 Route::POST('erp/chat/delete',[App\Http\Controllers\Api\ERP\ChatController::class,'delete']);
 Route::POST('erp/chat/delete/all',[App\Http\Controllers\Api\ERP\ChatController::class,'deleteAll']);
 

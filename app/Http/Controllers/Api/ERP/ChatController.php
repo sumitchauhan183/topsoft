@@ -18,13 +18,13 @@ class ChatController extends Controller
      */
 
 
-    private $input; 
+    private $input;
     public function __construct(Request $request)
     {
-       
+
         $this->input = $request->all();
         $required = $this->checkRequiredParams($this->input,['token']);
-        
+
         if($required):
             echo json_encode([
                 'error'=>true,
@@ -71,23 +71,26 @@ class ChatController extends Controller
                     return json_encode([
                         'error'=>false,
                         'message'=>"Message sent successfully",
+                        'data'=>(object)[],
                         'code'=>201
                     ]);
                 else:
                     return json_encode([
                         'error'=>true,
                         'message'=>"server issue message not sent",
-                        'code'=>201
+                        'data'=>(object)[],
+                        'code'=>202
                     ]);
                 endif;
         else:
             return json_encode([
                 'error'=>true,
                 'message'=>"$required is required key",
+                'data'=>(object)[],
                 'code'=>201
             ]);
         endif;
-        
+
     }
 
     public function messages(Request $request){
@@ -113,6 +116,7 @@ class ChatController extends Controller
             return json_encode([
                 'error'=>true,
                 'message'=>"$required is required key",
+                'data'=>(object)[],
                 'code'=>201
             ]);
         endif;
@@ -124,21 +128,27 @@ class ChatController extends Controller
             'company_id'
         ]);
         if(!$required):
-            $chat  = Chat::select('devices.device_id','devices.email','devices.status')
+            $chat  = Chat::select('chat.device_id')
                             ->where('chat.company_id',$input['company_id'])
                             ->join('devices','devices.device_id','chat.device_id')
-                            ->groupBy('device_id')
+                            ->groupBy('chat.device_id')
                             ->get();
+        $data = [];
+        foreach($chat as $c):
+            $device = Devices::select('device_id','status','email')->where('device_id',$c->device_id)->get()->first();
+            array_push($data,$device);
+        endforeach;
                     return json_encode([
                         'error'=>false,
                         'message'=>"chat List",
-                        'data'=>$chat,
+                        'data'=>$data,
                         'code'=>200
                     ]);
         else:
             return json_encode([
                 'error'=>true,
                 'message'=>"$required is required key",
+                'data'=>(object)[],
                 'code'=>201
             ]);
         endif;
@@ -147,20 +157,34 @@ class ChatController extends Controller
     public function delete(Request $request){
         $input = $this->input;
         $required = $this->checkRequiredParams($input,[
-           'chat_id'
+           'company_id','device_id','chat_id'
         ]);
         if(!$required):
             $chat  = Chat::where('chat_id',$input['chat_id'])
-                            ->update(['company_delete'=>1]);
+                        ->where('company_id',$input['company_id'])
+                        ->where('device_id',$input['device_id'])
+                        ->update(['company_delete'=>1]);
+            if($chat):
                     return json_encode([
                         'error'=>false,
-                        'message'=>"Deleted",
+                        'message'=>"message deleted",
+                        'data'=>(object)[],
                         'code'=>200
                     ]);
+            else:
+                return json_encode([
+                    'error'=>true,
+                    'message'=>"Invalid chat_id, company_id or device_id",
+                    'data'=>(object)[],
+                    'code'=>202
+                ]);
+            endif;
         else:
             return json_encode([
                 'error'=>true,
                 'message'=>"$required is required key",
+                'data'=>(object)[],
+                'data'=>(object)[],
                 'code'=>201
             ]);
         endif;
@@ -169,25 +193,37 @@ class ChatController extends Controller
     public function deleteAll(Request $request){
         $input = $this->input;
         $required = $this->checkRequiredParams($input,[
-            'device_id'
+            'company_id','device_id'
         ]);
         if(!$required):
             $chat  = Chat::where('device_id',$input['device_id'])
+                            ->where('company_id',$input['company_id'])
                             ->update(['company_delete'=>1]);
-                    return json_encode([
-                        'error'=>false,
-                        'message'=>"Deleted",
-                        'code'=>200
-                    ]);
+
+            if($chat):
+                return json_encode([
+                    'error'=>false,
+                    'message'=>"chat deleted",
+                    'data'=>(object)[],
+                    'code'=>200
+                ]);
+            else:
+                return json_encode([
+                    'error'=>true,
+                    'message'=>"Invalid company_id or device_id",
+                    'data'=>(object)[],
+                    'code'=>202
+                ]);
+            endif;
         else:
             return json_encode([
                 'error'=>true,
                 'message'=>"$required is required key",
+                'data'=>(object)[],
                 'code'=>201
             ]);
         endif;
     }
-
 
     private function checkToken(){
         $token = $this->input['token'];
@@ -195,8 +231,8 @@ class ChatController extends Controller
             return false;
         else:
             return true;
-        endif;                    
-     
+        endif;
+
 }
 
    private function checkRequiredParams($input,$required){
@@ -217,5 +253,5 @@ class ChatController extends Controller
      endforeach;
      return $input;
  }
-    
+
 }

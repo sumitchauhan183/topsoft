@@ -4,16 +4,14 @@ namespace App\Http\Controllers\API\ERP;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Devices;
 use App\Models\Invoices;
 use App\Models\InvoiceItems;
-use App\Models\Items;
-use App\Models\Company;
-use App\Models\Clients;
+use App\Models\Events;
+use App\Models\Receipts;
 use DB;
 use Exception;
 
-class InvoiceController extends Controller
+class ListingController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -22,13 +20,13 @@ class InvoiceController extends Controller
      */
 
 
-    private $input; 
+    private $input;
     public function __construct(Request $request)
     {
-       
+
         $this->input = $request->all();
         $required = $this->checkRequiredParams($this->input,['token']);
-        
+
         if($required):
             echo json_encode([
                 'error'=>true,
@@ -97,7 +95,7 @@ class InvoiceController extends Controller
             'page','count'
         ]);
         if(!$required):
-            $invoices = Invoices::join('clients as c','invoices.client_id','c.client_id')  
+            $invoices = Invoices::join('clients as c','invoices.client_id','c.client_id')
                                   ->skip($input['page']*$input['count'])
                                   ->take($input['count'])
                                   ->select('invoices.*','c.name as client_name')
@@ -117,7 +115,7 @@ class InvoiceController extends Controller
         endif;
     }
 
-    
+
 
     public function items(Request $request){
         $input = $this->input;
@@ -151,8 +149,8 @@ class InvoiceController extends Controller
             return false;
         else:
             return true;
-        endif;                    
-     
+        endif;
+
 }
 
 
@@ -182,5 +180,5 @@ class InvoiceController extends Controller
         return  md5($id.time());
     }
 
-    
+
 }

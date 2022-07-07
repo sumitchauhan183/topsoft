@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api\ERP;
 
+use App\Models\Company;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Devices;
@@ -30,6 +31,7 @@ class CustomerController extends Controller
             echo json_encode([
                 'error'=>true,
                 'message'=>"$required is required key",
+                'data'=>(object)[],
                 'code'=>201
             ]);
             die();
@@ -38,6 +40,7 @@ class CustomerController extends Controller
             echo json_encode([
                 'error'=>true,
                 'message'=>"Invalid Token",
+                'data'=>(object)[],
                 'code'=>201
             ]);
             die();
@@ -71,6 +74,7 @@ class CustomerController extends Controller
             return json_encode([
                 'error'=>true,
                 'message'=>"$required is required key",
+                'data'=>(object)[],
                 'code'=>201
             ]);
         endif;
@@ -95,6 +99,7 @@ class CustomerController extends Controller
                 return json_encode([
                     'error'=>true,
                     'message'=>"Invalid client id or company id",
+                    'data'=>(object)[],
                     'code'=>202
                 ]);
             endif;
@@ -102,6 +107,7 @@ class CustomerController extends Controller
             return json_encode([
                 'error'=>true,
                 'message'=>"$required is required key",
+                'data'=>(object)[],
                 'code'=>201
             ]);
         endif;
@@ -115,13 +121,17 @@ class CustomerController extends Controller
             'email','payment_mode'
         ]);
         if(!$required):
-            $check = Clients::where('email',$input['email'])->get()->count();
-            if(!$check):
-                $input = $this->SetColumnsToBlank($input,[
-                    'region','tax_post','discount','note','note2','latitude','longitude'
-                ]);
-                $client = Clients::create([
-                    'company_id'=>$input['company_id'],
+            $check = Company::where('company_id',$input['company_id'])->get()->count();
+            if($check):
+                $check = Clients::where('email',$input['email'])
+                    ->where('company_id','=',$input['company_id'])
+                    ->get()->count();
+                if(!$check):
+                    $input = $this->SetColumnsToBlank($input,[
+                        'region','tax_post','discount','note','note2','latitude','longitude'
+                    ]);
+                    $client = Clients::create([
+                        'company_id'=>$input['company_id'],
                         'name' => $input['name'],
                         'region' => $input['region'],
                         'address' => $input['address'],
@@ -140,27 +150,37 @@ class CustomerController extends Controller
                         'latitude' => $input['latitude'],
                         'longitude'   => $input['longitude']
 
-                ]);
-                if($client):
-                    $client->client_id = $client->id;
-                    unset($client->id);
-                    return json_encode([
-                        'error'=>false,
-                        'message'=>"Customer created successfully",
-                        'code'=>200,
-                        'data'=>$client
                     ]);
+                    if($client):
+                        $client->client_id = $client->id;
+                        unset($client->id);
+                        return json_encode([
+                            'error'=>false,
+                            'message'=>"Customer created successfully",
+                            'code'=>200,
+                            'data'=>$client
+                        ]);
+                    else:
+                        return json_encode([
+                            'error'=>true,
+                            'message'=>"server issue customer not created",
+                            'data'=>(object)[],
+                            'code'=>204
+                        ]);
+                    endif;
                 else:
                     return json_encode([
                         'error'=>true,
-                        'message'=>"server issue customer not created",
+                        'message'=>"email already use for another customer",
+                        'data'=>(object)[],
                         'code'=>203
                     ]);
                 endif;
             else:
                 return json_encode([
                     'error'=>true,
-                    'message'=>"email already use for another customer",
+                    'message'=>"Company not exists",
+                    'data'=>(object)[],
                     'code'=>202
                 ]);
             endif;
@@ -168,6 +188,7 @@ class CustomerController extends Controller
             return json_encode([
                 'error'=>true,
                 'message'=>"$required is required key",
+                'data'=>(object)[],
                 'code'=>201
             ]);
         endif;
@@ -181,59 +202,73 @@ class CustomerController extends Controller
             'email','payment_mode'
         ]);
         if(!$required):
-            $check  = Clients::where('email',$input['email'])
-                            ->where('client_id','!=',$input['client_id'])
-                            ->get()->count();
-            if(!$check):
-                $input = $this->SetColumnsToBlank($input,[
-                    'region','tax_post','discount','note','note2','latitude','longitude'
-                ]);
-                $client = Clients::where('client_id',$input['client_id'])
-                    ->where('company_id',$input['company_id'])->update([
-                    'name' => $input['name'],
-                    'region' => $input['region'],
-                    'address' => $input['address'],
-                    'city' => $input['city'],
-                    'postal_code' => $input['postal_code'],
-                    'telephone' => $input['telephone'],
-                    'mobile' => $input['mobile'],
-                    'tax_number' => $input['tax_number'],
-                    'tax_post' => $input['tax_post'],
-                    'occupation' => $input['occupation'],
-                    'email' => $input['email'],
-                    'discount' => $input['discount'],
-                    'note' => $input['note'],
-                    'note2' => $input['note2'],
-                    'payment_mode' => $input['payment_mode'],
-                    'latitude' => $input['latitude'],
-                    'longitude'   => $input['longitude']
-                ]);
-
-                if($client):
-                    return json_encode([
-                        'error'=>false,
-                        'message'=>"Details updated successfully",
-                        'code'=>200
+            $check = Company::where('company_id',$input['company_id'])->get()->count();
+            if($check):
+                $check  = Clients::where('email',$input['email'])
+                    ->where('company_id','=',$input['company_id'])
+                    ->where('client_id','!=',$input['client_id'])
+                    ->get()->count();
+                if(!$check):
+                    $input = $this->SetColumnsToBlank($input,[
+                        'region','tax_post','discount','note','note2','latitude','longitude'
                     ]);
+                    $client = Clients::where('client_id',$input['client_id'])
+                        ->where('company_id',$input['company_id'])->update([
+                            'name' => $input['name'],
+                            'region' => $input['region'],
+                            'address' => $input['address'],
+                            'city' => $input['city'],
+                            'postal_code' => $input['postal_code'],
+                            'telephone' => $input['telephone'],
+                            'mobile' => $input['mobile'],
+                            'tax_number' => $input['tax_number'],
+                            'tax_post' => $input['tax_post'],
+                            'occupation' => $input['occupation'],
+                            'email' => $input['email'],
+                            'discount' => $input['discount'],
+                            'note' => $input['note'],
+                            'note2' => $input['note2'],
+                            'payment_mode' => $input['payment_mode'],
+                            'latitude' => $input['latitude'],
+                            'longitude'   => $input['longitude']
+                        ]);
+
+                    if($client):
+                        return json_encode([
+                            'error'=>false,
+                            'message'=>"Details updated successfully",
+                            'data'=>(object)[],
+                            'code'=>200
+                        ]);
+                    else:
+                        return json_encode([
+                            'error'=>true,
+                            'message'=>"server issue client not created",
+                            'data'=>(object)[],
+                            'code'=>204
+                        ]);
+                    endif;
                 else:
                     return json_encode([
                         'error'=>true,
-                        'message'=>"server issue client not created",
+                        'message'=>"email already use for another client",
+                        'data'=>(object)[],
                         'code'=>203
                     ]);
                 endif;
             else:
                 return json_encode([
                     'error'=>true,
-                    'message'=>"email already use for another client",
+                    'message'=>"Company not exists",
+                    'data'=>(object)[],
                     'code'=>202
                 ]);
             endif;
-
         else:
             return json_encode([
                 'error'=>true,
                 'message'=>"$required is required key",
+                'data'=>(object)[],
                 'code'=>201
             ]);
         endif;
@@ -256,6 +291,7 @@ class CustomerController extends Controller
             return json_encode([
                 'error'=>true,
                 'message'=>"$required is required key",
+                'data'=>(object)[],
                 'code'=>201
             ]);
         endif;
@@ -302,6 +338,7 @@ class CustomerController extends Controller
             return json_encode([
                 'error'=>true,
                 'message'=>"$required is required key",
+                'data'=>(object)[],
                 'code'=>201
             ]);
         endif;
