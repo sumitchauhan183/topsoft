@@ -60,16 +60,30 @@ class CustomerController extends Controller
     public function invoices(Request $request){
         $input = $this->input;
         $required = $this->checkRequiredParams($input,[
-            'client_id'
+            'client_id','company_id','page','count'
         ]);
         if(!$required):
-            $client = Invoices::where('client_id',$input['client_id'])->get();
+            $comCheck = Company::where('company_id',$input['company_id'])->get()->count();
+            if($comCheck):
+                $client = Invoices::where('company_id',$input['company_id'])
+                    ->where('client_id',$input['client_id'])
+                    ->skip($input['page']*$input['count'])
+                    ->take($input['count'])->get();
                 return json_encode([
                     'error'=>false,
-                    'message'=>"details listed",
+                    'message'=>"Invoices listed",
                     'data'=> $client,
                     'code'=>200
                 ]);
+            else:
+                return json_encode([
+                    'error'=>false,
+                    'message'=>"Company not exist",
+                    'data'=>(object)[],
+                    'code'=>202
+                ]);
+            endif;
+
         else:
             return json_encode([
                 'error'=>true,
@@ -86,6 +100,8 @@ class CustomerController extends Controller
             'client_id','company_id'
         ]);
         if(!$required):
+            $comCheck = Company::where('company_id',$input['company_id'])->get()->count();
+            if($comCheck):
             $client = Clients::where('client_id',$input['client_id'])
                 ->where('company_id',$input['company_id'])->get()->first();
             if($client):
@@ -98,7 +114,15 @@ class CustomerController extends Controller
             else:
                 return json_encode([
                     'error'=>true,
-                    'message'=>"Invalid client id or company id",
+                    'message'=>"Invalid client id",
+                    'data'=>(object)[],
+                    'code'=>203
+                ]);
+            endif;
+            else:
+                return json_encode([
+                    'error'=>false,
+                    'message'=>"Company not exist",
                     'data'=>(object)[],
                     'code'=>202
                 ]);
@@ -280,13 +304,25 @@ class CustomerController extends Controller
             'company_id','page','count'
         ]);
         if(!$required):
-            $clients = Clients::where('company_id',$input['company_id'])->skip($input['page']*$input['count'])->take($input['count'])->get();
+            $comCheck = Company::where('company_id',$input['company_id'])->get()->count();
+            if($comCheck):
+            $clients = Clients::where('company_id',$input['company_id'])
+                ->skip($input['page']*$input['count'])
+                ->take($input['count'])->get();
             return json_encode([
                 'error'=>false,
                 'message'=>"listing done",
                 'data'=> $clients,
                 'code'=>200
             ]);
+            else:
+                return json_encode([
+                    'error'=>true,
+                    'message'=>"Company not exists",
+                    'data'=>(object)[],
+                    'code'=>202
+                ]);
+            endif;
         else:
             return json_encode([
                 'error'=>true,
@@ -303,6 +339,8 @@ class CustomerController extends Controller
             'company_id','client_id'
         ]);
         if(!$required):
+            $comCheck = Company::where('company_id',$input['company_id'])->get()->count();
+            if($comCheck):
             DB::beginTransaction();
 
             try {
@@ -330,9 +368,17 @@ class CustomerController extends Controller
                     'error'=>false,
                     'message'=>"Something went wrong",
                     'data'=> $e,
-                    'code'=>202
+                    'code'=>203
                 ]);
             }
+            else:
+                return json_encode([
+                    'error'=>true,
+                    'message'=>"Company not exists",
+                    'data'=>(object)[],
+                    'code'=>202
+                ]);
+            endif;
 
         else:
             return json_encode([

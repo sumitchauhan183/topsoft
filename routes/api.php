@@ -106,6 +106,7 @@ Route::POST('erp/customer/update',[App\Http\Controllers\Api\ERP\CustomerControll
 Route::POST('erp/customer/list',[App\Http\Controllers\Api\ERP\CustomerController::class,'list']);
 Route::POST('erp/customer/detail',[App\Http\Controllers\Api\ERP\CustomerController::class,'detail']);
 Route::POST('erp/customer/delete',[App\Http\Controllers\Api\ERP\CustomerController::class,'delete']);
+Route::POST('erp/customer/invoices',[App\Http\Controllers\Api\ERP\CustomerController::class,'invoices']);
 
 Route::POST('erp/devices/add',[App\Http\Controllers\Api\ERP\AppUserController::class,'add']);
 Route::POST('erp/devices/update',[App\Http\Controllers\Api\ERP\AppUserController::class,'update']);

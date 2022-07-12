@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Licences;
 use App\Models\Devices;
+use App\Models\Company;
 use Illuminate\Support\Facades\Hash;
 use Exception;
 
@@ -59,6 +60,8 @@ class AppUserController extends Controller
             'device_id','company_id'
         ]);
         if(!$required):
+            $comCheck = Company::where('company_id',$input['company_id'])->get()->count();
+            if($comCheck):
             $device = Devices::select('device_id','company_id','email','status')
                 ->where('device_id',$input['device_id'])
                 ->where('company_id',$input['company_id'])->get()->first();
@@ -72,7 +75,16 @@ class AppUserController extends Controller
             else:
                 return json_encode([
                     'error'=>true,
-                    'message'=>"Invalid device id or company id",
+                    'message'=>"Invalid device id",
+                    'data'=>(object)[],
+                    'code'=>203
+                ]);
+            endif;
+            else:
+                return json_encode([
+                    'error'=>false,
+                    'message'=>"Company not exist",
+                    'data'=>(object)[],
                     'code'=>202
                 ]);
             endif;
@@ -80,6 +92,7 @@ class AppUserController extends Controller
             return json_encode([
                 'error'=>true,
                 'message'=>"$required is required key",
+                'data'=>(object)[],
                 'code'=>201
             ]);
         endif;
@@ -91,6 +104,8 @@ class AppUserController extends Controller
             'company_id','email','status','password'
         ]);
         if(!$required):
+            $comCheck = Company::where('company_id',$input['company_id'])->get()->count();
+            if($comCheck):
             $licence = Licences::where('company_id',$input['company_id'])->get()->first();
             if($licence):
                 $isExpired = Licences::where('company_id',$input['company_id'])
@@ -120,7 +135,7 @@ class AppUserController extends Controller
                                     'error'=>true,
                                     'message'=>'Exception occured.',
                                     'data'=> $e,
-                                    'code' => 206
+                                    'code' => 207
                                 ]);
                             }
                         else:
@@ -128,7 +143,7 @@ class AppUserController extends Controller
                                 'error'=>true,
                                 'message'=>'Email already used',
                                 'data'=> (object)[],
-                                'code' => 205
+                                'code' => 206
                             ]);
                         endif;
                     else:
@@ -136,7 +151,7 @@ class AppUserController extends Controller
                             'error'=>true,
                             'message'=>'Already devices reached to allowed devices count',
                             'data'=> (object)[],
-                            'code' => 204
+                            'code' => 205
                         ]);
                     endif;
                 else:
@@ -144,7 +159,7 @@ class AppUserController extends Controller
                         'error'=>true,
                         'message'=>'License expired. Please check with Admin',
                         'data'=> (object)[],
-                        'code' => 203
+                        'code' => 204
                     ]);
                 endif;
             else:
@@ -152,7 +167,15 @@ class AppUserController extends Controller
                     'error'=>true,
                     'message'=>'License not issued yet. Please check with Admin',
                     'data'=> (object)[],
-                    'code' => 202
+                    'code' => 203
+                ]);
+            endif;
+            else:
+                return json_encode([
+                    'error'=>false,
+                    'message'=>"Company not exist",
+                    'data'=>(object)[],
+                    'code'=>202
                 ]);
             endif;
         else:
@@ -173,6 +196,8 @@ class AppUserController extends Controller
             'company_id','device_id','status'
         ]);
         if(!$required):
+            $comCheck = Company::where('company_id',$input['company_id'])->get()->count();
+            if($comCheck):
             $licence = Licences::where('company_id',$input['company_id'])->get()->first();
             if($licence):
                 $isExpired = Licences::where('company_id',$input['company_id'])
@@ -199,7 +224,7 @@ class AppUserController extends Controller
                             'error'=>true,
                             'message'=>'Exception occured.',
                             'data'=> $e,
-                            'code'=> 204
+                            'code'=> 205
                         ]);
                        }
                 else:
@@ -207,7 +232,7 @@ class AppUserController extends Controller
                         'error'=>true,
                         'message'=>'Licence expired. Please check with Admin',
                         'data'=> (object)[],
-                        'code' => 203
+                        'code' => 204
                     ]);
                 endif;
             else:
@@ -215,7 +240,15 @@ class AppUserController extends Controller
                     'error'=>true,
                     'message'=>'Licence not created yet. Please check with Admin',
                     'data'=> (object)[],
-                    'code' => 202
+                    'code' => 203
+                ]);
+            endif;
+            else:
+                return json_encode([
+                    'error'=>false,
+                    'message'=>"Company not exist",
+                    'data'=>(object)[],
+                    'code'=>202
                 ]);
             endif;
         else:
@@ -234,6 +267,8 @@ class AppUserController extends Controller
             'company_id','page','count'
         ]);
         if(!$required):
+            $comCheck = Company::where('company_id',$input['company_id'])->get()->count();
+            if($comCheck):
             $clients = Devices::select('device_id','company_id','email','status')
                 ->where('company_id',$input['company_id'])
                 ->skip($input['page']*$input['count'])
@@ -245,6 +280,14 @@ class AppUserController extends Controller
                 'data'=> $clients,
                 'code'=>200
             ]);
+            else:
+                return json_encode([
+                    'error'=>false,
+                    'message'=>"Company not exist",
+                    'data'=>(object)[],
+                    'code'=>202
+                ]);
+            endif;
         else:
             return json_encode([
                 'error'=>true,
@@ -260,6 +303,8 @@ class AppUserController extends Controller
             'company_id','device_id'
         ]);
         if(!$required):
+            $comCheck = Company::where('company_id',$input['company_id'])->get()->count();
+            if($comCheck):
             try{
                 Devices::where('company_id',$input['company_id'])
                     ->where('device_id',$input['device_id'])->delete();
@@ -274,9 +319,17 @@ class AppUserController extends Controller
                     'error'=>true,
                     'message'=>"Exception Occurred",
                     'data'=> (object)[],
-                    'code'=>202
+                    'code'=>203
                 ]);
             }
+            else:
+                return json_encode([
+                    'error'=>false,
+                    'message'=>"Company not exist",
+                    'data'=>(object)[],
+                    'code'=>202
+                ]);
+            endif;
         else:
             return json_encode([
                 'error'=>true,

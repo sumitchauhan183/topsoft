@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\ERP;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Company;
 use App\Models\Devices;
 use App\Models\Items;
 use Exception;
@@ -58,6 +59,8 @@ class ItemController extends Controller
             'item_id','company_id'
         ]);
         if(!$required):
+            $comCheck = Company::where('company_id',$input['company_id'])->get()->count();
+            if($comCheck):
             $item = Items::where('company_id',$input['company_id'])
                 ->where('item_id',$input['item_id'])
                 ->get()
@@ -72,8 +75,16 @@ class ItemController extends Controller
             else:
                 return json_encode([
                     'error'=>true,
-                    'message'=>"Invalid item id or company id",
+                    'message'=>"Invalid item id",
                     'data'=> (object)[],
+                    'code'=>203
+                ]);
+            endif;
+            else:
+                return json_encode([
+                    'error'=>false,
+                    'message'=>"Company not exist",
+                    'data'=>(object)[],
                     'code'=>202
                 ]);
             endif;
@@ -90,9 +101,11 @@ class ItemController extends Controller
     public function detailByBarcode(Request $request){
         $input = $request->all();
         $required = $this->checkRequiredParams($input,[
-            'barcode'
+            'barcode','company_id'
         ]);
         if(!$required):
+            $comCheck = Company::where('company_id',$input['company_id'])->get()->count();
+            if($comCheck):
             $item = Items::where('barcode',$input['barcode'])->get()->first();
             if($item):
                 return json_encode([
@@ -106,6 +119,14 @@ class ItemController extends Controller
                     'error'=>true,
                     'message'=>"Invalid barcode",
                     'data'=> (object)[],
+                    'code'=>203
+                ]);
+            endif;
+            else:
+                return json_encode([
+                    'error'=>false,
+                    'message'=>"Company not exist",
+                    'data'=>(object)[],
                     'code'=>202
                 ]);
             endif;
@@ -126,6 +147,8 @@ class ItemController extends Controller
             'company_id','name','quantity','price','description','vat','discount'
         ]);
         if(!$required):
+            $comCheck = Company::where('company_id',$input['company_id'])->get()->count();
+            if($comCheck):
             $check = Items::where('name',$input['name'])->where('company_id',$input['company_id'])->get()->count();
             if(!$check):
                 $item = Items::create([
@@ -154,7 +177,7 @@ class ItemController extends Controller
                         'error'=>true,
                         'message'=>"server issue item not created",
                         'data'=> (object)[],
-                        'code'=>203
+                        'code'=>204
                     ]);
                 endif;
             else:
@@ -162,6 +185,14 @@ class ItemController extends Controller
                     'error'=>true,
                     'message'=>"Item alredy in item list with same name",
                     'data'=> (object)[],
+                    'code'=>203
+                ]);
+            endif;
+            else:
+                return json_encode([
+                    'error'=>false,
+                    'message'=>"Company not exist",
+                    'data'=>(object)[],
                     'code'=>202
                 ]);
             endif;
@@ -182,6 +213,8 @@ class ItemController extends Controller
            'company_id', 'name','quantity','price','description','vat','discount','item_id'
         ]);
         if(!$required):
+            $comCheck = Company::where('company_id',$input['company_id'])->get()->count();
+            if($comCheck):
             $check  = Items::where('name',$input['name'])
                             ->where('item_id','!=',$input['item_id'])
                             ->where('company_id','==',$input['company_id'])
@@ -211,7 +244,7 @@ class ItemController extends Controller
                         'error'=>true,
                         'message'=>"server issue item not updated",
                         'data'=> (object)[],
-                        'code'=>203
+                        'code'=>204
                     ]);
                 endif;
             else:
@@ -219,10 +252,17 @@ class ItemController extends Controller
                     'error'=>true,
                     'message'=>"Item already exist with same name",
                     'data'=> (object)[],
+                    'code'=>203
+                ]);
+            endif;
+            else:
+                return json_encode([
+                    'error'=>false,
+                    'message'=>"Company not exist",
+                    'data'=>(object)[],
                     'code'=>202
                 ]);
             endif;
-
         else:
             return json_encode([
                 'error'=>true,
@@ -239,6 +279,8 @@ class ItemController extends Controller
             'company_id','page','count'
         ]);
         if(!$required):
+            $comCheck = Company::where('company_id',$input['company_id'])->get()->count();
+            if($comCheck):
             $items = Items::where('company_id',$input['company_id'])
                             ->skip($input['page']*$input['count'])
                             ->take($input['count'])
@@ -249,6 +291,14 @@ class ItemController extends Controller
                 'data'=> $items,
                 'code'=>200
             ]);
+            else:
+                return json_encode([
+                    'error'=>false,
+                    'message'=>"Company not exist",
+                    'data'=>(object)[],
+                    'code'=>202
+                ]);
+            endif;
         else:
             return json_encode([
                 'error'=>true,
@@ -265,6 +315,8 @@ class ItemController extends Controller
             'company_id','item_id'
         ]);
         if(!$required):
+            $comCheck = Company::where('company_id',$input['company_id'])->get()->count();
+            if($comCheck):
             $item = Items::where('company_id',$input['company_id'])
                         ->where('item_id',$input['item_id'])
                         ->delete();
@@ -279,6 +331,14 @@ class ItemController extends Controller
                 return json_encode([
                     'error'=>true,
                     'message'=>"sever issue item not removed",
+                    'data'=>(object)[],
+                    'code'=>203
+                ]);
+            endif;
+            else:
+                return json_encode([
+                    'error'=>false,
+                    'message'=>"Company not exist",
                     'data'=>(object)[],
                     'code'=>202
                 ]);
