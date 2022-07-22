@@ -18,13 +18,14 @@ class CustomerController extends Controller
      */
 
 
-    private $input; 
+    private $input;
+    private $company_id;
     public function __construct(Request $request)
     {
-       
+
         $this->input = $request->all();
         $required = $this->checkRequiredParams($this->input,['device_id','token']);
-        
+
         if($required):
             echo json_encode([
                 'error'=>true,
@@ -40,6 +41,9 @@ class CustomerController extends Controller
                 'code'=>201
             ]);
             die();
+        else:
+            $device = $this->deviceDetail();
+            $this->company_id = $device->company_id;
         endif;
     }
 
@@ -59,7 +63,7 @@ class CustomerController extends Controller
             'client_id'
         ]);
         if(!$required):
-            $client = Invoices::where('client_id',$input['client_id'])->get();
+            $client = Invoices::where('company_id',$this->company_id)->where('client_id',$input['client_id'])->get();
                 return json_encode([
                     'error'=>false,
                     'message'=>"details listed",
@@ -109,7 +113,7 @@ class CustomerController extends Controller
     {
         $input = $this->input;
         $required = $this->checkRequiredParams($input,[
-            'company_id','name','address','city','postal_code','telephone','mobile','tax_number','occupation',
+            'name','address','city','postal_code','telephone','mobile','tax_number','occupation',
             'email','payment_mode'
         ]);
         if(!$required):
@@ -117,9 +121,9 @@ class CustomerController extends Controller
             if(!$check):
                 $input = $this->SetColumnsToBlank($input,[
                     'region','tax_post','discount','note','note2','latitude','longitude'
-                ]);	
+                ]);
                 $client = Clients::create([
-                    'company_id'=>$input['company_id'],
+                    'company_id'=>$this->company_id,
                         'name' => $input['name'],
                         'region' => $input['region'],
                         'address' => $input['address'],
@@ -166,7 +170,7 @@ class CustomerController extends Controller
                 'code'=>201
             ]);
         endif;
-        
+
     }
 
     public function update(Request $request){
@@ -182,7 +186,7 @@ class CustomerController extends Controller
             if(!$check):
                 $input = $this->SetColumnsToBlank($input,[
                     'region','tax_post','latitude','longitude'
-                ]);	
+                ]);
                 $client = Clients::where('client_id',$input['client_id'])->update([
                     'name' => $input['name'],
                     'region' => $input['region'],
@@ -201,7 +205,7 @@ class CustomerController extends Controller
                     'latitude' => $input['latitude'],
                     'longitude'   => $input['longitude']
                 ]);
-                
+
                 if($client):
                     return json_encode([
                         'error'=>false,
@@ -222,7 +226,7 @@ class CustomerController extends Controller
                     'code'=>201
                 ]);
             endif;
-                       
+
         else:
             return json_encode([
                 'error'=>true,
@@ -238,7 +242,7 @@ class CustomerController extends Controller
             'page','count'
         ]);
         if(!$required):
-            $clients = Clients::skip($input['page']*$input['count'])->take($input['count'])->get();
+            $clients = Clients::where('company_id',$this->company_id)->skip($input['page']*$input['count'])->take($input['count'])->get();
             return json_encode([
                 'error'=>false,
                 'message'=>"listing done",
@@ -287,9 +291,15 @@ class CustomerController extends Controller
    private function checkToken(){
            $check = Devices::where('device_id',$this->input['device_id'])
                         ->where('login_token',$this->input['token'])
-                        ->get()->count();   
-            return $check;                    
-        
+                        ->get()->count();
+            return $check;
+
+   }
+
+   private  function deviceDetail(){
+       return Devices::where('device_id',$this->input['device_id'])
+           ->where('login_token',$this->input['token'])
+           ->get()->first();
    }
 
    private function checkRequiredParams($input,$required){
@@ -307,7 +317,7 @@ class CustomerController extends Controller
     }
 
     private function SetColumnsToBlank($input,$required){
-    
+
      foreach($required as $r):
          if(isset($input["$r"])==false):
              $input["$r"] = '';
@@ -315,5 +325,5 @@ class CustomerController extends Controller
      endforeach;
      return $input;
  }
-    
+
 }

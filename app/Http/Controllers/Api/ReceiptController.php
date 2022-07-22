@@ -21,6 +21,7 @@ class ReceiptController extends Controller
      * @return void
      */
     private $input;
+    private $company_id;
     public function __construct(Request $request)
     {
 
@@ -42,6 +43,9 @@ class ReceiptController extends Controller
                 'code'=>201
             ]);
             die();
+        else:
+            $device = $this->deviceDetail();
+            $this->company_id = $device->company_id;
         endif;
     }
 
@@ -94,13 +98,13 @@ class ReceiptController extends Controller
     {
         $input = $this->input;
         $required = $this->checkRequiredParams($input,[
-            'client_id','company_id','amount','observation','note','receipt_date'
+            'client_id','amount','observation','note','receipt_date'
         ]);
             if(!$required):
 
                 $receipt = Receipts::create([
                         'client_id' => $input['client_id'],
-                        'company_id' => $input['company_id'],
+                        'company_id' => $this->company_id,
                         'amount' => $input['amount'],
                         'observation' => $input['observation'],
                         'note' => $input['note'],
@@ -175,6 +179,8 @@ class ReceiptController extends Controller
         ]);
         if(!$required):
             $receipts = Receipts::join('clients as c','receipts.client_id','c.client_id')
+                ->where('receipts.device_id',$input['device_id'])
+                ->where('receipts.company_id',$this->company_id)
                                   ->skip($input['page']*$input['count'])
                                   ->take($input['count'])
                                   ->select('receipts.*','c.name as client_name')
@@ -278,21 +284,9 @@ private function checkRequiredParams($input,$required){
      endforeach;
      return false;
 }
-
-private function SetColumnsToBlank($input,$required){
-    $input["status"] = 'success';
- foreach($required as $r):
-     if(isset($input["$r"])==false):
-         $input["$r"] = '';
-         $input["status"] = 'draft';
-     endif;
- endforeach;
- return $input;
-}
-
-
- private function generateToken($id)
- {
-     return  md5($id.time());
- }
+    private  function deviceDetail(){
+        return Devices::where('device_id',$this->input['device_id'])
+            ->where('login_token',$this->input['token'])
+            ->get()->first();
+    }
 }

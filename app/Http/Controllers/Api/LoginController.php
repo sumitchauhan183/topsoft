@@ -21,7 +21,7 @@ class LoginController extends Controller
      */
     public function __construct()
     {
-        
+
     }
 
     /**
@@ -48,6 +48,8 @@ class LoginController extends Controller
                     ->get()->first()->toArray();
                     if(Hash::check($input['password'], $check['password'])):
                         $company_id = $input['company_id'];
+                        if($check["company_id"] == $company_id):
+
                         $licences = Licences::where('company_id',$company_id)->get()->first()->toArray();
                         if(count($licences) && $licences['expiration_date'] >= date('Y-m-d')):
                             $token = $this->updateToken($input,$check['device_id']);
@@ -58,29 +60,37 @@ class LoginController extends Controller
                                     'token'  => $token,
                                     'data'   =>$check,
                                     'code'   =>200
-                                ]); 
+                                ]);
                             else:
                                 return json_encode([
                                     'error'=>true,
                                     'message'=>'Licence devices limit reached. Please contact Admin',
                                     'code'=>201
-                                ]); 
+                                ]);
                             endif;
                         else:
                             return json_encode([
                                 'error'=>true,
                                 'message'=>'Licence expired or not created yet. Please contact Admin',
                                 'code'=>201
-                            ]); 
+                            ]);
                         endif;
+                        else:
+                            return json_encode([
+                                'error'=>true,
+                                'message'=>'Company ID mismatched',
+                                'code'=>201
+                            ]);
+                        endif;
+
                     else:
                         return json_encode([
                             'error'=>true,
                             'message'=>'Please check your password',
                             'code'=>201
-                        ]); 
-                    endif; 
-            else:    
+                        ]);
+                    endif;
+            else:
                 return json_encode([
                     'error'=>true,
                     'message'=>'Email id not exist',
@@ -94,7 +104,7 @@ class LoginController extends Controller
                 'code'=>201
             ]);
         endif;
-        
+
     }
 
     public function forgotPasswordSendOtp(Request $request){
@@ -157,8 +167,8 @@ class LoginController extends Controller
                         'message'=>"invalid otp.",
                         'code'=>201
                     ]);
-                endif;                  
-               
+                endif;
+
             else:
                 return json_encode([
                     'error'=>true,
@@ -177,16 +187,16 @@ class LoginController extends Controller
 
 
    private function updateToken($input,$device_id){
-                  
-        $token = $this->generateToken($input['device_token']);  
-                 
+
+        $token = $this->generateToken($input['device_token']);
+
             Devices::where('device_id',$device_id)
                         ->update([
                             'device_token'=>$input['device_token'],
                             'login_token'=> $token
-                        ]);    
-            return $token;                    
-        
+                        ]);
+            return $token;
+
    }
 
    private function checkRequiredParams($input,$required){
@@ -203,5 +213,5 @@ class LoginController extends Controller
         return  md5($id.time());
     }
 
-    
+
 }

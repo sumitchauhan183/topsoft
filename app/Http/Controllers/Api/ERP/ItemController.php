@@ -151,7 +151,11 @@ class ItemController extends Controller
             if($comCheck):
             $check = Items::where('name',$input['name'])->where('company_id',$input['company_id'])->get()->count();
             if(!$check):
-                $item = Items::create([
+                $barcheck = Items::where('barcode',$input['barcode'])
+                    ->where('company_id',$input['company_id'])
+                    ->get()->count();
+                if($barcheck<1):
+                    $item = Items::create([
                         'company_id' => $input['company_id'],
                         'name' => $input['name'],
                         'quantity' => $input['quantity'],
@@ -161,26 +165,35 @@ class ItemController extends Controller
                         'discount'=> $input['discount'],
                         'barcode'=> $input['barcode'],
                         'final_price' => $input['price'] + (($input['price']-($input['price']*($input['discount']/100)))*($input['vat']/100)) - ($input['price']*($input['discount']/100))
-                ]);
-                if($item):
-                    //$barcode = $this->generateBarcode($item);
-                    //Items::where('item_id',$item->id)->update(['barcode'=>$barcode]);
-                    $item->item_id = $item->id;
-                    unset($item->id);
-                    return json_encode([
-                        'error'=>false,
-                        'message'=>"Item created successfully",
-                        'code'=>200,
-                        'data'=>$item
                     ]);
-                else:
-                    return json_encode([
-                        'error'=>true,
-                        'message'=>"server issue item not created",
-                        'data'=> (object)[],
-                        'code'=>204
-                    ]);
-                endif;
+                    if($item):
+                        //$barcode = $this->generateBarcode($item);
+                        //Items::where('item_id',$item->id)->update(['barcode'=>$barcode]);
+                        $item->item_id = $item->id;
+                        unset($item->id);
+                        return json_encode([
+                            'error'=>false,
+                            'message'=>"Item created successfully",
+                            'code'=>200,
+                            'data'=>$item
+                        ]);
+                    else:
+                        return json_encode([
+                            'error'=>true,
+                            'message'=>"server issue item not created",
+                            'data'=> (object)[],
+                            'code'=>205
+                        ]);
+                    endif;
+                    else:
+                        return json_encode([
+                            'error'=>true,
+                            'message'=>"Barcode already used for other item",
+                            'data'=> (object)[],
+                            'code'=>204
+                        ]);
+                    endif;
+
             else:
                 return json_encode([
                     'error'=>true,
@@ -221,34 +234,47 @@ class ItemController extends Controller
                             ->where('company_id','==',$input['company_id'])
                             ->get()->count();
             if(!$check):
+                $barcheck = Items::where('barcode',$input['barcode'])
+                            ->where('item_id','!=',$input['item_id'])
+                            ->where('company_id',$input['company_id'])
+                            ->get()->count();
+                if($barcheck<1):
+                    $item = Items::where('item_id',$input['item_id'])
+                        ->where('company_id',$input['company_id'])->update([
+                            'name' => $input['name'],
+                            'quantity' => $input['quantity'],
+                            'price' => $input['price'],
+                            'description'=> $input['description'],
+                            'vat' => $input['vat'],
+                            'discount'=> $input['discount'],
+                            'barcode'=> $input['barcode'],
+                            'final_price' => $input['price'] + (($input['price']-($input['price']*($input['discount']/100)))*($input['vat']/100)) - ($input['price']*($input['discount']/100))
+                        ]);
 
-                $item = Items::where('item_id',$input['item_id'])
-                         ->where('company_id',$input['company_id'])->update([
-                        'name' => $input['name'],
-                        'quantity' => $input['quantity'],
-                        'price' => $input['price'],
-                        'description'=> $input['description'],
-                        'vat' => $input['vat'],
-                        'discount'=> $input['discount'],
-                        'barcode'=> $input['barcode'],
-                        'final_price' => $input['price'] + (($input['price']-($input['price']*($input['discount']/100)))*($input['vat']/100)) - ($input['price']*($input['discount']/100))
-                ]);
+                    if($item):
+                        return json_encode([
+                            'error'=>false,
+                            'message'=>"Item updated successfully",
+                            'data'=> (object)[],
+                            'code'=>200
+                        ]);
+                    else:
+                        return json_encode([
+                            'error'=>true,
+                            'message'=>"server issue item not updated",
+                            'data'=> (object)[],
+                            'code'=>205
+                        ]);
+                    endif;
+                    else:
+                        return json_encode([
+                            'error'=>true,
+                            'message'=>"Barcode already used for another Item",
+                            'data'=> (object)[],
+                            'code'=>204
+                        ]);
+                        endif;
 
-                if($item):
-                    return json_encode([
-                        'error'=>false,
-                        'message'=>"Item updated successfully",
-                        'data'=> (object)[],
-                        'code'=>200
-                    ]);
-                else:
-                    return json_encode([
-                        'error'=>true,
-                        'message'=>"server issue item not updated",
-                        'data'=> (object)[],
-                        'code'=>204
-                    ]);
-                endif;
             else:
                 return json_encode([
                     'error'=>true,

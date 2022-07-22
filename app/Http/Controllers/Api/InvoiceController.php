@@ -24,6 +24,7 @@ class InvoiceController extends Controller
 
 
     private $input;
+    private $company_id;
     public function __construct(Request $request)
     {
 
@@ -45,6 +46,9 @@ class InvoiceController extends Controller
                 'code'=>201
             ]);
             die();
+        else:
+            $device = $this->deviceDetail();
+            $this->company_id = $device->company_id;
         endif;
     }
 
@@ -95,7 +99,7 @@ class InvoiceController extends Controller
     {
         $input = $this->input;
         $required = $this->checkRequiredParams($input,[
-            'client_id','device_id','company_id','item_list'
+            'client_id','device_id','item_list'
         ]);
         if(!$required):
             foreach($input['item_list'] as $item):
@@ -114,7 +118,7 @@ class InvoiceController extends Controller
                 $invoice = Invoices::create([
                     'client_id' => $input['client_id'],
                     'device_id' => $input['device_id'],
-                    'company_id' => $input['company_id'],
+                    'company_id' => $this->company_id,
                     'type' => $input['type'],
                     'payment_method' => $input['payment_method'],
                     'address' => $input['address'],
@@ -137,7 +141,7 @@ class InvoiceController extends Controller
                             'invoice_id'=>$invoice->id,
                             'item_id'=>$item['item_id'],
                             'quantity'=>$item['quantity'],
-                            'company_id' => $item['company_id'],
+                            'company_id' => $this->company_id,
                             'client_id' => $item['client_id']
                         ]);
                     endforeach;
@@ -252,6 +256,7 @@ class InvoiceController extends Controller
         if(!$required):
             $invoices = Invoices::where('invoices.device_id',$input['device_id'])
                 ->join('clients as c','invoices.client_id','c.client_id')
+                ->where('invoices.company_id',$this->company_id)
                 ->skip($input['page']*$input['count'])
                 ->take($input['count'])
                 ->select('invoices.*','c.name as client_name')
@@ -456,6 +461,12 @@ class InvoiceController extends Controller
             ->get()->count();
         return $check;
 
+    }
+
+    private  function deviceDetail(){
+        return Devices::where('device_id',$this->input['device_id'])
+            ->where('login_token',$this->input['token'])
+            ->get()->first();
     }
 
     private function generateInvoiceNumber($invoice){

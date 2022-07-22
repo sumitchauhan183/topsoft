@@ -18,6 +18,7 @@ class ItemController extends Controller
 
 
     private $input;
+    private $company_id;
     public function __construct(Request $request)
     {
 
@@ -39,6 +40,9 @@ class ItemController extends Controller
                 'code'=>201
             ]);
             die();
+        else:
+            $device = $this->deviceDetail();
+            $this->company_id = $device->company_id;
         endif;
     }
 
@@ -88,7 +92,7 @@ class ItemController extends Controller
             'barcode'
         ]);
         if(!$required):
-            $item = Items::where('barcode',$input['barcode'])->get()->first();
+            $item = Items::where('company_id',$this->company_id)->where('barcode',$input['barcode'])->get()->first();
             if($item):
                 return json_encode([
                     'error'=>false,
@@ -112,108 +116,7 @@ class ItemController extends Controller
         endif;
     }
 
-    public function add()
-    {
-        $input = $this->input;
-        $required = $this->checkRequiredParams($input,[
-            'name','quantity','price','description','vat','discount','final_price','barcode'
-        ]);
-        if(!$required):
-            $check = Items::where('name',$input['name'])->get()->count();
-            if(!$check):
-                $item = Items::create([
-                        'name' => $input['name'],
-                        'quantity' => $input['quantity'],
-                        'price' => $input['price'],
-                        'description'=> $input['description'],
-                        'vat' => $input['vat'],
-                        'discount'=> $input['discount'],
-                        'barcode'=> $input['barcode'],
-                        'final_price' => $input['price']
-                ]);
-                if($item):
-                    //$barcode = $this->generateBarcode($item);
-                    //Items::where('item_id',$item->id)->update(['barcode'=>$barcode]);
-                    return json_encode([
-                        'error'=>false,
-                        'message'=>"Item created successfully",
-                        'code'=>200
-                    ]);
-                else:
-                    return json_encode([
-                        'error'=>true,
-                        'message'=>"server issue item not created",
-                        'code'=>201
-                    ]);
-                endif;
-            else:
-                return json_encode([
-                    'error'=>true,
-                    'message'=>"Item alredy in item list with same name",
-                    'code'=>201
-                ]);
-            endif;
-        else:
-            return json_encode([
-                'error'=>true,
-                'message'=>"$required is required key",
-                'code'=>201
-            ]);
-        endif;
 
-    }
-
-    public function update(Request $request){
-        $input = $this->input;
-        $required = $this->checkRequiredParams($input,[
-            'name','quantity','price','description','vat','discount','final_price','item_id','barcode'
-        ]);
-        if(!$required):
-            $check  = Items::where('name',$input['name'])
-                            ->where('item_id','!=',$input['item_id'])
-                            ->get()->count();
-            if(!$check):
-
-                $item = Items::where('item_id',$input['item_id'])->update([
-                        'name' => $input['name'],
-                        'quantity' => $input['quantity'],
-                        'price' => $input['price'],
-                        'description'=> $input['description'],
-                        'vat' => $input['vat'],
-                        'discount'=> $input['discount'],
-                        'barcode'=> $input['barcode'],
-                        'final_price' => $input['price']
-                ]);
-
-                if($item):
-                    return json_encode([
-                        'error'=>false,
-                        'message'=>"Details updated successfully",
-                        'code'=>200
-                    ]);
-                else:
-                    return json_encode([
-                        'error'=>true,
-                        'message'=>"server issue client not created",
-                        'code'=>201
-                    ]);
-                endif;
-            else:
-                return json_encode([
-                    'error'=>true,
-                    'message'=>"Item already exist with same name",
-                    'code'=>201
-                ]);
-            endif;
-
-        else:
-            return json_encode([
-                'error'=>true,
-                'message'=>"$required is required key",
-                'code'=>201
-            ]);
-        endif;
-    }
 
     public function list(Request $request){
         $input = $this->input;
@@ -221,7 +124,7 @@ class ItemController extends Controller
             'page','count'
         ]);
         if(!$required):
-            $items = Items::skip($input['page']*$input['count'])->take($input['count'])->get();
+            $items = Items::where('company_id',$this->company_id)->skip($input['page']*$input['count'])->take($input['count'])->get();
             return json_encode([
                 'error'=>false,
                 'message'=>"listing done",
@@ -237,44 +140,8 @@ class ItemController extends Controller
         endif;
     }
 
-    public function delete(Request $request){
-        $input = $this->input;
-        $required = $this->checkRequiredParams($input,[
-            'client_id'
-        ]);
-        if(!$required):
-            $client = Clients::where('client_id',$input['client_id'])->delete();
-            if($client):
-                return json_encode([
-                    'error'=>false,
-                    'message'=>"client removed successfully",
-                    'code'=>200
-                ]);
-            else:
-                return json_encode([
-                    'error'=>true,
-                    'message'=>"sever issue client not removed",
-                    'code'=>201
-                ]);
-            endif;
-        else:
-            return json_encode([
-                'error'=>true,
-                'message'=>"$required is required key",
-                'code'=>201
-            ]);
-        endif;
-    }
-
-   private function generateBarcode($item){
-        $name = substr($item->name, 0, 3);
-        $id = $item->id;
-        $permitted_chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-        $randInt = substr(str_shuffle($permitted_chars),0, 6);
 
 
-        return $name.$id.$randInt;
-   }
 
    private function checkToken(){
            $check = Devices::where('device_id',$this->input['device_id'])
@@ -282,6 +149,12 @@ class ItemController extends Controller
                         ->get()->count();
             return $check;
    }
+
+    private  function deviceDetail(){
+        return Devices::where('device_id',$this->input['device_id'])
+            ->where('login_token',$this->input['token'])
+            ->get()->first();
+    }
 
    private function checkRequiredParams($input,$required){
         foreach($required as $r):

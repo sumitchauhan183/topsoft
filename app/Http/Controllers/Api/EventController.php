@@ -41,6 +41,9 @@ class EventController extends Controller
                 'code'=>201
             ]);
             die();
+        else:
+            $device = $this->deviceDetail();
+            $this->company_id = $device->company_id;
         endif;
     }
 
@@ -59,7 +62,7 @@ class EventController extends Controller
     {
         $input = $this->input;
         $required = $this->checkRequiredParams($input,[
-            'client_id','event_type','event_date'
+            'client_id','event_type','event_date','device_id'
         ]);
         if(!$required):
                 $input = $this->SetColumnsToBlank($input,[
@@ -69,6 +72,7 @@ class EventController extends Controller
                     $data = [
                         'client_id'=>$input['client_id'],
                         'company_id'=>$this->company_id,
+                        'device_id'=>$input['device_id'],
                         'event_type' => $input['event_type'],
                         'observation' => $input['observation'],
                         'checklist' => $input['checklist'],
@@ -81,6 +85,7 @@ class EventController extends Controller
                         $data = [
                             'client_id'=>$input['client_id'],
                             'company_id'=>$this->company_id,
+                            'device_id'=>$input['device_id'],
                             'event_type' => $input['event_type'],
                             'status' => $input['status'],
                             'observation' => $input['observation'],
@@ -94,6 +99,7 @@ class EventController extends Controller
                         $data = [
                             'client_id'=>$input['client_id'],
                             'company_id'=>$this->company_id,
+                            'device_id'=>$input['device_id'],
                             'event_type' => $input['event_type'],
                             'status' => $input['status'],
                             'observation' => $input['observation'],
@@ -133,7 +139,7 @@ class EventController extends Controller
     public function update(Request $request){
         $input = $this->input;
         $required = $this->checkRequiredParams($input,[
-            'client_id','event_type','event_id','event_date'
+            'client_id','event_type','event_id','event_date','device_id'
         ]);
         if(!$required):
 
@@ -143,6 +149,7 @@ class EventController extends Controller
                 if($input["event_type"]=="checklist"):
                     $data = [
                         'client_id'=>$input['client_id'],
+                        'device_id'=>$input['device_id'],
                         'event_type' => $input['event_type'],
                         'observation' => $input['observation'],
                         'checklist' => $input['checklist'],
@@ -153,6 +160,7 @@ class EventController extends Controller
                 else:
                     $data = [
                         'client_id'=>$input['client_id'],
+                        'device_id'=>$input['device_id'],
                         'event_type' => $input['event_type'],
                         'status' => $input['status'],
                         'observation' => $input['observation'],
@@ -203,6 +211,8 @@ class EventController extends Controller
 
                 $events = Events::select('events.*','c.name as client_name', 'c.address as client_address')
                                 ->join('clients as c','c.client_id','events.client_id')
+                                ->where('events.device_id',$input['device_id'])
+                                ->where('events.company_id',$this->company_id)
                                 ->where('events.event_date','>=',$first)
                                 ->where('events.event_date','<=',$last)
                                 ->skip($input['page']*$input['count'])
@@ -211,6 +221,8 @@ class EventController extends Controller
             else:
                 $events = Events::select('events.*','c.name as client_name', 'c.address as client_address')
                                     ->join('clients as c','c.client_id','events.client_id')
+                                    ->where('events.device_id',$input['device_id'])
+                                    ->where('events.company_id',$this->company_id)
                                     ->skip($input['page']*$input['count'])
                                     ->take($input['count'])
                                     ->get();
@@ -246,6 +258,8 @@ class EventController extends Controller
                                 ->join('clients as c','c.client_id','events.client_id')
                                 ->where('events.event_date','>=',$first)
                                 ->where('events.event_date','<=',$last)
+                                ->where('events.device_id',$input['device_id'])
+                                ->where('events.company_id',$this->company_id)
                                 ->where('events.client_id',$input['client_id'])
                                 ->skip($input['page']*$input['count'])
                                 ->take($input['count'])
@@ -253,6 +267,8 @@ class EventController extends Controller
             else:
                 $events = Events::select('events.*','c.name as client_name', 'c.address as client_address')
                                     ->join('clients as c','c.client_id','events.client_id')
+                                    ->where('events.device_id',$input['device_id'])
+                                    ->where('events.company_id',$this->company_id)
                                     ->where('events.client_id',$input['client_id'])
                                     ->skip($input['page']*$input['count'])
                                     ->take($input['count'])
@@ -288,6 +304,8 @@ class EventController extends Controller
                                 ->join('clients as c','c.client_id','events.client_id')
                                 ->where('events.event_date','>=',$first)
                                 ->where('events.event_date','<=',$last)
+                                ->where('events.device_id',$input['device_id'])
+                                ->where('events.company_id',$this->company_id)
                                 ->where('events.event_type',$input['event_type'])
                                 ->skip($input['page']*$input['count'])
                                 ->take($input['count'])
@@ -295,6 +313,8 @@ class EventController extends Controller
             else:
                 $events = Events::select('events.*','c.name as client_name', 'c.address as client_address')
                                     ->join('clients as c','c.client_id','events.client_id')
+                                    ->where('events.device_id',$input['device_id'])
+                                    ->where('events.company_id',$this->company_id)
                                     ->where('events.event_type',$input['event_type'])
                                     ->skip($input['page']*$input['count'])
                                     ->take($input['count'])
@@ -318,7 +338,7 @@ class EventController extends Controller
     public function listbystatus(Request $request){
         $input = $this->input;
         $required = $this->checkRequiredParams($input,[
-            'page','count','status'
+            'page','count','status','company_id'
         ]);
         if(!$required):
             if(isset($input['month'])):
@@ -330,6 +350,8 @@ class EventController extends Controller
                                 ->join('clients as c','c.client_id','events.client_id')
                                 ->where('events.event_date','>=',$first)
                                 ->where('events.event_date','<=',$last)
+                                ->where('events.device_id',$input['device_id'])
+                                ->where('events.company_id',$this->company_id)
                                 ->where('events.status',$input['status'])
                                 ->skip($input['page']*$input['count'])
                                 ->take($input['count'])
@@ -337,6 +359,8 @@ class EventController extends Controller
             else:
                 $events = Events::select('events.*','c.name as client_name', 'c.address as client_address')
                                     ->join('clients as c','c.client_id','events.client_id')
+                                    ->where('events.device_id',$input['device_id'])
+                                    ->where('events.company_id',$this->company_id)
                                     ->where('events.status',$input['status'])
                                     ->skip($input['page']*$input['count'])
                                     ->take($input['count'])
@@ -391,17 +415,15 @@ class EventController extends Controller
            $check = Devices::where('device_id',$this->input['device_id'])
                         ->where('login_token',$this->input['token'])
                         ->get()->count();
-           if($check):
-               $detail = Devices::where('device_id',$this->input['device_id'])
-                   ->where('login_token',$this->input['token'])
-                   ->get()->first();
-               $this->company_id = $detail->company_id;
-           endif;
-
             return $check;
 
    }
 
+    private  function deviceDetail(){
+        return Devices::where('device_id',$this->input['device_id'])
+            ->where('login_token',$this->input['token'])
+            ->get()->first();
+    }
    private function checkRequiredParams($input,$required){
         foreach($required as $r):
             if(isset($input["$r"])==false || $r=''):
