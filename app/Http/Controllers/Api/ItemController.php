@@ -17,13 +17,13 @@ class ItemController extends Controller
      */
 
 
-    private $input; 
+    private $input;
     public function __construct(Request $request)
     {
-       
+
         $this->input = $request->all();
         $required = $this->checkRequiredParams($this->input,['device_id','token']);
-        
+
         if($required):
             echo json_encode([
                 'error'=>true,
@@ -116,7 +116,7 @@ class ItemController extends Controller
     {
         $input = $this->input;
         $required = $this->checkRequiredParams($input,[
-            'name','quantity','price','description','vat','discount','final_price'
+            'name','quantity','price','description','vat','discount','final_price','barcode'
         ]);
         if(!$required):
             $check = Items::where('name',$input['name'])->get()->count();
@@ -128,11 +128,12 @@ class ItemController extends Controller
                         'description'=> $input['description'],
                         'vat' => $input['vat'],
                         'discount'=> $input['discount'],
+                        'barcode'=> $input['barcode'],
                         'final_price' => $input['price']
                 ]);
                 if($item):
-                    $barcode = $this->generateBarcode($item);
-                    Items::where('item_id',$item->id)->update(['barcode'=>$barcode]);
+                    //$barcode = $this->generateBarcode($item);
+                    //Items::where('item_id',$item->id)->update(['barcode'=>$barcode]);
                     return json_encode([
                         'error'=>false,
                         'message'=>"Item created successfully",
@@ -159,20 +160,20 @@ class ItemController extends Controller
                 'code'=>201
             ]);
         endif;
-        
+
     }
 
     public function update(Request $request){
         $input = $this->input;
         $required = $this->checkRequiredParams($input,[
-            'name','quantity','price','description','vat','discount','final_price','item_id'
+            'name','quantity','price','description','vat','discount','final_price','item_id','barcode'
         ]);
         if(!$required):
             $check  = Items::where('name',$input['name'])
                             ->where('item_id','!=',$input['item_id'])
                             ->get()->count();
             if(!$check):
-                
+
                 $item = Items::where('item_id',$input['item_id'])->update([
                         'name' => $input['name'],
                         'quantity' => $input['quantity'],
@@ -180,9 +181,10 @@ class ItemController extends Controller
                         'description'=> $input['description'],
                         'vat' => $input['vat'],
                         'discount'=> $input['discount'],
+                        'barcode'=> $input['barcode'],
                         'final_price' => $input['price']
                 ]);
-                
+
                 if($item):
                     return json_encode([
                         'error'=>false,
@@ -203,7 +205,7 @@ class ItemController extends Controller
                     'code'=>201
                 ]);
             endif;
-                       
+
         else:
             return json_encode([
                 'error'=>true,
@@ -277,8 +279,8 @@ class ItemController extends Controller
    private function checkToken(){
            $check = Devices::where('device_id',$this->input['device_id'])
                         ->where('login_token',$this->input['token'])
-                        ->get()->count();   
-            return $check;              
+                        ->get()->count();
+            return $check;
    }
 
    private function checkRequiredParams($input,$required){
@@ -295,5 +297,5 @@ class ItemController extends Controller
         return  md5($id.time());
     }
 
-    
+
 }

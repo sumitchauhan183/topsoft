@@ -144,7 +144,7 @@ class ItemController extends Controller
     {
         $input = $request->all();
         $required = $this->checkRequiredParams($input,[
-            'company_id','name','quantity','price','description','vat','discount'
+            'company_id','name','quantity','price','description','vat','discount','barcode'
         ]);
         if(!$required):
             $comCheck = Company::where('company_id',$input['company_id'])->get()->count();
@@ -159,11 +159,12 @@ class ItemController extends Controller
                         'description'=> $input['description'],
                         'vat' => $input['vat'],
                         'discount'=> $input['discount'],
+                        'barcode'=> $input['barcode'],
                         'final_price' => $input['price'] + (($input['price']-($input['price']*($input['discount']/100)))*($input['vat']/100)) - ($input['price']*($input['discount']/100))
                 ]);
                 if($item):
-                    $barcode = $this->generateBarcode($item);
-                    Items::where('item_id',$item->id)->update(['barcode'=>$barcode]);
+                    //$barcode = $this->generateBarcode($item);
+                    //Items::where('item_id',$item->id)->update(['barcode'=>$barcode]);
                     $item->item_id = $item->id;
                     unset($item->id);
                     return json_encode([
@@ -210,7 +211,7 @@ class ItemController extends Controller
     public function update(Request $request){
         $input = $request->all();
         $required = $this->checkRequiredParams($input,[
-           'company_id', 'name','quantity','price','description','vat','discount','item_id'
+           'company_id', 'name','quantity','price','description','vat','discount','item_id','barcode'
         ]);
         if(!$required):
             $comCheck = Company::where('company_id',$input['company_id'])->get()->count();
@@ -229,6 +230,7 @@ class ItemController extends Controller
                         'description'=> $input['description'],
                         'vat' => $input['vat'],
                         'discount'=> $input['discount'],
+                        'barcode'=> $input['barcode'],
                         'final_price' => $input['price'] + (($input['price']-($input['price']*($input['discount']/100)))*($input['vat']/100)) - ($input['price']*($input['discount']/100))
                 ]);
 
@@ -354,9 +356,10 @@ class ItemController extends Controller
     }
 
    private function generateBarcode($item){
-        $name = substr($item->name, 0, 3);
+        $name = substr(str_shuffle(date('dmyhis')), 0, 3);
         $id = $item->id;
-        $permitted_chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $permitted_chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+
         $randInt = substr(str_shuffle($permitted_chars),0, 6);
 
 

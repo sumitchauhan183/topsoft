@@ -73,7 +73,7 @@
                                   @foreach ($companies as $c)
                                       <option value="{{$c->company_id}}">{{$c->name}}</option>
                                   @endforeach
-                                </select> 
+                                </select>
                             </div>
                             <div class="input-group input-group-outline mx-3 is-focused">
                                 <label class="form-label">VAT%</label>
@@ -89,19 +89,28 @@
                                   <option value="">Select Status</option>
                                   <option value="available">Available</option>
                                   <option value="out of stock">Out of Stock</option>
-                                </select> 
+                                </select>
                             </div>
 
-                            
+
+                    </div>
+                <div class="ms-md-auto pe-md-3 d-flex align-items-center  mb-4">
+
+                    <div class="input-group input-group-outline mx-3 is-focused">
+                        <label class="form-label">Barcode</label>
+                        <input type="text" class="form-control" id="barcode"  autocomplete="off">
                     </div>
 
+
+
+                </div>
                     <div class="ms-md-auto pe-md-3 d-flex align-items-center">
                     <div class="sidenav-footer w-100 bottom-0 ">
                         <div class="mx-3 text-center">
                             <button class="btn bg-gradient-primary mt-4 w-40 " id="add-item" type="button">Add</button>
                         </div>
                     </div>
-                            
+
                     </div>
 
 

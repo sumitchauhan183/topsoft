@@ -73,7 +73,7 @@
                                 @foreach ($companies as $c)
                                       <option value="{{$c->company_id}}" @if($c->company_id==$item->company_id) checked @endif >{{$c->name}}</option>
                                   @endforeach
-                                </select> 
+                                </select>
                             </div>
                             <div class="input-group input-group-outline mx-3 is-focused">
                                 <label class="form-label">VAT%</label>
@@ -88,19 +88,26 @@
                                 <select class="form-control" id="status" >
                                   <option value="available" @if($c->quantity>0) checked @endif>Available</option>
                                   <option value="out of stock" @if($c->quantity<1) checked @endif>Out of Stock</option>
-                                </select> 
+                                </select>
                             </div>
 
-                            
+
+                    </div>
+                <div class="ms-md-auto pe-md-3 d-flex align-items-center  mb-4">
+
+                    <div class="input-group input-group-outline mx-3 is-focused">
+                        <label class="form-label">Barcode</label>
+                        <input type="text" class="form-control" id="barcode" value="{{$item->barcode}}"  autocomplete="off">
                     </div>
 
+                </div>
                     <div class="ms-md-auto pe-md-3 d-flex align-items-center">
                     <div class="sidenav-footer w-100 bottom-0 ">
                         <div class="mx-3 text-center">
                             <button class="btn bg-gradient-primary mt-4 w-40 " id="update-item" type="button">Update</button>
                         </div>
                     </div>
-                            
+
                     </div>
 
 

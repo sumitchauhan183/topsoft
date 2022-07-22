@@ -1,6 +1,6 @@
 let edit = function(){
-   
-    
+
+
     let name        = $('#name');
     let quantity       = $('#quantity');
     let price      = $('#price');
@@ -10,48 +10,52 @@ let edit = function(){
     let status      = $('#status');
     let company     = $('#company');
     let item        = $('#item');
+    let barcode     = $('#barcode');
     let update = $("#update-item");
     let baseurl     = '/topsoft/';
     let data = {
-        'name':name.val(),
-        'quantity':quantity.val(),
-        'price':price.val(),
-        'description':description.val(),
-        'vat':vat.val(),
-        'discount':discount.val(),
-        'status':status.val(),
-        'company_id':company.val(),
+        'name':name.val().trim(),
+        'quantity':quantity.val().trim(),
+        'price':price.val().trim(),
+        'description':description.val().trim(),
+        'vat':vat.val().trim(),
+        'discount':discount.val().trim(),
+        'status':status.val().trim(),
+        'company_id':company.val().trim(),
+        'barcode':barcode.val().trim(),
         'item_id':item.val()
     }
 
     name.mouseout(function(){
-        data.name = name.val();
+        data.name = name.val().trim();
     });
 
     quantity.mouseout(function(){
-        data.quantity = quantity.val();
+        data.quantity = quantity.val().trim();
     });
 
     price.mouseout(function(){
-        data.price = price.val();
+        data.price = price.val().trim();
     });
 
     description.mouseout(function(){
-        data.description = description.val();
+        data.description = description.val().trim();
     });
     company.change(function(){
-        data.company_id = company.val();
+        data.company_id = company.val().trim();
     });
     vat.mouseout(function(){
-        data.vat = vat.val();
+        data.vat = vat.val().trim();
     });
 
     discount.mouseout(function(){
-        data.discount = discount.val();
+        data.discount = discount.val().trim();
     });
-
+    barcode.change(function(){
+        data.barcode = barcode.val().trim();
+    });
     status.change(function(){
-        data.status = status.val();
+        data.status = status.val().trim();
     });
 
 
@@ -98,9 +102,13 @@ let edit = function(){
             status.parent().append('<span class="text-danger position-absolute text-gradient text-xs py-3 mt-4 error">*required</span>');
             return;
         }
-        
+        if(data.barcode == ""){
+            barcode.parent().append('<span class="text-danger position-absolute text-gradient text-xs py-3 mt-4 error">*required</span>');
+            return;
+        }
 
-       
+
+
 
         $('.loader').show();
         $.ajax({
@@ -113,7 +121,7 @@ let edit = function(){
               $('.loader').hide();
               if(d.error){
                 alert(d.message);
-               
+
               }else{
                   alert(d.message);
                   location.reload();
@@ -121,11 +129,11 @@ let edit = function(){
         });
 
 
-       
+
     });
-  
+
     return {
       init: function(){
       }
-  }  
+  }
   }();

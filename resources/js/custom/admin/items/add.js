@@ -1,6 +1,6 @@
 let add = function(){
-   
-    
+
+
     let name        = $('#name');
     let quantity       = $('#quantity');
     let price      = $('#price');
@@ -9,52 +9,58 @@ let add = function(){
     let discount        = $('#discount');
     let status      = $('#status');
     let company     = $('#company');
+    let barcode     = $('#barcode');
     let baseurl     = '/topsoft/';
     let add = $("#add-item");
     let data = {
-        'name':name.val(),
-        'quantity':quantity.val(),
-        'price':price.val(),
-        'description':description.val(),
-        'vat':vat.val(),
-        'discount':discount.val(),
-        'status':status.val(),
-        'company_id':company.val()
+        'name':name.val().trim(),
+        'quantity':quantity.val().trim(),
+        'price':price.val().trim(),
+        'description':description.val().trim(),
+        'vat':vat.val().trim(),
+        'discount':discount.val().trim(),
+        'status':status.val().trim(),
+        'barcode':barcode.val().trim(),
+        'company_id':company.val().trim()
     }
 
     name.mouseout(function(){
-        data.name = name.val();
+        data.name = name.val().trim();
     });
 
     quantity.mouseout(function(){
-        data.quantity = quantity.val();
+        data.quantity = quantity.val().trim();
     });
 
     price.mouseout(function(){
-        data.price = price.val();
+        data.price = price.val().trim();
     });
 
     description.mouseout(function(){
-        data.description = description.val();
+        data.description = description.val().trim();
     });
 
     company.change(function(){
-        data.company_id = company.val();
+        data.company_id = company.val().trim();
     });
 
     vat.mouseout(function(){
-        data.vat = vat.val();
+        data.vat = vat.val().trim();
     });
 
     discount.mouseout(function(){
-        data.discount = discount.val();
+        data.discount = discount.val().trim();
     });
 
     status.change(function(){
-        data.status = status.val();
+        data.status = status.val().trim();
     });
 
-   
+    barcode.change(function(){
+        data.barcode = barcode.val().trim();
+    });
+
+
 
     add.click(function(){
         $('.error').remove();
@@ -95,6 +101,11 @@ let add = function(){
             return;
         }
 
+        if(data.barcode == ""){
+            barcode.parent().append('<span class="text-danger position-absolute text-gradient text-xs py-3 mt-4 error">*required</span>');
+            return;
+        }
+
         $('.loader').show();
         $.ajax({
             url: baseurl+"api/admin/items/add",
@@ -113,11 +124,11 @@ let add = function(){
         });
 
 
-       
+
     });
-  
+
     return {
       init: function(){
       }
-  }  
+  }
   }();

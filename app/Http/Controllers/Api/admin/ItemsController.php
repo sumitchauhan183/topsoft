@@ -18,7 +18,7 @@ class ItemsController extends Controller
      */
     public function __construct()
     {
-        
+
     }
 
     /**
@@ -31,12 +31,16 @@ class ItemsController extends Controller
         return "Wrong page";
     }
 
-    
+
 
     public function add(Request $request)
     {
         $input = $request->all();
-        $data = [ 
+        $checkbc = Items::where('barcode',$input["barcode"])
+                        ->where('company_id',$input["company_id"])
+                        ->get()->count();
+        if($checkbc<1):
+            $data = [
                 "company_id" => $input["company_id"],
                 "name" => $input["name"],
                 "quantity" => $input["quantity"],
@@ -45,43 +49,54 @@ class ItemsController extends Controller
                 "vat" => $input["vat"],
                 "discount" => $input["discount"],
                 "status" => $input["status"],
-                "final_price" => $input["price"] + $input["price"]*($input["vat"]/100) - $input["price"]*($input["discount"]/100)
-        ];
-       try{
-        $item = Items::create($data);
-        if($item):
-            $barcode = $this->generateBarcode($item);
-            Items::where('item_id',$item->id)->update(['barcode'=>$barcode]);
-            return json_encode([
-                'error'=>false,
-                'message'=>"Item created successfully",
-                'code'=>201
-            ]);
-        else:
-            return json_encode([
-                'error'=>true,
-                'message'=>"server issue item not created",
-                'code'=>201
-            ]);
+                "barcode" => $input["barcode"],
+                "final_price" => $input['price'] + (($input['price']-($input['price']*($input['discount']/100)))*($input['vat']/100)) - ($input['price']*($input['discount']/100))
+            ];
+            try{
+                $item = Items::create($data);
+                if($item):
+                    //$barcode = $this->generateBarcode($item);
+                    //Items::where('item_id',$item->id)->update(['barcode'=>$barcode]);
+                    return json_encode([
+                        'error'=>false,
+                        'message'=>"Item created successfully",
+                        'code'=>201
+                    ]);
+                else:
+                    return json_encode([
+                        'error'=>true,
+                        'message'=>"server issue item not created",
+                        'code'=>201
+                    ]);
+                endif;
+                return json_encode([
+                    'error'=>false,
+                    'message'=>'Item created successfully.'
+                ]);
+            }catch(Exception $e){
+                return json_encode([
+                    'error'=>true,
+                    'message'=>json_encode($e),
+                    'exception'=> $e
+                ]);
+            }
+            else:
+                return json_encode([
+                    'error'=>true,
+                    'message'=>'Barcode already used for another item'
+                ]);
         endif;
-        return json_encode([
-            'error'=>false,
-            'message'=>'Item created successfully.'
-        ]);
-       }catch(Exception $e){
-        return json_encode([
-            'error'=>true,
-            'message'=>json_encode($e),
-            'exception'=> $e
-        ]);
-       }
-        
-    } 
+    }
 
     public function update(Request $request)
     {
         $input     = $request->all();
         $item_id = $input['item_id'];
+        $checkbc = Items::where('barcode',$input["barcode"])
+            ->where('company_id',$input["company_id"])
+            ->where('item_id','!=',$item_id)
+            ->get()->count();
+        if($checkbc<1):
         $data = [
             "company_id" => $input["company_id"],
             "name" => $input["name"],
@@ -91,7 +106,8 @@ class ItemsController extends Controller
             "vat" => $input["vat"],
             "discount" => $input["discount"],
             "status" => $input["status"],
-            "final_price" => $input["price"] + $input["price"]*($input["vat"]/100) - $input["price"]*($input["discount"]/100)
+            "barcode" => $input["barcode"],
+            "final_price" => $input['price'] + (($input['price']-($input['price']*($input['discount']/100)))*($input['vat']/100)) - ($input['price']*($input['discount']/100))
         ];
        try{
         $item =  Items::where('item_id',$item_id)->update($data);
@@ -106,8 +122,13 @@ class ItemsController extends Controller
             'exception'=> $e
         ]);
        }
-        
-    } 
+else:
+    return json_encode([
+        'error'=>true,
+        'message'=>'Barcode already used for another item'
+    ]);
+    endif;
+    }
 
     public function list(Request $request)
     {
@@ -127,7 +148,7 @@ class ItemsController extends Controller
                                     ->get()
                                     ->toArray();
             endif;
-        
+
             return json_encode([
                 'error'=>false,
                 'message'=>'Item list',
@@ -141,9 +162,9 @@ class ItemsController extends Controller
                 'exception'=> $e
             ]);
         }
-        
-        
-    } 
+
+
+    }
 
     private function generateBarcode($item){
         $name = substr($item->name, 0, 3);
