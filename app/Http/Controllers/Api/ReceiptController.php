@@ -108,6 +108,7 @@ class ReceiptController extends Controller
                         'amount' => $input['amount'],
                         'observation' => $input['observation'],
                         'note' => $input['note'],
+                        'device_id' => $input['device_id'],
                         'receipt_date' => $input['receipt_date']
                 ]);
                 if($receipt):

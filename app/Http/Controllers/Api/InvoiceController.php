@@ -142,7 +142,7 @@ class InvoiceController extends Controller
                             'item_id'=>$item['item_id'],
                             'quantity'=>$item['quantity'],
                             'company_id' => $this->company_id,
-                            'client_id' => $item['client_id']
+                            'client_id' => $input['client_id']
                         ]);
                     endforeach;
                     return json_encode([

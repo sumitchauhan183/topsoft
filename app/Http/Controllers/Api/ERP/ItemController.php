@@ -106,7 +106,9 @@ class ItemController extends Controller
         if(!$required):
             $comCheck = Company::where('company_id',$input['company_id'])->get()->count();
             if($comCheck):
-            $item = Items::where('barcode',$input['barcode'])->get()->first();
+            $item = Items::where('company_id',$input['company_id'])
+                        ->where('barcode',$input['barcode'])
+                        ->get()->first();
             if($item):
                 return json_encode([
                     'error'=>false,
@@ -144,18 +146,23 @@ class ItemController extends Controller
     {
         $input = $request->all();
         $required = $this->checkRequiredParams($input,[
-            'company_id','name','quantity','price','description','vat','discount','barcode'
+            'company_id','name','quantity','price','description','vat','discount'
         ]);
         if(!$required):
             $comCheck = Company::where('company_id',$input['company_id'])->get()->count();
             if($comCheck):
             $check = Items::where('name',$input['name'])->where('company_id',$input['company_id'])->get()->count();
             if(!$check):
-                $barcheck = Items::where('barcode',$input['barcode'])
-                    ->where('company_id',$input['company_id'])
-                    ->get()->count();
+                if(isset($input['barcode'])):
+                    $barcheck = Items::where('barcode',$input['barcode'])
+                        ->where('company_id',$input['company_id'])
+                        ->get()->count();
+                else:
+                    $barcheck = 0;
+                endif;
+
                 if($barcheck<1):
-                    $item = Items::create([
+                    $data = [
                         'company_id' => $input['company_id'],
                         'name' => $input['name'],
                         'quantity' => $input['quantity'],
@@ -163,9 +170,12 @@ class ItemController extends Controller
                         'description'=> $input['description'],
                         'vat' => $input['vat'],
                         'discount'=> $input['discount'],
-                        'barcode'=> $input['barcode'],
                         'final_price' => $input['price'] + (($input['price']-($input['price']*($input['discount']/100)))*($input['vat']/100)) - ($input['price']*($input['discount']/100))
-                    ]);
+                    ];
+                    if(isset($input['barcode'])):
+                        $data["barcode"] = $input['barcode'];
+                    endif;
+                    $item = Items::create($data);
                     if($item):
                         //$barcode = $this->generateBarcode($item);
                         //Items::where('item_id',$item->id)->update(['barcode'=>$barcode]);
@@ -224,32 +234,44 @@ class ItemController extends Controller
     public function update(Request $request){
         $input = $request->all();
         $required = $this->checkRequiredParams($input,[
-           'company_id', 'name','quantity','price','description','vat','discount','item_id','barcode'
+           'company_id', 'name','quantity','price','description','vat','discount','item_id'
         ]);
         if(!$required):
             $comCheck = Company::where('company_id',$input['company_id'])->get()->count();
             if($comCheck):
+            if(!isset($input['barcode'])):
+                $input['barcode'] = "";
+            endif;
             $check  = Items::where('name',$input['name'])
                             ->where('item_id','!=',$input['item_id'])
                             ->where('company_id','==',$input['company_id'])
                             ->get()->count();
             if(!$check):
+                if(isset($input['barcode'])):
                 $barcheck = Items::where('barcode',$input['barcode'])
                             ->where('item_id','!=',$input['item_id'])
                             ->where('company_id',$input['company_id'])
                             ->get()->count();
+                else:
+                    $barcheck = 0;
+                endif;
                 if($barcheck<1):
+                    $data = [
+                        'name' => $input['name'],
+                        'quantity' => $input['quantity'],
+                        'price' => $input['price'],
+                        'description'=> $input['description'],
+                        'vat' => $input['vat'],
+                        'discount'=> $input['discount'],
+                        'final_price' => $input['price'] + (($input['price']-($input['price']*($input['discount']/100)))*($input['vat']/100)) - ($input['price']*($input['discount']/100))
+                    ];
+                    if(isset($input['barcode'])):
+                        $data['barcode'] = $input['barcode'];
+                    endif;
+
                     $item = Items::where('item_id',$input['item_id'])
-                        ->where('company_id',$input['company_id'])->update([
-                            'name' => $input['name'],
-                            'quantity' => $input['quantity'],
-                            'price' => $input['price'],
-                            'description'=> $input['description'],
-                            'vat' => $input['vat'],
-                            'discount'=> $input['discount'],
-                            'barcode'=> $input['barcode'],
-                            'final_price' => $input['price'] + (($input['price']-($input['price']*($input['discount']/100)))*($input['vat']/100)) - ($input['price']*($input['discount']/100))
-                        ]);
+                                  ->where('company_id',$input['company_id'])
+                                  ->update($data);
 
                     if($item):
                         return json_encode([

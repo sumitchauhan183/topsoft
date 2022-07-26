@@ -102,10 +102,6 @@ let edit = function(){
             status.parent().append('<span class="text-danger position-absolute text-gradient text-xs py-3 mt-4 error">*required</span>');
             return;
         }
-        if(data.barcode == ""){
-            barcode.parent().append('<span class="text-danger position-absolute text-gradient text-xs py-3 mt-4 error">*required</span>');
-            return;
-        }
 
 
 

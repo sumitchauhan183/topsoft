@@ -62,7 +62,7 @@ class EventController extends Controller
     {
         $input = $this->input;
         $required = $this->checkRequiredParams($input,[
-            'client_id','event_type','event_date','device_id'
+            'client_id','event_type','event_date'
         ]);
         if(!$required):
                 $input = $this->SetColumnsToBlank($input,[
@@ -338,7 +338,7 @@ class EventController extends Controller
     public function listbystatus(Request $request){
         $input = $this->input;
         $required = $this->checkRequiredParams($input,[
-            'page','count','status','company_id'
+            'page','count','status'
         ]);
         if(!$required):
             if(isset($input['month'])):
