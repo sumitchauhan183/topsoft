@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\API\Admin;
 
+use App\Models\Company;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Admin;
@@ -18,7 +19,7 @@ class LoginController extends Controller
      */
     public function __construct()
     {
-        
+
     }
 
     /**
@@ -54,6 +55,31 @@ class LoginController extends Controller
         endif;
     }
 
+    public function update(Request $request)
+    {
+        $input     = $request->all();
+        $data = [
+            "name"  => $input["name"],
+            "email" => $input["email"]
+        ];
+        if($input['is_password']!="false"){
+            $data['password'] = Hash::make($input["password"]);
+        }
+        try{
+            Admin::where('admin_id',1)->update($data);
+            return json_encode([
+                'error'=>false,
+                'message'=>'profile updated successfully.'
+            ]);
+        }catch(Exception $e){
+            return json_encode([
+                'error'=>true,
+                'message'=>'Exception occured.',
+                'exception'=> $e
+            ]);
+        }
+
+    }
 
     public function login(Request $request)
     {
@@ -69,7 +95,7 @@ class LoginController extends Controller
                 ->get()->first()->toArray();
         if(Hash::check($input['password'], $check['password'])):
             $admin_id = $check['admin_id'];
-            
+
             $token = $this->generateToken($admin_id);
             Admin::where('admin_id',$admin_id)->update(['login_token'=>$token]);
             $admin = Admin::where('admin_id',$admin_id)
@@ -79,7 +105,7 @@ class LoginController extends Controller
                 "data"=>$admin,
                 "token" => $token
             ]);
-            
+
             return json_encode([
                 'error'=>false,
                 'message'=>'Login Successful',
@@ -90,8 +116,8 @@ class LoginController extends Controller
             return json_encode([
                 'error'=>true,
                 'message'=>'Please check your password'
-            ]); 
-        endif;  
+            ]);
+        endif;
     }
 
 
@@ -104,5 +130,5 @@ class LoginController extends Controller
         return $token;
     }
 
-    
+
 }

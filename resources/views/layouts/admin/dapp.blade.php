@@ -25,14 +25,14 @@
   @include('inc.admin.css.clients')
   @include('inc.admin.css.receipts')
   @include('inc.admin.css.invoices')
+  @include('inc.admin.css.events')
   @include('inc.admin.css.company')
   @include('inc.admin.css.devices')
   <style>
       #sidenav-collapse-main{
           height: 80% !important;
-          
-      }
 
+      }
       .navbar-nav{
           padding-top: 20px !important;
       }
@@ -66,11 +66,12 @@
   <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
   <script src="{{asset('js/material-dashboard.min.js?v=3.0.0')}}"></script>
 
-  
+
   @include('inc.admin.js.dashboard')
   @include('inc.admin.js.clients')
   @include('inc.admin.js.invoices')
   @include('inc.admin.js.receipts')
+  @include('inc.admin.js.events')
   @include('inc.admin.js.items')
   @include('inc.admin.js.company')
   @include('inc.admin.js.license')

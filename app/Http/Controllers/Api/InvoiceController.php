@@ -68,9 +68,12 @@ class InvoiceController extends Controller
             'invoice_id'
         ]);
         if(!$required):
-            $invoices = Invoices::where('invoice_id',$input['invoice_id'])->get()->first();
+            $invoices = Invoices::where('invoice_id',$input['invoice_id'])
+                ->join('clients as c','invoices.client_id','c.client_id')
+                ->select('invoices.*','c.name as client_name','c.discount as client_discount')
+                ->get()->first();
             if($invoices):
-                $invoices->item_list = DB::table('invoice_items as ii')->select('ii.*','i.name','i.description','i.vat','i.barcode','i.discount')
+                $invoices->item_list = DB::table('invoice_items as ii')->select('ii.*','i.name','i.price','i.description','i.vat','i.barcode','i.discount')
                     ->where('ii.invoice_id',$input['invoice_id'])
                     ->join('items as i', 'ii.item_id','i.item_id')->get();
                 return json_encode([
@@ -112,8 +115,9 @@ class InvoiceController extends Controller
                     'type','payment_method','address','maintainance','note','user_info'
                 ]);
                 $subtotal = $this->subtotal($input['item_list']);
-                $discount = $this->discount($input['item_list']);
                 $vat = $this->vat($input['item_list']);
+                $discount = $this->discount($input['client_id'],$subtotal+$vat);
+                $finalTotal = ($subtotal+$vat)-$discount;
                 $this->subquantity($input['item_list']);
                 $invoice = Invoices::create([
                     'client_id' => $input['client_id'],
@@ -127,7 +131,7 @@ class InvoiceController extends Controller
                     'user_info' => $input['user_info'],
                     'sub_total' => $subtotal,
                     'discount'  => $discount,
-                    'final_total' => ($subtotal+$vat)-$discount,
+                    'final_total' => $finalTotal,
                     'vat'       => $vat,
                     'status' => $input['status']
                 ]);
@@ -189,9 +193,11 @@ class InvoiceController extends Controller
                 $input = $this->SetColumnsToBlank($input,[
                     'type','payment_method','address','maintainance','note','user_info'
                 ]);
+                $inv = Invoices::where('invoice_id',$input['invoice_id'])->get()->first();
                 $subtotal = $this->subtotal($input['item_list']);
-                $discount = $this->discount($input['item_list']);
                 $vat = $this->vat($input['item_list']);
+                $discount = $this->discount($inv->client_id,$subtotal+$vat);
+                $finalTotal = ($subtotal+$vat)-$discount;
                 $this->subquantity($input['item_list']);
                 $invoice = Invoices::where('invoice_id',$input['invoice_id'])->update([
                     'type' => $input['type'],
@@ -203,20 +209,21 @@ class InvoiceController extends Controller
                     'sub_total' => $subtotal,
                     'discount'  => $discount,
                     'vat'       => $vat,
-                    'final_total' => ($subtotal+$vat)-$discount,
+                    'final_total' => $finalTotal,
                     'status' => $input['status']
                 ]);
                 if($invoice):
                     $prevItems = InvoiceItems::where('invoice_id',$input['invoice_id'])->get()->toArray();
                     $this->addquantity($prevItems);
                     InvoiceItems::where('invoice_id',$input['invoice_id'])->delete();
+                    $inv = Invoices::where('invoice_id',$input['invoice_id'])->get()->first();
                     foreach($input['item_list'] as $item):
                         InvoiceItems::create([
                             'invoice_id'=>$input['invoice_id'],
                             'item_id'=>$item['item_id'],
                             'quantity'=>$item['quantity'],
-                            'company_id' => $item['company_id'],
-                            'client_id' => $item['client_id']
+                            'company_id' => $this->company_id,
+                            'client_id' => $inv->client_id
                         ]);
                     endforeach;
                     return json_encode([
@@ -259,7 +266,7 @@ class InvoiceController extends Controller
                 ->where('invoices.company_id',$this->company_id)
                 ->skip($input['page']*$input['count'])
                 ->take($input['count'])
-                ->select('invoices.*','c.name as client_name')
+                ->select('invoices.*','c.name as client_name','c.discount as client_discount')
                 ->get();
             return json_encode([
                 'error'=>false,
@@ -432,12 +439,12 @@ class InvoiceController extends Controller
         return $subtotal;
     }
 
-    private function discount($item){
-        $discount = 0;
-        foreach($item as $i):
-            $d = Items::where('item_id',$i['item_id'])->get()->first();
-            $discount += ($d->discount/100)*($d->price*$i['quantity']);
-        endforeach;
+    private function discount($client,$total){
+
+        $client = Clients::where('client_id',$client)->get()->first();
+
+            $discount = ($client->discount/100)*$total;
+
 
         return $discount;
     }
@@ -446,8 +453,7 @@ class InvoiceController extends Controller
         $vat = 0;
         foreach($item as $i):
             $d = Items::where('item_id',$i['item_id'])->get()->first();
-            $dis = ($d->discount/100)*($d->price*$i['quantity']);
-            $vat += ($d->vat/100)*($d->price*$i['quantity']-$dis);
+            $vat += ($d->vat/100)*($d->price*$i['quantity']);
         endforeach;
 
         return $vat;

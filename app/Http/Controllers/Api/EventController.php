@@ -214,18 +214,30 @@ class EventController extends Controller
                                 ->where('events.device_id',$input['device_id'])
                                 ->where('events.company_id',$this->company_id)
                                 ->where('events.event_date','>=',$first)
-                                ->where('events.event_date','<=',$last)
-                                ->skip($input['page']*$input['count'])
-                                ->take($input['count'])
-                                ->get();
+                                ->where('events.event_date','<=',$last);
+                                if(isset($input['client_id'])):
+                                    if($input['client_id']!=""):
+                                        $events = $events->where('events.client_id',$input['client_id']);
+                                    endif;
+                                endif;
+
+                $events = $events->skip($input['page']*$input['count'])
+                    ->take($input['count'])
+                    ->get();
             else:
                 $events = Events::select('events.*','c.name as client_name', 'c.address as client_address')
                                     ->join('clients as c','c.client_id','events.client_id')
                                     ->where('events.device_id',$input['device_id'])
-                                    ->where('events.company_id',$this->company_id)
-                                    ->skip($input['page']*$input['count'])
-                                    ->take($input['count'])
-                                    ->get();
+                                    ->where('events.company_id',$this->company_id);
+                                    if(isset($input['client_id'])):
+                                        if($input['client_id']!=""):
+                                            $events = $events->where('events.client_id',$input['client_id']);
+                                        endif;
+                                    endif;
+
+                $events = $events->skip($input['page']*$input['count'])
+                    ->take($input['count'])
+                    ->get();
             endif;
             return json_encode([
                 'error'=>false,
@@ -306,8 +318,14 @@ class EventController extends Controller
                                 ->where('events.event_date','<=',$last)
                                 ->where('events.device_id',$input['device_id'])
                                 ->where('events.company_id',$this->company_id)
-                                ->where('events.event_type',$input['event_type'])
-                                ->skip($input['page']*$input['count'])
+                                ->where('events.event_type',$input['event_type']);
+                if(isset($input['client_id'])):
+                    if($input['client_id']!=""):
+                        $events = $events->where('events.client_id',$input['client_id']);
+                    endif;
+                endif;
+
+                $events = $events->skip($input['page']*$input['count'])
                                 ->take($input['count'])
                                 ->get();
             else:
@@ -315,10 +333,16 @@ class EventController extends Controller
                                     ->join('clients as c','c.client_id','events.client_id')
                                     ->where('events.device_id',$input['device_id'])
                                     ->where('events.company_id',$this->company_id)
-                                    ->where('events.event_type',$input['event_type'])
-                                    ->skip($input['page']*$input['count'])
-                                    ->take($input['count'])
-                                    ->get();
+                                    ->where('events.event_type',$input['event_type']);
+                if(isset($input['client_id'])):
+                    if($input['client_id']!=""):
+                        $events = $events->where('events.client_id',$input['client_id']);
+                    endif;
+                endif;
+
+                $events = $events->skip($input['page']*$input['count'])
+                    ->take($input['count'])
+                    ->get();
             endif;
             return json_encode([
                 'error'=>false,
@@ -352,19 +376,32 @@ class EventController extends Controller
                                 ->where('events.event_date','<=',$last)
                                 ->where('events.device_id',$input['device_id'])
                                 ->where('events.company_id',$this->company_id)
-                                ->where('events.status',$input['status'])
-                                ->skip($input['page']*$input['count'])
-                                ->take($input['count'])
-                                ->get();
+                                ->where('events.status',$input['status']);
+                if(isset($input['client_id'])):
+                    if($input['client_id']!=""):
+                        $events = $events->where('events.client_id',$input['client_id']);
+                    endif;
+                endif;
+
+                $events = $events->skip($input['page']*$input['count'])
+                    ->take($input['count'])
+                    ->get();
+
             else:
                 $events = Events::select('events.*','c.name as client_name', 'c.address as client_address')
                                     ->join('clients as c','c.client_id','events.client_id')
                                     ->where('events.device_id',$input['device_id'])
                                     ->where('events.company_id',$this->company_id)
-                                    ->where('events.status',$input['status'])
-                                    ->skip($input['page']*$input['count'])
-                                    ->take($input['count'])
-                                    ->get();
+                                    ->where('events.status',$input['status']);
+                if(isset($input['client_id'])):
+                    if($input['client_id']!=""):
+                        $events = $events->where('events.client_id',$input['client_id']);
+                    endif;
+                endif;
+
+                $events = $events->skip($input['page']*$input['count'])
+                    ->take($input['count'])
+                    ->get();
             endif;
             return json_encode([
                 'error'=>false,

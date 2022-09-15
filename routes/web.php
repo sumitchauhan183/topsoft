@@ -27,6 +27,7 @@ Route::get('admin/logout',[App\Http\Controllers\Admin\AuthController::class,'log
 
 // ADMIN LOGGED IN ROUTES
 Route::any('admin/dashboard',[App\Http\Controllers\Admin\DashboardController::class,'dashboard'])->name('admin.dashboard');
+Route::any('admin/profile',[App\Http\Controllers\Admin\DashboardController::class,'profile'])->name('admin.profile');
 
 // CLIENTS ROUTES
 Route::get('admin/clients',[App\Http\Controllers\Admin\ClientController::class,'list'])->name('admin.clients.list');
@@ -56,6 +57,10 @@ Route::get('admin/invoice/view/{id}',[App\Http\Controllers\Admin\InvoiceControll
 // RECEIPT ROUTES
 Route::get('admin/receipts',[App\Http\Controllers\Admin\ReceiptController::class,'list'])->name('admin.receipts.list');
 Route::get('admin/receipt/view/{id}',[App\Http\Controllers\Admin\ReceiptController::class,'view']);
+
+// EVENTS ROUTES
+Route::get('admin/events',[App\Http\Controllers\Admin\EventController::class,'list'])->name('admin.events.list');
+Route::get('admin/events/view/{id}',[App\Http\Controllers\Admin\EventController::class,'view']);
 
 // COMPANY LICENSE ROUTE
 Route::get('admin/company/{id}/license/add',[App\Http\Controllers\Admin\LicenseController::class,'add']);

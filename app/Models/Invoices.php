@@ -27,4 +27,5 @@ class Invoices extends Authenticatable
         'invoice_id','client_id','device_id','company_id','type','invoice_number','payment_method','address','maintainance',
         'note','user_info','status','sub_total','final_total', 'discount', 'vat', 'credit_amount'
     ];
+
 }

@@ -3,8 +3,8 @@
 
 <head>
   <!-- Meta Tags -->
-  <meta charset="utf-8">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="author" content="ThemeMarch">
   <!-- Site Title -->
@@ -101,7 +101,6 @@
                     <th class="cs-width_1 cs-semi_bold cs-primary_color cs-focus_bg">Qty</th>
                     <th class="cs-width_1 cs-semi_bold cs-primary_color cs-focus_bg">Price</th>
                     <th class="cs-width_1 cs-semi_bold cs-primary_color cs-focus_bg">Vat(%)</th>
-                    <th class="cs-width_1 cs-semi_bold cs-primary_color cs-focus_bg">Discount(%)</th>
                     <th class="cs-width_2 cs-semi_bold cs-primary_color cs-focus_bg cs-text_right">Total</th>
                   </tr>
                 </thead>
@@ -115,10 +114,9 @@
                     @endphp
                     @foreach ($data->item_list as $item)
                         @php
-                            $total += $item->final_price*$item->quantity;
                             $stotal += $item->price*$item->quantity;
-                            $discount   += $item->price * ($item->discount/100);
-                            $vat = ($item->price-($item->price * ($item->discount/100))) * ($item->vat/100);
+                            //$discount   += $item->price * ($item->discount/100);
+                            $vat = ($item->price * ($item->vat/100))*$item->quantity;
                             $tax   += $vat;
                             $qty += $item->quantity;
                         @endphp
@@ -128,8 +126,7 @@
                             <td class="cs-width_1">{{$item->quantity}}</td>
                             <td class="cs-width_1">{{$item->price}}</td>
                             <td class="cs-width_1">{{$item->vat}}</td>
-                            <td class="cs-width_1">{{$item->discount}}</td>
-                            <td class="cs-width_2 cs-text_right">{{round($item->final_price*$item->quantity,2)}}</td>
+                            <td class="cs-width_2 cs-text_right">{{round(($item->price*$item->quantity)+$vat,2)}}</td>
                         </tr>
                     @endforeach
                 </tbody>
@@ -141,6 +138,9 @@
                 <p class="cs-m0">At check in you may need to present the credit <br>card used for payment of this ticket.</p>
               </div>
               <div class="cs-right_footer">
+                  @php
+                      $discount = ($data->client->discount/100)*($stotal+$tax);
+                  @endphp
                 <table>
                   <tbody>
                   <tr class="cs-border_left">
@@ -156,7 +156,7 @@
                         <td class="cs-width_3 cs-semi_bold cs-focus_bg cs-primary_color cs-text_right">{{round($tax,2)}}</td>
                     </tr>
                     <tr class="cs-border_left">
-                      <td class="cs-width_3 cs-semi_bold cs-primary_color cs-focus_bg">Discount</td>
+                      <td class="cs-width_3 cs-semi_bold cs-primary_color cs-focus_bg">Discount({{$data->client->discount}}%)</td>
                       <td class="cs-width_3 cs-semi_bold cs-focus_bg cs-primary_color cs-text_right">{{round($discount,2)}}</td>
                     </tr>
 
@@ -172,7 +172,7 @@
                 <tbody>
                   <tr class="cs-border_none">
                     <td class="cs-width_3 cs-border_top_0 cs-bold cs-f16 cs-primary_color">Grand Total</td>
-                    <td class="cs-width_3 cs-border_top_0 cs-bold cs-f16 cs-primary_color cs-text_right">{{round($total,2)}}</td>
+                    <td class="cs-width_3 cs-border_top_0 cs-bold cs-f16 cs-primary_color cs-text_right">{{round(($stotal+$tax)-$discount,2)}}</td>
                   </tr>
                 </tbody>
               </table>

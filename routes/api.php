@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Route;
 // ADMIN API ROUTES
 Route::POST('admin/login',[App\Http\Controllers\Api\admin\LoginController::class,'login']);
 Route::POST('admin/mail/check',[App\Http\Controllers\Api\admin\LoginController::class,'checkEmail']);
+Route::POST('admin/profile/update',[App\Http\Controllers\Api\admin\LoginController::class,'update']);
 
 Route::POST('admin/clients/check/email',[App\Http\Controllers\Api\admin\ClientController::class,'checkEmailExist']);
 Route::POST('admin/clients/add',[App\Http\Controllers\Api\admin\ClientController::class,'add']);
@@ -28,6 +29,7 @@ Route::POST('admin/items/update',[App\Http\Controllers\Api\admin\ItemsController
 Route::POST('admin/items',[App\Http\Controllers\Api\admin\ItemsController::class,'list']);
 
 Route::POST('admin/invoices',[App\Http\Controllers\Api\admin\InvoiceController::class,'list']);
+Route::POST('admin/events',[App\Http\Controllers\Api\admin\EventController::class,'list']);
 Route::POST('admin/receipts',[App\Http\Controllers\Api\admin\ReceiptController::class,'list']);
 
 Route::POST('admin/company/check/email',[App\Http\Controllers\Api\admin\CompanyController::class,'checkEmailExist']);

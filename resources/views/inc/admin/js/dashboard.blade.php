@@ -3,7 +3,17 @@
   <script>
         //close the alert after 3 seconds.
         $(document).ready(function(){
-          dashboard.init(); 
+          dashboard.init();
         });
     </script>
-  @endif
+@endif
+
+@if($url=='profile')
+    <script src="{{asset('js/custom/admin/profile.js')}}"></script>
+    <script>
+        //close the alert after 3 seconds.
+        $(document).ready(function(){
+            profile.init();
+        });
+    </script>
+@endif
