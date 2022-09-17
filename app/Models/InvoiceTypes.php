@@ -24,7 +24,7 @@ class InvoiceTypes extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'type_id','name', 'status'
+        'type_id','company_id','name', 'status'
     ];
 
 }

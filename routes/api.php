@@ -144,9 +144,21 @@ Route::POST('erp/event/list/client',[App\Http\Controllers\Api\ERP\EventControlle
 Route::POST('erp/event/list/company',[App\Http\Controllers\Api\ERP\EventController::class,'listbycompany']);
 
 
-Route::POST('erp/invoice/list',[App\Http\Controllers\Api\ERP\InvoiceController::class,'list']);
-Route::POST('erp/invoice/details',[App\Http\Controllers\Api\ERP\InvoiceController::class,'detail']);
-Route::POST('erp/invoice/items',[App\Http\Controllers\Api\ERP\InvoiceController::class,'items']);
+Route::POST('erp/invoice/list',[App\Http\Controllers\Api\ERP\InvoiceController::class,'listbycompany']);
+Route::POST('erp/invoice/list/client',[App\Http\Controllers\Api\ERP\InvoiceController::class,'listbyclient']);
+Route::POST('erp/invoice/list/type',[App\Http\Controllers\Api\ERP\InvoiceController::class,'listbytype']);
+Route::POST('erp/invoice/list/client/type',[App\Http\Controllers\Api\ERP\InvoiceController::class,'listbyclientwithtype']);
+Route::POST('erp/invoice/list/status',[App\Http\Controllers\Api\ERP\InvoiceController::class,'listbystatus']);
+Route::POST('erp/invoice/list/client/status',[App\Http\Controllers\Api\ERP\InvoiceController::class,'listbyclientwithstatus']);
+Route::POST('erp/invoice/details',[App\Http\Controllers\Api\ERP\InvoiceController::class,'details']);
+
+
+Route::POST('erp/invoice_type/add',[App\Http\Controllers\Api\ERP\InvoiceTypeController::class,'add']);
+Route::POST('erp/invoice_type/update',[App\Http\Controllers\Api\ERP\InvoiceTypeController::class,'update']);
+Route::POST('erp/invoice_type/list',[App\Http\Controllers\Api\ERP\InvoiceTypeController::class,'list']);
+Route::POST('erp/invoice_type/delete',[App\Http\Controllers\Api\ERP\InvoiceTypeController::class,'delete']);
+
+
 
 
 
