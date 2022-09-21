@@ -20,7 +20,7 @@ class AppUserController extends Controller
      */
     public function __construct()
     {
-        
+
     }
 
     /**
@@ -37,7 +37,19 @@ class AppUserController extends Controller
     {
         $input = $request->all();
         if(isset($input['email'])):
-            $check = Devices::where('email',$input['email'])->count();
+            if(isset($input['device_id'])):
+                    $company = Devices::where('device_id',$input['device_id'])->get()->first();
+                    $company_id = $company->company_id;
+                    $check = Devices::where('email',$input['email'])
+                                ->where('company_id',$input['company_id'])
+                                ->where('device_id','!=',$input['device_id'])
+                                ->count();
+
+                else:
+                    $check = Devices::where('email',$input['email'])
+                               ->where('company_id',$input['company_id'])->count();
+
+            endif;
             if($check<1):
                 return json_encode([
                     'error'=>false
@@ -101,15 +113,16 @@ class AppUserController extends Controller
             'exception'=> $e
         ]);
        }
-        
-    } 
+
+    }
 
     public function update(Request $request)
     {
         $input     = $request->all();
         $device_id = $input['device_id'];
         $data = [
-            "status"   => $input["status"]
+            "status"   => $input["status"],
+            "email"    => $input["email"]
         ];
         if($input['is_password']){
             $data['password'] = Hash::make($input["password"]);
@@ -127,8 +140,8 @@ class AppUserController extends Controller
             'exception'=> $e
         ]);
        }
-        
-    } 
+
+    }
 
     public function list(Request $request)
     {
@@ -149,7 +162,7 @@ class AppUserController extends Controller
                 'exception'=> $e
             ]);
         }
-        
-        
-    } 
+
+
+    }
 }

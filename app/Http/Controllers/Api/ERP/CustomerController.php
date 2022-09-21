@@ -341,6 +341,8 @@ class CustomerController extends Controller
         if(!$required):
             $comCheck = Company::where('company_id',$input['company_id'])->get()->count();
             if($comCheck):
+                if($this->checkCustomer($input['client_id'])):
+
             DB::beginTransaction();
 
             try {
@@ -368,9 +370,17 @@ class CustomerController extends Controller
                     'error'=>false,
                     'message'=>"Something went wrong",
                     'data'=> $e,
-                    'code'=>203
+                    'code'=>204
                 ]);
             }
+            else:
+                return json_encode([
+                    'error'=>true,
+                    'message'=>"Customer not exists",
+                    'data'=>(object)[],
+                    'code'=>203
+                ]);
+            endif;
             else:
                 return json_encode([
                     'error'=>true,
@@ -388,6 +398,10 @@ class CustomerController extends Controller
                 'code'=>201
             ]);
         endif;
+    }
+
+    private function checkCustomer($client_id){
+        return Clients::where('client_id',$client_id)->get()->count();
     }
 
    private function checkToken(){

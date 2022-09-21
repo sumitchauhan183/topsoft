@@ -1,11 +1,11 @@
 let add = function(){
-   
-    
+
+
     let email        = $('#email-new');
     let password       = $('#password-new');
     let status   = $('#status');
     let company  = $('#company-id');
-    
+
     let add         = $('#add-device');
     let baseurl     = '/topsoft/';
     let data = {
@@ -24,7 +24,7 @@ let add = function(){
             return;
         }
         checkEmailExist();
-        
+
     });
 
     password.change(function(){
@@ -46,13 +46,13 @@ let add = function(){
                return (false)
              }
                return (true)
-        
+
     }
 
-    
+
 
     function checkEmailExist(){
-        
+
         $('.loader').show();
         $.ajax({
             url: baseurl+"api/admin/app-users/check/email",
@@ -70,13 +70,16 @@ let add = function(){
                 data.email_error = false;
               }
             });
-    
+
 }
 
     add.click(function(){
         $('.error').remove();
-        
-        
+
+        data.email = email.val();
+        data.password = password.val();
+        data.status = status.val();
+        data.company_id = company.val();
         if(data.email.length < 1){
             email.parent().append('<span class="text-danger position-absolute text-gradient text-xs py-3 mt-4 error">*required</span>');
             return;
@@ -111,7 +114,7 @@ let add = function(){
               $('.loader').hide();
               if(d.error){
                 alert(d.message);
-               
+
               }else{
                   alert(d.message);
                   window.location.href = baseurl+"admin/company/"+data.company_id+"/app-users";
@@ -119,11 +122,11 @@ let add = function(){
         });
 
 
-       
+
     });
-  
+
     return {
       init: function(){
       }
-  }  
+  }
   }();

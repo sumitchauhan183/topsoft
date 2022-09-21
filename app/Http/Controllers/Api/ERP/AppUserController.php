@@ -305,23 +305,33 @@ class AppUserController extends Controller
         if(!$required):
             $comCheck = Company::where('company_id',$input['company_id'])->get()->count();
             if($comCheck):
-            try{
-                Devices::where('company_id',$input['company_id'])
-                    ->where('device_id',$input['device_id'])->delete();
-                return json_encode([
-                    'error'=>false,
-                    'message'=>"Device deleted successfully",
-                    'data'=> (object)[],
-                    'code'=>200
-                ]);
-            }catch(Exception $e){
-                return json_encode([
-                    'error'=>true,
-                    'message'=>"Exception Occurred",
-                    'data'=> (object)[],
-                    'code'=>203
-                ]);
-            }
+                if($this->checkDevice($input['device_id'])):
+                    try{
+                        Devices::where('company_id',$input['company_id'])
+                            ->where('device_id',$input['device_id'])->delete();
+                        return json_encode([
+                            'error'=>false,
+                            'message'=>"Device deleted successfully",
+                            'data'=> (object)[],
+                            'code'=>200
+                        ]);
+                    }catch(Exception $e){
+                        return json_encode([
+                            'error'=>true,
+                            'message'=>"Exception Occurred",
+                            'data'=> (object)[],
+                            'code'=>204
+                        ]);
+                    }
+                    else:
+                        return json_encode([
+                            'error'=>false,
+                            'message'=>"Device not exist",
+                            'data'=>(object)[],
+                            'code'=>203
+                        ]);
+                        endif;
+
             else:
                 return json_encode([
                     'error'=>false,
@@ -338,6 +348,10 @@ class AppUserController extends Controller
                 'code'=>201
             ]);
         endif;
+    }
+
+    private function checkDevice($device_id){
+        return Devices::where('device_id',$device_id)->get()->count();
     }
 
     private function checkToken(){
@@ -359,12 +373,4 @@ class AppUserController extends Controller
         return false;
     }
 
-    private function SetColumnsToBlank($input,$required){
-        foreach($required as $r):
-            if(isset($input["$r"])==false):
-                $input["$r"] = '';
-            endif;
-        endforeach;
-        return $input;
-    }
 }

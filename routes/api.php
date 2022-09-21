@@ -158,6 +158,11 @@ Route::POST('erp/invoice_type/update',[App\Http\Controllers\Api\ERP\InvoiceTypeC
 Route::POST('erp/invoice_type/list',[App\Http\Controllers\Api\ERP\InvoiceTypeController::class,'list']);
 Route::POST('erp/invoice_type/delete',[App\Http\Controllers\Api\ERP\InvoiceTypeController::class,'delete']);
 
+Route::POST('erp/license/add',[App\Http\Controllers\Api\ERP\LicenseController::class,'add']);
+Route::POST('erp/license/update',[App\Http\Controllers\Api\ERP\LicenseController::class,'update']);
+Route::POST('erp/license/detail',[App\Http\Controllers\Api\ERP\LicenseController::class,'detail']);
+Route::POST('erp/license/delete',[App\Http\Controllers\Api\ERP\LicenseController::class,'delete']);
+
 Route::POST('erp/sync/customers',[App\Http\Controllers\Api\ERP\SyncController::class,'customers']);
 Route::POST('erp/sync/invoices',[App\Http\Controllers\Api\ERP\SyncController::class,'invoices']);
 Route::POST('erp/sync/receipts',[App\Http\Controllers\Api\ERP\SyncController::class,'receipts']);

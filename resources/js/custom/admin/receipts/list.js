@@ -11,7 +11,7 @@ let list = function(){
         },
       ]});
     var data = [
-        
+
     ];
 
     let company = $('#companies');
@@ -41,9 +41,10 @@ let list = function(){
                       obj.receipt_number,
                       obj.company_name,
                       obj.client_name,
-                      obj.amount,
                       obj.observation,
+                      obj.amount,
                       obj.note,
+                      obj.receipt_date,
                       obj.created_at
                   ];
 
@@ -53,10 +54,10 @@ let list = function(){
               receipt_table.draw();
         });
     }
-  
+
     return {
       init: function(){
           runOnPageload();
       }
-  }  
+  }
   }();

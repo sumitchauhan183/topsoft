@@ -259,6 +259,7 @@ class CompanyController extends Controller
             'company_id'
         ]);
         if(!$required):
+            if($this->checkCompany($input['company_id'])):
             DB::beginTransaction();
 
             try {
@@ -289,7 +290,13 @@ class CompanyController extends Controller
                     'code'=>202
                 ]);
             }
-
+            else:
+                return json_encode([
+                    'error'=>true,
+                    'message'=>"Company not exist",
+                    'code'=>201
+                ]);
+            endif;
         else:
             return json_encode([
                 'error'=>true,
@@ -299,7 +306,9 @@ class CompanyController extends Controller
         endif;
     }
 
-
+    private function checkCompany($company_id){
+        return Company::where('client_id',$company_id)->get()->count();
+    }
 
    private function checkToken(){
            $token = $this->input['token'];

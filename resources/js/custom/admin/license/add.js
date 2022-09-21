@@ -1,10 +1,10 @@
 let add = function(){
-   
-    
+
+
     let deviceCount          = $('#device-count');
     let expirationDate       = $('#expiration-date');
     let companyId            = $('#company-id');
-    
+
     let add         = $('#add-license');
     let baseurl     = '/topsoft/';
     let data = {
@@ -26,6 +26,8 @@ let add = function(){
 
     add.click(function(){
         $('.error').remove();
+        data.device_count = deviceCount.val();
+        data.expiration_date = expirationDate.val();
         if(data.device_count.length < 1){
             deviceCount.parent().append('<span class="text-danger position-absolute text-gradient text-xs py-3 mt-4 error">*required</span>');
             return;
@@ -50,16 +52,16 @@ let add = function(){
                 alert(d.message);
               }else{
                   alert(d.message);
-                  location.reload();
+                  location.href = baseurl+'admin/company/';
               }
         });
 
 
-       
+
     });
-  
+
     return {
       init: function(){
       }
-  }  
+  }
   }();
