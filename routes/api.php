@@ -163,6 +163,13 @@ Route::POST('erp/license/update',[App\Http\Controllers\Api\ERP\LicenseController
 Route::POST('erp/license/detail',[App\Http\Controllers\Api\ERP\LicenseController::class,'detail']);
 Route::POST('erp/license/delete',[App\Http\Controllers\Api\ERP\LicenseController::class,'delete']);
 
+Route::POST('erp/checklist/add',[App\Http\Controllers\Api\ERP\ChecklistController::class,'add']);
+Route::POST('erp/checklist/update',[App\Http\Controllers\Api\ERP\ChecklistController::class,'update']);
+Route::POST('erp/checklist/list',[App\Http\Controllers\Api\ERP\ChecklistController::class,'list']);
+Route::POST('erp/checklist/detail',[App\Http\Controllers\Api\ERP\ChecklistController::class,'detail']);
+Route::POST('erp/checklist/delete',[App\Http\Controllers\Api\ERP\ChecklistController::class,'delete']);
+Route::POST('erp/checklist/delete/all',[App\Http\Controllers\Api\ERP\ChecklistController::class,'deleteall']);
+
 Route::POST('erp/sync/customers',[App\Http\Controllers\Api\ERP\SyncController::class,'customers']);
 Route::POST('erp/sync/invoices',[App\Http\Controllers\Api\ERP\SyncController::class,'invoices']);
 Route::POST('erp/sync/receipts',[App\Http\Controllers\Api\ERP\SyncController::class,'receipts']);

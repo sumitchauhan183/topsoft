@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class LicenceFeatures extends Authenticatable
+class LicenceFeature extends Authenticatable
 {
     use Notifiable;
 
@@ -25,5 +25,5 @@ class LicenceFeatures extends Authenticatable
      */
     protected $fillable = [
         'licence_id','feature_id','status'
-    ];	
+    ];
 }
