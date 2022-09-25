@@ -75,13 +75,12 @@ class EventController extends Controller
                         'device_id'=>$input['device_id'],
                         'event_type' => $input['event_type'],
                         'observation' => $input['observation'],
-                        'checklist' => $input['checklist'],
+                        'checklist' => json_encode($input['checklist']),
                         'event_date'   => $input['event_date'],
                         'latitude' => $input['latitude'],
                         'longitude'   => $input['longitude']
                     ];
                 else:
-                    if($input['completed_date']==""):
                         $data = [
                             'client_id'=>$input['client_id'],
                             'company_id'=>$this->company_id,
@@ -95,23 +94,10 @@ class EventController extends Controller
                             'latitude' => $input['latitude'],
                             'longitude'   => $input['longitude']
                         ];
-                    else:
-                        $data = [
-                            'client_id'=>$input['client_id'],
-                            'company_id'=>$this->company_id,
-                            'device_id'=>$input['device_id'],
-                            'event_type' => $input['event_type'],
-                            'status' => $input['status'],
-                            'observation' => $input['observation'],
-                            'is_completed' => $input['is_completed'],
-                            'signature' => $input['signature'],
-                            'completed_date' => $input['completed_date'],
-                            'event_date'   => $input['event_date'],
-                            'latitude' => $input['latitude'],
-                            'longitude'   => $input['longitude']
-                        ];
-                     endif;
                 endif;
+            if($input['completed_date']!=""):
+                $data['completed_date'] = $input['completed_date'];
+            endif;
                 $events = Events::create($data);
                 if($events):
                     return json_encode([
@@ -152,7 +138,7 @@ class EventController extends Controller
                         'device_id'=>$input['device_id'],
                         'event_type' => $input['event_type'],
                         'observation' => $input['observation'],
-                        'checklist' => $input['checklist'],
+                        'checklist' => json_encode($input['checklist']),
                         'event_date'   => $input['event_date'],
                         'latitude' => $input['latitude'],
                         'longitude'   => $input['longitude']
@@ -166,12 +152,14 @@ class EventController extends Controller
                         'observation' => $input['observation'],
                         'is_completed' => $input['is_completed'],
                         'signature' => $input['signature'],
-                        'completed_date' => $input['completed_date'],
                         'event_date' => $input['event_date'],
                         'latitude' => $input['latitude'],
                         'longitude'   => $input['longitude']
                     ];
                 endif;
+            if($input['completed_date']!=""):
+                $data['completed_date'] = $input['completed_date'];
+            endif;
                 $event = Events::where('event_id',$input['event_id'])->update($data);
                 if($event):
                     return json_encode([
@@ -470,10 +458,6 @@ class EventController extends Controller
         return false;
    }
 
-    private function generateToken($id)
-    {
-        return  md5($id.time());
-    }
 
     private function SetColumnsToBlank($input,$required){
      foreach($required as $r):

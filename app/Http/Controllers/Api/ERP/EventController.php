@@ -54,7 +54,202 @@ class EventController extends Controller
         return "Wrong page";
     }
 
-    public function listbycompany(Request $request){
+    public function add(){
+        $input = $this->input;
+        $required = $this->checkRequiredParams($input,[
+            'company_id','client_id','device_id','event_type','event_date'
+        ]);
+        if(!$required):
+            if($this->checkCompany($input['company_id'])):
+                if($this->checkClient($input)):
+                    if($this->checkDevice($input)):
+                        $input = $this->SetColumnsToBlank($input,[
+                            'observation'
+                        ]);
+                        if($input["event_type"]=="checklist"):
+                            $data = [
+                                'client_id'=>$input['client_id'],
+                                'company_id'=>$input['company_id'],
+                                'device_id'=>$input['device_id'],
+                                'event_type' => $input['event_type'],
+                                'observation' => $input['observation'],
+                                'checklist' => json_encode($input['checklist']),
+                                'event_date'   => date('Y-m-d',strtotime($input['event_date']))
+                            ];
+                        else:
+                                $data = [
+                                    'client_id'=>$input['client_id'],
+                                    'company_id'=>$input['company_id'],
+                                    'device_id'=>$input['device_id'],
+                                    'event_type' => $input['event_type'],
+                                    'observation' => $input['observation'],
+                                    'event_date'   => date('Y-m-d',strtotime($input['event_date']))
+                                ];
+                        endif;
+                        $events = Events::create($data);
+                        if($events):
+                            return json_encode([
+                                'error'=>false,
+                                'message'=>"Event created successfully",
+                                'data'=> Events::where('event_id',$events->id)->get()->first(),
+                                'code'=>200
+                            ]);
+                        else:
+                            return json_encode([
+                                'error'=>true,
+                                'message'=>"server issue event not created",
+                                'code'=>205
+                            ]);
+                        endif;
+                    else:
+                        return json_encode([
+                            'error'=>true,
+                            'message'=>"Device not exists",
+                            'code'=>204
+                        ]);
+                    endif;
+                else:
+                    return json_encode([
+                        'error'=>true,
+                        'message'=>"Client not exists",
+                        'code'=>203
+                    ]);
+                endif;
+            else:
+                return json_encode([
+                    'error'=>true,
+                    'message'=>"Company not exists",
+                    'code'=>202
+                ]);
+            endif;
+        else:
+            return json_encode([
+                'error'=>true,
+                'message'=>"$required is required key",
+                'code'=>201
+            ]);
+        endif;
+    }
+    public function update(){
+        $input = $this->input;
+        $required = $this->checkRequiredParams($input,[
+            'company_id','client_id','device_id','event_id','event_type','event_date'
+        ]);
+        if(!$required):
+            if($this->checkCompany($input['company_id'])):
+                if($this->checkClient($input)):
+                    if($this->checkDevice($input)):
+                        if($this->checkEvent($input)):
+                        $input = $this->SetColumnsToBlank($input,[
+                            'observation'
+                        ]);
+                        if($input["event_type"]=="checklist"):
+                            $data = [
+                                'client_id'=>$input['client_id'],
+                                'device_id'=>$input['device_id'],
+                                'event_type' => $input['event_type'],
+                                'observation' => $input['observation'],
+                                'checklist' => json_encode($input['checklist']),
+                                'event_date'   => date('Y-m-d',strtotime($input['event_date']))
+                            ];
+                        else:
+                            $data = [
+                                'client_id'   =>$input['client_id'],
+                                'device_id'   =>$input['device_id'],
+                                'event_type'  => $input['event_type'],
+                                'observation' => $input['observation'],
+                                'event_date'  => date('Y-m-d',strtotime($input['event_date']))
+                            ];
+                        endif;
+                        $event = Events::where('event_id',$input['event_id'])->update($data);
+                        if($event):
+                            return json_encode([
+                                'error'=>false,
+                                'message'=>"Event updated successfully",
+                                'data'=> Events::where('event_id',$input['event_id'])->get()->first(),
+                                'code'=>200
+                            ]);
+                        else:
+                            return json_encode([
+                                'error'=>true,
+                                'message'=>"server issue Event not created",
+                                'code'=>206
+                            ]);
+                        endif;
+                    else:
+                        return json_encode([
+                            'error'=>true,
+                            'message'=>"Event not exists",
+                            'code'=>205
+                        ]);
+                    endif;
+                    else:
+                        return json_encode([
+                            'error'=>true,
+                            'message'=>"Device not exists",
+                            'code'=>204
+                        ]);
+                    endif;
+                else:
+                    return json_encode([
+                        'error'=>true,
+                        'message'=>"Client not exists",
+                        'code'=>203
+                    ]);
+                endif;
+            else:
+                return json_encode([
+                    'error'=>true,
+                    'message'=>"Company not exists",
+                    'code'=>202
+                ]);
+                endif;
+            else:
+        return json_encode([
+            'error'=>true,
+            'message'=>"$required is required key",
+            'code'=>201
+        ]);
+        endif;
+    }
+    public function delete(){
+        $input = $this->input;
+        $required = $this->checkRequiredParams($input,[
+            'company_id','event_id'
+        ]);
+        if(!$required):
+            if($this->checkCompany($input['company_id'])):
+                if($this->checkEvent($input)):
+                Events::where('company_id',$input['company_id'])->where('event_id',$input['event_id'])->delete();
+                return json_encode([
+                    'error'=>false,
+                    'message'=>"Event removed successfully",
+                    'data'=> (object) [],
+                    'code'=>200
+                ]);
+            else:
+                return json_encode([
+                    'error'=>true,
+                    'message'=>"Event not exists",
+                    'code'=>203
+                ]);
+            endif;
+            else:
+                return json_encode([
+                    'error'=>true,
+                    'message'=>"Company not exists",
+                    'code'=>202
+                ]);
+            endif;
+        else:
+            return json_encode([
+                'error'=>true,
+                'message'=>"$required is required key",
+                'code'=>201
+            ]);
+        endif;
+    }
+    public function listbycompany(){
         $input = $this->input;
         $required = $this->checkRequiredParams($input,[
             'company_id','page','count'
@@ -89,8 +284,7 @@ class EventController extends Controller
         endif;
     }
 
-
-    public function listbyclient(Request $request){
+    public function listbyclient(){
         $input = $this->input;
         $required = $this->checkRequiredParams($input,[
             'company_id','client_id','page','count'
@@ -134,7 +328,7 @@ class EventController extends Controller
         endif;
     }
 
-    public function listbydevice(Request $request){
+    public function listbydevice(){
         $input = $this->input;
         $required = $this->checkRequiredParams($input,[
             'company_id','device_id','page','count'
@@ -178,90 +372,6 @@ class EventController extends Controller
         endif;
     }
 
-    public function listbytype(Request $request){
-        $input = $this->input;
-        $required = $this->checkRequiredParams($input,[
-            'page','count','event_type'
-        ]);
-        if(!$required):
-            if(isset($input['month'])):
-                $timestamp    = strtotime(''.$input['month'].' '.$input['year'].'');
-                $first = date('Y-m-01', $timestamp);
-                $last  = date('Y-m-t', $timestamp);
-
-                $events = Events::select('events.*','c.name as client_name', 'c.address as client_address')
-                                ->join('clients as c','c.client_id','events.client_id')
-                                ->where('events.event_date','>=',$first)
-                                ->where('events.event_date','<=',$last)
-                                ->where('events.event_type',$input['event_type'])
-                                ->skip($input['page']*$input['count'])
-                                ->take($input['count'])
-                                ->get();
-            else:
-                $events = Events::select('events.*','c.name as client_name', 'c.address as client_address')
-                                    ->join('clients as c','c.client_id','events.client_id')
-                                    ->where('events.event_type',$input['event_type'])
-                                    ->skip($input['page']*$input['count'])
-                                    ->take($input['count'])
-                                    ->get();
-            endif;
-            return json_encode([
-                'error'=>false,
-                'message'=>"listing done",
-                'data'=> $events,
-                'code'=>200
-            ]);
-        else:
-            return json_encode([
-                'error'=>true,
-                'message'=>"$required is required key",
-                'code'=>201
-            ]);
-        endif;
-    }
-
-    public function listbystatus(Request $request){
-        $input = $this->input;
-        $required = $this->checkRequiredParams($input,[
-            'page','count','status'
-        ]);
-        if(!$required):
-            if(isset($input['month'])):
-                $timestamp    = strtotime(''.$input['month'].' '.$input['year'].'');
-                $first = date('Y-m-01', $timestamp);
-                $last  = date('Y-m-t', $timestamp);
-
-                $events = Events::select('events.*','c.name as client_name', 'c.address as client_address')
-                                ->join('clients as c','c.client_id','events.client_id')
-                                ->where('events.event_date','>=',$first)
-                                ->where('events.event_date','<=',$last)
-                                ->where('events.status',$input['status'])
-                                ->skip($input['page']*$input['count'])
-                                ->take($input['count'])
-                                ->get();
-            else:
-                $events = Events::select('events.*','c.name as client_name', 'c.address as client_address')
-                                    ->join('clients as c','c.client_id','events.client_id')
-                                    ->where('events.status',$input['status'])
-                                    ->skip($input['page']*$input['count'])
-                                    ->take($input['count'])
-                                    ->get();
-            endif;
-            return json_encode([
-                'error'=>false,
-                'message'=>"listing done",
-                'data'=> $events,
-                'code'=>200
-            ]);
-        else:
-            return json_encode([
-                'error'=>true,
-                'message'=>"$required is required key",
-                'code'=>201
-            ]);
-        endif;
-    }
-
     private function checkCompany($company_id){
         return Company::where('company_id',$company_id)->get()->count();
     }
@@ -276,6 +386,30 @@ class EventController extends Controller
         return Devices::where('device_id',$input['device_id'])
             ->where('company_id',$input['company_id'])
             ->get()->count();
+    }
+
+    private function checkEvent($input){
+        if(isset($input['client_id']) && isset($input['device_id'])):
+            return Events::where('device_id',$input['device_id'])
+                ->where('client_id',$input['client_id'])
+                ->where('company_id',$input['company_id'])
+                ->where('event_id',$input['event_id'])
+                ->get()->count();
+        elseif(isset($input['device_id'])):
+            return Events::where('device_id',$input['device_id'])
+                ->where('company_id',$input['company_id'])
+                ->where('event_id',$input['event_id'])
+                ->get()->count();
+        elseif(isset($input['client_id'])):
+            return Events::where('client_id',$input['client_id'])
+                ->where('company_id',$input['company_id'])
+                ->where('event_id',$input['event_id'])
+                ->get()->count();
+        else:
+            return Events::where('company_id',$input['company_id'])
+                ->where('event_id',$input['event_id'])
+                ->get()->count();
+        endif;
     }
 
     private function checkToken(){
@@ -297,10 +431,6 @@ class EventController extends Controller
         return false;
    }
 
-    private function generateToken($id)
-    {
-        return  md5($id.time());
-    }
 
     private function SetColumnsToBlank($input,$required){
      foreach($required as $r):
