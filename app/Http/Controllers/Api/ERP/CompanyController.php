@@ -307,7 +307,7 @@ class CompanyController extends Controller
     }
 
     private function checkCompany($company_id){
-        return Company::where('client_id',$company_id)->get()->count();
+        return Company::where('company_id',$company_id)->get()->count();
     }
 
    private function checkToken(){

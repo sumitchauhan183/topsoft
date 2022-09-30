@@ -141,26 +141,28 @@ class EventController extends Controller
                     if($this->checkDevice($input)):
                         if($this->checkEvent($input)):
                         $input = $this->SetColumnsToBlank($input,[
-                            'observation'
+                            'observation','is_completed'
                         ]);
-                        if($input["event_type"]=="checklist"):
-                            $data = [
-                                'client_id'=>$input['client_id'],
-                                'device_id'=>$input['device_id'],
-                                'event_type' => $input['event_type'],
-                                'observation' => $input['observation'],
-                                'checklist' => json_encode($input['checklist']),
-                                'event_date'   => date('Y-m-d',strtotime($input['event_date']))
-                            ];
-                        else:
-                            $data = [
-                                'client_id'   =>$input['client_id'],
-                                'device_id'   =>$input['device_id'],
-                                'event_type'  => $input['event_type'],
-                                'observation' => $input['observation'],
-                                'event_date'  => date('Y-m-d',strtotime($input['event_date']))
-                            ];
-                        endif;
+                            if($input["event_type"]=="checklist"):
+                                $data = [
+                                    'client_id'=>$input['client_id'],
+                                    'device_id'=>$input['device_id'],
+                                    'event_type' => $input['event_type'],
+                                    'observation' => $input['observation'],
+                                    'is_completed' => $input['is_completed'],
+                                    'checklist' => json_encode($input['checklist']),
+                                    'event_date'   => date('Y-m-d',strtotime($input['event_date']))
+                                ];
+                            else:
+                                $data = [
+                                    'client_id'   =>$input['client_id'],
+                                    'device_id'   =>$input['device_id'],
+                                    'event_type'  => $input['event_type'],
+                                    'observation' => $input['observation'],
+                                    'is_completed' => $input['is_completed'],
+                                    'event_date'  => date('Y-m-d',strtotime($input['event_date']))
+                                ];
+                            endif;
                         $event = Events::where('event_id',$input['event_id'])->update($data);
                         if($event):
                             return json_encode([

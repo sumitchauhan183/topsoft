@@ -48,7 +48,10 @@
             </div>
             <div class="card-body px-0 pb-2">
             <div class="ms-md-auto pe-md-3 d-flex align-items-center mb-4">
-                            <input type="hidden" id="license-id" value="{{$license->licence_id}}">
+                            <div class="input-group input-group-outline mx-3 focused is-focused">
+                                <label class="form-label">License ID</label>
+                                <input type="text" class="form-control" id="license-id" value="{{$license->licence_id}}" disabled>
+                            </div>
                             <div class="input-group input-group-outline mx-3 focused is-focused">
                                 <label class="form-label">Device Count</label>
                                 <input type="text" class="form-control" id="device-count"  value="{{$license->device_count}}"  autocomplete="off">
@@ -58,7 +61,7 @@
                                 <input type="date" class="form-control" id="expiration-date" value="{{date('Y-m-d',strtotime($license->expiration_date))}}"  autocomplete="off">
                             </div>
                     </div>
-                    
+
 
 
                     <div class="ms-md-auto pe-md-3 d-flex align-items-center">
@@ -67,7 +70,7 @@
                             <button class="btn bg-gradient-primary mt-4 w-40" id="update-license"  type="button">Update</button>
                         </div>
                     </div>
-                            
+
                     </div>
 
 
