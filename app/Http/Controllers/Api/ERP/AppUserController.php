@@ -62,7 +62,7 @@ class AppUserController extends Controller
         if(!$required):
             $comCheck = Company::where('company_id',$input['company_id'])->get()->count();
             if($comCheck):
-            $device = Devices::select('device_id','company_id','email','status')
+            $device = Devices::select('device_id','company_id','email','modules','status')
                 ->where('device_id',$input['device_id'])
                 ->where('company_id',$input['company_id'])->get()->first();
             if($device):
@@ -101,7 +101,7 @@ class AppUserController extends Controller
     {
         $input = $request->all();
         $required = $this->checkRequiredParams($input,[
-            'company_id','email','status','password'
+            'company_id','email','status','password','modules'
         ]);
         if(!$required):
             $comCheck = Company::where('company_id',$input['company_id'])->get()->count();
@@ -120,6 +120,7 @@ class AppUserController extends Controller
                                 "company_id"  => $input["company_id"],
                                 "email"       => $input["email"],
                                 "status"      => $input["status"],
+                                "modules"     => $input["modules"],
                                 "password"    => Hash::make($input["password"])
                             ];
                             try{
@@ -127,7 +128,7 @@ class AppUserController extends Controller
                                 return json_encode([
                                     'error'=>false,
                                     'message'=>'Device created successfully.',
-                                    'data' => Devices::select('device_id','company_id','email','status')->where('email',$input['email'])->where('company_id',$input['company_id'])->get()->first(),
+                                    'data' => Devices::select('device_id','company_id','email','modules','status')->where('email',$input['email'])->where('company_id',$input['company_id'])->get()->first(),
                                     'code' => 200
                                 ]);
                             }catch(Exception $e){
@@ -193,7 +194,7 @@ class AppUserController extends Controller
     {
         $input = $request->all();
         $required = $this->checkRequiredParams($input,[
-            'company_id','device_id','status'
+            'company_id','device_id','status','modules'
         ]);
         if(!$required):
             $comCheck = Company::where('company_id',$input['company_id'])->get()->count();
@@ -206,7 +207,8 @@ class AppUserController extends Controller
                 if($isExpired):
                         $device_id = $input['device_id'];
                         $data = [
-                            "status"   => $input["status"]
+                            "status"   => $input["status"],
+                            "modules"     => $input["modules"]
                         ];
                         if(isset($input['password']) &&  $input['password']!=""){
                             $data['password'] = Hash::make($input["password"]);
@@ -216,7 +218,7 @@ class AppUserController extends Controller
                         return json_encode([
                             'error'=>false,
                             'message'=>'Device updated successfully.',
-                            'data' => (object) [],
+                            'data' => Devices::select('device_id','company_id','email','modules','status')->where('device_id',$device_id)->where('company_id',$input['company_id'])->get()->first(),
                             'code' => 200
                         ]);
                        }catch(Exception $e){
@@ -269,7 +271,7 @@ class AppUserController extends Controller
         if(!$required):
             $comCheck = Company::where('company_id',$input['company_id'])->get()->count();
             if($comCheck):
-            $clients = Devices::select('device_id','company_id','email','status')
+            $clients = Devices::select('device_id','company_id','email','modules','status')
                 ->where('company_id',$input['company_id'])
                 ->skip($input['page']*$input['count'])
                 ->take($input['count'])

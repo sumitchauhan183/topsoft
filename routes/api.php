@@ -80,6 +80,7 @@ Route::POST('invoice/details',[App\Http\Controllers\Api\InvoiceController::class
 Route::POST('invoice/items',[App\Http\Controllers\Api\InvoiceController::class,'items']);
 Route::POST('invoice/item/quantity/update',[App\Http\Controllers\Api\InvoiceController::class,'itemQuantityUpdate']);
 Route::POST('invoice/delete',[App\Http\Controllers\Api\InvoiceController::class,'delete']);
+Route::POST('invoice/multi/delete',[App\Http\Controllers\Api\InvoiceController::class,'multidelete']);
 Route::POST('invoice/pdf',[App\Http\Controllers\Api\InvoiceController::class,'invoicePDF']);
 
 
@@ -89,6 +90,7 @@ Route::POST('receipt/list',[App\Http\Controllers\Api\ReceiptController::class,'l
 Route::POST('receipt/details',[App\Http\Controllers\Api\ReceiptController::class,'detail']);
 Route::POST('receipt/pdf',[App\Http\Controllers\Api\ReceiptController::class,'receiptPDF']);
 Route::POST('receipt/delete',[App\Http\Controllers\Api\ReceiptController::class,'delete']);
+Route::POST('receipt/multi/delete',[App\Http\Controllers\Api\ReceiptController::class,'multidelete']);
 
 Route::POST('chat/send',[App\Http\Controllers\Api\ChatController::class,'send']);
 Route::POST('chat/messages',[App\Http\Controllers\Api\ChatController::class,'messages']);
@@ -182,6 +184,9 @@ Route::POST('erp/sync/invoices',[App\Http\Controllers\Api\ERP\SyncController::cl
 Route::POST('erp/sync/receipts',[App\Http\Controllers\Api\ERP\SyncController::class,'receipts']);
 Route::POST('erp/sync/events',[App\Http\Controllers\Api\ERP\SyncController::class,'events']);
 Route::POST('erp/sync/items',[App\Http\Controllers\Api\ERP\SyncController::class,'items']);
+
+
+Route::POST('erp/app/modules',[App\Http\Controllers\Api\ERP\ModuleController::class,'list']);
 
 
 

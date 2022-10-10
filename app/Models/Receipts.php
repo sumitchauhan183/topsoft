@@ -24,7 +24,7 @@ class Receipts extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'receipt_id','client_id','company_id','receipt_number','amount','observation','note','receipt_date'
-    ];		
+        'receipt_id','client_id','device_id','company_id','receipt_number','amount','observation','note','receipt_date'
+    ];
 
 }

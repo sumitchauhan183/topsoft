@@ -314,7 +314,32 @@ class InvoiceController extends Controller
             ]);
         endif;
     }
-
+    public function multidelete(Request $request){
+        $input = $this->input;
+        $required = $this->checkRequiredParams($input,[
+            'invoice_ids'
+        ]);
+        if(!$required):
+            $multiinvoices = explode(',',$input['invoice_ids']);
+            foreach ($multiinvoices as $i):
+                Invoices::where('invoice_id',$i)->delete();
+                $items = InvoiceItems::where('invoice_id',$i)->get();
+                $this->addquantity($items);
+                InvoiceItems::where('invoice_id',$i)->delete();
+            endforeach;
+            return json_encode([
+                    'error'=>false,
+                    'message'=>"Invoice's removed successfully",
+                    'code'=>200
+            ]);
+        else:
+            return json_encode([
+                'error'=>true,
+                'message'=>"$required is required key",
+                'code'=>201
+            ]);
+        endif;
+    }
     public function items(Request $request){
         $input = $this->input;
         $required = $this->checkRequiredParams($input,[

@@ -223,6 +223,30 @@ class ReceiptController extends Controller
         endif;
     }
 
+    public function multidelete(Request $request){
+        $input = $this->input;
+        $required = $this->checkRequiredParams($input,[
+            'receipt_ids'
+        ]);
+        if(!$required):
+            $receipts = explode(',',$input['receipt_ids']);
+            foreach($receipts as $r):
+                Receipts::where('receipt_id',$r)
+                    ->delete();
+            endforeach;
+            return json_encode([
+                'error'=>true,
+                'message'=>"Receipt's deleted",
+                'code'=>200
+            ]);
+        else:
+            return json_encode([
+                'error'=>true,
+                'message'=>"$required is required key",
+                'code'=>201
+            ]);
+        endif;
+    }
     /**
      * Display a listing of the resource.
      *
