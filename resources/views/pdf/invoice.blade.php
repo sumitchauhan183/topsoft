@@ -50,10 +50,10 @@
                           @endif
                       @endif
                       @if($data->client->email),
-                          <br>email: {{$data->client->email}}
+                          <br>Email: {{$data->client->email}}
                       @endif
                       @if($data->client->mobile),
-                          <br>email: {{$data->client->mobile}}
+                          <br>Mobile: {{$data->client->mobile}}
                       @endif
                   </p>
               </div>
@@ -82,10 +82,10 @@
                           @endif
                       @endif
                       @if($data->company->public_key),
-                          <br>email: {{$data->company->public_key}}
+                          <br>Email: {{$data->company->public_key}}
                       @endif
                       @if($data->company->mobile),
-                          <br>email: {{$data->company->mobile}}
+                          <br>Mobile: {{$data->company->mobile}}
                       @endif
                   </p>
               </div>

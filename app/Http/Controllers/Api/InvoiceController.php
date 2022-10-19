@@ -417,8 +417,12 @@ class InvoiceController extends Controller
                     ->join('items as i', 'ii.item_id','i.item_id')->get();
                 $invoices->client = DB::table('clients')->where('client_id',$invoices->client_id)->get()->first();
                 $invoices->company = DB::table('company')->where('company_id',$invoices->company_id)->get()->first();
+                if(isset($input['greek'])):
+                    $pdf = PDF::loadView('pdf/invoice_greek', ['data'=>$invoices]);
+                else:
+                    $pdf = PDF::loadView('pdf/invoice', ['data'=>$invoices]);
+                endif;
 
-                $pdf = PDF::loadView('pdf/invoice', ['data'=>$invoices]);
 
                 return $pdf->download('invoice.pdf');
 

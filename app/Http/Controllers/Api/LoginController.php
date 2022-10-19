@@ -49,7 +49,9 @@ class LoginController extends Controller
                     if(Hash::check($input['password'], $check['password'])):
                         $company_id = $input['company_id'];
                         if($check["company_id"] == $company_id):
-
+                            if($check["modules"]==0){
+                                $check["modules"] = "1,2,3,4,5,6,7";
+                            }
                         $licences = Licences::where('company_id',$company_id)->get()->first()->toArray();
                         if(count($licences) && $licences['expiration_date'] >= date('Y-m-d')):
                             $token = $this->updateToken($input,$check['device_id']);

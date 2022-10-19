@@ -265,9 +265,15 @@ class ReceiptController extends Controller
                                 ->get()
                                 ->first();
             if($receipts):
+
                 $receipts->client = DB::table('clients')->where('client_id',$receipts->client_id)->get()->first();
                 $receipts->company = DB::table('company')->where('company_id',$receipts->company_id)->get()->first();
-                $pdf = PDF::loadView('pdf/receipt', ['data'=>$receipts]);
+                if(isset($input['greek'])):
+                    $pdf = PDF::loadView('pdf/receipt_greek', ['data'=>$receipts]);
+                else:
+                    $pdf = PDF::loadView('pdf/receipt', ['data'=>$receipts]);
+                endif;
+
                 return $pdf->download('receipt.pdf');
             else:
                 return json_encode([
