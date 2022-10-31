@@ -97,6 +97,10 @@ Route::POST('chat/messages',[App\Http\Controllers\Api\ChatController::class,'mes
 Route::POST('chat/delete',[App\Http\Controllers\Api\ChatController::class,'delete']);
 Route::POST('chat/delete/all',[App\Http\Controllers\Api\ChatController::class,'deleteAll']);
 
+Route::POST('warehouse/items',[App\Http\Controllers\Api\WarehouseController::class,'items']);
+Route::POST('warehouse/items/add',[App\Http\Controllers\Api\WarehouseController::class,'addItems']);
+Route::POST('warehouse/items/remove',[App\Http\Controllers\Api\WarehouseController::class,'removeItems']);
+
 
 Route::POST('general/invoiceTypes',[App\Http\Controllers\Api\GeneralController::class,'invoiceTypes']);
 Route::POST('general/checklist',[App\Http\Controllers\Api\GeneralController::class,'checklists']);
