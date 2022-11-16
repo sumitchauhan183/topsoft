@@ -98,10 +98,12 @@ class ReceiptController extends Controller
     {
         $input = $this->input;
         $required = $this->checkRequiredParams($input,[
-            'client_id','amount','observation','note','receipt_date'
+            'client_id','amount','receipt_date'
         ]);
             if(!$required):
-
+                $input = $this->SetColumnsToBlank($input,[
+                    'observation','note'
+                ]);
                 $receipt = Receipts::create([
                         'client_id' => $input['client_id'],
                         'company_id' => $this->company_id,
@@ -141,10 +143,12 @@ class ReceiptController extends Controller
     public function update(Request $request){
         $input = $this->input;
         $required = $this->checkRequiredParams($input,[
-            'receipt_id','amount','observation','note'
+            'receipt_id','amount'
         ]);
             if(!$required):
-
+                $input = $this->SetColumnsToBlank($input,[
+                    'observation','note'
+                ]);
             $receipt = Receipts::where('receipt_id',$input['receipt_id'])->update([
                         'amount' => $input['amount'],
                         'observation' => $input['observation'],
@@ -306,6 +310,17 @@ private function generateReceiptNumber($receipt){
      $id = str_pad($receipt->id, 6, '0', STR_PAD_LEFT);
      return $name.'RCT'.$receipt->company_id.$id;
  }
+
+
+    private function SetColumnsToBlank($input,$required){
+
+        foreach($required as $r):
+            if(isset($input["$r"])==false):
+                $input["$r"] = '';
+            endif;
+        endforeach;
+        return $input;
+    }
 
 private function checkRequiredParams($input,$required){
      foreach($required as $r):

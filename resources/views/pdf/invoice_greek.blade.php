@@ -56,7 +56,7 @@
                         <br>Email: {{$data->client->email}}
                         @endif
                         @if($data->client->mobile),
-                        <br>Mobile: {{$data->client->mobile}}
+                        <br>Κινητό Τηλ.: {{$data->client->mobile}}
                         @endif
                     </p>
                 </div>
@@ -88,7 +88,7 @@
                         <br>Email: {{$data->company->public_key}}
                         @endif
                         @if($data->company->mobile),
-                        <br>Mobile: {{$data->company->mobile}}
+                        <br>Κινητό Τηλ.: {{$data->company->mobile}}
                         @endif
                     </p>
                 </div>
@@ -138,7 +138,7 @@
                     <div class="cs-invoice_footer cs-border_top">
                         <div class="cs-left_footer cs-mobile_hide">
                             <p class="cs-mb0"><b class="cs-primary_color">Πρόσθετες Πληροφορίες :</b></p>
-                            <p class="cs-m0">At check in you may need to present the credit <br>card used for payment of this ticket.</p>
+                            <p class="cs-m0">Κατά το check in ίσως χρειαστεί να παρουσιάσετε την πίστωση <br>κάρτα που χρησιμοποιήθηκε για την πληρωμή αυτού του εισιτηρίου.</p>
                         </div>
                         <div class="cs-right_footer">
                             @php
@@ -151,15 +151,15 @@
                                     <td class="cs-width_3  cs-focus_bg cs-primary_color cs-text_right">{{$qty}}</td>
                                 </tr>
                                 <tr class="cs-border_left">
-                                    <td class="cs-width_3  cs-primary_color cs-focus_bg">Subtoal</td>
+                                    <td class="cs-width_3  cs-primary_color cs-focus_bg">Υπόλοιπο</td>
                                     <td class="cs-width_3  cs-focus_bg cs-primary_color cs-text_right">{{round($stotal,2)}}</td>
                                 </tr>
                                 <tr class="cs-border_left">
-                                    <td class="cs-width_3  cs-primary_color cs-focus_bg">Tax</td>
+                                    <td class="cs-width_3  cs-primary_color cs-focus_bg">Φόρος</td>
                                     <td class="cs-width_3  cs-focus_bg cs-primary_color cs-text_right">{{round($tax,2)}}</td>
                                 </tr>
                                 <tr class="cs-border_left">
-                                    <td class="cs-width_3  cs-primary_color cs-focus_bg">Discount({{$data->client->discount}}%)</td>
+                                    <td class="cs-width_3  cs-primary_color cs-focus_bg">Έκπτωση({{$data->client->discount}}%)</td>
                                     <td class="cs-width_3  cs-focus_bg cs-primary_color cs-text_right">{{round($discount,2)}}</td>
                                 </tr>
 
@@ -188,7 +188,7 @@
                 </div>
                 <div class="cs-note_right">
                     <p class="cs-mb0"><b class="cs-primary_color cs-bold">Σημείωση:</b></p>
-                    <p class="cs-m0">Here we can write a additional notes for the client to get a better understanding of this invoice.</p>
+                    <p class="cs-m0">Εδώ μπορούμε να γράψουμε πρόσθετες σημειώσεις για τον πελάτη για να κατανοήσουμε καλύτερα αυτό το τιμολόγιο.</p>
                 </div>
             </div><!-- .cs-note -->
         </div>

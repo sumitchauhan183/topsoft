@@ -56,7 +56,7 @@
                         <br>Email: {{$data->client->email}}
                         @endif
                         @if($data->client->mobile),
-                        <br>Mobile: {{$data->client->mobile}}
+                        <br>Κινητό Τηλ.: {{$data->client->mobile}}
                         @endif
                     </p>
                 </div>
@@ -88,7 +88,7 @@
                         <br>Email: {{$data->company->public_key}}
                         @endif
                         @if($data->company->mobile),
-                        <br>Mobile: {{$data->company->mobile}}
+                        <br>Κινητό Τηλ.: {{$data->company->mobile}}
                         @endif
                     </p>
                 </div>
