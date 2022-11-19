@@ -27,4 +27,6 @@ class Receipts extends Authenticatable
         'receipt_id','client_id','device_id','company_id','receipt_number','amount','observation','note','receipt_date'
     ];
 
+    protected $casts = ['amount' => 'decimal:2'];
+
 }

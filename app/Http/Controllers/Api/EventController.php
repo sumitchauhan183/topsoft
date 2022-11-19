@@ -68,7 +68,7 @@ class EventController extends Controller
                 $input = $this->SetColumnsToBlank($input,[
                     'observation','is_completed', 'status','signature', 'completed_date','latitude','longitude'
                 ]);
-                if($input["event_type"]=="checklist"):
+                if(strtolower($input["event_type"])=="checklist"):
                     $data = [
                         'client_id'=>$input['client_id'],
                         'company_id'=>$this->company_id,
@@ -132,7 +132,7 @@ class EventController extends Controller
                 $input = $this->SetColumnsToBlank($input,[
                     'observation','is_completed','status', 'signature', 'completed_date','latitude','longitude'
                 ]);
-                if($input["event_type"]=="checklist"):
+                if(strtolower($input["event_type"])=="checklist"):
                     $data = [
                         'client_id'=>$input['client_id'],
                         'device_id'=>$input['device_id'],
